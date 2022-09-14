@@ -1,15 +1,17 @@
 <?php
 
-class DashboardModel extends CI_Model {
+class DashboardModel extends CI_Model
+{
 
-    private $table_general_page = 'general_page';
-    private $table_school_year = 'tahun_ajaran';
+	private $table_general_page = 'general_page';
+	private $table_school_year = 'tahun_ajaran';
 
-    //
-    //------------------------------COUNT--------------------------------//
+	//
+	//------------------------------COUNT--------------------------------//
 
-    public function get_dashboard_insight() {
-        $sql = $this->db->query("SELECT
+	public function get_dashboard_insight()
+	{
+		$sql = $this->db->query("SELECT
                                         (
                                         SELECT
                                             COUNT(id_pendaftaran)
@@ -47,7 +49,6 @@ class DashboardModel extends CI_Model {
                                             COUNT(id_pendaftaran)
                                         FROM
                                             pendaftaran
-                                        
                                     ) AS pendaftar,
                                     (
                                        SELECT
@@ -57,13 +58,14 @@ class DashboardModel extends CI_Model {
                                         WHERE
                                             status_pembayaran>=1
                                     ) AS pembeli");
-        return $sql->result();
-    }
+		return $sql->result();
+	}
 
-    //-----------------------------------------------------------------------//
-    //
-     public function get_register_insight() {
-        $sql = $this->db->query("SELECT
+	//-----------------------------------------------------------------------//
+	//
+	public function get_register_insight()
+	{
+		$sql = $this->db->query("SELECT
                                     th.*,
                                     (
                                     SELECT
@@ -97,6 +99,22 @@ class DashboardModel extends CI_Model {
                                     WHERE
                                         p.id_tahun_ajaran = th.id_tahun_ajaran AND p.level_tingkat = 4
                                 ) AS smp,
+								(
+                                    SELECT
+                                        COUNT(p.id_pendaftaran)
+                                    FROM
+                                        pendaftaran p
+                                    WHERE
+                                        p.id_tahun_ajaran = th.id_tahun_ajaran AND p.level_tingkat = 5
+                                ) AS kbtk,
+								(
+                                    SELECT
+                                        COUNT(p.id_pendaftaran)
+                                    FROM
+                                        pendaftaran p
+                                    WHERE
+                                        p.id_tahun_ajaran = th.id_tahun_ajaran AND p.level_tingkat = 6
+                                ) AS dc,
                                 CONCAT(
                                     'TA. ',
                                     th.tahun_awal,
@@ -108,11 +126,12 @@ class DashboardModel extends CI_Model {
                                 WHERE
                                     (th.tahun_awal BETWEEN(YEAR(CURDATE())-1) AND(YEAR(CURDATE()) +1)) AND th.semester = 'ganjil'
                                 ORDER BY th.tahun_awal ASC");
-        return $sql->result();
-    }
+		return $sql->result();
+	}
 
-    public function get_ppdb_insight() {
-        $sql = $this->db->query("SELECT
+	public function get_ppdb_insight()
+	{
+		$sql = $this->db->query("SELECT
                                         (
                                         SELECT
                                             COUNT(p.id_pendaftaran)
@@ -177,47 +196,48 @@ class DashboardModel extends CI_Model {
                                         WHERE
                                             CONCAT(',', p.insight, ',') LIKE '%,8,%'
                                     ) AS brosur");
-        return $sql->result();
-    }
+		return $sql->result();
+	}
 
-    public function get_schoolyear_now() {
+	public function get_schoolyear_now()
+	{
 
-        $this->db->select("CONCAT(tahun_awal,'/',tahun_akhir) AS tahun_ajaran");
-        $this->db->where("tahun_awal = YEAR(CURDATE())+1 AND semester = 'ganjil'");
+		$this->db->select("CONCAT(tahun_awal,'/',tahun_akhir) AS tahun_ajaran");
+		$this->db->where("tahun_awal = YEAR(CURDATE())+1 AND semester = 'ganjil'");
 
-        $sql = $this->db->get($this->table_school_year);
-        return $sql->result();
-    }
+		$sql = $this->db->get($this->table_school_year);
+		return $sql->result();
+	}
 
-    public function get_general_page() {
+	public function get_general_page()
+	{
 
-        $this->db->select('*');
-        $this->db->where('id_general_page', 1);
-        $sql = $this->db->get($this->table_general_page);
-        return $sql->result();
-    }
+		$this->db->select('*');
+		$this->db->where('id_general_page', 1);
+		$sql = $this->db->get($this->table_general_page);
+		return $sql->result();
+	}
 
-    public function update_status_ppdb($value) {
-        $this->db->trans_begin();
+	public function update_status_ppdb($value)
+	{
+		$this->db->trans_begin();
 
-        $data = array(
-            'status_ppdb' => $value,
-            'updated_at' => date("Y-m-d H:i:s"),
-        );
+		$data = array(
+			'status_ppdb' => $value,
+			'updated_at' => date("Y-m-d H:i:s"),
+		);
 
-        $this->db->where('id_general_page', 1);
-        $this->db->update($this->table_general_page, $data);
+		$this->db->where('id_general_page', 1);
+		$this->db->update($this->table_general_page, $data);
 
-        if ($this->db->trans_status() === false) {
-            $this->db->trans_rollback();
-            return false;
-        } else {
-            $this->db->trans_commit();
-            return true;
-        }
-    }
+		if ($this->db->trans_status() === false) {
+			$this->db->trans_rollback();
+			return false;
+		} else {
+			$this->db->trans_commit();
+			return true;
+		}
+	}
 
-//
+	//
 }
-
-?>
