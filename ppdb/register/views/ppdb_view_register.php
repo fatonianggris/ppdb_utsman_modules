@@ -467,7 +467,7 @@
 			id_jalur = $(this).val();
 			if (id_jalur == 2) {
 				Swal.fire("Mohon Perhatian!", "Jika kuota jalur ICP sudah terpenuhi, maka siswa akan dimasukan kuota jalur Reguler. Terima kasih!", "warning");
-				$('<span class="form-text text-dark"><b class="text-danger">*Jika kuota jalur ICP sudah terpenuhi, maka siswa akan dimasukan kuota jalur Reguler. Terima kasih!</b></span>').empty().html('#content');
+				$('<span class="form-text text-dark"><b class="text-danger">*Jika kuota jalur ICP sudah terpenuhi, maka siswa akan dimasukan kuota jalur Reguler. Terima kasih!</b></span>').empty().append('#content');
 			}
 			return false;
 		});
