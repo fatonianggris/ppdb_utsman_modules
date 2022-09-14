@@ -1,152 +1,160 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Schedule extends MX_Controller {
+class Schedule extends MX_Controller
+{
 
-    public function __construct() {
-        parent::__construct();
-        //Do your magic here
-        if ($this->session->userdata('sias-ppdb') == FALSE) {
-            redirect('ppdb/auth');
-        }
-        $this->load->model('ScheduleModel');
-        $this->load->library('form_validation');
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		//Do your magic here
+		if ($this->session->userdata('sias-ppdb') == FALSE) {
+			redirect('ppdb/auth');
+		}
+		$this->load->model('ScheduleModel');
+		$this->load->library('form_validation');
+	}
 
-    //
-    //-------------------------------SCHEDULE------------------------------//
-    //
-    
-     public function list_schedule() {
+	//
+	//-------------------------------SCHEDULE------------------------------//
+	//
 
-        $data['title'] = 'Daftar Jadwal PPDB | SPPDB Admin Sekolah Utsman ';
-        $data['nav_announ'] = 'menu-item-here';
+	public function list_schedule()
+	{
 
-        $data['schedule'] = $this->ScheduleModel->get_all_schedule(); //?  
-        $this->template->load('template_ppdb/template_ppdb', 'ppdb_list_schedule', $data);
-    }
+		$data['title'] = 'Daftar Jadwal PPDB | SPPDB Admin Sekolah Utsman ';
+		$data['nav_announ'] = 'menu-item-here';
 
-    public function add_schedule() {
+		$data['schedule'] = $this->ScheduleModel->get_all_schedule(); //?  
+		$this->template->load('template_ppdb/template_ppdb', 'ppdb_list_schedule', $data);
+	}
 
-        $data['title'] = 'Tambah Jadwal PPDB | SPPDB Admin Sekolah Utsman ';
-        $data['nav_announ'] = 'menu-item-here';
+	public function add_schedule()
+	{
 
-        $this->template->load('template_ppdb/template_ppdb', 'ppdb_add_schedule', $data);
-    }
+		$data['title'] = 'Tambah Jadwal PPDB | SPPDB Admin Sekolah Utsman ';
+		$data['nav_announ'] = 'menu-item-here';
 
-    public function edit_schedule($id = '') {
-        $id = paramDecrypt($id);
-        $data['title'] = 'Edit Jadwal PPDB | SPPDB Admin Sekolah Utsman ';
-        $data['nav_announ'] = 'menu-item-here';
+		$this->template->load('template_ppdb/template_ppdb', 'ppdb_add_schedule', $data);
+	}
 
-        $check = $this->ScheduleModel->get_schedule_id($id);
-        $data['schedule'] = $this->ScheduleModel->get_schedule_id($id);
+	public function edit_schedule($id = '')
+	{
+		$id = paramDecrypt($id);
+		$data['title'] = 'Edit Jadwal PPDB | SPPDB Admin Sekolah Utsman ';
+		$data['nav_announ'] = 'menu-item-here';
 
-        if ($check == FALSE or empty($id)) {
-            $this->load->view('error_404', $data);
-        } else {
-            //edit data with id
-            $this->template->load('template_ppdb/template_ppdb', 'ppdb_edit_schedule', $data);
-        }
-    }
+		$check = $this->ScheduleModel->get_schedule_id($id);
+		$data['schedule'] = $this->ScheduleModel->get_schedule_id($id);
 
-    public function post_schedule() {
+		if ($check == FALSE or empty($id)) {
+			$this->load->view('error_404', $data);
+		} else {
+			//edit data with id
+			$this->template->load('template_ppdb/template_ppdb', 'ppdb_edit_schedule', $data);
+		}
+	}
 
-        $param = $this->input->post();
-        $data = $this->security->xss_clean($param);
+	public function post_schedule()
+	{
 
-        $this->form_validation->set_rules('nama_jadwal', 'Nama Jadwal', 'required');
-        $this->form_validation->set_rules('tanggal_jadwal', 'Tanggal Jadwal', 'required');
-        $this->form_validation->set_rules('jam_jadwal', 'Jam Jadwal', 'required');
-        $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
+		$param = $this->input->post();
+		$data = $this->security->xss_clean($param);
 
-        $check = $this->ScheduleModel->check_schedule_duplicate($data['nama_jadwal']);
+		$this->form_validation->set_rules('nama_jadwal', 'Nama Jadwal', 'required');
+		$this->form_validation->set_rules('tanggal_jadwal', 'Tanggal Jadwal', 'required');
+		$this->form_validation->set_rules('jam_jadwal', 'Jam Jadwal', 'required');
+		$this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
 
-        if ($check == TRUE) {
+		$check = $this->ScheduleModel->check_schedule_duplicate($data['nama_jadwal']);
 
-            $this->session->set_flashdata('flash_message', warn_msg("Mohon Maaf, Jadwal dengan Nama '$data[nama_jadwal]' Telah Tersedia..."));
-            redirect('ppdb/announcement/schedule/add_schedule');
-        } else {
-            if ($this->form_validation->run() == FALSE) {
-                //
-                $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
-                redirect('ppdb/announcement/schedule/add_schedule');
-            } else {
+		if ($check == TRUE) {
 
-                // print_r($data);exit;    
-                $input = $this->ScheduleModel->insert_schedule($data);
-                if ($input == true) {
+			$this->session->set_flashdata('flash_message', warn_msg("Mohon Maaf, Jadwal dengan Nama '$data[nama_jadwal]' Telah Tersedia..."));
+			redirect('ppdb/announcement/schedule/add_schedule');
+		} else {
+			if ($this->form_validation->run() == FALSE) {
+				//
+				$this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+				redirect('ppdb/announcement/schedule/add_schedule');
+			} else {
 
-                    $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Jadwal '$data[nama_jadwal]' Telah Tersimpan.."));
-                    redirect('ppdb/announcement/schedule/add_schedule');
-                } else {
+				// print_r($data);exit;    
+				$input = $this->ScheduleModel->insert_schedule($data);
+				if ($input == true) {
 
-                    $this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
-                    redirect('ppdb/announcement/schedule/add_schedule');
-                }
-            }
-        }
-    }
+					$this->session->set_flashdata('flash_message', succ_msg("Berhasil, Jadwal '$data[nama_jadwal]' Telah Tersimpan.."));
+					redirect('ppdb/announcement/schedule/add_schedule');
+				} else {
 
-    public function update_schedule($id = '') {
-        $id = paramDecrypt($id);
-        $param = $this->input->post();
-        $data = $this->security->xss_clean($param);
+					$this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
+					redirect('ppdb/announcement/schedule/add_schedule');
+				}
+			}
+		}
+	}
 
-        $this->form_validation->set_rules('nama_jadwal', 'Nama Jadwal', 'required');
-        $this->form_validation->set_rules('tanggal_jadwal', 'Tanggal Jadwal', 'required');
-        $this->form_validation->set_rules('jam_jadwal', 'Jam Jadwal', 'required');
-        $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
+	public function update_schedule($id = '')
+	{
+		$id = paramDecrypt($id);
+		$param = $this->input->post();
+		$data = $this->security->xss_clean($param);
 
-        $get_name = $this->ScheduleModel->get_schedule_id($id);
-        $check = $this->ScheduleModel->check_schedule_duplicate($data['nama_jadwal']);
+		$this->form_validation->set_rules('nama_jadwal', 'Nama Jadwal', 'required');
+		$this->form_validation->set_rules('tanggal_jadwal', 'Tanggal Jadwal', 'required');
+		$this->form_validation->set_rules('jam_jadwal', 'Jam Jadwal', 'required');
+		$this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
 
-        if ($check == TRUE && $data['nama_jadwal'] != $get_name[0]->nama_jadwal) {
+		$get_name = $this->ScheduleModel->get_schedule_id($id);
+		$check = $this->ScheduleModel->check_schedule_duplicate($data['nama_jadwal']);
 
-            $this->session->set_flashdata('flash_message', warn_msg("Mohon Maaf, Jadwal dengan Nama '$data[nama_jadwal]' Telah Tersedia..."));
-            redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
-        } else {
+		if ($check == TRUE && $data['nama_jadwal'] != $get_name[0]->nama_jadwal) {
 
-            if ($this->form_validation->run() == FALSE) {
-                //
-                $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
-                redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
-            } else {
+			$this->session->set_flashdata('flash_message', warn_msg("Mohon Maaf, Jadwal dengan Nama '$data[nama_jadwal]' Telah Tersedia..."));
+			redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
+		} else {
 
-                // print_r($data);exit;    
-                $edit = $this->ScheduleModel->update_schedule($id, $data);
-                if ($edit == true) {
+			if ($this->form_validation->run() == FALSE) {
+				//
+				$this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+				redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
+			} else {
 
-                    $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Jadwal dengan Nama '$data[nama_jadwal]' Telah Terupdate.."));
-                    redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
-                } else {
+				// print_r($data);exit;    
+				$edit = $this->ScheduleModel->update_schedule($id, $data);
+				if ($edit == true) {
 
-                    $this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
-                    redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
-                }
-            }
-        }
-    }
+					$this->session->set_flashdata('flash_message', succ_msg("Berhasil, Jadwal dengan Nama '$data[nama_jadwal]' Telah Terupdate.."));
+					redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
+				} else {
 
-    public function delete_schedule() {
+					$this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
+					redirect('ppdb/announcement/schedule/edit_schedule/' . paramEncrypt($id));
+				}
+			}
+		}
+	}
 
-        $param = $this->input->post('id');
-        $id = $this->security->xss_clean($param);
-        $id = paramDecrypt($id);
+	public function delete_schedule()
+	{
 
-        $delete = $this->ScheduleModel->delete_schedule($id);
+		$param = $this->input->post('id');
+		$id = $this->security->xss_clean($param);
+		$id = paramDecrypt($id);
 
-        if ($delete == true) {
+		$delete = $this->ScheduleModel->delete_schedule($id);
 
-            $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Jadwal Telah Terhapus.."));
-            redirect('ppdb/announcement/schedule/list_schedule');
-        } else {
+		if ($delete == true) {
 
-            $this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
-            redirect('ppdb/announcement/schedule/list_schedule');
-        }
-    }
+			$this->session->set_flashdata('flash_message', succ_msg("Berhasil, Jadwal Telah Terhapus.."));
+			redirect('ppdb/announcement/schedule/list_schedule');
+		} else {
 
-    //----------------------------------------------------------------//
+			$this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
+			redirect('ppdb/announcement/schedule/list_schedule');
+		}
+	}
+
+	//----------------------------------------------------------------//
 }

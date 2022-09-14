@@ -284,7 +284,7 @@ class AdmissionModel extends CI_Model
 	public function get_schoolyear()
 	{
 
-		$sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE())+1 AND semester='ganjil'");
+		$sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) GROUP BY tahun_awal");
 
 		return $sql->result();
 	}

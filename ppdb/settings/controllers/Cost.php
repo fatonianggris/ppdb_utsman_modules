@@ -54,10 +54,8 @@ class Cost extends MX_Controller
 	public function post_cost()
 	{
 
-
 		$param = $this->input->post();
 		$data = $this->security->xss_clean($param);
-
 
 		$this->form_validation->set_rules('jenis_biaya', 'Jenis Biaya', 'required');
 		$this->form_validation->set_rules('level_tingkat', 'Jenjang Biaya', 'required');

@@ -100,7 +100,7 @@ class RegisterModel extends CI_Model
 
 	public function get_register_id($id = '')
 	{
-		$this->db->select("p.*,                               
+		$this->db->select("p.*,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
                          ");
 		$this->db->from('pendaftaran p');
@@ -115,7 +115,7 @@ class RegisterModel extends CI_Model
 	public function get_schoolyear()
 	{
 
-		$sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) AND semester='ganjil'");
+		$sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) GROUP BY tahun_awal");
 
 		return $sql->result();
 	}
