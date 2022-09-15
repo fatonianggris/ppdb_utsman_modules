@@ -361,7 +361,7 @@
 					<i aria-hidden="true" class="ki ki-close"></i>
 				</button>
 			</div>
-			<form class="form" method="POST" action="<?php echo site_url('/ppdb/settings/cost/post_cost_option'); ?>" id="kt_form_cost_option">
+			<form class="form" method="POST" action="<?php echo site_url('ppdb/settings/cost/post_cost_option'); ?>" id="kt_form_cost_option">
 				<input type="hidden" class="txt_csrfname" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				<div class="modal-body">
 					<div class="row">
@@ -403,7 +403,7 @@
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Form Tambah Opsi Biaya</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Form Edit Opsi Biaya</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<i aria-hidden="true" class="ki ki-close"></i>
 				</button>
