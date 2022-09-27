@@ -160,6 +160,10 @@
 												echo 'SD';
 											} else if ($register[0]->level_tingkat == 4) {
 												echo 'SMP';
+											} else if ($register[0]->level_tingkat == 5) {
+												echo 'KB-TK';
+											} else if ($register[0]->level_tingkat == 6) {
+												echo 'DC';
 											}
 											?>
 										</span>

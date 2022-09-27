@@ -118,6 +118,10 @@
 														echo 'SD';
 													} else if ($student[0]->level_tingkat == 4) {
 														echo 'SMP';
+													} else if ($student[0]->level_tingkat == 5) {
+														echo 'KB-TK';
+													} else if ($student[0]->level_tingkat == 6) {
+														echo 'DC';
 													}
 													?>
 												</a>
@@ -217,17 +221,17 @@
 							}
 
 							if ($student[0]->level_tingkat == 1) {
-								echo 'KB';
+								$jenjang = 'KB';
 							} else if ($student[0]->level_tingkat == 2) {
-								echo 'TK';
+								$jenjang = 'TK';
 							} else if ($student[0]->level_tingkat == 3) {
-								echo 'SD';
+								$jenjang = 'SD';
 							} else if ($student[0]->level_tingkat == 4) {
-								echo 'SMP';
+								$jenjang = 'SMP';
 							} else if ($student[0]->level_tingkat == 5) {
-								echo 'KB-TK';
+								$jenjang = 'KB-TK';
 							} else if ($student[0]->level_tingkat == 6) {
-								echo 'DC';
+								$jenjang = 'DC';
 							}
 
 							$disable = '';
@@ -1190,8 +1194,10 @@ if (!empty($cost)) {
 			var values = $(this).val().split(',');
 			vocArray.push(values[0]);
 		});
-		return vocArray.join('').split('');
-
+		filtered = vocArray.filter(function(e) {
+			return e
+		});
+		return filtered;
 	}
 
 	number_format = function(number, decimals, dec_point, thousands_sep) {
@@ -1242,9 +1248,9 @@ if (!empty($cost)) {
 					dataType: 'html',
 					success: function(result) {
 						Swal.fire("Disetujui!", "Calon Siswa '" + name + "' telah diterima sebagai Siswa Baru.", "success");
-						setTimeout(function() {
-							location.reload();
-						}, 1000);
+						// setTimeout(function() {
+						// 	location.reload();
+						// }, 1000);
 					},
 					error: function(result) {
 						console.log(result);

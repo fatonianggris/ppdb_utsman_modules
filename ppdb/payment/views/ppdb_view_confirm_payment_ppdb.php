@@ -117,6 +117,10 @@
 														echo 'SD';
 													} else if ($formulir[0]->level_tingkat == 4) {
 														echo 'SMP';
+													} else if ($formulir[0]->level_tingkat == 5) {
+														echo 'KB-TK';
+													} else if ($formulir[0]->level_tingkat == 6) {
+														echo 'DC';
 													}
 													?>
 												</a>

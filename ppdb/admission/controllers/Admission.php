@@ -140,7 +140,6 @@ class Admission extends MX_Controller
 		$data['formulir'] = $this->AdmissionModel->get_formulir_by_id($id); //?
 		$data['voucher'] = $this->AdmissionModel->get_all_voucher();
 		$data['cost'] = $this->AdmissionModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin);
-
 		$data['id_voucher'] = implode(",", $id_voucher);
 
 		$check_number = $this->AdmissionModel->get_number_last_student($data['formulir'][0]->tahun_ajaran);

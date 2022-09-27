@@ -309,7 +309,7 @@ class AdmissionModel extends CI_Model
 		$this->db->from('pendaftaran p');
 		$this->db->join('biaya b', 'p.level_tingkat = b.level_tingkat AND p.id_jalur = b.id_jalur AND b.id_jenis_kelamin=p.jenis_kelamin AND b.jenis_biaya = 1', 'left');
 		$this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
-		$this->db->order_by('inserted_at', 'ASC');
+		$this->db->order_by('p.id_pendaftaran', 'DESC');
 
 		$sql = $this->db->get();
 		return $sql->result();
