@@ -304,7 +304,7 @@ class AdmissionModel extends CI_Model
 		$this->db->select("p.*,       
                                 b.nominal,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
-                                DATE_FORMAT(p.inserted_at, '%d/%m/%Y') AS tanggal_masuk, 
+                                DATE_FORMAT(p.inserted_at, '%Y/%m/%d') AS tanggal_masuk, 
                          ");
 		$this->db->from('pendaftaran p');
 		$this->db->join('biaya b', 'p.level_tingkat = b.level_tingkat AND p.id_jalur = b.id_jalur AND b.id_jenis_kelamin=p.jenis_kelamin AND b.jenis_biaya = 1', 'left');
@@ -391,9 +391,9 @@ class AdmissionModel extends CI_Model
 
 	public function get_all_formulir()
 	{
-		$this->db->select("f.*,                          
+		$this->db->select("f.*,
                             CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
-                            DATE_FORMAT(f.inserted_at, '%d/%m/%Y') AS tanggal_isi");
+                            DATE_FORMAT(f.inserted_at, '%Y/%m/%d') AS tanggal_isi");
 		$this->db->from('view_formulir f');
 		$this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');
 		$this->db->order_by('inserted_at', 'ASC');
@@ -404,9 +404,9 @@ class AdmissionModel extends CI_Model
 
 	public function get_all_admission()
 	{
-		$this->db->select("f.*,                          
+		$this->db->select("f.*,
                             CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
-                            DATE_FORMAT(f.inserted_at, '%d/%m/%Y') AS tanggal_isi");
+                            DATE_FORMAT(f.inserted_at, '%Y/%m/%d') AS tanggal_isi");
 		$this->db->from('view_formulir f');
 		$this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');
 		$this->db->where('status_formulir', 1);
@@ -418,9 +418,9 @@ class AdmissionModel extends CI_Model
 
 	public function get_all_admission_accepted()
 	{
-		$this->db->select("f.*,                          
+		$this->db->select("f.*,
                             CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
-                            DATE_FORMAT(f.inserted_at, '%d/%m/%Y') AS tanggal_isi");
+                            DATE_FORMAT(f.inserted_at, '%Y/%m/%d') AS tanggal_isi");
 		$this->db->from('view_formulir f');
 		$this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');
 		$this->db->where('status_formulir', 1);

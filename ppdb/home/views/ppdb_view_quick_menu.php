@@ -130,7 +130,7 @@
 												</svg>
 												<!--end::Svg Icon-->
 											</span>
-											<div class="font-weight-bolder font-size-sm mt-3 text-white">Beli Formulir Pendaftaran</div>
+											<div class="font-weight-bolder font-size-sm mt-3 text-white">Pendaftaran Online Utsman</div>
 											<a href="<?php echo site_url("/ppdb/register"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-cart-plus"></i> Beli</a>
 
 										</div>

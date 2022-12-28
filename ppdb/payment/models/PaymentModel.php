@@ -168,9 +168,9 @@ class PaymentModel extends CI_Model
 
 	public function get_register_all()
 	{
-		$this->db->select("p.*,                                
+		$this->db->select("p.*,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
-                                DATE_FORMAT(p.inserted_at, '%d/%m/%Y') AS tanggal_masuk, 
+                                DATE_FORMAT(p.inserted_at, '%Y/%m/%d') AS tanggal_masuk, 
                                 v.kode_voucher
                          ");
 		$this->db->from('pendaftaran p');
