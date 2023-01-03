@@ -289,15 +289,6 @@ class AdmissionModel extends CI_Model
 		return $sql->result();
 	}
 
-	public function get_schoolyear_now()
-	{
-
-		$sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal = YEAR(CURDATE()) GROUP BY tahun_awal");
-
-		return $sql->result();
-	}
-
-
 	public function get_all_voucher()
 	{
 

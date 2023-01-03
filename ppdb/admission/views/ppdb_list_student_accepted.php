@@ -267,7 +267,7 @@
 														<?php
 														if (!empty($schoolyear)) {
 															foreach ($schoolyear as $key => $value_sch) {
-																if ($value_sch->tahun_awal == (date("Y") + 1)) {
+																if ($value_sch->tahun_awal == (date("Y"))) {
 														?>
 																	<option value="<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>" selected><?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> </option>
 																<?php } else {
