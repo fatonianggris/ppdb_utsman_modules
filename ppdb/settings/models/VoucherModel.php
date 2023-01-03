@@ -22,8 +22,8 @@ class VoucherModel extends CI_Model
 	{
 
 		$sql = $this->db->query("SELECT v.*,
-                                (select count(f.id_voucher) from formulir f WHERE concat(',', f.id_voucher, ',') LIKE concat('%,', v.id_voucher, ',%')) as terpakai 
-                                FROM voucher v WHERE v.id_jenis_voucher=2");
+                                (SELECT count(f.id_voucher) from formulir f WHERE concat(',', f.id_voucher, ',') LIKE concat('%,', v.id_voucher, ',%')) as terpakai
+                                FROM voucher v");
 
 		return $sql->result();
 	}
