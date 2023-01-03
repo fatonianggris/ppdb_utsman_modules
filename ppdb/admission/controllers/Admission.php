@@ -27,7 +27,7 @@ class Admission extends MX_Controller
 		$data['title'] = 'Daftar Formulir | Pendaftaran PPDB Sekolah Utsman';
 		$data['nav_adm'] = 'menu-item-here';
 		$data['register'] = $this->AdmissionModel->get_register_all();
-		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear();
+		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear_now();
 		$data['bank_account'] = $this->AdmissionModel->get_bank_account();
 		$data['insight_sold'] = $this->AdmissionModel->get_formulir_sold();
 
@@ -75,7 +75,7 @@ class Admission extends MX_Controller
 		$data['title'] = 'Control Panel | Pengisian PPDB Sekolah Utsman';
 		$data['nav_adm'] = 'menu-item-here';
 		$data['formulir'] = $this->AdmissionModel->get_all_formulir();
-		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear();
+		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear_now();
 		$data['insight_fulfill'] = $this->AdmissionModel->get_formulir_fulflillment();
 
 		$this->template->load('template_ppdb/template_ppdb', 'ppdb_list_student_fulfillment', $data);
@@ -87,7 +87,7 @@ class Admission extends MX_Controller
 		$data['title'] = 'Daftar Formulir | Penerimaan Sekolah Utsman';
 		$data['nav_acpt'] = 'menu-item-here';
 		$data['formulir'] = $this->AdmissionModel->get_all_admission();
-		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear();
+		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear_now();
 		$data['insight_admission'] = $this->AdmissionModel->get_student_admission();
 
 		$this->template->load('template_ppdb/template_ppdb', 'ppdb_list_student_admission', $data);
@@ -113,7 +113,7 @@ class Admission extends MX_Controller
 		$data['title'] = 'Daftar Formulir | Penerimaan Sekolah Utsman';
 		$data['nav_adm'] = 'menu-item-here';
 		$data['formulir'] = $this->AdmissionModel->get_all_admission_accepted();
-		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear();
+		$data['schoolyear'] = $this->AdmissionModel->get_schoolyear_now();
 		$data['bank_account'] = $this->AdmissionModel->get_bank_account();
 		$data['insight_accepted'] = $this->AdmissionModel->get_student_accepted();
 
