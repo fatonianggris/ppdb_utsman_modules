@@ -150,7 +150,7 @@
 									<!--end::Svg Icon-->
 								</span>
 							</div>
-							<div class="alert-text"><b>Mohon Maaf, untuk kouta penerimaan siswa (KB, KB-TK dan SD-ICP) telah terpenuhi. Terima kasih. </b></div>
+							<div class="alert-text"><b>Mohon Maaf, pendaftaran KB dan SD-ICP telah ditutup karena kuota terpenuhi. Terima kasih. </b></div>
 						</div>
 						<?php echo $this->session->flashdata('flash_message'); ?>
 						<!--begin::Form-->
