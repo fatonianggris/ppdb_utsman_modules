@@ -131,9 +131,26 @@
 				<div class="d-flex flex-column-fluid flex-center mt-10 mt-lg-0">
 					<!--begin::Signup-->
 					<div class="login-form login-signin" id="kt_form">
-						<div class="text-center mb-10 mb-lg-10">
+						<div class="text-center mb-5 mb-lg-5">
 							<h3 class="font-size-h1 text-warning font-weight-bolder">Pembelian Formulir</h3>
 							<p class="text-dark-75 font-weight-bold">Isikan Identitas Anda Untuk Informasi Pembelian Formulir Pada Sistem Kami. </p>
+						</div>
+						<div class="alert alert-custom alert-light-danger alert-shadow fade show mb-5 mb-lg-5" role="alert">
+							<div class="alert-icon">
+								<span class="svg-icon svg-icon-danger svg-icon-xl">
+									<!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											<rect x="0" y="0" width="24" height="24"></rect>
+											<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"></circle>
+											<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1"></rect>
+											<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1"></rect>
+										</g>
+									</svg>
+									<!--end::Svg Icon-->
+								</span>
+							</div>
+							<div class="alert-text"><b>Mohon Maaf, untuk kouta penerimaan siswa (KB, KB-TK dan SD-ICP) telah terpenuhi. Terima kasih. </b></div>
 						</div>
 						<?php echo $this->session->flashdata('flash_message'); ?>
 						<!--begin::Form-->
@@ -198,8 +215,8 @@
 										<select name="level_tingkat" id="tingkat" class="form-control form-control-solid form-control-lg">
 											<option value="">Jenjang</option>
 											<option value="6">DC</option>
-											<option value="1">KB</option>
-											<option value="5">KB-TK</option>
+											<option value="1" disabled>KB</option>
+											<option value="5" disabled>KB-TK</option>
 											<option value="2">TK</option>
 											<option value="3">SD</option>
 											<option value="4">SMP</option>
@@ -213,7 +230,7 @@
 										<select name="id_jalur" id="jalur" class="form-control form-control-solid form-control-lg">
 											<option value="">Program</option>
 											<option value="1">Reguler</option>
-											<option value="2">ICP</option>
+											<option value="2" disabled>ICP</option>
 										</select>
 										<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>pilih Program Siswa </span>
 									</div>
@@ -455,7 +472,7 @@
 			id_ting = $(this).val();
 			if (id_ting == 3) {
 				$("select[name='id_jalur']").prop('selectedIndex', 0);
-				$("select[name='id_jalur'] option[value='2']").prop("disabled", false);
+				$("select[name='id_jalur'] option[value='2']").prop("disabled", true);
 			} else {
 				$("select[name='id_jalur']").prop('selectedIndex', 0);
 				$("select[name='id_jalur'] option[value='2']").prop("disabled", true);
