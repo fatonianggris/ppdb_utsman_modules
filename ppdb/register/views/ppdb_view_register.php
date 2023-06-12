@@ -150,7 +150,7 @@
 									<!--end::Svg Icon-->
 								</span>
 							</div>
-							<div class="alert-text"><b>Mohon Maaf, pendaftaran KB dan SD-ICP telah ditutup karena kuota terpenuhi. Terima kasih. </b></div>
+							<div class="alert-text"><b>Mohon Maaf, pendaftaran KB,TK dan SD-ICP telah ditutup karena kuota terpenuhi. Terima kasih. </b></div>
 						</div>
 						<?php echo $this->session->flashdata('flash_message'); ?>
 						<!--begin::Form-->
@@ -217,7 +217,7 @@
 											<option value="6">DC</option>
 											<option value="1" disabled>KB</option>
 											<option value="5" disabled>KB-TK</option>
-											<option value="2">TK</option>
+											<option value="2" disabled>TK</option>
 											<option value="3">SD</option>
 											<option value="4">SMP</option>
 										</select>
