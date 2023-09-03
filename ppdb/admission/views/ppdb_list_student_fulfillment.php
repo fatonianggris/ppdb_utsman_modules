@@ -8,7 +8,7 @@
 				<!--begin::Heading-->
 				<div class="d-flex flex-column">
 					<!--begin::Title-->
-					<h2 class="text-white font-weight-bold my-2 mr-5">Pengisian</h2>
+					<h2 class="text-white font-weight-bold my-2 mr-5">Upload Berkas</h2>
 					<!--end::Title-->
 					<!--begin::Breadcrumb-->
 					<div class="d-flex align-items-center font-weight-bold my-2">
@@ -23,7 +23,7 @@
 						<!--end::Item-->
 						<!--begin::Item-->
 						<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-						<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Daftar Pengisian Formulir</a>
+						<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Daftar Berkas Formulir</a>
 						<!--end::Item-->
 					</div>
 					<!--end::Breadcrumb-->
