@@ -70,7 +70,6 @@
 </head>
 <!--end::Head-->
 <!--begin::Body-->
-<?php $user = $this->session->userdata('sias-ppdb-student'); ?>
 
 <body id="kt_body" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 	<!--begin::Main-->
@@ -206,30 +205,6 @@
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																		<rect x="0" y="0" width="24" height="24" />
-																		<path d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-																		<rect fill="#000000" opacity="0.3" x="11" y="2" width="2" height="14" rx="1" />
-																		<path d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" fill="#000000" fill-rule="nonzero" />
-																	</g>
-																</svg>
-																<!--end::Svg Icon-->
-															</span>
-														</div>
-														<div class="wizard-label">
-															<h3 class="wizard-title">Upload Berkas</h3>
-															<div class="wizard-desc">Upload Syarat Berkas Pendaftaran</div>
-														</div>
-													</div>
-												</div>
-												<!--end::Wizard Step 5 Nav-->
-												<!--begin::Wizard Step 6 Nav-->
-												<div class="wizard-step" data-wizard-type="step">
-													<div class="wizard-wrapper">
-														<div class="wizard-icon">
-															<span class="svg-icon svg-icon-2x">
-																<!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																		<rect x="0" y="0" width="24" height="24" />
 																		<path d="M11,3 L11,11 C11,11.0862364 11.0109158,11.1699233 11.0314412,11.2497543 C10.4163437,11.5908673 10,12.2468125 10,13 C10,14.1045695 10.8954305,15 12,15 C13.1045695,15 14,14.1045695 14,13 C14,12.2468125 13.5836563,11.5908673 12.9685588,11.2497543 C12.9890842,11.1699233 13,11.0862364 13,11 L13,3 L17.7925828,12.5851656 C17.9241309,12.8482619 17.9331722,13.1559315 17.8173006,13.4262985 L15.1298744,19.6969596 C15.051085,19.8808016 14.870316,20 14.6703019,20 L9.32969808,20 C9.12968402,20 8.94891496,19.8808016 8.87012556,19.6969596 L6.18269936,13.4262985 C6.06682778,13.1559315 6.07586907,12.8482619 6.2074172,12.5851656 L11,3 Z" fill="#000000" />
 																		<path d="M10,21 L14,21 C14.5522847,21 15,21.4477153 15,22 L15,23 L9,23 L9,22 C9,21.4477153 9.44771525,21 10,21 Z" fill="#000000" opacity="0.3" />
 																	</g>
@@ -243,7 +218,7 @@
 														</div>
 													</div>
 												</div>
-												<!--end::Wizard Step 6 Nav-->
+												<!--end::Wizard Step 5 Nav-->
 											</div>
 										</div>
 										<!--end: Wizard Nav-->
@@ -252,7 +227,7 @@
 											<!--begin: Wizard Form-->
 											<div class="row px-4">
 												<div class="col-xl-12">
-													<form class="form" method="POST" action="<?php echo site_url('/ppdb/register/edit_formulir/' . paramEncrypt($user[0]->id_formulir)); ?>" enctype="multipart/form-data" id="kt_form_student">
+													<form class="form" method="POST" action="<?php echo site_url('/ppdb/register/edit_register/' . paramEncrypt($register[0]->nomor_formulir)); ?>" enctype="multipart/form-data" id="kt_form_student">
 														<input type="hidden" class="txt_csrfname" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 														<!--begin::Wizard Step 1-->
 														<div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
@@ -286,7 +261,7 @@
 																					<i class="la la-file-text"></i>
 																				</span>
 																			</div>
-																			<input type="text" name="nomor_formulir" readonly="" value="<?php echo $user[0]->nomor_formulir; ?>" class="form-control form-control-solid form-control-lg" placeholder="Nomor Formulir Calon Siswa" />
+																			<input type="text" name="nomor_formulir" readonly="" value="<?php echo $register[0]->nomor_formulir; ?>" class="form-control form-control-solid form-control-lg" placeholder="Nomor Formulir Calon Siswa" />
 																		</div>
 																		<span class="form-text text-dark"><b class="text-danger">*AUTO GENERATE</b></span>
 																	</div>
@@ -333,7 +308,7 @@
 																	<!--begin::Input-->
 																	<div class="form-group">
 																		<label>Nama Lengkap Siswa</label>
-																		<input type="text" name="nama_lengkap" value="<?php echo $user[0]->nama_lengkap; ?>" class="form-control form-control-solid form-control-lg" placeholder="Inputkan Nama Lengkap Siswa" />
+																		<input type="text" name="nama_lengkap" value="<?php echo $register[0]->nama_calon_siswa; ?>" class="form-control form-control-solid form-control-lg" placeholder="Inputkan Nama Lengkap Siswa" />
 																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan Nama Lengkap sesuai akta kelahiran</span>
 																	</div>
 																	<!--end::Input-->
@@ -379,11 +354,11 @@
 																	<div class="form-group">
 																		<label>Jenis Kelamin</label>
 																		<select name="jenis_kelamin" class="form-control form-control-solid form-control-lg">
-																			<option value="<?php echo $user[0]->jenis_kelamin; ?>" selected="">
+																			<option value="<?php echo $register[0]->jenis_kelamin; ?>" selected="">
 																				<?php
-																				if ($user[0]->jenis_kelamin == 1) {
+																				if ($register[0]->jenis_kelamin == 1) {
 																					echo 'Laki-Laki';
-																				} else if ($user[0]->jenis_kelamin == 2) {
+																				} else if ($register[0]->jenis_kelamin == 2) {
 																					echo 'Perempuan';
 																				}
 																				?>
@@ -423,11 +398,11 @@
 																<div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Tahun Ajaran</label>
-																		<select name="th_ajaran" class="form-control form-control-solid form-control-lg">
+																		<select name="id_tahun_ajaran" class="form-control form-control-solid form-control-lg">
 																			<?php
 																			if (!empty($schoolyear)) {
 																				foreach ($schoolyear as $key => $value_sch) {
-																					if ($user[0]->th_ajaran == $value_sch->id_tahun_ajaran) {
+																					if ($register[0]->id_tahun_ajaran == $value_sch->id_tahun_ajaran) {
 																			?>
 																						<option value="<?php echo $value_sch->id_tahun_ajaran; ?>"><?php echo ucwords(strtolower($value_sch->nama_tahun_ajaran)); ?></option>
 																			<?php
@@ -454,7 +429,7 @@
 																					(62)
 																				</span>
 																			</div>
-																			<input type="text" name="nomor_handphone" value="<?php echo $user[0]->nomor_handphone; ?>" id="kt_maxlength_nohp" class="form-control form-control-lg form-control-solid" maxlength="13" />
+																			<input type="text" name="nomor_handphone" value="<?php echo $register[0]->nomor_wa; ?>" id="kt_maxlength_nohp" class="form-control form-control-lg form-control-solid" maxlength="13" />
 																		</div>
 																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan Nomor HP Siswa/Orangtua, Contoh: 089526352763</span>
 																	</div>
@@ -477,7 +452,7 @@
 																	<div class="form-group">
 																		<label>Email Siswa/Orangtua</label>
 																		<div class="input-group input-group-lg input-group-solid">
-																			<input name="email" type="email" value="<?php echo $user[0]->email; ?>" class="form-control form-control-lg form-control-solid" placeholder="Inputkan Email Siswa" readonly="" />
+																			<input name="email" type="email_orangtua" value="<?php echo $register[0]->email_orangtua; ?>" class="form-control form-control-lg form-control-solid" placeholder="Inputkan Email Siswa" readonly="" />
 																		</div>
 																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan Email Siswa/Orangtua</span>
 																	</div>
@@ -1194,7 +1169,7 @@
 															<div class="separator separator-dashed my-5"></div>
 															<h3 class="mb-10 font-weight-bold text-dark">Informasi Jenjang Siswa:</h3>
 															<?php
-															if ($user[0]->jalur == 2) { ?>
+															if ($register[0]->id_jalur == 2) { ?>
 																<div class="row">
 																	<div class="col-xl-12">
 																		<div class="form-group">
@@ -1209,19 +1184,19 @@
 																	<div class="form-group">
 																		<label>Tingkat Siswa</label>
 																		<select name="level_tingkat" id="tingkat" class="form-control form-control-solid form-control-lg">
-																			<option value="<?php echo $user[0]->level_tingkat; ?>" selected="">
+																			<option value="<?php echo $register[0]->level_tingkat; ?>" selected>
 																				<?php
-																				if ($user[0]->level_tingkat == 1) {
+																				if ($register[0]->level_tingkat == 1) {
 																					echo 'KB';
-																				} else if ($user[0]->level_tingkat == 2) {
+																				} else if ($register[0]->level_tingkat == 2) {
 																					echo 'TK';
-																				} else if ($user[0]->level_tingkat == 3) {
+																				} else if ($register[0]->level_tingkat == 3) {
 																					echo 'SD';
-																				} else if ($user[0]->level_tingkat == 4) {
+																				} else if ($register[0]->level_tingkat == 4) {
 																					echo 'SMP';
-																				} else if ($user[0]->level_tingkat == 5) {
+																				} else if ($register[0]->level_tingkat == 5) {
 																					echo 'KB-TK';
-																				} else if ($user[0]->level_tingkat == 6) {
+																				} else if ($register[0]->level_tingkat == 6) {
 																					echo 'DC';
 																				}
 																				?>
@@ -1233,56 +1208,23 @@
 																<div class="col-lg-4 mb-3">
 																	<div class="form-group">
 																		<label>Jalur Siswa</label>
-																		<select name="jalur" class="form-control form-control-solid form-control-lg">
-																			<option value="<?php echo $user[0]->jalur; ?>" selected="">
+																		<select name="id_jalur" class="form-control form-control-solid form-control-lg">
+																			<option value="<?php echo $register[0]->id_jalur; ?>" selected="">
 																				<?php
-																				if ($user[0]->jalur == 1) {
+																				if ($register[0]->id_jalur == 1) {
 																					echo 'Reguler';
-																				} else if ($user[0]->jalur == 2) {
+																				} else if ($register[0]->id_jalur == 2) {
 																					echo 'ICP';
 																				}
 																				?>
 																			</option>
 																		</select>
-																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan Jabatan Pegawai</span>
+																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan Jalur Siswa</span>
 																	</div>
 																</div>
 															</div>
 														</div>
 														<!--end::Wizard Step 4-->
-														<!--begin::Wizard Step 5-->
-														<div class="pb-5" data-wizard-type="step-content">
-															<h3 class="mb-20 font-weight-bold text-dark">Upload Berkas:</h3>
-															<div class="row ">
-																<div class="col-xl-4">
-																	<div class="form-group ">
-																		<label>Upload Pas Foto 3x4</label>
-																		<input type="file" class="dropify_pf" name="foto_siswa" data-max-file-size="3M" data-height="200" data-allowed-file-extensions="png jpg jpeg" />
-																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>format file png,jpg,jpeg dan ukuran < 3Mb</span>
-																	</div>
-																</div>
-																<div class="col-xl-8">
-																	<div class="form-group ">
-																		<label>Foto Akta Kelahiran</label>
-																		<input type="file" class="dropify_ak" name="akta_kelahiran" data-max-file-size="3M" data-height="200" data-allowed-file-extensions="png jpg jpeg" />
-
-																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>format file png,jpg,jpeg dan ukuran < 3Mb</span>
-																	</div>
-																</div>
-															</div>
-															<div class="row mt-5">
-																<div class="col-xl-12">
-																	<div class="form-group ">
-																		<label>Foto Kartu Keluarga</label>
-																		<input type="file" class="dropify_kk" name="kartu_keluarga" data-max-file-size="3M" data-height="200" data-allowed-file-extensions="png jpg jpeg" />
-
-																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>format file png,jpg,jpeg dan ukuran < 3Mb</span>
-																	</div>
-																</div>
-															</div>
-															<!--end::Input-->
-														</div>
-														<!--end::Wizard Step 5-->
 														<!--begin::Wizard Step 6-->
 														<div class="pb-5" data-wizard-type="step-content">
 															<h3 class="mb-20 font-weight-bold text-dark">Pernyataan dan Persetujuan:</h3>
@@ -1373,9 +1315,6 @@
 									</div>
 									<!--end: Wizard-->
 								</div>
-							</div>
-							<div class="mb-10 text-center">
-								<a href="<?php echo site_url("ppdb/register/logout_formulir"); ?>" class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Keluar</a>
 							</div>
 						</div>
 						<!--end::Container-->
@@ -1521,13 +1460,12 @@
 	<!--end::Global Theme Bundle-->
 	<!--end::Page Scripts-->
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/forms/widgets/select2.js"></script>
-	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/custom/wizard/wizard-student.js"></script>
+	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/custom/wizard/wizard-register.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/forms/widgets/bootstrap-switch.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/forms/widgets/jquery-mask.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/forms/widgets/bootstrap-maxlength.js"></script>
-	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/crud/file-upload/image-input-emp.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/dropify.js"></script>
 

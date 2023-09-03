@@ -402,7 +402,7 @@
 																										<thead style="background-color: #FFF4DE;">
 																											<tr>
 																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													NOMOR PENDAFTARAN
+																													NOMOR FORMULIR
 																												</th>
 																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													Nama Calon Siswa
@@ -427,13 +427,13 @@
 																										<tbody>
 																											<tr>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo $register[0]->nomor_pendaftaran; ?>
+																													<?php echo $register[0]->nomor_formulir; ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													<?php echo strtoupper($register[0]->nama_calon_siswa); ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo $register[0]->nama_orangtua; ?>
+																													<?php echo $register[0]->nama_wali; ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													<?php echo $register[0]->nomor_wa; ?>

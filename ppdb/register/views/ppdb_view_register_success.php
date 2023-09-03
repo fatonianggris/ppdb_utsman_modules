@@ -51,7 +51,7 @@
 							<table class="table table-light table-light-success text-center">
 								<thead>
 									<tr>
-										<th class="table-center">NOMOR PENDAFTARAN</th>
+										<th class="table-center">NOMOR FORMULIR</th>
 										<th class="table-center">Nama Calon Siswa</th>
 										<th class="table-center">Nama OrangTua/Wali</th>
 										<th class="table-center">Email</th>
@@ -63,9 +63,9 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_pendaftaran ?></td>
+										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_formulir ?></td>
 										<td class="table-center font-size-sm"><?php echo ucwords(strtolower($register[0]->nama_calon_siswa)); ?></td>
-										<td class="table-center font-size-sm"><?php echo $register[0]->nama_orangtua; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->email_orangtua; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
 										<td class="table-center font-size-sm">
@@ -351,14 +351,14 @@
 			type: "post",
 			url: "<?php echo site_url("/ppdb/register/send_mail_order_success") ?>",
 			data: {
-				id: '<?php echo paramEncrypt($register[0]->nomor_pendaftaran); ?>'
+				id: '<?php echo paramEncrypt($register[0]->nomor_formulir); ?>'
 			},
 			dataType: 'html',
 			success: function(result) {
 				if (result == '1') {
-					Swal.fire("EMAIL Terkirim!", "Status dan Data diri pendaftaran Anda telah Kami kirimkan melalui EMAIL Anda. Sialahkan cek EMAIL Anda", "success");
+					Swal.fire("EMAIL Terkirim!", "Status dan Data diri formulir Anda telah Kami kirimkan melalui EMAIL Anda. Sialahkan cek EMAIL Anda", "success");
 				} else {
-					Swal.fire("EMAIL Telah Dikirimkan!", "Status dan Data diri pendaftaran Anda telah Kami kirimkan  melalui EMAIL Anda sebelumya. Sialahkan cek EMAIL Anda", "warning");
+					Swal.fire("EMAIL Telah Dikirimkan!", "Status dan Data diri formulir Anda telah Kami kirimkan  melalui EMAIL Anda sebelumya. Sialahkan cek EMAIL Anda", "warning");
 				}
 			},
 			error: function(result) {

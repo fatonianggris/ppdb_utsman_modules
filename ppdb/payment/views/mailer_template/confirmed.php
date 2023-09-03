@@ -402,7 +402,7 @@
 																										<thead style="background-color: #FFF4DE;">
 																											<tr>
 																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													NOMOR PENDAFTARAN
+																													NOMOR FORMULIR
 																												</th>
 																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													Nama Calon Siswa
@@ -427,13 +427,13 @@
 																										<tbody>
 																											<tr>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo $register[0]->nomor_pendaftaran; ?>
+																													<?php echo $register[0]->nomor_formulir; ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													<?php echo strtoupper($register[0]->nama_calon_siswa); ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo $register[0]->nama_orangtua; ?>
+																													<?php echo $register[0]->nama_wali; ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													<?php echo $register[0]->nomor_wa; ?>
@@ -448,7 +448,7 @@
 																														echo 'SD';
 																													} else if ($register[0]->level_tingkat == 4) {
 																														echo 'SMP';
-																													} else if ($formuregisterlir[0]->level_tingkat == 5) {
+																													} else if ($register[0]->level_tingkat == 5) {
 																														echo 'KB-TK';
 																													} else if ($register[0]->level_tingkat == 6) {
 																														echo 'DC';
@@ -534,7 +534,7 @@
 																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																							<tr>
 																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																									Berikut merupakan <b style="color:#F64E60;">USERNAME</b> dan <b style="color:#F64E60;">PASSWORD BARU</b> yang Kami kirimkan, Dimohon untuk <b style="color:#F64E60;">MERAHASIAKAN</b> Username dan Password Anda.
+																									Berikut merupakan <b style="color:#F64E60;">NOMOR FORMULIR</b> dan <b style="color:#F64E60;">PASSWORD BARU</b> yang Kami kirimkan, Dimohon untuk <b style="color:#F64E60;">MERAHASIAKAN</b> Nomor Formulir dan Password Anda.
 																								</td>
 																							</tr>
 																						</table>
@@ -547,7 +547,7 @@
 																										<thead style="background-color: #FFF4DE;">
 																											<tr>
 																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													USERNAME
+																													NO FORMULIR
 																												</th>
 																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													PASSWORD
@@ -557,7 +557,7 @@
 																										<tbody>
 																											<tr>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo $register[0]->email_orangtua; ?>
+																													<?php echo $register[0]->nomor_formulir; ?>
 																												</td>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													<?php echo $password; ?>
@@ -580,7 +580,7 @@
 																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																							<tr>
 																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																									Silahkan Kilk tombol dibawah ini, untuk Login <b style="color:#F64E60;">ISI FORMULIR PENDAFTARAN</b>:
+																									Silahkan Kilk tombol dibawah ini, untuk Login <b style="color:#F64E60;">UPLOAD BERKAS FORMULIR PENDAFTARAN</b>:
 																								</td>
 																							</tr>
 																						</table>
@@ -609,7 +609,7 @@
 																														<td width="20"></td>
 																														<td valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;font-weight:bolder;font-style:normal;color:#ff7264;text-decoration:none;letter-spacing:0px;">
 
-																															<a href="<?php echo site_url('ppdb/register/login_formulir'); ?>" target="_blank" style="color:#FFFFFF;">LOGIN & ISI FORMULIR</a>
+																															<a href="<?php echo site_url('ppdb/register/login_formulir'); ?>" target="_blank" style="color:#FFFFFF;">LOGIN & UPLOAD FORMULIR</a>
 
 																														</td>
 																														<td width="20"></td>

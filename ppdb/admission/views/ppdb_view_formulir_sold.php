@@ -273,7 +273,7 @@
 							<table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable_sold">
 								<thead>
 									<tr>
-										<th title="No Daftar">No Daftar</th>
+										<th title="No Formulir">No Formulir</th>
 										<th title="Nama Calon">Nama Calon</th>
 										<th title="JK">JK</th>
 										<th title="Jenjang">Jenjang</th>
@@ -290,7 +290,7 @@
 										foreach ($register as $key => $value) {
 									?>
 											<tr>
-												<td><b><?php echo $value->nomor_pendaftaran; ?></b></td>
+												<td><b><?php echo $value->nomor_formulir; ?></b></td>
 												<td><?php echo $value->nama_calon_siswa; ?></td>
 												<td><?php echo $value->jenis_kelamin; ?></td>
 												<td><?php echo $value->level_tingkat; ?></td>

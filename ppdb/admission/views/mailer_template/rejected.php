@@ -326,7 +326,11 @@
                                                                                                                             echo 'SD';
                                                                                                                         } else if ($formulir[0]->level_tingkat == 4) {
                                                                                                                             echo 'SMP';
-                                                                                                                        }
+                                                                                                                        } else if ($formulir[0]->level_tingkat== 5) {
+																															echo 'KB-TK';
+																														} else if ($formulir[0]->level_tingkat== 6) {
+																															echo 'DC';
+																														}
                                                                                                                         ?>        
                                                                                                                     </td>                                                                                                                   
                                                                                                                     <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">                                                     

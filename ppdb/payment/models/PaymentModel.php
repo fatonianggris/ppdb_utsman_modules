@@ -202,7 +202,7 @@ class PaymentModel extends CI_Model
 		$this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
 		$this->db->join('voucher v', 'p.id_voucher = v.id_voucher', 'left');
 
-		$this->db->where('p.nomor_pendaftaran', $id);
+		$this->db->where('p.nomor_formulir', $id);
 
 		$sql = $this->db->get();
 		return $sql->result();
@@ -225,22 +225,81 @@ class PaymentModel extends CI_Model
 		return $sql->result();
 	}
 
-	public function insert_formulir_temp($value = '', $password = '', $nomor_formulir = '')
+	public function insert_to_formulir($value = '', $password = '')
 	{
 		$this->db->trans_begin();
 
 		$data = array(
-			'nomor_formulir' => $nomor_formulir,
-			'level_tingkat' => $value->level_tingkat,
+			'nomor_formulir' => $value->nomor_formulir,
 			'id_voucher' => $value->id_voucher,
-			'th_ajaran' => $value->id_tahun_ajaran,
-			'jalur' => $value->id_jalur,
-			'nama_lengkap' => $value->nama_calon_siswa,
-			'jenis_kelamin' => $value->jenis_kelamin,
-			'email' => $value->email_orangtua,
-			'nomor_handphone' => $value->nomor_wa,
+			'nisn' => $value->nisn,
+            'nik' => $value->nik,
+            'no_akta_kelahiran' => $value->no_akta_kelahiran,
 			'password' => password_hash($password, PASSWORD_DEFAULT, array('cost' => 12)),
-		);
+			'nama_lengkap' => $value->nama_calon_siswa,
+            'nama_panggilan' => $value->nama_panggilan,
+            'tempat_lahir' => $value->tempat_lahir,
+            'tanggal_lahir' => $value->tanggal_lahir,
+            'jenis_kelamin' => $value->jenis_kelamin,
+            'agama' => $value->agama,
+            'rombel' => $value->rombel,
+            'th_ajaran' => $value->id_tahun_ajaran,
+            'nomor_handphone' => $value->nomor_wa,
+            'nomor_telepon' => $value->nomor_telepon,
+            'email' => $value->email_orangtua,
+            'nama_ayah' => $value->nama_ayah,
+            'nik_ayah' => $value->nik_ayah,
+            'tempat_lahir_ayah' => $value->tempat_lahir_ayah,
+            'tanggal_lahir_ayah' => $value->tanggal_lahir_ayah,
+            'pekerjaan_ayah' => $value->pekerjaan_ayah,
+            'pendidikan_ayah' => $value->pendidikan_ayah,
+            'penghasilan_ayah' => $value->penghasilan_ayah,
+            'nama_ibu' => $value->nama_ibu,
+            'nik_ibu' => $value->nik_ibu,
+            'tempat_lahir_ibu' => $value->tempat_lahir_ibu,
+            'tanggal_lahir_ibu' => $value->tanggal_lahir_ibu,
+            'pekerjaan_ibu' => $value->pekerjaan_ibu,
+            'pendidikan_ibu' => $value->pendidikan_ibu,
+            'penghasilan_ibu' => $value->penghasilan_ibu,
+            'status_wali' => $value->status_wali,
+            'nama_wali' => $value->nama_wali,
+            'nik_wali' => $value->nik_wali,
+            'tempat_lahir_wali' => $value->tempat_lahir_wali,
+            'tanggal_lahir_wali' => $value->tanggal_lahir_wali,
+            'pekerjaan_wali' => $value->pekerjaan_wali,
+            'pendidikan_wali' => $value->pendidikan_wali,
+            'penghasilan_wali' => $value->penghasilan_wali,
+            'alamat_rumah_kk' => $value->alamat_rumah_kk,
+            'provinsi_kk' => $value->provinsi_kk,
+            'kabupaten_kota_kk' => $value->kabupaten_kota_kk,
+            'kecamatan_kk' => $value->kecamatan_kk,
+            'kelurahan_desa_kk' => $value->kelurahan_desa_kk,
+            'rt_kk' => $value->rt_kk,
+            'rw_kk' => $value->rw_kk,
+            'kodepos_kk' => $value->kodepos_kk,
+            'status_alamat' => $value->status_alamat,
+            'alamat_rumah_dom' => $value->alamat_rumah_dom,
+            'provinsi_dom' => $value->provinsi_dom,
+            'kabupaten_kota_dom' => $value->kabupaten_kota_dom,
+            'kecamatan_dom' => $value->kecamatan_dom,
+            'kelurahan_desa_dom' =>$value->kelurahan_desa_dom,
+            'rt_dom' => $value->rt_dom,
+            'rw_dom' => $value->rw_dom,
+            'kodepos_dom' => $value->kodepos_dom,
+            'alat_transportasi' => $value->alat_transportasi,
+            'jenis_tinggal' => $value->jenis_tinggal,
+            'jarak_rumah_sekolah' => $value->jarak_rumah_sekolah,
+            'jumlah_saudara' => $value->jumlah_saudara,
+            'anak_ke' => $value->anak_ke,
+            'nis_saudara' => $value->nis_saudara,
+            'nama_saudara' => $value->nama_saudara,
+            'kebutuhan_khusus' => $value->kebutuhan_khusus,
+            'tinggi_badan' => $value->tinggi_badan,
+            'berat_badan' => $value->berat_badan,
+            'level_tingkat' => $value->level_tingkat,
+            'jalur' => $value->id_jalur,
+            'updated_at' => date("Y-m-d H:i:s")
+				);
 
 		$this->db->insert($this->table_formulir, $data);
 
@@ -264,7 +323,7 @@ class PaymentModel extends CI_Model
 			'updated_at' => date("Y-m-d H:i:s"),
 		);
 
-		$this->db->where('nomor_pendaftaran', $id);
+		$this->db->where('nomor_formulir', $id);
 		$this->db->update($this->table_register, $data);
 
 		if ($this->db->trans_status() === false) {
@@ -287,7 +346,7 @@ class PaymentModel extends CI_Model
 			'updated_at' => date("Y-m-d H:i:s"),
 		);
 
-		$this->db->where('nomor_pendaftaran', $id);
+		$this->db->where('nomor_formulir', $id);
 		$this->db->update($this->table_register, $data);
 
 		if ($this->db->trans_status() === false) {

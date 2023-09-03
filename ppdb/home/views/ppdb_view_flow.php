@@ -129,7 +129,7 @@
 												</span>
 											</div>
 											<div class="d-flex flex-column text-left">
-												<div class="text-dark-75">Calon peserta didik melakukan pembelian formulir dengan mengisikan <b>KELENGKAPAN DATA DIRI</b> dan melakukan <b>PEMBAYARAN</b></div>
+												<div class="text-dark-75">Calon peserta didik melakukan pembelian dan pengisian formulir dengan mengisikan <b>KELENGKAPAN DATA DIRI</b> dan melakukan <b>PEMBAYARAN</b></div>
 												<div class="mt-3">
 													<a href="<?php echo site_url("/ppdb/register") ?>" class="btn btn-sm font-weight-bolder text-uppercase btn-warning py-3 px-5">Beli Sekarang</a>
 												</div>
@@ -207,7 +207,7 @@
 									</div>
 
 									<div class="timeline-label">
-										<span class="text-warning font-size-lg font-weight-boldest">4. Isi Formulir PPDB Siswa</span>
+										<span class="text-warning font-size-lg font-weight-boldest">4. Upload Berkas PPDB Siswa</span>
 									</div>
 
 									<div class="timeline-content">
@@ -226,9 +226,9 @@
 												</span>
 											</div>
 											<div class="d-flex flex-column text-left">
-												<div class="text-dark-75">Calon peserta didik mengisi data diri pada formulir secara <b> ONLINE </b>. Gunakan <b> USERNAME </b> dan <b> PASSWORD </b> yang telah dikirim ke <b> EMAIL </b> anda untuk <b> LOGIN </b> </div>
+												<div class="text-dark-75">Calon peserta didik mengupload kelengkapan formulir secara <b> ONLINE </b>. Gunakan <b> NOMOR FORMULIR </b> dan <b> PASSWORD </b> yang telah dikirim ke <b> EMAIL </b> anda untuk <b> LOGIN </b> </div>
 												<div class="mt-3">
-													<a href="<?php echo site_url("/ppdb/register/login_formulir"); ?>" class="btn btn-sm font-weight-bolder text-uppercase btn-warning py-3 px-5">Isi Sekarang</a>
+													<a href="<?php echo site_url("/ppdb/register/login_formulir"); ?>" class="btn btn-sm font-weight-bolder text-uppercase btn-warning py-3 px-5">Upload Sekarang</a>
 												</div>
 											</div>
 										</div>

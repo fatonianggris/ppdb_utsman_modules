@@ -198,8 +198,8 @@
 												</svg>
 												<!--end::Svg Icon-->
 											</span>
-											<div class="text-white font-weight-bolder font-size-sm mt-3">Isi Formulir Pendaftaran</div>
-											<a href="<?php echo site_url("/ppdb/register/status_fulfillment_formulir"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-pen"></i> Isi</a>
+											<div class="text-white font-weight-bolder font-size-sm mt-3">Upload Berkas Formulir</div>
+											<a href="<?php echo site_url("/ppdb/register/status_fulfillment_formulir"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-pen"></i>Upload</a>
 										</div>
 									</div>
 									<!--end::Tiles Widget 12-->

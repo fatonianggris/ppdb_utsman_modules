@@ -262,7 +262,7 @@
 							<table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable_confirm_payment">
 								<thead>
 									<tr>
-										<th title="No Daftar">No Daftar</th>
+										<th title="No Formulir">No Formulir</th>
 										<th title="Nama Calon">Nama Calon</th>
 										<th title="JK">JK</th>
 										<th title="Jenjang">Jenjang</th>
@@ -281,7 +281,7 @@
 										foreach ($register as $key => $value) {
 									?>
 											<tr>
-												<td><b><?php echo $value->nomor_pendaftaran; ?></b></td>
+												<td><b><?php echo $value->nomor_formulir; ?></b></td>
 												<td><?php echo strtoupper($value->nama_calon_siswa); ?></td>
 												<td><?php echo $value->jenis_kelamin; ?></td>
 												<td><?php echo $value->level_tingkat; ?></td>
@@ -315,7 +315,7 @@
 																	Pilih Aksi:
 																</li>
 																<li class="navi-item">
-																	<a href="<?php echo site_url("/ppdb/payment/payment_confirm/" . paramEncrypt($value->nomor_pendaftaran)); ?>" class="navi-link">
+																	<a href="<?php echo site_url("/ppdb/payment/payment_confirm/" . paramEncrypt($value->nomor_formulir)); ?>" class="navi-link">
 																		<span class="navi-icon"><i class="la la-search text-success"></i></span>
 																		<span class="navi-text">Verifikasi Data</span>
 																	</a>

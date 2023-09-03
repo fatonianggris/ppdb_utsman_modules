@@ -95,16 +95,6 @@ class Payment extends MX_Controller
 		$data['register'] = $this->PaymentModel->get_formulir_cost_id($id); //?
 		$data['password'] = mt_rand(100000, 999999);
 
-		$check_number = $this->PaymentModel->get_number_last_form($data['register'][0]->id_tahun_ajaran);
-
-		$nomor_formulir = '';
-
-		if ($check_number[0]->last_form) {
-			$nomor_formulir = intval($check_number[0]->last_form) + 1;
-		} else {
-			$nomor_formulir = substr($data['register'][0]->tahun_ajaran, 2, 2) . '001';
-		}
-
 		$file = "./uploads/pendaftaran/files/" . $id . "_bukti_invoice_pembayaran.pdf";
 
 		$subjek = "PEMBAYARAN FORMULIR DITERIMA";
@@ -112,13 +102,14 @@ class Payment extends MX_Controller
 
 		$sendmail = array(
 			'email_penerima' => $data['register'][0]->email_orangtua,
+			'nomor_formulir' => $data['register'][0]->nomor_formulir,
 			'subjek' => $subjek,
 			'content' => $content,
 			'files' => $file,
 		);
 
 		if ($data['register'][0]->status_pembayaran == 2) {
-			$this->PaymentModel->insert_formulir_temp($data['register'][0], $data['password'], $nomor_formulir);
+			$this->PaymentModel->insert_to_formulir($data['register'][0], $data['password']);
 			$this->mailer->send_with_attachment($sendmail);
 
 			@unlink($file);

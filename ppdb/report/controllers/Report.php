@@ -145,6 +145,10 @@ class Report extends MX_Controller
 					$jenjang = 'SD';
 				} else if ($element['level_tingkat'] == 4) {
 					$jenjang = 'SMP';
+				}  else if ($data['level_tingkat'] == 5) {
+					$jenjang = 'KB-TK';
+				} else if ($data['level_tingkat'] == 6) {
+					$jenjang = 'DC';
 				}
 
 				$jenis_kelamin = '';

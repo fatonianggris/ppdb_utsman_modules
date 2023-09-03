@@ -108,7 +108,7 @@
 									<!--begin::Content-->
 									<div class="d-flex align-items-center flex-wrap justify-content-between">
 										<!--begin::Description-->
-										<div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5 "><?php echo ucwords(strtolower($register[0]->alamat)); ?></div>
+										<div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5 "><?php echo ucwords(strtolower($register[0]->alamat_rumah_dom)); ?></div>
 										<!--end::Description-->
 									</div>
 									<!--end::Content-->
@@ -215,7 +215,7 @@
 									<div class="d-flex flex-column text-dark-75">
 										<span class="font-weight-bolder font-size-sm">Nama OrangTua/Wali</span>
 										<span class="font-weight-bolder font-size-h5 text-success">
-											<?php echo ucwords(strtolower($register[0]->nama_orangtua)); ?>
+											<?php echo ucwords(strtolower($register[0]->nama_wali)); ?>
 										</span>
 									</div>
 								</div>

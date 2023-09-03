@@ -299,7 +299,7 @@
 							<table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable_sold">
 								<thead>
 									<tr>
-										<th title="No Daftar">No Daftar</th>
+										<th title="No Formulir">No Formulir</th>
 										<th title="Nama Calon">Nama Calon</th>
 										<th title="JK">JK</th>
 										<th title="Jenjang">Jenjang</th>
@@ -317,7 +317,7 @@
 										foreach ($register as $key => $value) {
 									?>
 											<tr>
-												<td><b><?php echo $value->nomor_pendaftaran; ?></b></td>
+												<td><b><?php echo $value->nomor_formulir; ?></b></td>
 												<td><?php echo strtoupper($value->nama_calon_siswa); ?></td>
 												<td><?php echo $value->jenis_kelamin; ?></td>
 												<td><?php echo $value->level_tingkat; ?></td>
@@ -352,7 +352,7 @@
 																	Pilih Aksi:
 																</li>
 																<li class="navi-item">
-																	<a href="<?php echo site_url("/ppdb/admission/detail_formulir_sold/" . paramEncrypt($value->nomor_pendaftaran)); ?>" class="navi-link">
+																	<a href="<?php echo site_url("/ppdb/admission/detail_formulir_sold/" . paramEncrypt($value->nomor_formulir)); ?>" class="navi-link">
 																		<span class="navi-icon"><i class="la la-search text-success"></i></span>
 																		<span class="navi-text">Lihat Detail</span>
 																	</a>
@@ -369,17 +369,17 @@
 																		}
 
 																		if ($value->level_tingkat == 1) {
-																			echo 'KB';
+																			$jenjang = 'KB';
 																		} else if ($value->level_tingkat == 2) {
-																			echo 'TK';
+																			$jenjang = 'TK';
 																		} else if ($value->level_tingkat == 3) {
-																			echo 'SD';
+																			$jenjang = 'SD';
 																		} else if ($value->level_tingkat == 4) {
-																			echo 'SMP';
+																			$jenjang = 'SMP';
 																		} else if ($value->level_tingkat == 5) {
-																			echo 'KB-TK';
+																			$jenjang = 'KB-TK';
 																		} else if ($value->level_tingkat == 6) {
-																			echo 'DC';
+																			$jenjang = 'DC';
 																		}
 																		?>
 																		<a href="https://web.whatsapp.com/send?phone=62<?php echo substr($value->nomor_wa, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
@@ -387,7 +387,7 @@
                                                                            <?php echo urlencode("\n") ?>*--PEMBAYARAN FORMULIR SEKOLAH UTSMAN--*
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>_Pembayaran Formulir Sekolah Utsman belum Anda proses:_
-                                                                           <?php echo urlencode("\n") ?>- No. Pendaftaran: *<?php echo $value->nomor_pendaftaran; ?>*
+                                                                           <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $value->nomor_formulir; ?>*
                                                                            <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($value->nama_calon_siswa)); ?>*
                                                                            <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                                                            <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*

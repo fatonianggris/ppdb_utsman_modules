@@ -383,7 +383,7 @@ class AdmissionModel extends CI_Model
 		$this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
 		$this->db->join('voucher v', 'p.id_voucher = v.id_voucher', 'left');
 
-		$this->db->where('p.nomor_pendaftaran', $id);
+		$this->db->where('p.nomor_formulir', $id);
 
 		$sql = $this->db->get();
 		return $sql->result();

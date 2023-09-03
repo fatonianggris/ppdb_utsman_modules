@@ -38,7 +38,7 @@
 				<?php echo $contact[0]->email; ?><br>
 				<?php echo $contact[0]->url_website; ?><br>
 
-				<h3 style="color:#1BC5BD ">INV/PPDB #<?php echo $invoice[0]->nomor_pendaftaran; ?></h3>
+				<h3 style="color:#1BC5BD ">INV/PPDB #<?php echo $invoice[0]->nomor_formulir; ?></h3>
 			</td>
 		</tr>
 
@@ -47,7 +47,7 @@
 	<table width="100%">
 		<tr>
 			<td><strong>Dari:</strong> PPDB <?php echo ucwords(strtolower($page[0]->nama_website)); ?></td>
-			<td><strong>Kepada:</strong> <?php echo ucwords(strtolower($invoice[0]->nama_calon_siswa)); ?> / <b><?php echo $invoice[0]->nomor_pendaftaran; ?></b></td>
+			<td><strong>Kepada:</strong> <?php echo ucwords(strtolower($invoice[0]->nama_calon_siswa)); ?> / <b><?php echo $invoice[0]->nomor_formulir; ?></b></td>
 		</tr>
 
 	</table>

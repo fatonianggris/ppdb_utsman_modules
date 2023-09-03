@@ -72,13 +72,13 @@
 												<option value="<?php echo $cost[0]->jenis_biaya; ?>" selected="">
 													<?php
 													if ($cost[0]->jenis_biaya == 1) {
-														echo 'Pendaftaran';
+														echo 'Formulir';
 													} else if ($cost[0]->jenis_biaya == 2) {
 														echo 'Uang Masuk';
 													}
 													?>
 												</option>
-												<option value="1">Pendaftaran</option>
+												<option value="1">Formulir</option>
 												<option value="2">Uang Masuk</option>
 											</select>
 											<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>pilih Jenis Biaya Sekolah</span>

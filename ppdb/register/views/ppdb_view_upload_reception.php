@@ -87,7 +87,7 @@
 					<div class="login-form login-signin">
 						<div class="text-center mb-10 mb-lg-10">
 							<h3 class="font-size-h1 text-warning font-weight-bold">Upload Bukti Pembayaran Formulir</h3>
-							<p class="text-dark-75 font-weight-bold">Isikan <b class="text-danger">NOMOR PENDAFTARAN</b> dan silahkan Upload <b class="text-danger">BUKTI PEMBAYARAN</b>. </p>
+							<p class="text-dark-75 font-weight-bold">Isikan <b class="text-danger">NOMOR FORMULIR</b> dan silahkan Upload <b class="text-danger">BUKTI PEMBAYARAN</b>. </p>
 						</div>
 						<!--begin::Form-->
 						<?php echo $this->session->flashdata('flash_message'); ?>
@@ -96,9 +96,9 @@
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="form-group">
-										<label>Nomor Pendaftaran</label>
-										<input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Isikan Nomor Pendaftaran" name="nomor_pendaftaran" />
-										<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan <b class="text-danger">NOMOR PENDAFTARAN</b> yang telah Kami kirimkan ke email Anda. </span>
+										<label>Nomor Formulir</label>
+										<input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Isikan Nomor Formulir" name="nomor_formulir" />
+										<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan <b class="text-danger">NOMOR FORMULIR</b> yang telah Kami kirimkan ke email Anda. </span>
 									</div>
 								</div>
 								<div class="col-xl-6">

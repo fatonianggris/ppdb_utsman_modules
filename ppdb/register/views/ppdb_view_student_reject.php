@@ -45,7 +45,7 @@
 					<!--begin::Login Sign in form-->
 					<div class="login-signin">
 						<div class="mb-10 ">
-							<p class="font-mobile font-weight-boldest text-danger ">DINYATAKAN TIDAK "LULUS"</p>
+							<p class="font-mobile font-weight-boldest text-danger ">DINYATAKAN "TIDAK LULUS"</p>
 							<div class="font-weight-bold text-danger font-size-lg">Mohon maaf anda dinyatakan <b>TIDAK LULUS</b>, Berikut merupakan informasi terkait data diri Anda:</div>
 						</div>
 						<div class="table-responsive">

@@ -1248,9 +1248,9 @@ if (!empty($cost)) {
 					dataType: 'html',
 					success: function(result) {
 						Swal.fire("Disetujui!", "Calon Siswa '" + name + "' telah diterima sebagai Siswa Baru.", "success");
-						// setTimeout(function() {
-						// 	location.reload();
-						// }, 1000);
+						setTimeout(function() {
+							location.reload();
+						}, 1000);
 					},
 					error: function(result) {
 						console.log(result);

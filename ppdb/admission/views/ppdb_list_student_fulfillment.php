@@ -364,17 +364,17 @@
 																		}
 
 																		if ($value->level_tingkat == 1) {
-																			echo 'KB';
+																			$jenjang = 'KB';
 																		} else if ($value->level_tingkat == 2) {
-																			echo 'TK';
+																			$jenjang = 'TK';
 																		} else if ($value->level_tingkat == 3) {
-																			echo 'SD';
+																			$jenjang = 'SD';
 																		} else if ($value->level_tingkat == 4) {
-																			echo 'SMP';
+																			$jenjang = 'SMP';
 																		} else if ($value->level_tingkat == 5) {
-																			echo 'KB-TK';
+																			$jenjang = 'KB-TK';
 																		} else if ($value->level_tingkat == 6) {
-																			echo 'DC';
+																			$jenjang = 'DC';
 																		}
 																		?>
 																		<a href="https://web.whatsapp.com/send?phone=62<?php echo substr($value->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
@@ -382,12 +382,12 @@
                                                                            <?php echo urlencode("\n") ?>*--PENGISIAN FORMULIR SEKOLAH UTSMAN--*
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>_Pengisian Formulir PPDB belum Anda proses:_
-                                                                           <?php echo urlencode("\n") ?>- No. Pendaftaran: *<?php echo $value->nomor_formulir; ?>*
+                                                                           <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $value->nomor_formulir; ?>*
                                                                            <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($value->nama_lengkap)); ?>*
                                                                            <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                                                            <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
                                                                            <?php echo urlencode("\n") ?>
-                                                                           <?php echo urlencode("\n") ?>_Silahkan cek email anda untuk melihat_ *USERNAME* _dan_ *PASSWORD* _yang telah Kami kirimkan:_
+                                                                           <?php echo urlencode("\n") ?>_Silahkan cek email anda untuk melihat_ *NOMOR FORMULIR* _dan_ *PASSWORD* _yang telah Kami kirimkan:_
                                                                            <?php echo urlencode("\n") ?>                                                                          
                                                                            <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PENGISIAN FORMULIR* ```dengan kilk``` *LINK* ```dibawah ini:```
                                                                            <?php echo urlencode("\n") ?>

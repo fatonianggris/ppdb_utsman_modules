@@ -58,7 +58,7 @@
 							<table class="table table-light table-light-success text-center">
 								<thead>
 									<tr>
-										<th class="table-center">NOMOR PENDAFTARAN</th>
+										<th class="table-center">NOMOR FORMULIR</th>
 										<th class="table-center">Nama Calon Siswa</th>
 										<th class="table-center">Nama OrangTua/Wali</th>
 										<th class="table-center">Email</th>
@@ -70,9 +70,9 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_pendaftaran ?></td>
+										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_formulir ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nama_calon_siswa; ?></td>
-										<td class="table-center font-size-sm"><?php echo $register[0]->nama_orangtua; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->email_orangtua; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
 										<td class="table-center font-size-sm">
@@ -137,15 +137,15 @@
 								</div>
 							</div>
 						<?php } ?>
-						<a href="<?php echo site_url("ppdb/register/print_invoice_formulir/" . paramEncrypt($register[0]->nomor_pendaftaran)); ?>" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-8"><i class="fa fa-download"></i> Download Bukti</a>
+						<a href="<?php echo site_url("ppdb/register/print_invoice_formulir/" . paramEncrypt($register[0]->nomor_formulir)); ?>" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-8"><i class="fa fa-download"></i> Download Bukti</a>
 
 						<div class="mt-5">
-							<span class="mt-10 mb-5 text-danger font-size-lg">Silahkan Cek Email Anda untuk mendapatkan <b>USERNAME</b> dan <b>PASSWORD</b> Login Pengisian Formulir.</span>
+							<span class="mt-10 mb-5 text-danger font-size-lg">Silahkan Cek Email Anda untuk mendapatkan <b>NOMOR FORMULIR</b> dan <b>PASSWORD</b> Login Upload Berkas.</span>
 						</div>
 						<div class="mt-5">
-							<span class="mt-5 mb-10 text-danger font-size-lg">Isi formulir sekarang?</span>
+							<span class="mt-5 mb-10 text-danger font-size-lg">Upload berkas formulir sekarang?</span>
 						</div>
-						<a href="<?php echo site_url("ppdb/register/login_formulir"); ?>" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-5">Isi Formulir</a>
+						<a href="<?php echo site_url("ppdb/register/login_formulir"); ?>" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-5">Upload Formulir</a>
 						<a href="<?php echo site_url('ppdb/home'); ?>" type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-5">
 							<li class="fa fa-home font-size-h4"></li> Kembali ke Menu
 						</a>

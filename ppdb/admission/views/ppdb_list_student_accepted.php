@@ -390,17 +390,17 @@
 																		}
 
 																		if ($value->level_tingkat == 1) {
-																			echo 'KB';
+																			$jenjang = 'KB';
 																		} else if ($value->level_tingkat == 2) {
-																			echo 'TK';
+																			$jenjang = 'TK';
 																		} else if ($value->level_tingkat == 3) {
-																			echo 'SD';
+																			$jenjang = 'SD';
 																		} else if ($value->level_tingkat == 4) {
-																			echo 'SMP';
+																			$jenjang = 'SMP';
 																		} else if ($value->level_tingkat == 5) {
-																			echo 'KB-TK';
+																			$jenjang = 'KB-TK';
 																		} else if ($value->level_tingkat == 6) {
-																			echo 'DC';
+																			$jenjang = 'DC';
 																		}
 																		?>
 																		<a href="https://web.whatsapp.com/send?phone=62<?php echo substr($value->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*

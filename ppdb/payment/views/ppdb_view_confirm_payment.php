@@ -111,7 +111,7 @@
 									<!--begin::Content-->
 									<div class="d-flex align-items-center flex-wrap justify-content-between">
 										<!--begin::Description-->
-										<div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5 "><?php echo ucwords(strtolower($register[0]->alamat)); ?></div>
+										<div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5 "><?php echo ucwords(strtolower($register[0]->alamat_rumah_dom)); ?></div>
 										<!--end::Description-->
 									</div>
 									<!--end::Content-->
@@ -218,7 +218,7 @@
 									<div class="d-flex flex-column text-dark-75">
 										<span class="font-weight-bolder font-size-sm">Nama OrangTua/Wali</span>
 										<span class="font-weight-bolder font-size-h5 text-success">
-											<?php echo ucwords(strtolower($register[0]->nama_orangtua)); ?>
+											<?php echo ucwords(strtolower($register[0]->nama_wali)); ?>
 										</span>
 									</div>
 								</div>
@@ -335,8 +335,8 @@
 								}
 								if ($register[0]->status_pembayaran == 1) {
 								?>
-									<button <?php echo $disable; ?> onclick="act_confrim_payment('<?php echo paramEncrypt($register[0]->nomor_pendaftaran); ?>', '<?php echo strtoupper($register[0]->nama_calon_siswa); ?>')" class="btn btn-success font-weight-bold px-8 py-4 my-3 mx-4 mr-10"><i class="fas fa-check-circle "></i>Terima</button>
-									<button <?php echo $disable; ?> onclick="act_reject_payment('<?php echo paramEncrypt($register[0]->nomor_pendaftaran); ?>', '<?php echo strtoupper($register[0]->nama_calon_siswa); ?>')" class="btn btn-danger font-weight-bold px-8 py-4 my-3 mx-4"><i class="fas fa-window-close"></i>Tolak</button>
+									<button <?php echo $disable; ?> onclick="act_confrim_payment('<?php echo paramEncrypt($register[0]->nomor_formulir); ?>', '<?php echo strtoupper($register[0]->nama_calon_siswa); ?>')" class="btn btn-success font-weight-bold px-8 py-4 my-3 mx-4 mr-10"><i class="fas fa-check-circle "></i>Terima</button>
+									<button <?php echo $disable; ?> onclick="act_reject_payment('<?php echo paramEncrypt($register[0]->nomor_formulir); ?>', '<?php echo strtoupper($register[0]->nama_calon_siswa); ?>')" class="btn btn-danger font-weight-bold px-8 py-4 my-3 mx-4"><i class="fas fa-window-close"></i>Tolak</button>
 
 								<?php
 								} elseif ($register[0]->status_pembayaran == 2) {
@@ -347,12 +347,12 @@
                                        <?php echo urlencode("\n") ?>*--SELAMAT!, PEMBAYARAN ANDA BERHASIL--*
                                        <?php echo urlencode("\n") ?>
                                        <?php echo urlencode("\n") ?>_Terimakasih telah melakukan pembayaran. Pembayaran Formulir PPDB Anda telah Kami terima:_
-                                       <?php echo urlencode("\n") ?>- No. Pendaftaran: *<?php echo $register[0]->nomor_pendaftaran; ?>*
+                                       <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $register[0]->nomor_formulir; ?>*
                                        <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($register[0]->nama_calon_siswa)); ?>*
                                        <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                        <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
                                        <?php echo urlencode("\n") ?>
-                                       <?php echo urlencode("\n") ?>_Silahkan cek email anda untuk melihat_ *USERNAME* _dan_ *PASSWORD* _yang telah Kami kirimkan:_
+                                       <?php echo urlencode("\n") ?>_Silahkan cek email anda untuk melihat_ *NOMOR FORMULIR* _dan_ *PASSWORD* _yang telah Kami kirimkan:_
                                        <?php echo urlencode("\n") ?>
                                        <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PENGISIAN FORMULIR* ```dengan kilk``` *LINK* ```dibawah ini:```
                                        <?php echo urlencode("\n") ?>
@@ -371,7 +371,7 @@
                                        <?php echo urlencode("\n") ?>*--PEMBAYARAN GAGAL--*
                                        <?php echo urlencode("\n") ?>
                                        <?php echo urlencode("\n") ?>_Mohon maaf, Bukti Pembayaran Anda *TIDAK DAPAT KAMI VERIFIKASI*:_
-                                       <?php echo urlencode("\n") ?>- No. Pendaftaran: *<?php echo $register[0]->nomor_pendaftaran; ?>*
+                                       <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $register[0]->nomor_formulir; ?>*
                                        <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($register[0]->nama_calon_siswa)); ?>*
                                        <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                        <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
@@ -398,7 +398,7 @@
 							<h3 class="text-dark font-weight-bolder mb-3"><i class="fa fa-info-circle"></i> Status Pembayaran</h3>
 							<p class="font-weight-boldest display-3 mb-0 text-center text-warning">
 
-								<?php if ($register[0]->status_pembayaran == 1) { ?>
+						<?php if ($register[0]->status_pembayaran == 1) { ?>
 
 							<p class="font-weight-boldest display-3 mb-0 text-center text-warning">VERIFIKASI</p>
 						<?php } else if ($register[0]->status_pembayaran == 2) { ?>

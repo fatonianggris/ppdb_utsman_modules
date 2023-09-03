@@ -51,7 +51,7 @@
 							<table class="table table-light table-light-warning text-center">
 								<thead>
 									<tr>
-										<th class="table-center">NOMOR PENDAFTARAN</th>
+										<th class="table-center">NOMOR FORMULIR</th>
 										<th class="table-center">Nama Calon Siswa</th>
 										<th class="table-center">Nama OrangTua/Wali</th>
 										<th class="table-center">Email</th>
@@ -63,9 +63,9 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_pendaftaran ?></td>
+										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_formulir ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nama_calon_siswa; ?></td>
-										<td class="table-center font-size-sm"><?php echo $register[0]->nama_orangtua; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->email_orangtua; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
 										<td class="table-center font-size-sm">

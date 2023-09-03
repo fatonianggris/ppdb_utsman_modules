@@ -90,16 +90,16 @@
 					<!--begin::Signup-->
 					<div class="login-form login-signin">
 						<div class="text-center mb-10 mb-lg-10">
-							<h3 class="font-size-h1 text-warning font-weight-bolder">Login Pengisian Formulir</h3>
-							<p class="text-dark-75 font-weight-bold">Silahkan Login menggunakan <b class="text-danger">USERNAME</b> dan <b class="text-danger">PASSWORD</b> yang telah Kami kirimkan ke <b>EMAIL</b> Anda. </p>
+							<h3 class="font-size-h1 text-warning font-weight-bolder">Login Upload Berkas Formulir</h3>
+							<p class="text-dark-75 font-weight-bold">Silahkan Login menggunakan <b class="text-danger">NOMOR FORMULIR</b> dan <b class="text-danger">PASSWORD</b> yang telah Kami kirimkan ke <b>EMAIL</b> Anda. </p>
 						</div>
 						<?php echo $this->session->flashdata('flash_message'); ?>
 						<form class="form" novalidate="novalidate" method="POST" action="<?php echo base_url(); ?>/ppdb/register/auth_login_formulir" id="kt_login_formulir">
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<div class="form-group fv-plugins-icon-container">
-								<input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Username" name="username" autocomplete="off">
+								<input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Nomor Formulir" name="nomor_formulir" autocomplete="off">
 								<div class="fv-plugins-message-container"></div>
-								<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isiakan Username Anda</span>
+								<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isiakan Nomor Formulir Anda</span>
 							</div>
 							<div class="form-group fv-plugins-icon-container mt-5">
 								<input class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Password" name="password" autocomplete="off">

@@ -73,16 +73,16 @@
 					<div class="login-form login-signin">
 						<div class="text-center mb-10 mb-lg-10">
 							<h3 class="font-size-h1 text-warning font-weight-bold">Cek Status Kelulusan Sisiwa</h3>
-							<p class="text-dark-75 font-weight-bold">Isikan <b class="text-danger">USERNAME</b> yang telah Kami berikan dan kirimkan ke Email Anda. </p>
+							<p class="text-dark-75 font-weight-bold">Isikan <b class="text-danger">NOMOR FORMULIR</b> yang telah Kami berikan dan kirimkan ke Email Anda. </p>
 						</div>
 						<!--begin::Form-->
 						<form class="form px-admission" method="POST" action="<?php echo base_url(); ?>/ppdb/register/post_register" enctype="multipart/form-data" novalidate="novalidate" id="kt_check_admission">
 							<div class="row ">
 								<div class="col-xl-12 ">
 									<div class="form-group">
-										<label>Username</label>
-										<input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Isikan Username" name="username" />
-										<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan <b class="text-danger">Username</b> yang telah Anda dapatkan sebelumnya. </span>
+										<label>Nomor Formulir</label>
+										<input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Isikan Nomor Formulir" name="nomor_formulir" />
+										<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan <b class="text-danger">Nomor Formulir</b> yang telah Anda dapatkan sebelumnya. </span>
 									</div>
 								</div>
 							</div>

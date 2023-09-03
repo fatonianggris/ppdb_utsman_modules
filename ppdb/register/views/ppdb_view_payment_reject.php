@@ -57,7 +57,7 @@
 							<table class="table table-light table-light-danger text-center">
 								<thead>
 									<tr>
-										<th class="table-center">NOMOR PENDAFTARAN</th>
+										<th class="table-center">NOMOR FORMULIR</th>
 										<th class="table-center">Nama Calon Siswa</th>
 										<th class="table-center">Nama OrangTua/Wali</th>
 										<th class="table-center">Email</th>
@@ -69,9 +69,9 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_pendaftaran ?></td>
+										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_formulir ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nama_calon_siswa; ?></td>
-										<td class="table-center font-size-sm"><?php echo $register[0]->nama_orangtua; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->email_orangtua; ?></td>
 										<td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
 										<td class="table-center font-size-sm">
@@ -130,7 +130,7 @@
 							<div class="font-weight-bold text-danger font-size-lg mb-3">Bukti pembayaran anda <b>TIDAK SESUAI</b>, Mohon untuk upload kembali <b>BUKTI TRANSFER</b> yang sesuai.</div>
 						</div>
 
-						<form class="form px-mobile" method="POST" action="<?php echo site_url('/ppdb/register/post_revision_payment_slip/' . paramEncrypt($register[0]->nomor_pendaftaran)); ?>" enctype="multipart/form-data" novalidate="novalidate" id="kt_upload_payment">
+						<form class="form px-mobile" method="POST" action="<?php echo site_url('/ppdb/register/post_revision_payment_slip/' . paramEncrypt($register[0]->nomor_formulir)); ?>" enctype="multipart/form-data" novalidate="novalidate" id="kt_upload_payment">
 							<?php echo $this->session->flashdata('flash_message'); ?>
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<div class="row">
@@ -138,8 +138,8 @@
 								<div class="col-xl-2"></div>
 								<div class="col-xl-4">
 									<div class="form-group text-left">
-										<label>Nomor Pendaftaran</label>
-										<input class="form-control form-control-solid h-auto py-5 px-6" value="<?php echo $register[0]->nomor_pendaftaran; ?>" type="text" placeholder="Isikan Nomor Pendaftaran" name="nomor_pendaftaran" readonly="" />
+										<label>Nomor Formulir</label>
+										<input class="form-control form-control-solid h-auto py-5 px-6" value="<?php echo $register[0]->nomor_formulir; ?>" type="text" placeholder="Isikan Nomor Formulir" name="nomor_formulir" readonly="" />
 									</div>
 								</div>
 								<div class="col-xl-4">
