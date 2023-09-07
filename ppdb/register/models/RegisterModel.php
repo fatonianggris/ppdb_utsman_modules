@@ -78,7 +78,7 @@ class RegisterModel extends CI_Model
     {
 
         $this->db->select('MAX(nomor_formulir) AS last_form');
-        $this->db->where('th_ajaran', $th);
+        $this->db->where('id_tahun_ajaran', $th);
 
         $sql = $this->db->get($this->table_register);
         return $sql->result();

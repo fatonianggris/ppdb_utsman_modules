@@ -244,7 +244,7 @@
 																					<i class="la la-user"></i>
 																				</span>
 																			</div>
-																			<input type="text" name="nisn" onkeyup="checkNISNRealTime(this.value)" class="form-control form-control-solid form-control-lg" id="kt_maxlength_nisn" maxlength="10" placeholder="Inputkan NISN Siswa" />
+																			<input type="text" name="nisn"  class="form-control form-control-solid form-control-lg" id="kt_maxlength_nisn" maxlength="10" placeholder="Inputkan NISN Siswa" />
 																		</div>
 																		<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI JIKA ADA, </b>isikan NISN jika Ada</span>
 																		<small id="info" class="form-control-feedback"></small>

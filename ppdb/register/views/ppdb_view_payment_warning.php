@@ -123,7 +123,7 @@
 													<span class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords($value->catatan_transfer); ?></span>
 													<span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Silahakan Transfer Sejumlah:</span><br><br>
 													<span class="mt-30 mb-30 font-size-sm text-left"> <b class="text-danger font-size-h1">Rp. <?php echo number_format($register[0]->nominal, 2, ',', '.'); ?></b> <br> (mohon transfer senilai tersebut),
-														<a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_rincian"><b>KILK LIHAT RINCIAN</b></a>
+														<a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_rincian"><b>KLIK LIHAT RINCIAN</b></a>
 													</span><br><br>
 													<span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Ke Nomor Rekening <b class="text-warning">"<?php echo strtoupper($value->nama_alatbayar); ?>"</b> Di Bawah Ini.</span><br><br>
 													<span class="mt-30 mb-20 text-danger display-4 font-weight-boldest">NO REK. <?php echo strtoupper($value->nomor_alatbayar); ?></span><br>
