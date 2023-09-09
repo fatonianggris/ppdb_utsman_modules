@@ -416,7 +416,7 @@ class Register extends MX_Controller
         if ($data['register'][0]->status_pendaftaran == 0) {
             $this->load->view('ppdb_view_fulfillment_register', $data);
         } else {
-            redirect('ppdb/register/status_register_success/' . paramEncrypt($data['nomor_formulir']));
+            redirect('ppdb/register/status_register_success/' . paramEncrypt($number));
         }
 
     }
@@ -472,6 +472,43 @@ class Register extends MX_Controller
         }
     }
 
+    public function check_email_register()
+    {
+        $param = $this->input->post();
+        $post = $this->security->xss_clean($param);
+
+        $data = $this->RegisterModel->get_register_by_email($post['email']);
+
+        $new_data = array();
+
+        if ($data) {
+
+            for ($i = 0; $i < count($data); $i++) {
+                $new_data[$i] = (object) array('nama_calon_siswa' => $data[$i]->nama_calon_siswa,
+                    'nomor_formulir_enc' => paramEncrypt($data[$i]->nomor_formulir),
+                    'nomor_formulir' => $data[$i]->nomor_formulir,
+                    'email_orangtua' => $data[$i]->email_orangtua,
+                    'jenis_kelamin' => $data[$i]->jenis_kelamin,
+                    'nomor_wa' => $data[$i]->nomor_wa,
+                    'level_tingkat' => $data[$i]->level_tingkat,
+                    'id_jalur' => $data[$i]->id_jalur,
+                    'id_tahun_ajaran' => $data[$i]->id_tahun_ajaran,
+                    'tahun_ajaran' => $data[$i]->tahun_ajaran);
+            }
+
+            $output = array("status" => true,
+                "data" => $new_data,
+            );
+
+        } else {
+            $output = array("status" => false,
+                "messages" => "Opps!, ID User Tidak Terdaftar, Silahkan coba lagi.",
+            );
+
+        }
+
+        echo json_encode($output);
+    }
     //---------------------------------REGISTER------------------------------------//
 
     public function post_register()
@@ -1020,7 +1057,7 @@ class Register extends MX_Controller
 
     //--------------------------------------------------------------------------//
 
-    public function edit_register($number = '')
+    public function edit_personal_contact($number = '')
     {
         $number = paramDecrypt($number);
 
@@ -1038,13 +1075,41 @@ class Register extends MX_Controller
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('id_tahun_ajaran', 'Tahun Ajaran', 'required');
         $this->form_validation->set_rules('nomor_formulir', 'Nomor Formulir', 'required');
-        $this->form_validation->set_rules('nama_ayah', 'Nama', 'required');
-        $this->form_validation->set_rules('nik_ayah', 'NIK', 'required');
-        $this->form_validation->set_rules('tempat_lahir_ayah', 'Tempat Lahir', 'required');
-        $this->form_validation->set_rules('tanggal_lahir_ayah', 'Tanggal Lahir ID', 'required');
-        $this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan', 'required');
-        $this->form_validation->set_rules('pendidikan_ayah', 'Pendidikan', 'required');
-        $this->form_validation->set_rules('penghasilan_ayah', 'Penghasilan', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+            redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
+        } else {
+            //var_dump($data);exit;
+            $input = $this->RegisterModel->update_register_step_one($number, $data, 0);
+
+            if ($input == true) {
+                $output = array("status" => true,
+                    "messages" => "OK!, Pengisian formulir data Personal dan Kontak telah disimpan.",
+                );
+            } else {
+                $output = array("status" => false,
+                    "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
+                );
+            }
+        }
+        echo json_encode($output);
+    }
+
+    public function edit_parents_info($number = '')
+    {
+        $number = paramDecrypt($number);
+
+        $param = $this->input->post();
+        $data = $this->security->xss_clean($param);
+
+        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
+        $this->form_validation->set_rules('nik_ayah', 'NIK Ayah', 'required');
+        $this->form_validation->set_rules('tempat_lahir_ayah', 'Tempat Lahir Ayah', 'required');
+        $this->form_validation->set_rules('tanggal_lahir_ayah', 'Tanggal Lahir Ayah', 'required');
+        $this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required');
+        $this->form_validation->set_rules('pendidikan_ayah', 'Pendidikan Ayah', 'required');
+        $this->form_validation->set_rules('penghasilan_ayah', 'Penghasilan Ayah', 'required');
         $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required');
         $this->form_validation->set_rules('nik_ibu', 'NIK Ibu', 'required');
         $this->form_validation->set_rules('tempat_lahir_ibu', 'Tempat Lahir Ibu', 'required');
@@ -1059,6 +1124,33 @@ class Register extends MX_Controller
         $this->form_validation->set_rules('pekerjaan_wali', 'Pekerjaan Wali', 'required');
         $this->form_validation->set_rules('pendidikan_wali', 'Pendidikan Wali', 'required');
         $this->form_validation->set_rules('penghasilan_wali', 'Penghasilan Wali', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+            redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
+        } else {
+            //var_dump($data);exit;
+            $input = $this->RegisterModel->update_register_step_two($number, $data);
+
+            if ($input == true) {
+                $output = array("status" => true,
+                    "messages" => "OK!, Pengisian formulir data Orang Tua / Wali telah disimpan.",
+                );
+            } else {
+                $output = array("status" => false,
+                    "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
+                );
+            }
+        }
+        echo json_encode($output);
+    }
+
+    public function edit_address_info($number = '')
+    {
+        $number = paramDecrypt($number);
+
+        $param = $this->input->post();
+        $data = $this->security->xss_clean($param);
 
         $this->form_validation->set_rules('alamat_rumah_kk', 'Alamat Rumah KK', 'required');
         $this->form_validation->set_rules('provinsi_kk', 'Provinsi KK', 'required');
@@ -1078,14 +1170,71 @@ class Register extends MX_Controller
         $this->form_validation->set_rules('rw_dom', 'RW Domisili', 'required');
         $this->form_validation->set_rules('kodepos_dom', 'Kodepos Domisili', 'required');
 
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+            redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
+        } else {
+            //var_dump($data);exit;
+            $input = $this->RegisterModel->update_register_step_three($number, $data, 0);
+
+            if ($input == true) {
+                $output = array("status" => true,
+                    "messages" => "OK!, Pengisian formulir data Alamat dan Domisili telah disimpan.",
+                );
+            } else {
+                $output = array("status" => false,
+                    "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
+                );
+            }
+        }
+        echo json_encode($output);
+    }
+
+    public function edit_periodic_info($number = '')
+    {
+        $number = paramDecrypt($number);
+
+        $param = $this->input->post();
+        $data = $this->security->xss_clean($param);
+
         $this->form_validation->set_rules('alat_transportasi', 'Alat Transportasi', 'required');
         $this->form_validation->set_rules('jenis_tinggal', 'Jenis Tempat Tinggal', 'required');
         $this->form_validation->set_rules('jumlah_saudara', 'Jumlah Saudara', 'required');
         $this->form_validation->set_rules('anak_ke', 'Anak Ke', 'required');
-
         $this->form_validation->set_rules('kebutuhan_khusus', 'Berkebutuhan Khusus', 'required');
         $this->form_validation->set_rules('level_tingkat', 'Tingkat Siswa', 'required');
         $this->form_validation->set_rules('id_jalur', 'Jalur Siswa', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+            redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
+        } else {
+            //var_dump($data);exit;
+            $input = $this->RegisterModel->update_register_step_four($number, $data, 0);
+
+            if ($input == true) {
+                $output = array("status" => true,
+                    "messages" => "OK!, Pengisian formulir data Periodik Siswa telah disimpan.",
+                );
+            } else {
+                $output = array("status" => false,
+                    "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
+                );
+            }
+        }
+        echo json_encode($output);
+    }
+
+    public function post_final_registration($number = '')
+    {
+        $number = paramDecrypt($number);
+
+        $param = $this->input->post();
+        $data = $this->security->xss_clean($param);
+
+        $this->form_validation->set_rules('level_tingkat', 'Tingkat Siswa', 'required');
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap Siswa', 'required');
+        $this->form_validation->set_rules('nomor_formulir', 'Nomor Formulir', 'required');
 
         $jenjang = '';
 
@@ -1107,8 +1256,8 @@ class Register extends MX_Controller
             $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
             redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
         } else {
-			//var_dump($data);exit;
-            $input = $this->RegisterModel->update_register($number, $data);
+            //var_dump($data);exit;
+            $input = $this->RegisterModel->update_final_register($number, 1);
 
             if ($input == true) {
                 $this->send_notification('PENGISIAN FORMULIR', ucwords(strtolower($data['nama_lengkap'])), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
@@ -1120,6 +1269,7 @@ class Register extends MX_Controller
             }
         }
     }
+
     public function edit_formulir($id = '')
     {
         $id = paramDecrypt($id);

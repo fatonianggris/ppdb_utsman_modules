@@ -132,6 +132,22 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
+    public function get_register_by_email($email = '')
+    {
+        $this->db->select("p.nama_calon_siswa, p.nomor_formulir, p.email_orangtua, p.jenis_kelamin, p.nomor_wa, p.level_tingkat, p.id_jalur, p.id_tahun_ajaran,
+                                CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
+                         ");
+        $this->db->from('pendaftaran p');
+        $this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
+
+        $this->db->where('p.email_orangtua', $email);
+        $this->db->where('p.status_pendaftaran', 0);
+        $this->db->where('p.status_pembayaran', 0);
+
+        $sql = $this->db->get();
+        return $sql->result();
+    }
+
     public function get_schoolyear()
     {
 
@@ -203,10 +219,33 @@ class RegisterModel extends CI_Model
     public function get_register_by_number($number = '')
     {
         $this->db->select("p.*,
+								wpagt.nama AS nama_provinsi_kk,
+								wkbagt.nama AS nama_kabupaten_kota_kk,
+								wkbagt.administratif AS nama_kabupaten_kota_kk_adm,
+								wkagt.nama AS nama_kecamatan_kk,
+								wdagt.nama AS nama_kelurahan_desa_kk,
+								wdagt.administratif AS nama_kelurahan_desa_kk_adm,
+								wpasl.nama AS nama_provinsi_dom,
+								wkbasl.nama AS nama_kabupaten_kota_dom,
+								wkbasl.administratif AS nama_kabupaten_kota_dom_adm,
+								wkasl.nama AS nama_kecamatan_dom,
+								wdasl.nama AS nama_kelurahan_desa_dom,
+								wdasl.administratif AS nama_kelurahan_desa_dom_adm,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
                                 DATE_FORMAT(p.inserted_at, '%d/%m/%Y') AS tanggal_isi
                          ");
         $this->db->from('pendaftaran p');
+
+        $this->db->join('wilayah_desa wdagt', 'p.kelurahan_desa_kk = wdagt.id AND p.provinsi_kk = wdagt.id_dati1 AND p.kabupaten_kota_kk = wdagt.id_dati2 AND p.kecamatan_kk = wdagt.id_dati3', 'left');
+        $this->db->join('wilayah_kecamatan wkagt', 'p.kecamatan_kk = wkagt.id AND p.provinsi_kk = wkagt.id_dati1 AND p.kabupaten_kota_kk = wkagt.id_dati2', 'left');
+        $this->db->join('wilayah_kabupaten wkbagt', 'p.kabupaten_kota_kk = wkbagt.id AND p.provinsi_kk = wkbagt.id_dati1', 'left');
+        $this->db->join('wilayah_provinsi wpagt', 'p.provinsi_kk = wpagt.id', 'left');
+
+        $this->db->join('wilayah_desa wdasl', 'p.kelurahan_desa_dom = wdasl.id AND p.provinsi_dom = wdasl.id_dati1 AND p.kabupaten_kota_dom = wdasl.id_dati2 AND p.kecamatan_dom = wdasl.id_dati3', 'left');
+        $this->db->join('wilayah_kecamatan wkasl', 'p.kecamatan_dom = wkasl.id AND p.provinsi_dom = wkasl.id_dati1 AND p.kabupaten_kota_dom = wkasl.id_dati2', 'left');
+        $this->db->join('wilayah_kabupaten wkbasl', 'p.kabupaten_kota_dom = wkbasl.id AND p.provinsi_dom = wkbasl.id_dati1', 'left');
+        $this->db->join('wilayah_provinsi wpasl', 'p.provinsi_dom = wpasl.id', 'left');
+
         $this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
 
         $this->db->where('p.nomor_formulir', $number);
@@ -321,26 +360,48 @@ class RegisterModel extends CI_Model
         }
     }
 
-    public function update_register($number = '', $value = '')
+    public function update_register_step_one($number = '', $value = '', $status = '')
     {
         $this->db->trans_begin();
 
         $data = array(
-            'nisn' => $value['nisn'],
+            'nisn' => @$value['nisn'],
             'nik' => @$value['nik'],
             'no_akta_kelahiran' => @$value['no_akta_kelahiran'],
-			'nomor_formulir' => $value['nomor_formulir'],
-            'nama_calon_siswa' => $value['nama_lengkap'],
+            'nomor_formulir' => @$value['nomor_formulir'],
+            'nama_calon_siswa' => @$value['nama_lengkap'],
             'nama_panggilan' => @$value['nama_panggilan'],
-            'tempat_lahir' => $value['tempat_lahir'],
-            'tanggal_lahir' => $value['tanggal_lahir'],
-            'jenis_kelamin' => $value['jenis_kelamin'],
-            'agama' => $value['agama'],
+            'tempat_lahir' => @$value['tempat_lahir'],
+            'tanggal_lahir' => @$value['tanggal_lahir'],
+            'jenis_kelamin' => @$value['jenis_kelamin'],
+            'agama' => @$value['agama'],
             'rombel' => @$value['rombel'],
-            'id_tahun_ajaran' => $value['id_tahun_ajaran'],
-            'nomor_wa' => $value['nomor_handphone'],
+            'id_tahun_ajaran' => @$value['id_tahun_ajaran'],
+            'asal_sekolah' => @$value['asal_sekolah'],
+            'nomor_wa' => @$value['nomor_handphone'],
             'nomor_telepon' => @$value['nomor_telepon'],
-            'email_orangtua' => $value['email'],
+            'email_orangtua' => @$value['email'],
+            'updated_at' => date("Y-m-d H:i:s"),
+            'status_pendaftaran' => @$status,
+        );
+
+        $this->db->where('nomor_formulir', $number);
+        $this->db->update($this->table_register, $data);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    public function update_register_step_two($number = '', $value = '', $status = '')
+    {
+        $this->db->trans_begin();
+
+        $data = array(
             'nama_ayah' => @$value['nama_ayah'],
             'nik_ayah' => @$value['nik_ayah'],
             'tempat_lahir_ayah' => @$value['tempat_lahir_ayah'],
@@ -363,37 +424,98 @@ class RegisterModel extends CI_Model
             'pekerjaan_wali' => @$value['pekerjaan_wali'],
             'pendidikan_wali' => @$value['pendidikan_wali'],
             'penghasilan_wali' => @$value['penghasilan_wali'],
-            'alamat_rumah_kk' => $value['alamat_rumah_kk'],
-            'provinsi_kk' => $value['provinsi_kk'],
-            'kabupaten_kota_kk' => $value['kabupaten_kota_kk'],
-            'kecamatan_kk' => $value['kecamatan_kk'],
-            'kelurahan_desa_kk' => $value['kelurahan_desa_kk'],
-            'rt_kk' => $value['rt_kk'],
-            'rw_kk' => $value['rw_kk'],
-            'kodepos_kk' => $value['kodepos_kk'],
+            'updated_at' => date("Y-m-d H:i:s"),
+            'status_pendaftaran' => @$status,
+        );
+
+        $this->db->where('nomor_formulir', $number);
+        $this->db->update($this->table_register, $data);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+    public function update_register_step_three($number = '', $value = '', $status = '')
+    {
+        $this->db->trans_begin();
+
+        $data = array(
+            'alamat_rumah_kk' => @$value['alamat_rumah_kk'],
+            'provinsi_kk' => @$value['provinsi_kk'],
+            'kabupaten_kota_kk' => @$value['kabupaten_kota_kk'],
+            'kecamatan_kk' => @$value['kecamatan_kk'],
+            'kelurahan_desa_kk' => @$value['kelurahan_desa_kk'],
+            'rt_kk' => @$value['rt_kk'],
+            'rw_kk' => @$value['rw_kk'],
+            'kodepos_kk' => @$value['kodepos_kk'],
             'status_alamat' => @$value['status_alamat'],
-            'alamat_rumah_dom' => $value['alamat_rumah_dom'],
-            'provinsi_dom' => $value['provinsi_dom'],
-            'kabupaten_kota_dom' => $value['kabupaten_kota_dom'],
-            'kecamatan_dom' => $value['kecamatan_dom'],
-            'kelurahan_desa_dom' => $value['kelurahan_desa_dom'],
-            'rt_dom' => $value['rt_dom'],
-            'rw_dom' => $value['rw_dom'],
-            'kodepos_dom' => $value['kodepos_dom'],
-            'alat_transportasi' => $value['alat_transportasi'],
-            'jenis_tinggal' => $value['jenis_tinggal'],
+            'alamat_rumah_dom' => @$value['alamat_rumah_dom'],
+            'provinsi_dom' => @$value['provinsi_dom'],
+            'kabupaten_kota_dom' => @$value['kabupaten_kota_dom'],
+            'kecamatan_dom' => @$value['kecamatan_dom'],
+            'kelurahan_desa_dom' => @$value['kelurahan_desa_dom'],
+            'rt_dom' => @$value['rt_dom'],
+            'rw_dom' => @$value['rw_dom'],
+            'kodepos_dom' => @$value['kodepos_dom'],
+            'updated_at' => date("Y-m-d H:i:s"),
+            'status_pendaftaran' => @$status,
+        );
+
+        $this->db->where('nomor_formulir', $number);
+        $this->db->update($this->table_register, $data);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    public function update_register_step_four($number = '', $value = '', $status = '')
+    {
+        $this->db->trans_begin();
+
+        $data = array(
+            'alat_transportasi' => @$value['alat_transportasi'],
+            'jenis_tinggal' => @$value['jenis_tinggal'],
             'jarak_rumah_sekolah' => @$value['jarak_rumah_sekolah'],
-            'jumlah_saudara' => $value['jumlah_saudara'],
-            'anak_ke' => $value['anak_ke'],
+            'jumlah_saudara' => @$value['jumlah_saudara'],
+            'anak_ke' => @$value['anak_ke'],
             'nis_saudara' => @$value['nis_saudara'],
             'nama_saudara' => @$value['nama_saudara'],
-            'kebutuhan_khusus' => $value['kebutuhan_khusus'],
+            'kebutuhan_khusus' => @$value['kebutuhan_khusus'],
             'tinggi_badan' => @$value['tinggi_badan'],
             'berat_badan' => @$value['berat_badan'],
             'level_tingkat' => @$value['level_tingkat'],
-            'id_jalur' => $value['id_jalur'],
+            'id_jalur' => @$value['id_jalur'],
             'updated_at' => date("Y-m-d H:i:s"),
-            'status_pendaftaran' => 1,
+            'status_pendaftaran' => @$status,
+        );
+
+        $this->db->where('nomor_formulir', $number);
+        $this->db->update($this->table_register, $data);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    public function update_final_register($number = '', $status = '')
+    {
+        $this->db->trans_begin();
+
+        $data = array(
+            'status_pendaftaran' => @$status,
         );
 
         $this->db->where('nomor_formulir', $number);

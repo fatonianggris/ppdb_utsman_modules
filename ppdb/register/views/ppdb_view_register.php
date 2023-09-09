@@ -173,10 +173,19 @@
                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>"
                                 value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <div id="info_register">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>Email OrangTua/Wali/Siswa</label>
                                         <input class="form-control form-control-solid form-control-lg" type="text"
+                                            onkeyup="check_email_used(this.value)"
                                             value="<?php echo set_value('email_orangtua'); ?>"
                                             placeholder="Isikan Email Orangtua/Wali/Siswa" name="email_orangtua" />
                                         <span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI,
@@ -238,7 +247,7 @@
                                             <?php
 if (!empty($schoolyear)) {
     foreach ($schoolyear as $key => $value_sch) {
-        if ($value_sch->tahun_awal > (date("Y") + 1)) {
+        if ($value_sch->tahun_awal > (date("Y"))) {
             ?>
                                             <option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
                                                 <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
@@ -356,6 +365,48 @@ if (!empty($schoolyear)) {
             <!--end::Content-->
         </div>
         <!--end::Login-->
+    </div>
+    <div class="modal fade" id="modal_register" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
+        role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Draft Formulir Dengan Email Anda </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <!--begin::Table-->
+                    <span class="form-text text-dark pb-7"><b class="text-danger">*Berikut merupakan daftar pengisian
+                            FORMULIR yang belum anda selesaikan, Klik "ISI" untuk melanjutkan!</b></span>
+                    <div class="table-responsive">
+                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                            <thead>
+                                <tr class="text-left text-uppercase">
+                                    <th style="min-width: 250px">
+                                        <span class="text-dark-75">Nama & No Formulir</span>
+                                    </th>
+                                    <th style="min-width: 100px">Jenjang</th>
+                                    <th style="min-width: 100px">Program</th>
+                                    <th style="min-width: 100px">Email</th>
+                                    <th style="min-width: 130px">No WhatsApp</th>
+                                    <th style="min-width: 100px">Tahun Ajaran</th>
+                                    <th style="min-width: 80px">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_register">
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--end::Table-->
+                </div>
+                <div class="modal-footer">
+                    <button type="cancel" class="btn btn-danger font-weight-bold" data-dismiss="modal"><i
+                            class="fa fa-times"></i> TETAP BIKIN BARU</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="whatsapp_chat_support wcs_fixed_right" id="example_1">
         <div class="wcs_button_label">
@@ -507,6 +558,121 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.js">
     </script>
     <!--end::Page Scripts-->
+
+    <script>
+    var SITE_URL = "<?php echo base_url(); ?>";
+
+    function check_email_used(email) {
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo site_url("/ppdb/register/check_email_register") ?>",
+            data: {
+                email: email
+            },
+            dataType: 'html',
+            success: function(data) {
+                $('#info_register').empty();
+                var obj_data = jQuery.parseJSON(data);
+
+                if (obj_data.status) {
+                    console.log(obj_data.data);
+                    var html = "";
+
+                    for (var i = 0; i < obj_data.data.length; i++) {
+
+                        if (obj_data.data[i].level_tingkat == "1") {
+                            var bg_color = "label-success";
+                            var tingkat = "KB"
+                        } else if (obj_data.data[i].level_tingkat == "2") {
+                            var bg_color = "label-warning";
+                            var tingkat = "TK"
+                        } else if (obj_data.data[i].level_tingkat == "3") {
+                            var bg_color = "label-danger";
+                            var tingkat = "SD"
+                        } else if (obj_data.data[i].level_tingkat == "4") {
+                            var bg_color = "label-primary";
+                            var tingkat = "SMP"
+                        } else if (obj_data.data[i].level_tingkat == "5") {
+                            var bg_color = "label-default";
+                            var tingkat = "KB-TK"
+                        } else if (obj_data.data[i].level_tingkat == "6") {
+                            var bg_color = "label-info";
+                            var tingkat = "DC"
+                        }
+
+                        if (obj_data.data[i].id_jalur != "1") {
+                            var jalur = "REGULER";
+                        } else if (obj_data.data[i].id_jalur == "2") {
+                            var saldo = "ICP";
+                        }
+
+                        html +=
+                            "<tr>" +
+                            "<td>" +
+                            `<div class="d-flex align-items-center">
+									<div class="symbol symbol-40 symbol-warning mr-4 label-danger">
+										<span class="symbol-label font-size-h4 font-weight-bold">
+											<i class="fa fa-user"></i>
+										</span>
+									</div>
+									<div class="pt-4">
+										<span class="text-red font-weight-bolder font-size-lg">
+											${obj_data.data[i].nama_calon_siswa}
+										</span>
+										<p class="text-danger font-size-sm font-weight-bold">
+											${obj_data.data[i].nomor_formulir}
+										</p>
+									</div>
+								</div>` +
+                            "</td>" +
+                            "<td class='font-weight-bolder'>" +
+                            `<span class="label label-lg font-weight-bolder ${bg_color} label-inline">
+									${tingkat}
+								</span>` +
+                            "</td>" +
+                            "<td class='font-weight-bolder'>" +
+                            `<span class="label label-lg font-weight-bolder label-default label-inline">
+									${jalur}
+								</span>` +
+                            "</td>" +
+                            "<td>" +
+                            `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+									${obj_data.data[i].email_orangtua}
+								</span>` +
+                            "</td>" +
+                            "<td>" +
+                            `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+									${obj_data.data[i].nomor_wa}
+								</span>` +
+                            "</td>" +
+                            "<td>" +
+                            `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+									${obj_data.data[i].tahun_ajaran}
+								</span>` +
+                            "</td>" +
+                            '<td>' +
+                            `<a href="${SITE_URL}/ppdb/register/status_fulfillment_register/${obj_data.data[i].nomor_formulir_enc}" class="btn btn-light-primary btn-sm font-weight-bolder font-size-sm">
+									<i class="fa fa-pen"></i> ISI
+								</a>` +
+                            "</td>" +
+                            "</tr>";
+                    }
+                    $("#tb_register").html(html);
+                    $("#modal_register").modal('show')
+                    $('<span class="form-text text-dark"><b class="text-danger">*Email yang Anda daftarkan belum melanjutkan pengisian FORMULIR sebelumnya, <a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_register">KLIK DISINI</a> untuk melanjutkan!</b></span>')
+                        .appendTo('#info_register');
+                } else {
+                    console.log("empty")
+                }
+            },
+            error: function(result) {
+                console.log(result);
+            }
+        });
+
+    }
+    </script>
     <script>
     $('#kt_select2_3').select2({
         placeholder: "Pilih semua yang sesuai",
