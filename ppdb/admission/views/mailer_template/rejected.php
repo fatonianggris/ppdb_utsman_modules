@@ -243,13 +243,7 @@
                                                                                                     <td valign="middle" align="center" height="15" style="font-size:15px;line-height:15px;">&nbsp;</td>
                                                                                                 </tr>
                                                                                             </table>
-
-                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
-                                                                                                <tr>
-                                                                                                    <td valign="middle" align="center" height="15" style="font-size:15px;line-height:15px;">&nbsp;</td>
-                                                                                                </tr>
-                                                                                            </table>
-                                                                                            <!-- space -->
+                                                            
                                                                                             <!-- title -->
                                                                                             <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
                                                                                                 <tr> 

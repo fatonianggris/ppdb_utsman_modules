@@ -243,6 +243,13 @@
                                                                                                     <td valign="middle" align="center" height="15" style="font-size:15px;line-height:15px;">&nbsp;</td>
                                                                                                 </tr>
                                                                                             </table>
+
+                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+                                                                                                <tr>
+                                                                                                    <td valign="middle" align="center" height="15" style="font-size:15px;line-height:15px;">&nbsp;</td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- space -->
                                                                                             <!-- title -->
                                                                                             <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
                                                                                                 <tr> 
@@ -325,7 +332,7 @@
 																															echo 'DC';
 																														}
                                                                                                                         ?>        
-                                                                                                                    </td>
+                                                                                                                    </td>                                                                                                                   
                                                                                                                     <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">                                                     
                                                                                                                         <?php
                                                                                                                         if ($formulir[0]->jalur == 1) {
@@ -348,22 +355,251 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <!-- space -->   
-																							<!-- text -->
-																							<table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
-                                                                                                <tr> 
-                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-                                                                                                        Silahkan Kilk tombol dibawah ini, untuk melihat Pengumuman:
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </table>
-                                                                                            <!-- text -->
-                                                                                           <!-- space -->
+                                                                                            <!-- space -->
                                                                                             <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
                                                                                                 <tr>
                                                                                                     <td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
                                                                                                 </tr>
                                                                                             </table>
-                                                                                            <!-- space -->   
+                                                                                            <!-- space -->  
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:15px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        Berikut merupakan rincian BIAYA PPDB Sekolah: 
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        <table border="2" width="100%" cellpadding="1" cellspacing="1" align="center" style="width:100%; max-width:100%;">
+                                                                                                            <thead style="background-color: #FFF4DE;">
+                                                                                                                <tr>
+                                                                                                                    <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                                        Nama Biaya
+                                                                                                                    </th>
+                                                                                                                    <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                                        Voucher
+                                                                                                                    </th>
+                                                                                                                    <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                                       
+                                                                                                                        Biaya Awal (Rp)
+                                                                                                                    </th>                                                                                                                   
+                                                                                                                    <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                                                                                        
+                                                                                                                        Potongan (%)
+                                                                                                                    </th>
+                                                                                                                    <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                                                                                        
+                                                                                                                        Sub Total (Rp)
+                                                                                                                    </th>                                                                                                                   
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody>
+                                                                                                                <?php
+                                                                                                                if (!empty($cost)) {
+                                                                                                                    foreach ($cost as $key => $value) {
+                                                                                                                        ?> 
+                                                                                                                        <tr>
+                                                                                                                            <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php echo ucwords(strtolower($value->nama_biaya)); ?>
+                                                                                                                            </td>
+                                                                                                                            <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php
+                                                                                                                                if (!empty($voucher)) {
+                                                                                                                                    foreach ($voucher as $key => $value_v) {
+                                                                                                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                                                                                                                            $id_array_voucher = explode(',', $id_voucher);
+                                                                                                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                                                                                                                                echo $value_v->kode_voucher;
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }  //ngatur nomor urut
+                                                                                                                                }
+                                                                                                                                ?>         
+                                                                                                                            </td>                                                                                                                   
+                                                                                                                            <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php echo number_format($value->nominal, 0, ',', '.'); ?>
+                                                                                                                            </td>
+                                                                                                                            <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php
+                                                                                                                                if (!empty($voucher)) {
+                                                                                                                                    foreach ($voucher as $key => $value_v) {
+                                                                                                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                                                                                                                            $id_array_voucher = explode(',', $id_voucher);
+                                                                                                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                                                                                                                                echo $value_v->potongan;
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }  //ngatur nomor urut
+                                                                                                                                }
+                                                                                                                                ?>         
+                                                                                                                            </td> 
+                                                                                                                            <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php
+                                                                                                                                $stat = FALSE;
+                                                                                                                                if (!empty($voucher)) {
+                                                                                                                                    foreach ($voucher as $key => $value_v) {
+                                                                                                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                                                                                                                            $id_array_voucher = explode(',', $id_voucher);
+                                                                                                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                                                                                                                                echo number_format(($value->nominal)-($value->nominal * $value_v->potongan / 100), 0, ',', '.');
+                                                                                                                                                $stat = TRUE;
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }  //ngatur nomor urut
+                                                                                                                                }
+                                                                                                                                if ($stat == FALSE) {
+                                                                                                                                    echo number_format($value->nominal, 0, ',', '.');
+                                                                                                                                }
+                                                                                                                                ?>
+                                                                                                                            </td>
+                                                                                                                        </tr> 
+                                                                                                                        <?php
+                                                                                                                    }  //ngatur nomor urut
+                                                                                                                }
+                                                                                                                ?>       
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- space -->
+                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+                                                                                                <tr>
+                                                                                                    <td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- space --> 
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:16px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        Silahakan Transfer Sejumlah: 
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- space -->
+                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+                                                                                                <tr>
+                                                                                                    <td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- space --> 
+
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:25px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        Rp. <?php echo $total_biaya; ?>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:12px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        (mohon transfer senilai tersebut)
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- space -->
+                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+                                                                                                <tr>
+                                                                                                    <td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- space -->
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%; margin-bottom: 5px;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        Ke Nomor Rekening Di Bawah Ini:
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        <table border="2" width="100%" cellpadding="1" cellspacing="1" align="center" style="width:100%; max-width:100%;">
+                                                                                                            <thead style="background-color: #FFF4DE;">
+                                                                                                                <tr>
+                                                                                                                    <th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                                        Nama Bank
+                                                                                                                    </th>
+                                                                                                                    <th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                                       
+                                                                                                                        Nomor Rekening
+                                                                                                                    </th> 
+                                                                                                                    <th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                                        Atas Nama
+                                                                                                                    </th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody>
+                                                                                                                <?php
+                                                                                                                if (!empty($bank_account)) {
+                                                                                                                    foreach ($bank_account as $key => $value) {
+                                                                                                                        ?>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php echo strtoupper($value->nama_alatbayar); ?>
+                                                                                                                            </td>
+                                                                                                                            <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php echo strtoupper($value->nomor_alatbayar); ?>
+                                                                                                                            </td>
+                                                                                                                            <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#FFA800;text-decoration:none;letter-spacing: 0px;">                                                     
+                                                                                                                                <?php echo strtoupper($value->atas_nama); ?>
+                                                                                                                            </td>
+                                                                                                                        </tr>  
+                                                                                                                        <?php
+                                                                                                                    }  //ngatur nomor urut
+                                                                                                                }
+                                                                                                                ?>          
+                                                                                                        </table>
+
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- space -->
+                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+                                                                                                <tr>
+                                                                                                    <td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- space -->
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        Mohon lakukan <strong style="color:#F64E60;">PEMBAYARAN</strong> dalam kurun waktu 1 x 24 jam.
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- text -->
+                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
+                                                                                                <tr> 
+                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+                                                                                                        Silahkan Kilk tombol dibawah ini, untuk melihat tata cara pembayaran:
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- text -->
+                                                                                            <!-- space -->
+                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+                                                                                                <tr>
+                                                                                                    <td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                            <!-- space -->
                                                                                             <!-- Button-Bg -->
                                                                                             <table  border="0" cellpadding="0" cellspacing="0" align="center" class="center-float">
                                                                                                 <tr>
@@ -381,7 +617,7 @@
                                                                                                                             <td width="20"></td>
                                                                                                                             <td valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;font-weight:bolder;font-style:normal;color:#ff7264;text-decoration:none;letter-spacing:0px;">
 
-                                                                                                                                <a href="<?php echo site_url('ppdb/register/login_announcement'); ?>" target="_blank" style="color:#FFFFFF;">LOGIN & LIHAT PENGUMUMAN</a>
+                                                                                                                                <a href="<?php echo site_url('ppdb/register/login_announcement'); ?>" target="_blank" style="color:#FFFFFF;">LOGIN & UPLOAD PEMBAYARAN</a>
 
                                                                                                                             </td>
                                                                                                                             <td width="20"></td>
@@ -426,10 +662,12 @@
                                                                     <!-- column -->
 
                                                                     <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                         <!-- container-2-columns -->
+
                                                         <!-- space -->
                                                         <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
                                                             <tr>
@@ -442,6 +680,7 @@
                                                 </tr>
                                             </table>
                                             <!-- container -->
+
                                         </td>
                                     </tr>
                                 </table>

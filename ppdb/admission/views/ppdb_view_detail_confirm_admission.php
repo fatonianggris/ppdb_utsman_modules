@@ -240,11 +240,11 @@
 								<button onclick="act_confirm_admission('<?php echo paramEncrypt($student[0]->id_formulir); ?>', '<?php echo strtoupper($student[0]->nama_lengkap); ?>')" class="btn btn-success btn-sm font-weight-bold px-8 py-4 my-3 mx-4"><i class="fas fa-check-circle "></i>Terima</button>
 								<button onclick="act_reject_admission('<?php echo paramEncrypt($student[0]->id_formulir); ?>', '<?php echo strtoupper($student[0]->nama_lengkap); ?>')" class="btn btn-danger  btn-sm font-weight-bold px-9 py-4 my-3 mx-4"><i class="fas fa-window-close"></i>Tolak</button>
 							<?php
-							} elseif ($student[0]->status_penerimaan == 1) {
+							} else if ($student[0]->status_penerimaan == 1) {
 								$disable = 'disabled';
 							?>
 								<a href="https://web.whatsapp.com/send?phone=62<?php echo substr($student[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
-                                <?php echo urlencode("\n") ?>
+                                  <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>*--SELAMAT! ANDA DINYATAKAN 'LULUS'--*
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>_Selamat datang di Sekolah Utsman, Berikut merupakan informasi terkait data diri Anda:_
@@ -252,24 +252,9 @@
                                    <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($student[0]->nama_lengkap)); ?>*
                                    <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                    <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
-                                   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Berikut merupakan total *BIAYA PPDB*, Silahkan melakukan pembayaran sejumlah:_
-                                   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>*Rp. <?php echo $student[0]->total_biaya ?>* (mohon transfer senilai tersebut)
-                                   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_ke *Nomor Rekening* dibawah ini:_
-                                   <?php
-									if (!empty($bank_account)) {
-										foreach ($bank_account as $key => $value_bank) {
-									?>
-                                           <?php echo urlencode("\n") ?>*- <?php echo strtoupper($value_bank->nama_alatbayar); ?> / no rek. <?php echo strtoupper($value_bank->nomor_alatbayar); ?> / an. <?php echo strtoupper($value_bank->atas_nama); ?>*
-                                           <?php
-										}  //ngatur nomor urut
-									}
-											?>          
-                                   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PEMBAYARAN*```. Setelah melakukan pembayaran, harap```. *UPLOAD BUKTI TRANSFER*``` dengan klik ```*LINK* ``` di bawah ini```
-                                   <?php echo urlencode("\n") ?>
+								   <?php echo urlencode("\n") ?>
+                                   <?php echo urlencode("\n") ?>_ Silahkan Kilk Link dibawah ini, untuk melihat Pengumuman._
+								   <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/register/login_announcement'); ?>*
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
@@ -292,8 +277,6 @@
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>_Jangan Berkecil Hati dan Tetap Semangat, Masih Ada Kesempatan Untuk Masuk di Sekolah Lain._
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PEMBAYARAN*```. Setelah melakukan pembayaran, harap```. *UPLOAD BUKTI TRANSFER*``` dengan klik ```*LINK* ``` di bawah ini```
-                                   <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>```Man Jadda Wajada, Barang siapa yang bersungguh-sungguh, maka ia akan mendapatkannya.```
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
@@ -304,109 +287,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-12">
-					<!--begin::Card-->
-					<div class="card card-custom mb-10">
-						<!--begin::Header-->
-						<div class="card-header border-0 py-5">
-							<h3 class="card-title align-items-start flex-column">
-								<span class="card-label font-weight-bolder text-danger">Total Biaya</span>
-								<span class="text-muted mt-3 font-weight-bold font-size-sm">Berikut merupakan detail biaya yang dikenakan Siswa</span>
-							</h3>
-
-						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-0 pb-3">
-							<div class="tab-content">
-								<!--begin::Table-->
-								<div class="table-responsive">
-									<table class="table table-head-custom table-vertical-center table-head-bg table-borderless">
-										<thead>
-											<tr class="text-left">
-												<th style="min-width: 300px" class="pl-7">
-													<span class="text-dark-75">Nama Biaya</span>
-												</th>
-												<th style="width: 200px" class="text-center"><span class="text-dark-75"> Voucher </span></th>
-												<th style="width: 180px" class="text-center"><span class="text-dark-75 ">Biaya Awal (Rp)</span></th>
-												<th style="width: 130px" class="text-center"><span class="text-dark-75">Potongan (%)</span></th>
-												<th style="width: 200px" class="text-center"><span class="text-dark-75">Sub Total (Rp)</span></th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-											if (!empty($cost)) {
-												foreach ($cost as $key => $value) {
-											?>
-													<tr>
-														<td>
-															<span class="text-dark-75 font-weight-bolder d-block font-size-lg ml-4"><?php echo strtoupper(strtolower($value->nama_biaya)); ?></span>
-														</td>
-														<td>
-															<select name="id_voucher" id="id_voucher<?php echo $value->id_biaya; ?>" class="form-control font-weight-bolder  form-control-md" <?php echo $disable; ?>>
-																<option value="">Pilih Voucher</option>
-																<?php
-																if (!empty($voucher)) {
-																	foreach ($voucher as $key => $value_v) {
-																		if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-																			$id_array_voucher = explode(',', $student[0]->id_voucher);
-																			if (in_array($value_v->id_voucher, $id_array_voucher)) {
-																?>
-																				<option selected="selected" value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>"><?php echo $value_v->kode_voucher; ?></option>
-																				<?php
-																			} else {
-																				if ($value_v->terpakai < $value_v->jumlah_voucher) {
-																				?>
-																					<option value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>"><?php echo $value_v->kode_voucher; ?></option>
-																<?php
-																				}
-																			}
-																		}
-																	}  //ngatur nomor urut
-																}
-																?>
-															</select>
-														</td>
-														<td>
-															<input id="nominal<?php echo $value->id_biaya; ?>" readonly="" value="<?php echo number_format($value->nominal, 0, ',', '.'); ?>" type="text" name="nominal" class="form-control  form-control-md" />
-														</td>
-														<td>
-															<input id="potongan<?php echo $value->id_biaya; ?>" readonly="" value="-" type="text" name="potongan" class="form-control font-weight-boldest text-danger form-control-md" />
-														</td>
-														<td>
-															<input id="subtotal<?php echo $value->id_biaya; ?>" readonly="" value="<?php echo number_format($value->nominal, 0, ',', '.'); ?>" type="text" name="subtotal" class="biaya form-control font-weight-boldest form-control-md" />
-														</td>
-													</tr>
-											<?php
-												}  //ngatur nomor urut
-											}
-											?>
-										</tbody>
-									</table>
-								</div>
-								<!--end::Table-->
-							</div>
-							<!--begin::Separator-->
-							<div class="separator separator-solid my-2"></div>
-							<!--end::Separator-->
-							<div class="col-md-12">
-								<div class="d-flex justify-content-between mt-7 mb-5 mr-5 flex-column flex-md-row font-size-lg">
-									<div class="d-flex flex-column mb-5 mb-md-0">
-
-									</div>
-									<div class="d-flex flex-column text-md-right">
-										<span class="font-size-lg font-weight-bolder mb-1">TOTAL BIAYA</span>
-										<span id="total_biaya" class="font-size-h2 font-weight-boldest text-danger mb-1">Rp. 0.00</span>
-
-									</div>
-								</div>
-							</div>
-
-						</div>
-						<!--end::Body-->
-
-					</div>
-				</div>
+			
 				<div class="col-xl-12">
 					<!--begin::Card-->
 					<div class="card card-custom mb-10">
@@ -1121,102 +1002,7 @@
 		</div>
 	</div>
 </div>
-<?php
-if (!empty($cost)) {
-	foreach ($cost as $key => $value_s) {
-?>
-		<script>
-			$(document).ready(function() {
 
-				var voc<?php echo $value_s->id_biaya; ?> = $("#id_voucher<?php echo $value_s->id_biaya; ?>").find("option:selected").val().split(',');
-				if (voc<?php echo $value_s->id_biaya; ?> != "") {
-					var nom<?php echo $value_s->id_biaya; ?> = $("#nominal<?php echo $value_s->id_biaya ?>").val().split(".").join("");
-					var nom_total<?php echo $value_s->id_biaya; ?> = (nom<?php echo $value_s->id_biaya; ?>) - (nom<?php echo $value_s->id_biaya; ?> * voc<?php echo $value_s->id_biaya; ?>[1] / 100);
-
-					$('#potongan<?php echo $value_s->id_biaya; ?>').val(voc<?php echo $value_s->id_biaya; ?>[1]);
-					$('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
-					$('#id_voucher<?php echo $value_s->id_biaya; ?> option:not(:selected)').prop('disabled', true);
-					get_total();
-					get_voucher();
-				}
-
-				$("#id_voucher<?php echo $value_s->id_biaya; ?>").change(function() {
-
-					var id_voc<?php echo $value_s->id_biaya; ?>;
-					var nom<?php echo $value_s->id_biaya; ?> = $("#nominal<?php echo $value_s->id_biaya ?>").val().split(".").join("");
-
-					id_voc<?php echo $value_s->id_biaya; ?> = $(this).find("option:selected").val().split(',');
-					nom_total<?php echo $value_s->id_biaya; ?> = (nom<?php echo $value_s->id_biaya; ?>) - (nom<?php echo $value_s->id_biaya; ?> * id_voc<?php echo $value_s->id_biaya; ?>[1] / 100);
-
-					if ($(this).val()) {
-						$('#potongan<?php echo $value_s->id_biaya; ?>').val(id_voc<?php echo $value_s->id_biaya; ?>[1]);
-						$('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
-					} else {
-						$('#potongan<?php echo $value_s->id_biaya; ?>').val('-');
-						$('#subtotal<?php echo $value_s->id_biaya; ?>').val($("#nominal<?php echo $value_s->id_biaya ?>").val());
-					}
-					get_total();
-					get_voucher();
-				});
-
-			});
-		</script>
-<?php
-	}  //ngatur nomor urut
-}
-?>
-
-<script>
-	var url = "<?php echo site_url('ppdb/admission/add_ajax_class/' . $student[0]->level_tingkat); ?>";
-	$('#kelas').load(url);
-
-	var t_biaya = document.getElementById('total_biaya');
-
-	function get_total() {
-
-		var nomArray = new Array();
-		$("input[name=subtotal]").each(function() {
-			nomArray.push($(this).val().split(".").join(""));
-		});
-
-		var sum = 0;
-		$.each(nomArray, function() {
-			sum += parseFloat(this) || 0;
-		});
-
-		t_biaya.innerHTML = "Rp. " + number_format(sum, 0, ',', '.');
-		return number_format(sum, 0, ',', '.');
-	}
-
-	function get_voucher() {
-		var vocArray = new Array();
-		$("select[name=id_voucher]").each(function() {
-			var values = $(this).val().split(',');
-			vocArray.push(values[0]);
-		});
-		filtered = vocArray.filter(function(e) {
-			return e
-		});
-		return filtered;
-	}
-
-	number_format = function(number, decimals, dec_point, thousands_sep) {
-		number = number.toFixed(decimals);
-
-		var nstr = number.toString();
-		nstr += '';
-		x = nstr.split('.');
-		x1 = x[0];
-		x2 = x.length > 1 ? dec_point + x[1] : '';
-		var rgx = /(\d+)(\d{3})/;
-
-		while (rgx.test(x1))
-			x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
-
-		return x1 + x2;
-	}
-	get_total();
-</script>
 <script>
 	function act_confirm_admission(id, name) {
 		var csrfName = $('.txt_csrfname').attr('name');
@@ -1240,9 +1026,6 @@ if (!empty($cost)) {
 					url: "<?php echo site_url("/ppdb/admission/accept_admission") ?>",
 					data: {
 						id: id,
-						id_voucher: get_voucher(),
-						total_biaya: get_total(),
-						level_tingkat: level_tingkat,
 						[csrfName]: csrfHash
 					},
 					dataType: 'html',
@@ -1288,7 +1071,6 @@ if (!empty($cost)) {
 					url: "<?php echo site_url("/ppdb/admission/reject_admission") ?>",
 					data: {
 						id: id,
-						total_biaya: get_total(),
 						[csrfName]: csrfHash
 					},
 					dataType: 'html',

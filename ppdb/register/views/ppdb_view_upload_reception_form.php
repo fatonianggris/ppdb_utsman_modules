@@ -91,7 +91,7 @@
 						</div>
 						<!--begin::Form-->
 						<?php echo $this->session->flashdata('flash_message'); ?>
-						<form class="form" method="POST" action="<?php echo base_url(); ?>/ppdb/register/post_upload_payment_slip" enctype="multipart/form-data" novalidate="novalidate" id="kt_upload_payment">
+						<form class="form" method="POST" action="<?php echo base_url(); ?>/ppdb/register/post_upload_payment_form" enctype="multipart/form-data" novalidate="novalidate" id="kt_upload_payment">
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<div class="row">
 								<div class="col-xl-6">

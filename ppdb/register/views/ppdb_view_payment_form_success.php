@@ -23,6 +23,12 @@
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/ppdb/dist/assets/media/logos/favicon.ico" />
 	<link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.css" rel="stylesheet" type="text/css" />
 
+	<style>
+		.table thead th {
+			vertical-align: top;
+			border-bottom: 2px solid #EBEDF3;
+		}
+	</style>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -44,13 +50,105 @@
 					<!--begin::Login Sign in form-->
 					<div class="login-signin">
 						<div class="mb-10 ">
-							<p class="font-mobile font-weight-boldest text-warning ">MOHON MAAF, MASIH DALAM PROSES!</p>
-							<div class="font-weight-bold text-danger font-size-lg">Pengumuman penerimaan masih dalam proses. Mohon menunggu, Kami akan informasikan segera, Terima kasih.</div>
+							<p class="font-mobile font-weight-boldest text-success ">SELAMAT!, PEMBAYARAN ANDA BERHASIL</p>
+							<div class="font-weight-bold text-danger font-size-lg">Terimakasih telah melakukan pembayaran. Pembayaran Formulir PPDB Anda telah Kami terima.</div>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive px-mobile">
+							<?php echo $this->session->flashdata('flash_message'); ?>
+							<table class="table table-light table-light-success text-center">
+								<thead>
+									<tr>
+										<th class="table-center">NOMOR FORMULIR</th>
+										<th class="table-center">Nama Calon Siswa</th>
+										<th class="table-center">Nama OrangTua/Wali</th>
+										<th class="table-center">Email</th>
+										<th class="table-center">Nomor WA/HP</th>
+										<td class="table-center">Jenjang</td>
+										<td class="table-center">Program</td>
+										<td class="table-center">TA</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_formulir ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_calon_siswa; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->email_orangtua; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
+										<td class="table-center font-size-sm">
+											<span class="label label-md font-weight-boldest label-primary label-inline">
+												<?php
+												if ($register[0]->level_tingkat == 1) {
+													echo 'KB';
+												} else if ($register[0]->level_tingkat == 2) {
+													echo 'TK';
+												} else if ($register[0]->level_tingkat == 3) {
+													echo 'SD';
+												} else if ($register[0]->level_tingkat == 4) {
+													echo 'SMP';
+												} else if ($register[0]->level_tingkat == 5) {
+													echo 'KB-TK';
+												} else if ($register[0]->level_tingkat == 6) {
+													echo 'DC';
+												}
+												?>
+											</span>
+										</td>
+										<td class="table-center font-size-sm">
+											<span class="label label-md font-weight-boldest label-default label-inline">
+												<?php
+												if ($register[0]->id_jalur == 1) {
+													echo 'REGULER';
+												} elseif ($register[0]->id_jalur == 2) {
+													echo 'ICP';
+												}
+												?>
+											</span>
+										</td>
+										<td class="table-center font-size-sm font-weight-bold"><?php echo $register[0]->tahun_ajaran; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<?php if ($register[0]->id_voucher != NULL or $register[0]->id_voucher != "") { ?>
+							<div class="table-responsive px-mobile mt-5">
+								<div class="px-mobile-vc">
+									<table style="border: 3px dashed #f77d0e;">
+										<thead>
+											<tr>
+												<th align="center" style="width:80px"><img src="<?php echo base_url() . $page[0]->logo_website ?>" alt="" width="120" /></th>
+												<th align="left" valign="top">
+													<table>
+														<tbody>
+															<tr>
+																<td align="left" style="text-align: left;">
+																	<p style="color:#f77d0e; font-size: 15px; margin-top: 0px; margin-bottom: 0px; font-weight: bolder; ">SELAMAT ANDA MENDAPATAKAN </p>
+																	<p style="color:#1BC5BD; font-size: 50px; margin-top: 0px; margin-bottom: 0px; font-weight: bolder; ">VOUCHER DISKON</p>
+																	<p style="color:#505050; font-size: 20px; margin-top: 0px; margin-bottom: 0px; font-weight: bolder; "><?php echo strtoupper($register[0]->nama_voucher); ?> <b style="color:#f77d0e; "><?php echo strtoupper($register[0]->potongan); ?>%</b> KODE: <b style="color:#f77d0e;"><?php echo strtoupper($register[0]->kode_voucher); ?></b></p>
+																	<p style="color:#F64E60; font-size: small; margin-top: 0px; margin-bottom: 0px; font-weight: normal; ">*kilk tombol <b>DOWNLOAD</b> untuk melihat syarat dan ketentuan </p>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+						<?php } ?>
+						<a href="<?php echo site_url("ppdb/register/print_invoice_formulir/" . paramEncrypt($register[0]->nomor_formulir)); ?>" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-8"><i class="fa fa-download"></i> Download Bukti</a>
 
+						<div class="mt-5">
+							<span class="mt-10 mb-5 text-danger font-size-lg">Silahkan Cek Email Anda untuk mendapatkan <b>NOMOR FORMULIR</b> dan <b>PASSWORD</b> Login Upload Berkas.</span>
 						</div>
-						<a href="<?php echo site_url("ppdb/register/logout_announcement"); ?>" class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Keluar</a>
+						<div class="mt-5">
+							<span class="mt-5 mb-10 text-danger font-size-lg">Upload berkas formulir sekarang?</span>
+						</div>
+						<a href="<?php echo site_url("ppdb/register/login_formulir"); ?>" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-5">Upload Berkas Formulir</a>
+						<a href="<?php echo site_url('ppdb/home'); ?>" type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-5">
+							<li class="fa fa-home font-size-h4"></li> Kembali ke Menu
+						</a>
 
 					</div>
 					<!--end::Login Sign in form-->
@@ -60,7 +158,6 @@
 		</div>
 		<!--end::Login-->
 	</div>
-	<!--end::Main-->
 	<div class="whatsapp_chat_support wcs_fixed_right" id="example_1">
 		<div class="wcs_button_label">
 			Butuh bantuan? Hubungi Kami
@@ -122,6 +219,8 @@
 			</div>
 		</div>
 	</div>
+	<!--end::Main-->
+
 	<!--begin::Global Config(global config for global JS scripts)-->
 	<script>
 		var KTAppSettings = {

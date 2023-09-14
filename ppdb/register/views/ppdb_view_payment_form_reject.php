@@ -130,7 +130,7 @@
 							<div class="font-weight-bold text-danger font-size-lg mb-3">Bukti pembayaran anda <b>TIDAK SESUAI</b>, Mohon untuk upload kembali <b>BUKTI TRANSFER</b> yang sesuai.</div>
 						</div>
 
-						<form class="form px-mobile" method="POST" action="<?php echo site_url('/ppdb/register/post_revision_payment_slip/' . paramEncrypt($register[0]->nomor_formulir)); ?>" enctype="multipart/form-data" novalidate="novalidate" id="kt_upload_payment">
+						<form class="form px-mobile" method="POST" action="<?php echo site_url('/ppdb/register/post_revision_payment_form/' . paramEncrypt($register[0]->nomor_formulir)); ?>" enctype="multipart/form-data" novalidate="novalidate" id="kt_upload_payment">
 							<?php echo $this->session->flashdata('flash_message'); ?>
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<div class="row">

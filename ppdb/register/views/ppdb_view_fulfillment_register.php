@@ -2280,6 +2280,9 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
         "hideMethod": "fadeOut"
     };
 
+	var csrfName = $('.txt_csrfname').attr('name');
+	var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+
     function post_personal_contact_student() {
         $.ajax({
             type: "post",
@@ -2300,11 +2303,14 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 asal_sekolah: $('[name=asal_sekolah]').val(),
                 nomor_handphone: $('[name=nomor_handphone]').val(),
                 nomor_telepon: $('[name=nomor_telepon]').val(),
-                email: $('[name=email]').val()
+                email: $('[name=email]').val(),
+				[csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
+
+				$('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2366,11 +2372,14 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 pekerjaan_wali: $('[name=pekerjaan_wali]').val(),
                 pendidikan_wali: $('[name=pendidikan_wali]').val(),
                 penghasilan_wali: $('[name=penghasilan_wali]').val(),
-                status_wali: status_wali
+                status_wali: status_wali,
+				[csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
+
+				$('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2411,7 +2420,6 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 rt_kk: $('[name=rt_kk]').val(),
                 rw_kk: $('[name=rw_kk]').val(),
                 kodepos_kk: $('[name=kodepos_kk]').val(),
-
                 alamat_rumah_dom: $('[name=alamat_rumah_dom]').val(),
                 provinsi_dom: $('[name=provinsi_dom]').val(),
                 kabupaten_kota_dom: $('[name=kabupaten_kota_dom]').val(),
@@ -2420,11 +2428,14 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 rt_dom: $('[name=rt_dom]').val(),
                 rw_dom: $('[name=rw_dom]').val(),
                 kodepos_dom: $('[name=kodepos_dom]').val(),
-                status_alamat: status_alamat
+                status_alamat: status_alamat,
+				[csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
+
+				$('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2457,10 +2468,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 berat_badan: $('[name=berat_badan]').val(),
                 level_tingkat: $('[name=level_tingkat]').val(),
                 id_jalur: $('[name=id_jalur]').val(),
+				[csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
+
+				$('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2475,35 +2489,35 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
         });
     }
 
-    var status_persetujuan_one = "";
-    var status_persetujuan_two = "";
+    // var status_persetujuan_one = "";
+    // var status_persetujuan_two = "";
 
-    $('#persetujuan_one').on('change', function() { // on change of state
-        if (this.checked) // if changed state is "CHECKED"
-        {
-            status_persetujuan_one = 1;
-        } else {
-            status_persetujuan_one = "";
-        }
-        //alert(status_persetujuan_one);
-    });
+    // $('#persetujuan_one').on('change', function() { // on change of state
+    //     if (this.checked) // if changed state is "CHECKED"
+    //     {
+    //         status_persetujuan_one = 1;
+    //     } else {
+    //         status_persetujuan_one = "";
+    //     }
+    //     //alert(status_persetujuan_one);
+    // });
 
-    $('#persetujuan_two').on('change', function() { // on change of state
-        if (this.checked) // if changed state is "CHECKED"
-        {
-            status_persetujuan_two = 1;
-        } else {
-            status_persetujuan_two = "";
-        }
-        //alert(status_persetujuan_two);
-    })
+    // $('#persetujuan_two').on('change', function() { // on change of state
+    //     if (this.checked) // if changed state is "CHECKED"
+    //     {
+    //         status_persetujuan_two = 1;
+    //     } else {
+    //         status_persetujuan_two = "";
+    //     }
+    //     //alert(status_persetujuan_two);
+    // })
 
     // function post_final_registration() {
 
     //     if (status_persetujuan_one == 1 && status_persetujuan_two == 1) {
     //         $.ajax({
     //             type: "post",
-    //             url: "<?php echo site_url("/ppdb/register/edit_final_registration/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
+    //             url: "<?php //echo site_url("/ppdb/register/edit_final_registration/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
     //             data: {
     //                 level_tingkat: $('[name=level_tingkat]').val(),
     //                 nama_lengkap: $('[name=nama_lengkap]').val(),

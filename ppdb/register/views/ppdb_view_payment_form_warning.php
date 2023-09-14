@@ -44,11 +44,11 @@
 					<!--begin::Login Sign in form-->
 					<div class="login-signin">
 						<div class="mb-10 ">
-							<p class="font-mobile font-weight-boldest text-success ">TERIMA KASIH TELAH MENGISI FORMULIR PPDB!</p>
-							<div class="font-weight-bold text-danger font-size-lg">Silahkan menunggu informasi dari Sekolah untuk <b>JADWAL OBSERVASI SISWA</b>, Terima kasih.</div>
+							<p class="font-mobile font-weight-boldest text-warning ">ANDA BELUM MELAKUKAN PEMBAYARAN!</p>
+							<div class="font-weight-bold text-danger font-size-lg">Silahkan melakukan pembayaran terlebih dahulu. Berikut merupakan informasi terkait pemesanan Anda:</div>
 						</div>
-						<div class="table-responsive">
-							<table class="table table-light table-light-success text-center">
+						<div class="table-responsive px-mobile">
+							<table class="table table-light table-light-warning text-center">
 								<thead>
 									<tr>
 										<th class="table-center">NOMOR FORMULIR</th>
@@ -63,25 +63,25 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="font-weight-boldest table-center font-size-sm"><?php echo $formulir[0]->nomor_formulir ?></td>
-										<td class="table-center font-size-sm"><?php echo $formulir[0]->nama_lengkap; ?></td>
-										<td class="table-center font-size-sm"><?php echo $formulir[0]->nama_wali; ?></td>
-										<td class="table-center font-size-sm"><?php echo $formulir[0]->email; ?></td>
-										<td class="table-center font-size-sm"><?php echo $formulir[0]->nomor_handphone; ?></td>
+										<td class="font-weight-boldest table-center font-size-sm"><?php echo $register[0]->nomor_formulir ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_calon_siswa; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->email_orangtua; ?></td>
+										<td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
 										<td class="table-center font-size-sm">
 											<span class="label label-md font-weight-boldest label-primary label-inline">
 												<?php
-												if ($formulir[0]->level_tingkat == 1) {
+												if ($register[0]->level_tingkat == 1) {
 													echo 'KB';
-												} else if ($formulir[0]->level_tingkat == 2) {
+												} else if ($register[0]->level_tingkat == 2) {
 													echo 'TK';
-												} else if ($formulir[0]->level_tingkat == 3) {
+												} else if ($register[0]->level_tingkat == 3) {
 													echo 'SD';
-												} else if ($formulir[0]->level_tingkat == 4) {
+												} else if ($register[0]->level_tingkat == 4) {
 													echo 'SMP';
-												} else if ($formulir[0]->level_tingkat == 5) {
+												} else if ($register[0]->level_tingkat == 5) {
 													echo 'KB-TK';
-												} else if ($formulir[0]->level_tingkat == 6) {
+												} else if ($register[0]->level_tingkat == 6) {
 													echo 'DC';
 												}
 												?>
@@ -90,29 +90,126 @@
 										<td class="table-center font-size-sm">
 											<span class="label label-md font-weight-boldest label-default label-inline">
 												<?php
-												if ($formulir[0]->jalur == 1) {
+												if ($register[0]->id_jalur == 1) {
 													echo 'REGULER';
-												} elseif ($formulir[0]->jalur == 2) {
+												} elseif ($register[0]->id_jalur == 2) {
 													echo 'ICP';
 												}
 												?>
 											</span>
 										</td>
-										<td class="table-center font-size-sm font-weight-bold"><?php echo $formulir[0]->tahun_ajaran; ?></td>
+										<td class="table-center font-size-sm font-weight-bold"><?php echo $register[0]->tahun_ajaran; ?></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<a href="<?php echo site_url("ppdb/register/logout_formulir"); ?>" class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Keluar</a>
+						<div class="mt-5">
+							<span class="mt-10 mb-10 text-danger font-size-lg">Mohon lakukan <b>PEMBAYARAN</b> dalam kurun waktu 1 x 24 jam ke rekening di bawah ini:</span>
+						</div>
+						<div class="mt-5 px-mobile">
+							<div class="accordion accordion-toggle-arrow" id="accordionExample">
+								<?php
+								if (!empty($bank_account)) {
+									foreach ($bank_account as $key => $value) {
+								?>
+										<div class="card">
+											<div class="card-header bg-light-warning" id="heading<?php echo $value->id_alat_bayar; ?>">
+												<div class="card-title text-danger font-weight-bolder" data-toggle="collapse" data-target="#collapseOne<?php echo $value->id_alat_bayar; ?>">
+													<i class="flaticon2-layers-1 text-danger"></i> <?php echo strtoupper($value->nama_alatbayar); ?>
+												</div>
+											</div>
+											<div id="collapseOne<?php echo $value->id_alat_bayar; ?>" class="collapse show" data-parent="#accordionExample">
+												<div class="card-body">
+													<span class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords($value->catatan_transfer); ?></span>
+													<span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Silahakan Transfer Sejumlah:</span><br><br>
+													<span class="mt-30 mb-30 font-size-sm text-left"> <b class="text-danger font-size-h1">Rp. <?php echo number_format($register[0]->nominal, 2, ',', '.'); ?></b> <br> (mohon transfer senilai tersebut),
+														<a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_rincian"><b>KLIK LIHAT RINCIAN</b></a>
+													</span><br><br>
+													<span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Ke Nomor Rekening <b class="text-warning">"<?php echo strtoupper($value->nama_alatbayar); ?>"</b> Di Bawah Ini.</span><br><br>
+													<span class="mt-30 mb-20 text-danger display-4 font-weight-boldest">NO REK. <?php echo strtoupper($value->nomor_alatbayar); ?></span><br>
+													<span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">A.N <?php echo strtoupper($value->atas_nama); ?></span><br><br>
+													<span class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords($value->petunjuk_transfer); ?></span>
+												</div>
+											</div>
+										</div>
+								<?php
+									}  //ngatur nomor urut
+								}
+								?>
+							</div>
+						</div>
+						<div class="mt-10">
+							<span class="mt-10 mb-10 text-danger font-size-lg">Sudah melakukan pembayaran?</span>
+						</div>
+						<a href="<?php echo site_url("/ppdb/register/upload_payment_receipt_form"); ?>" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-8">Upload Bukti Pembayaran Form</a>
+						<a href="<?php echo site_url('ppdb/home'); ?>" type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-8">
+							<li class="fa fa-home font-size-h4"></li> Kembali ke Menu
+						</a>
+
 					</div>
 					<!--end::Login Sign in form-->
-
 				</div>
 			</div>
 		</div>
 		<!--end::Login-->
 	</div>
-	<!--end::Main-->
+	<div class="modal fade" id="modal_rincian" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Rincian Biaya <?php echo ucwords($register[0]->nama_biaya); ?></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i aria-hidden="true" class="ki ki-close"></i>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive">
+						<table class="table table-light table-light-success text-left">
+							<thead>
+								<tr>
+									<th class="table-left">Nama Biaya</th>
+									<th class="table-center">Voucher</th>
+									<th class="table-center">Biaya Awal (Rp)</th>
+									<th class="table-center">Potongan (%)</th>
+									<th class="table-center">Sub Total (Rp)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								if (!empty($cost)) {
+									foreach ($cost as $key => $value) {
+								?>
+										<tr>
+											<td class="font-weight-bold font-size-sm"><?php echo ucwords(strtolower($value->nama_biaya)); ?></td>
+											<td class="table-center font-size-sm">
+												-
+											</td>
+											<td class="table-center font-size-sm"><?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
+											<td class="table-center font-size-sm">
+												-
+											</td>
+											<td class="table-center font-size-sm">
+												<?php echo number_format($value->nominal, 0, ',', '.'); ?>
+											</td>
+										</tr>
+								<?php
+									}  //ngatur nomor urut
+								}
+								?>
+							</tbody>
+						</table>
+						<div class="text-center">
+							<span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder text-center">TOTAL BIAYA:</span><br>
+							<b class="text-danger font-size-h1">Rp. <?php echo number_format($register[0]->nominal, 2, ',', '.'); ?></b>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="reset" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="whatsapp_chat_support wcs_fixed_right" id="example_1">
 		<div class="wcs_button_label">
 			Butuh bantuan? Hubungi Kami
@@ -174,6 +271,7 @@
 			</div>
 		</div>
 	</div>
+	<!--end::Main-->
 	<!--begin::Global Config(global config for global JS scripts)-->
 	<script>
 		var KTAppSettings = {
@@ -241,6 +339,7 @@
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/scripts.bundle.js"></script>
 	<!--end::Global Theme Bundle-->
+
 	<!--end::Page Scripts-->
 	<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.js"></script>
 	<script>

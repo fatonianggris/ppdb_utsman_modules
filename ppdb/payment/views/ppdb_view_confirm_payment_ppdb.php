@@ -209,7 +209,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-12">
 					<!--begin::Card-->
 					<div class="card card-custom mb-10">
-						<div class="text-center mb-5 mt-5">
+						<div class="text-center mb-14 mt-15">
 							<?php
 							$program = '';
 							$jenjang = '';
@@ -240,21 +240,20 @@
                                 <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>*--SELAMAT!, PEMBAYARAN UANG MASUK ANDA BERHASIL--*
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Terimakasih telah melakukan pembayaran. Pembayaran Uang Masuk PPDB Anda telah Kami terima:_
+                                   <?php echo urlencode("\n") ?>_Terimakasih telah melakukan pembayaran. Pembayaran Uang Masuk Sekolah Anda telah Kami terima:_
                                    <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $formulir[0]->nomor_formulir; ?>*
                                    <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($formulir[0]->nama_lengkap)); ?>*
                                    <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                    <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Terima Kasih Telah Melakukan Pembayaran Uang Masuk PPDB Sekolah Utsman_
+                                   <?php echo urlencode("\n") ?>_Terima Kasih Telah Melakukan Pembayaran Uang Masuk Sekolah Utsman_
                                    <?php echo urlencode("\n") ?>                                
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_*Admin PPDB Sekolah Utsman*_" target="_blank" class="btn btn-success font-weight-bold px-6 py-4 my-3 mx-4"><i class="fab fa-whatsapp"></i> Kirim WA</a>
+                                   <?php echo urlencode("\n") ?>_*Admin PPDB Sekolah Utsman*_" target="_blank" class="btn btn-success font-weight-bold px-6 py-4 my-3 mx-4 "><i class="fab fa-whatsapp"></i> Kirim WA</a>
 							<?php
 							}
 							?>
-							<button data-toggle="modal" data-target="#modal_bukti" class="btn btn-primary  btn-sm font-weight-bold px-6 py-4 my-3 mx-4"><i class="fas fa-camera"></i>Bukti Bayar</button>
 						</div>
 					</div>
 				</div>

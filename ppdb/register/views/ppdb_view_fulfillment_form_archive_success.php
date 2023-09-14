@@ -21,26 +21,13 @@
         rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/css/style.bundle.css" rel="stylesheet"
         type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/css/pages/fonts/dropify.css" rel="stylesheet"
-        type="text/css" />
-
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/ppdb/dist/assets/media/logos/favicon.ico" />
     <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.css"
         rel="stylesheet" type="text/css" />
-    <style>
-    .blink {
-        animation: blinker 1.5s linear infinite;
-    }
 
-    @keyframes blinker {
-        50% {
-            opacity: 0;
-        }
-    }
-    </style>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -50,7 +37,7 @@
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Login-->
-        <div class="login login-4 login-signin-on d-flex flex-row-fluid">
+        <div class="login login-4 login-signin-on d-flex flex-row-fluid" id="kt_login">
             <div class="d-flex flex-center flex-row-fluid bgi-size-cover bgi-position-top bgi-no-repeat"
                 style="background-image: url('<?php echo base_url(); ?>assets/ppdb/dist/assets/media/bg/bg-3.jpg');">
                 <div class="login-form text-center p-7 position-relative overflow-hidden">
@@ -64,85 +51,17 @@
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
                         <div class="mb-10 ">
-                            <p class="font-mobile font-weight-boldest text-success ">SELAMAT, ANDA DINYATAKAN "LULUS"
+                            <p class="font-mobile font-weight-boldest text-success ">UPLOAD KELENGKAPAN BERKAS BERHASIL!
                             </p>
-                            <div class="font-weight-bold text-danger font-size-lg">Selamat datang di Sekolah Utsman,
-                                Berikut merupakan informasi terkait data diri Anda:</div>
-                        </div>
-                        <div class="row mb-10">
-                            <div class="col-3">
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
-                                <div class="table-responsive">
-                                    <table class="table table-light table-light-success text-center">
-                                        <thead>
-                                            <tr>
-                                                <th class="table-center">AKTIVITAS</th>
-                                                <th class="table-center">STATUS</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="font-weight-boldest table-center font-size-sm">
-                                                    UPLOAD KELENGKAPAN BERKAS
-                                                </td>
-                                                <td class="table-center font-size-sm">
-
-                                                    <?php
-														if ($formulir[0]->status_formulir == 1) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-success label-inline">SELESAI</span>
-                                                    <?php } else if ($formulir[0]->status_formulir == 2) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-danger label-inline">BELUM
-                                                        SELESAI</span>
-                                                    <?php	}
-														?>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-boldest table-center font-size-sm">
-                                                    PEMBAYARAN UANG SEKOLAH
-                                                </td>
-                                                <td class="table-center font-size-sm">
-                                                    <?php
-														if ($formulir[0]->status_pembayaran == 0) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-default label-inline">DIPROSES</span>
-                                                    <?php } else if ($formulir[0]->status_pembayaran == 1) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-warning label-inline blink">BELUM
-                                                        BAYAR</span>
-                                                    <?php } else if ($formulir[0]->status_pembayaran == 2) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-success label-inline">SUDAH
-                                                        BAYAR
-                                                    </span>
-                                                    <?php } else if ($formulir[0]->status_pembayaran == 3) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-danger label-inline blink">GAGAL
-                                                        BAYAR
-                                                    </span>
-                                                    <?php }
-														?>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-3">
-
-                            </div>
+                            <div class="font-weight-bold text-danger font-size-lg">Terima Kasih telah melakukan upload
+                                berkas PPDB Sekolah Utsman. Berikut merupakan informasi terkait data diri Anda:</div>
                         </div>
                         <div class="table-responsive px-mobile">
-                            <?php echo $this->session->flashdata('flash_message'); ?>
                             <table class="table table-light table-light-success text-center">
                                 <thead>
                                     <tr>
                                         <th class="table-center">NOMOR FORMULIR</th>
-                                        <th class="table-center">Nama Siswa</th>
+                                        <th class="table-center">Nama Calon Siswa</th>
                                         <th class="table-center">Nama OrangTua/Wali</th>
                                         <th class="table-center">Email</th>
                                         <th class="table-center">Nomor WA/HP</th>
@@ -154,46 +73,46 @@
                                 <tbody>
                                     <tr>
                                         <td class="font-weight-boldest table-center font-size-sm">
-                                            <?php echo $formulir[0]->nomor_formulir ?></td>
-                                        <td class="table-center font-size-sm"><?php echo $formulir[0]->nama_lengkap; ?>
-                                        </td>
-                                        <td class="table-center font-size-sm"><?php echo $formulir[0]->nama_wali; ?>
-                                        </td>
-                                        <td class="table-center font-size-sm"><?php echo $formulir[0]->email; ?></td>
+                                            <?php echo $register[0]->nomor_formulir ?></td>
                                         <td class="table-center font-size-sm">
-                                            <?php echo $formulir[0]->nomor_handphone; ?></td>
+                                            <?php echo ucwords(strtolower($register[0]->nama_calon_siswa)); ?></td>
+                                        <td class="table-center font-size-sm"><?php echo $register[0]->nama_wali; ?>
+                                        </td>
+                                        <td class="table-center font-size-sm">
+                                            <?php echo $register[0]->email_orangtua; ?></td>
+                                        <td class="table-center font-size-sm"><?php echo $register[0]->nomor_wa; ?></td>
                                         <td class="table-center font-size-sm">
                                             <span class="label label-md font-weight-boldest label-primary label-inline">
                                                 <?php
-													if ($formulir[0]->level_tingkat == 1) {
-														echo 'KB';
-													} else if ($formulir[0]->level_tingkat == 2) {
-														echo 'TK';
-													} else if ($formulir[0]->level_tingkat == 3) {
-														echo 'SD';
-													} else if ($formulir[0]->level_tingkat == 4) {
-														echo 'SMP';
-													} else if ($formulir[0]->level_tingkat == 5) {
-														echo 'KB-TK';
-													} else if ($formulir[0]->level_tingkat == 6) {
-														echo 'DC';
-													}
-													?>
+												if ($register[0]->level_tingkat == 1) {
+													echo 'KB';
+												} else if ($register[0]->level_tingkat == 2) {
+													echo 'TK';
+												} else if ($register[0]->level_tingkat == 3) {
+													echo 'SD';
+												} else if ($register[0]->level_tingkat == 4) {
+													echo 'SMP';
+												} else if ($register[0]->level_tingkat == 5) {
+													echo 'KB-TK';
+												} else if ($register[0]->level_tingkat == 6) {
+													echo 'DC';
+												}
+												?>
                                             </span>
                                         </td>
                                         <td class="table-center font-size-sm">
                                             <span class="label label-md font-weight-boldest label-default label-inline">
                                                 <?php
-													if ($formulir[0]->jalur == 1) {
-														echo 'REGULER';
-													} elseif ($formulir[0]->jalur == 2) {
-														echo 'ICP';
-													}
-													?>
+												if ($register[0]->id_jalur == 1) {
+													echo 'REGULER';
+												} elseif ($register[0]->id_jalur == 2) {
+													echo 'ICP';
+												}
+												?>
                                             </span>
                                         </td>
                                         <td class="table-center font-size-sm font-weight-bold">
-                                            <?php echo $formulir[0]->tahun_ajaran; ?></td>
+                                            <?php echo $register[0]->tahun_ajaran; ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -369,15 +288,16 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <div class="font-weight-bold text-danger font-size-lg mb-3">Terima kasih telah menjadi
-                                bagian dari Sekolah Utsman. Semoga perjalanan pendidikan Anda di sini penuh sukacita dan
-                                sukses. Selamat berjuang! </div>
+                            <span class="mt-10 mb-10 text-danger font-size-lg">Silahkan menunggu informasi dari Sekolah
+                                untuk <b>RINCIAN TAGIHAN UANG SEKOLAH</b> dalam kurun waktu 2 x 24 jam, Terima
+                                kasih.</span>
                         </div>
                         <a href="<?php echo site_url("ppdb/register/logout_formulir"); ?>"
-                            class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-8">Keluar</a>
+                            class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Keluar</a>
+                        </a>
 
                     </div>
-
+                    <!--end::Login Sign in form-->
                 </div>
             </div>
         </div>
@@ -1116,7 +1036,6 @@
         </div>
     </div>
 
-    <!--end::Main-->
     <div class="whatsapp_chat_support wcs_fixed_right" id="example_1">
         <div class="wcs_button_label">
             Butuh bantuan? Hubungi Kami
@@ -1190,6 +1109,7 @@
             </div>
         </div>
     </div>
+
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
     var KTAppSettings = {
@@ -1257,29 +1177,14 @@
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
-
     <!--begin::Page Scripts(used by this page)-->
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/features/miscellaneous/sweetalert2.js">
     </script>
-    <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/custom/login/upload-payment-ppdb.js">
-    </script>
-
-    <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/dropify.js"></script>
     <!--end::Page Scripts-->
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.js">
     </script>
     <script>
     $('#example_1').whatsappChatSupport();
-    </script>
-    <script>
-    $('.dropify').dropify({
-        messages: {
-            'default': 'Klik atau Geser file Anda disini',
-            'replace': 'Klik atau Geser file Anda untuk mengganti',
-            'remove': 'Hapus',
-            'error': 'Ooops, terjadi kesalahan.'
-        }
-    });
     </script>
 </body>
 <!--end::Body-->

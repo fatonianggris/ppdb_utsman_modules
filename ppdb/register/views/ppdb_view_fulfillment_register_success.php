@@ -44,8 +44,8 @@
 					<!--begin::Login Sign in form-->
 					<div class="login-signin">
 						<div class="mb-10 ">
-							<p class="font-mobile font-weight-boldest text-success ">PEMESANAN FORMULIR BERHASIL!</p>
-							<div class="font-weight-bold text-danger font-size-lg">Terima Kasih telah melakukan pemesanan formulir PPDB Sekolah Utsman. Berikut merupakan informasi terkait pemesanan Anda:</div>
+							<p class="font-mobile font-weight-boldest text-success ">PENGISIAN FORMULIR BERHASIL!</p>
+							<div class="font-weight-bold text-danger font-size-lg">Terima Kasih telah melakukan pengisian formulir PPDB Sekolah Utsman. Berikut merupakan informasi terkait pengisian Anda:</div>
 						</div>
 						<div class="table-responsive px-mobile">
 							<table class="table table-light table-light-success text-center">
@@ -104,7 +104,7 @@
 							</table>
 						</div>
 						<div class="mt-5">
-							<span class="mt-10 mb-10 text-danger font-size-lg">Mohon lakukan <b>PEMBAYARAN</b> dalam kurun waktu 1 x 24 jam ke rekening di bawah ini:</span>
+							<span class="mt-10 mb-10 text-danger font-size-lg">Untuk <b>PEMESANAN</b> Mohon lakukan <b>PEMBAYARAN</b> dalam kurun waktu 1 x 24 jam ke rekening di bawah ini:</span>
 						</div>
 						<div class="mt-5 px-mobile">
 							<div class="accordion accordion-toggle-arrow" id="accordionExample">
@@ -141,7 +141,7 @@
 						<div class="mt-10">
 							<span class="mt-10 mb-10 text-danger font-size-lg">Sudah melakukan pembayaran?</span>
 						</div>
-						<a href="<?php echo site_url("/ppdb/register/upload_payment_receipt"); ?>" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-8">Upload Bukti Pembayaran</a>
+						<a href="<?php echo site_url("/ppdb/register/upload_payment_receipt_form"); ?>" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-8">Upload Bukti Pembayaran</a>
 						<a href="<?php echo site_url('ppdb/home'); ?>" type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 mt-8">
 							<li class="fa fa-home font-size-h4"></li> Kembali ke Menu
 						</a>

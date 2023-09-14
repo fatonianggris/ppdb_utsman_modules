@@ -21,9 +21,6 @@
         rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/css/style.bundle.css" rel="stylesheet"
         type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/css/pages/fonts/dropify.css" rel="stylesheet"
-        type="text/css" />
-
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
@@ -50,7 +47,7 @@
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Login-->
-        <div class="login login-4 login-signin-on d-flex flex-row-fluid">
+        <div class="login login-4 login-signin-on d-flex flex-row-fluid" id="kt_login">
             <div class="d-flex flex-center flex-row-fluid bgi-size-cover bgi-position-top bgi-no-repeat"
                 style="background-image: url('<?php echo base_url(); ?>assets/ppdb/dist/assets/media/bg/bg-3.jpg');">
                 <div class="login-form text-center p-7 position-relative overflow-hidden">
@@ -64,17 +61,19 @@
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
                         <div class="mb-10 ">
-                            <p class="font-mobile font-weight-boldest text-success ">SELAMAT, ANDA DINYATAKAN "LULUS"
-                            </p>
-                            <div class="font-weight-bold text-danger font-size-lg">Selamat datang di Sekolah Utsman,
-                                Berikut merupakan informasi terkait data diri Anda:</div>
+                            <p class="font-mobile font-weight-boldest text-warning ">MOHON MAAF, MASIH DALAM
+                                PROSES!</p>
+                            <div class="font-weight-bold text-danger font-size-lg">Pengumuman penerimaan siswa masih
+                                dalam
+                                proses <b>OBERVASI</b>. Mohon menunggu, Kami akan informasikan segera, Terima kasih.
+                            </div>
                         </div>
                         <div class="row mb-10">
                             <div class="col-3">
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-light table-light-success text-center">
+                                    <table class="table table-light table-light-warning text-center">
                                         <thead>
                                             <tr>
                                                 <th class="table-center">AKTIVITAS</th>
@@ -137,8 +136,7 @@
                             </div>
                         </div>
                         <div class="table-responsive px-mobile">
-                            <?php echo $this->session->flashdata('flash_message'); ?>
-                            <table class="table table-light table-light-success text-center">
+                            <table class="table table-light table-light-warning text-center">
                                 <thead>
                                     <tr>
                                         <th class="table-center">NOMOR FORMULIR</th>
@@ -165,31 +163,31 @@
                                         <td class="table-center font-size-sm">
                                             <span class="label label-md font-weight-boldest label-primary label-inline">
                                                 <?php
-													if ($formulir[0]->level_tingkat == 1) {
-														echo 'KB';
-													} else if ($formulir[0]->level_tingkat == 2) {
-														echo 'TK';
-													} else if ($formulir[0]->level_tingkat == 3) {
-														echo 'SD';
-													} else if ($formulir[0]->level_tingkat == 4) {
-														echo 'SMP';
-													} else if ($formulir[0]->level_tingkat == 5) {
-														echo 'KB-TK';
-													} else if ($formulir[0]->level_tingkat == 6) {
-														echo 'DC';
-													}
-													?>
+												if ($formulir[0]->level_tingkat == 1) {
+													echo 'KB';
+												} else if ($formulir[0]->level_tingkat == 2) {
+													echo 'TK';
+												} else if ($formulir[0]->level_tingkat == 3) {
+													echo 'SD';
+												} else if ($formulir[0]->level_tingkat == 4) {
+													echo 'SMP';
+												} else if ($formulir[0]->level_tingkat == 5) {
+													echo 'KB-TK';
+												} else if ($formulir[0]->level_tingkat == 6) {
+													echo 'DC';
+												}
+												?>
                                             </span>
                                         </td>
                                         <td class="table-center font-size-sm">
                                             <span class="label label-md font-weight-boldest label-default label-inline">
                                                 <?php
-													if ($formulir[0]->jalur == 1) {
-														echo 'REGULER';
-													} elseif ($formulir[0]->jalur == 2) {
-														echo 'ICP';
-													}
-													?>
+												if ($formulir[0]->jalur == 1) {
+													echo 'REGULER';
+												} elseif ($formulir[0]->jalur == 2) {
+													echo 'ICP';
+												}
+												?>
                                             </span>
                                         </td>
                                         <td class="table-center font-size-sm font-weight-bold">
@@ -368,21 +366,16 @@
 
                             </div>
                         </div>
-                        <div class="mt-5">
-                            <div class="font-weight-bold text-danger font-size-lg mb-3">Terima kasih telah menjadi
-                                bagian dari Sekolah Utsman. Semoga perjalanan pendidikan Anda di sini penuh sukacita dan
-                                sukses. Selamat berjuang! </div>
-                        </div>
-                        <a href="<?php echo site_url("ppdb/register/logout_formulir"); ?>"
-                            class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-8">Keluar</a>
-
+                        <a href="<?php echo site_url("ppdb/register/logout_announcement"); ?>"
+                            class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Keluar</a>
                     </div>
-
+                    <!--end::Login Sign in form-->
                 </div>
             </div>
         </div>
         <!--end::Login-->
     </div>
+    <!--end::Main-->
     <div class="modal fade" id="modal_bio_siswa" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
         role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -1116,7 +1109,6 @@
         </div>
     </div>
 
-    <!--end::Main-->
     <div class="whatsapp_chat_support wcs_fixed_right" id="example_1">
         <div class="wcs_button_label">
             Butuh bantuan? Hubungi Kami
@@ -1258,28 +1250,11 @@
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
 
-    <!--begin::Page Scripts(used by this page)-->
-    <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/features/miscellaneous/sweetalert2.js">
-    </script>
-    <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/custom/login/upload-payment-ppdb.js">
-    </script>
-
-    <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/dropify.js"></script>
     <!--end::Page Scripts-->
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.js">
     </script>
     <script>
     $('#example_1').whatsappChatSupport();
-    </script>
-    <script>
-    $('.dropify').dropify({
-        messages: {
-            'default': 'Klik atau Geser file Anda disini',
-            'replace': 'Klik atau Geser file Anda untuk mengganti',
-            'remove': 'Hapus',
-            'error': 'Ooops, terjadi kesalahan.'
-        }
-    });
     </script>
 </body>
 <!--end::Body-->

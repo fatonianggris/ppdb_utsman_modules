@@ -118,7 +118,7 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
-    public function get_register_id($id = '')
+    public function get_register_number($id = '')
     {
         $this->db->select("p.*,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
@@ -167,14 +167,21 @@ class RegisterModel extends CI_Model
 
     public function get_bank_account()
     {
-
         $this->db->select('*');
         $this->db->where('status_alat_bayar', 1);
         $sql = $this->db->get($this->table_bank_account);
         return $sql->result();
     }
 
-    public function get_cost_student($level_tingkat = '', $id_jalur = '', $id_jenis_kelamin = '', $jenis_biaya = '')
+    public function get_bank_va_account()
+    {
+        $this->db->select('*');
+        $this->db->where('id_alat_bayar', 4);
+        $sql = $this->db->get($this->table_bank_account);
+        return $sql->result();
+    }
+
+    public function get_cost_ppdb($level_tingkat = '', $id_jalur = '', $id_jenis_kelamin = '', $jenis_biaya = '')
     {
 
         $this->db->select("b.*, jb.nama_opsi_biaya AS nama_biaya");
@@ -269,6 +276,46 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
+	public function get_school_cost_id($id = '')
+    {
+        $this->db->select("f.*,
+                                b.nominal,
+                                jb.nama_opsi_biaya AS nama_biaya,
+                                v.kode_voucher,
+                                v.nama_voucher,
+                                v.potongan,
+                                v.jumlah_voucher,
+                                v.masa_berlaku,
+                                v.syarat_ketentuan,
+                                CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
+                         ");
+        $this->db->from('formulir f');
+        $this->db->join('biaya b', 'f.level_tingkat = b.level_tingkat AND f.jalur = b.id_jalur AND b.jenis_biaya = 1', 'left');
+        $this->db->join('jenis_biaya jb', 'b.id_nama_biaya = jb.id_jenis_biaya', 'left');
+        $this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');
+        $this->db->join('voucher v', 'f.id_voucher = v.id_voucher', 'left');
+
+        $this->db->where('f.nomor_formulir', $id);
+
+        $sql = $this->db->get();
+        return $sql->result();
+    }
+
+    public function get_formulir_number($number = '')
+    {
+        $this->db->select("f.*,
+                                CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
+                                DATE_FORMAT(f.inserted_at, '%d/%m/%Y') AS tanggal_isi
+                         ");
+        $this->db->from('view_formulir f');
+        $this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');
+
+        $this->db->where('f.nomor_formulir', $number);
+
+        $sql = $this->db->get();
+        return $sql->result();
+    }
+
     public function get_page()
     {
 
@@ -284,6 +331,46 @@ class RegisterModel extends CI_Model
         $this->db->select('*');
         $this->db->where('id_kontak', 1);
         $sql = $this->db->get($this->table_contact);
+        return $sql->result();
+    }
+
+    public function get_detail_student_admission($id = '')
+    {
+        $this->db->select("s.*,
+                                wpagt.nama AS nama_provinsi_kk,
+                                wkbagt.nama AS nama_kabupaten_kota_kk,
+                                wkbagt.administratif AS nama_kabupaten_kota_kk_adm,
+                                wkagt.nama AS nama_kecamatan_kk,
+                                wdagt.nama AS nama_kelurahan_desa_kk,
+                                wdagt.administratif AS nama_kelurahan_desa_kk_adm,
+                                wpasl.nama AS nama_provinsi_dom,
+                                wkbasl.nama AS nama_kabupaten_kota_dom,
+                                wkbasl.administratif AS nama_kabupaten_kota_dom_adm,
+                                wkasl.nama AS nama_kecamatan_dom,
+                                wdasl.nama AS nama_kelurahan_desa_dom,
+                                wdasl.administratif AS nama_kelurahan_desa_dom_adm,
+                                k.nama_kelas,
+                                CONCAT(ta.tahun_awal,'/',ta.tahun_akhir) AS tahun_ajaran,
+                                ta.nama_tahun_ajaran
+                         ");
+        $this->db->from('view_formulir s');
+
+        $this->db->join('wilayah_desa wdagt', 's.kelurahan_desa_kk = wdagt.id AND s.provinsi_kk = wdagt.id_dati1 AND s.kabupaten_kota_kk = wdagt.id_dati2 AND s.kecamatan_kk = wdagt.id_dati3', 'left');
+        $this->db->join('wilayah_kecamatan wkagt', 's.kecamatan_kk = wkagt.id AND s.provinsi_kk = wkagt.id_dati1 AND s.kabupaten_kota_kk = wkagt.id_dati2', 'left');
+        $this->db->join('wilayah_kabupaten wkbagt', 's.kabupaten_kota_kk = wkbagt.id AND s.provinsi_kk = wkbagt.id_dati1', 'left');
+        $this->db->join('wilayah_provinsi wpagt', 's.provinsi_kk = wpagt.id', 'left');
+
+        $this->db->join('wilayah_desa wdasl', 's.kelurahan_desa_dom = wdasl.id AND s.provinsi_dom = wdasl.id_dati1 AND s.kabupaten_kota_dom = wdasl.id_dati2 AND s.kecamatan_dom = wdasl.id_dati3', 'left');
+        $this->db->join('wilayah_kecamatan wkasl', 's.kecamatan_dom = wkasl.id AND s.provinsi_dom = wkasl.id_dati1 AND s.kabupaten_kota_dom = wkasl.id_dati2', 'left');
+        $this->db->join('wilayah_kabupaten wkbasl', 's.kabupaten_kota_dom = wkbasl.id AND s.provinsi_dom = wkbasl.id_dati1', 'left');
+        $this->db->join('wilayah_provinsi wpasl', 's.provinsi_dom = wpasl.id', 'left');
+
+        $this->db->join('kelas k', 's.id_kelas = k.id_kelas', 'left');
+        $this->db->join('tahun_ajaran ta', 's.th_ajaran = ta.id_tahun_ajaran', 'left');
+        $this->db->where('s.id_formulir', $id);
+        //$this->db->order_by('p.inserted_at DESC');
+
+        $sql = $this->db->get();
         return $sql->result();
     }
 

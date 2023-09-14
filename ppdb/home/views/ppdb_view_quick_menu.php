@@ -154,7 +154,7 @@
 												<!--end::Svg Icon-->
 											</span>
 											<div class="text-white font-weight-bolder font-size-sm mt-3">Upload Bukti Pembayaran</div>
-											<a href="<?php echo site_url("/ppdb/register/upload_payment_receipt"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-upload"></i> Upload</a>
+											<a href="<?php echo site_url("/ppdb/register/upload_payment_receipt_form"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-upload"></i> Upload</a>
 
 										</div>
 									</div>
@@ -220,7 +220,7 @@
 												<!--end::Svg Icon-->
 											</span>
 											<div class="text-white font-weight-bolder font-size-sm mt-3">Cek Status Penerimaan</div>
-											<a href="<?php echo site_url("/ppdb/register/status_student_warning"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-check"></i> Cek</a>
+											<a href="<?php echo site_url("/ppdb/register/login_announcement"); ?>" class="btn btn-light-primary btn-shadow-hover font-weight-bold mt-3"><i class="fa fa-check"></i> Cek</a>
 
 										</div>
 									</div>

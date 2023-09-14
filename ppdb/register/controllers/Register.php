@@ -88,7 +88,7 @@ class Register extends MX_Controller
                     if ($this->googleCaptachStore($recaptchaResponse, $userIp) == 1) {
 
                         $this->session->set_userdata('sias-ppdb-student', $data_user);
-                        redirect('ppdb/register/status_student_warning');
+                        redirect('ppdb/register/status_formulir_process');
                     } else {
 
                         $this->session->set_flashdata('flash_message', err_msg('Maaf, Google Recaptcha terdapat kesalahan.'));
@@ -145,7 +145,7 @@ class Register extends MX_Controller
                     if ($this->googleCaptachStore($recaptchaResponse, $userIp) == 1) {
 
                         $this->session->set_userdata('sias-ppdb-student', $data_user);
-                        redirect('ppdb/register/status_student_warning');
+                        redirect('ppdb/register/status_student_process');
                     } else {
 
                         $this->session->set_flashdata('flash_message', err_msg('Maaf, Google Recaptcha terdapat kesalahan.'));
@@ -175,18 +175,18 @@ class Register extends MX_Controller
         $this->load->view('ppdb_view_check_payment', $data);
     }
 
-    public function reupload_payment()
-    {
-        $data['title'] = 'Sekolah Utsman | Cek Status Pembayaran Formulir Sekolah Utsman ';
-        $data['announcement'] = $this->RegisterModel->get_announcement();
-        $data['page'] = $this->RegisterModel->get_page();
-        $data['contact'] = $this->RegisterModel->get_contact();
-        $data['schedule'] = $this->RegisterModel->get_all_schedule();
+    // public function reupload_payment_form()
+    // {
+    //     $data['title'] = 'Sekolah Utsman | Cek Status Pembayaran Formulir Sekolah Utsman ';
+    //     $data['announcement'] = $this->RegisterModel->get_announcement();
+    //     $data['page'] = $this->RegisterModel->get_page();
+    //     $data['contact'] = $this->RegisterModel->get_contact();
+    //     $data['schedule'] = $this->RegisterModel->get_all_schedule();
 
-        $this->load->view('ppdb_view_reupload_receipt', $data);
-    }
+    //     $this->load->view('ppdb_view_reupload_receipt', $data);
+    // }
 
-    public function upload_payment_receipt()
+    public function upload_payment_receipt_form()
     {
         $data['title'] = 'Sekolah Utsman | Upload Bukti Pembayaran Sekolah Utsman ';
         $data['announcement'] = $this->RegisterModel->get_announcement();
@@ -194,7 +194,7 @@ class Register extends MX_Controller
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['schedule'] = $this->RegisterModel->get_all_schedule();
 
-        $this->load->view('ppdb_view_upload_reception', $data);
+        $this->load->view('ppdb_view_upload_reception_form', $data);
     }
 
     public function status_register_success($id = '')
@@ -205,20 +205,42 @@ class Register extends MX_Controller
         $data['register'] = $this->RegisterModel->get_register_cost_id($id);
         $data['bank_account'] = $this->RegisterModel->get_bank_account($id);
         $data['page'] = $this->RegisterModel->get_page();
-        $data['cost'] = $this->RegisterModel->get_cost_student($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
+        $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
         $data['contact'] = $this->RegisterModel->get_contact();
 
         $check_no = $this->RegisterModel->check_no_register($id);
 
         if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 1 && $check_no[0]->status_pembayaran == 0) {
-            $this->load->view('ppdb_view_register_success', $data);
+            $this->load->view('ppdb_view_fulfillment_register_success', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
             $this->load->view('error_404', $datas);
         }
     }
 
-    public function status_payment_progress($id = '')
+    public function status_payment_school_progress($id = '')
+    {
+        $id = paramDecrypt($id);
+
+        $data['title'] = 'Sekolah Utsman | Status Pembayaran Sekolah Utsman ';
+        $data['page'] = $this->RegisterModel->get_page();
+        $data['contact'] = $this->RegisterModel->get_contact();
+        $data['formulir'] = $this->RegisterModel->get_school_cost_id($id);
+        $data['voucher'] = $this->RegisterModel->get_all_voucher();
+        $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin, 2);
+        $data['bank_account'] = $this->RegisterModel->get_bank_va_account();
+
+        $check_no = $this->RegisterModel->check_no_formulir($id);
+
+        if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_formulir == 1) {
+            $this->load->view('ppdb_view_payment_school', $data);
+        } else {
+            $datas['title'] = 'ERROR | PAGE NOT FOUND';
+            $this->load->view('error_404', $datas);
+        }
+    }
+
+    public function status_payment_form_progress($id = '')
     {
         $id = paramDecrypt($id);
 
@@ -230,14 +252,14 @@ class Register extends MX_Controller
         $check_no = $this->RegisterModel->check_no_register($id);
 
         if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 2 && $check_no[0]->status_pembayaran == 1) {
-            $this->load->view('ppdb_view_payment_progress', $data);
+            $this->load->view('ppdb_view_payment_form_progress', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
             $this->load->view('error_404', $datas);
         }
     }
 
-    public function status_payment_warning($id = '')
+    public function status_payment_form_warning($id = '')
     {
         $id = paramDecrypt($id);
 
@@ -246,19 +268,19 @@ class Register extends MX_Controller
         $data['bank_account'] = $this->RegisterModel->get_bank_account($id);
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
-        $data['cost'] = $this->RegisterModel->get_cost_student($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
+        $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
 
         $check_no = $this->RegisterModel->check_no_register($id);
 
         if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 1 && $check_no[0]->status_pembayaran == 0) {
-            $this->load->view('ppdb_view_payment_warning', $data);
+            $this->load->view('ppdb_view_payment_form_warning', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
             $this->load->view('error_404', $datas);
         }
     }
 
-    public function status_payment_success($id = '')
+    public function status_payment_form_success($id = '')
     {
         $id = paramDecrypt($id);
 
@@ -270,14 +292,14 @@ class Register extends MX_Controller
         $check_no = $this->RegisterModel->check_no_register($id);
 
         if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 3 && $check_no[0]->status_pembayaran == 2) {
-            $this->load->view('ppdb_view_payment_success', $data);
+            $this->load->view('ppdb_view_payment_form_success', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
             $this->load->view('error_404', $datas);
         }
     }
 
-    public function status_payment_reject($id = '')
+    public function status_payment_form_reject($id = '')
     {
         $id = paramDecrypt($id);
 
@@ -289,7 +311,7 @@ class Register extends MX_Controller
         $check_no = $this->RegisterModel->check_no_register($id);
 
         if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 3 && $check_no[0]->status_pembayaran == 3) {
-            $this->load->view('ppdb_view_payment_reject', $data);
+            $this->load->view('ppdb_view_payment_form_reject', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
             $this->load->view('error_404', $datas);
@@ -301,12 +323,14 @@ class Register extends MX_Controller
         $id = paramDecrypt($id);
 
         $data['title'] = 'Sekolah Utsman | Status Penerimaan Sekolah Utsman ';
-        $data['formulir'] = $this->RegisterModel->get_formulir_id($id); //?
         $data['page'] = $this->RegisterModel->get_page();
         $data['bank_account'] = $this->RegisterModel->get_bank_account();
         $data['voucher'] = $this->RegisterModel->get_all_voucher();
         $data['contact'] = $this->RegisterModel->get_contact();
-        $data['cost'] = $this->RegisterModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin, 2);
+        $data['formulir'] = $this->RegisterModel->get_formulir_id($id);
+        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //
+
+        //$data['cost'] = $this->RegisterModel->get_cost_ppdb($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin, 2);
 
         if ($id == null || $id == "" && $this->session->userdata('sias-ppdb-student') == false) {
             redirect('ppdb/register/login_announcement');
@@ -320,9 +344,10 @@ class Register extends MX_Controller
         $id = paramDecrypt($id);
 
         $data['title'] = 'Sekolah Utsman | Status Penerimaan Sekolah Utsman ';
-        $data['formulir'] = $this->RegisterModel->get_formulir_id($id); //?
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
+        $data['formulir'] = $this->RegisterModel->get_formulir_id($id);
+        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //
 
         if ($id == null || $id == "" || $this->session->userdata('sias-ppdb-student') == false) {
             redirect('ppdb/register/login_announcement');
@@ -339,6 +364,7 @@ class Register extends MX_Controller
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['formulir'] = $this->RegisterModel->get_formulir_id($id);
+        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //
 
         if ($id == null || $id == "" || $this->session->userdata('sias-ppdb-student') == false) {
 
@@ -352,7 +378,7 @@ class Register extends MX_Controller
 
                 if ($id != null && $id != "" && $data['formulir'][0]->status_penerimaan == 0 && $data['formulir'][0]->status_formulir == 1) {
 
-                    $this->load->view('ppdb_view_student_progress', $data);
+                    $this->load->view('ppdb_view_student_process', $data);
                 } elseif ($id != null && $id != "" && $data['formulir'][0]->status_penerimaan == 1 && $data['formulir'][0]->status_formulir == 1) {
 
                     redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
@@ -368,11 +394,41 @@ class Register extends MX_Controller
         }
     }
 
-    public function status_student_warning()
+    public function status_formulir_process()
     {
         $data['title'] = 'Sekolah Utsman | Status Penerimaan Sekolah Utsman ';
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
+        $data['formulir'] = $this->RegisterModel->get_formulir_id($this->user_student[0]->id_formulir);
+        $data['register'] = $this->RegisterModel->get_register_cost_id($this->user_student[0]->nomor_formulir);
+        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //?
+
+        if ($this->session->userdata('sias-ppdb-student') == false) {
+            redirect('ppdb/register/login_announcement');
+        } else {
+            $form = $this->RegisterModel->get_formulir_id($this->user_student[0]->id_formulir);
+
+            if ($form[0]->status_formulir == 0) {
+
+                redirect('ppdb/register/status_fulfillment_formulir');
+            } elseif ($form[0]->status_formulir == 1) {
+
+                $this->load->view('ppdb_view_fulfillment_form_archive_success', $data);
+            } else {
+                $datas['title'] = 'ERROR | PAGE NOT FOUND';
+                $this->load->view('error_404', $datas);
+
+            }
+        }
+    }
+
+    public function status_student_process()
+    {
+        $data['title'] = 'Sekolah Utsman | Status Penerimaan Sekolah Utsman ';
+        $data['page'] = $this->RegisterModel->get_page();
+        $data['contact'] = $this->RegisterModel->get_contact();
+        $data['formulir'] = $this->RegisterModel->get_formulir_id($this->user_student[0]->id_formulir);
+        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //?
 
         if ($this->session->userdata('sias-ppdb-student') == false) {
             redirect('ppdb/register/login_announcement');
@@ -386,7 +442,7 @@ class Register extends MX_Controller
 
                 if ($form[0]->status_penerimaan == 0 && $form[0]->status_formulir == 1) {
 
-                    $this->load->view('ppdb_view_student_warning', $data);
+                    $this->load->view('ppdb_view_student_process', $data);
                 } elseif ($form[0]->status_penerimaan == 1 && $form[0]->status_formulir == 1) {
 
                     redirect('ppdb/register/status_student_success/' . paramEncrypt($this->user_student[0]->id_formulir));
@@ -437,7 +493,7 @@ class Register extends MX_Controller
             $form = $this->RegisterModel->get_formulir_id($this->user_student[0]->id_formulir);
 
             if ($form[0]->status_formulir == 0) {
-                $this->load->view('ppdb_view_fulfillment_form', $data);
+                $this->load->view('ppdb_view_fulfillment_form_archive', $data);
             } else {
                 redirect('ppdb/register/status_student_progress/' . paramEncrypt($this->user_student[0]->id_formulir));
             }
@@ -453,7 +509,7 @@ class Register extends MX_Controller
         if ($id == '' or $id == null or $check_no == false) {
 
             $this->session->set_flashdata('flash_message', err_msg('Maaf, Data Anda tidak ditemukan!'));
-            redirect('ppdb/register/status_payment_success/' . paramEncrypt($id));
+            redirect('ppdb/register/status_payment_form_success/' . paramEncrypt($id));
         } else {
 
             $data['invoice'] = $this->RegisterModel->get_register_cost_id($id);
@@ -463,7 +519,7 @@ class Register extends MX_Controller
             if ($data['invoice'][0]->status_pembayaran == null or $data['invoice'][0]->status_pembayaran == 0) {
                 //add new data
                 $this->session->set_flashdata('flash_message', err_msg('Maaf, Anda belum melakukan pembayaran'));
-                redirect('ppdb/register/status_payment_success/' . paramEncrypt($id));
+                redirect('ppdb/register/status_payment_form_success/' . paramEncrypt($id));
             } else {
 
                 $html = $this->load->view('pdf_template/invoice', $data, true);
@@ -555,7 +611,7 @@ class Register extends MX_Controller
 
     }
 
-    public function post_upload_payment_slip()
+    public function post_upload_payment_form()
     {
 
         $param = $this->input->post();
@@ -567,33 +623,33 @@ class Register extends MX_Controller
 
         $check_no = $this->RegisterModel->check_no_register($data['nomor_formulir']);
 
-        $jenjang = '';
-        if ($check_no[0]->level_tingkat == 1) {
-            $jenjang = 'KB';
-        } else if ($check_no[0]->level_tingkat == 2) {
-            $jenjang = 'TK';
-        } else if ($check_no[0]->level_tingkat == 3) {
-            $jenjang = 'SD';
-        } else if ($check_no[0]->level_tingkat == 4) {
-            $jenjang = 'SMP';
-        } else if ($check_no[0]->level_tingkat == 5) {
-            $jenjang = 'KB-TK';
-        } else if ($check_no[0]->level_tingkat == 6) {
-            $jenjang = 'DC';
-        }
-
         if ($check_no == false) {
 
             $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
-            redirect('ppdb/register/upload_payment_receipt');
+            redirect('ppdb/register/upload_payment_receipt_form');
         } else {
+
+            $jenjang = '';
+            if ($check_no[0]->level_tingkat == 1) {
+                $jenjang = 'KB';
+            } else if ($check_no[0]->level_tingkat == 2) {
+                $jenjang = 'TK';
+            } else if ($check_no[0]->level_tingkat == 3) {
+                $jenjang = 'SD';
+            } else if ($check_no[0]->level_tingkat == 4) {
+                $jenjang = 'SMP';
+            } else if ($check_no[0]->level_tingkat == 5) {
+                $jenjang = 'KB-TK';
+            } else if ($check_no[0]->level_tingkat == 6) {
+                $jenjang = 'DC';
+            }
 
             if ($check_no[0]->status_pembayaran == 0) {
 
                 if ($this->form_validation->run() == false) {
 
                     $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
-                    redirect('ppdb/register/upload_payment_receipt');
+                    redirect('ppdb/register/upload_payment_receipt_form');
                 } else {
 
                     $this->load->library('upload'); //load library upload file
@@ -630,15 +686,15 @@ class Register extends MX_Controller
                                 $data['bukti_transfer_thumb'] = $path_thumb . $name;
                             } else {
                                 $this->session->set_flashdata('flash_message', err_msg($this->image_lib->display_errors()));
-                                redirect('ppdb/register/upload_payment_receipt');
+                                redirect('ppdb/register/upload_payment_receipt_form');
                             }
                         } else {
                             $this->session->set_flashdata('flash_message', warn_msg($this->upload->display_errors()));
-                            redirect('ppdb/register/upload_payment_receipt');
+                            redirect('ppdb/register/upload_payment_receipt_form');
                         }
                     } else {
                         $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Silahkan Upload Bukti Pembayaran Anda.'));
-                        redirect('ppdb/register/upload_payment_receipt');
+                        redirect('ppdb/register/upload_payment_receipt_form');
                     }
 
                     $input = $this->RegisterModel->update_payment_slip($data['nomor_formulir'], $data);
@@ -646,120 +702,120 @@ class Register extends MX_Controller
                     if ($input == true) {
                         $this->send_notification('PEMBAYARAN FORMULIR', ucwords(strtolower($check_no[0]->nama_calon_siswa)), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
 
-                        redirect('ppdb/register/status_payment_progress/' . paramEncrypt($data['nomor_formulir']));
+                        redirect('ppdb/register/status_payment_form_progress/' . paramEncrypt($data['nomor_formulir']));
                     } else {
 
                         $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
-                        redirect('ppdb/register/upload_payment_receipt');
+                        redirect('ppdb/register/upload_payment_receipt_form');
                     }
                 }
             } else {
 
                 $this->session->set_flashdata('flash_message', warn_msg('Mohon Maaf, Anda telah upload pembayaran sebelumnya, Silahkan menunggu proses selanjutnya!'));
-                redirect('ppdb/register/upload_payment_receipt');
+                redirect('ppdb/register/upload_payment_receipt_form');
             }
         }
     }
 
-    public function post_upload_payment_ppdb()
-    {
+    // public function post_upload_payment_ppdb()
+    // {
 
-        $param = $this->input->post();
-        $data = $this->security->xss_clean($param);
+    //     $param = $this->input->post();
+    //     $data = $this->security->xss_clean($param);
 
-        $this->form_validation->set_rules('nomor_formulir', 'Nomor Formulir', 'required');
-        $this->form_validation->set_rules('nomor_rekening', 'Nomor Rekening', 'required');
-        $this->form_validation->set_rules('atas_nama_rekening', 'Atas Nama Rekening', 'required');
+    //     $this->form_validation->set_rules('nomor_formulir', 'Nomor Formulir', 'required');
+    //     $this->form_validation->set_rules('nomor_rekening', 'Nomor Rekening', 'required');
+    //     $this->form_validation->set_rules('atas_nama_rekening', 'Atas Nama Rekening', 'required');
 
-        $id = paramDecrypt($data['id_formulir']);
+    //     $id = paramDecrypt($data['id_formulir']);
 
-        $check_no = $this->RegisterModel->check_no_formulir($data['nomor_formulir']);
+    //     $check_no = $this->RegisterModel->check_no_formulir($data['nomor_formulir']);
 
-        $jenjang = '';
-        if ($check_no[0]->level_tingkat == 1) {
-            $jenjang = 'KB';
-        } else if ($check_no[0]->level_tingkat == 2) {
-            $jenjang = 'TK';
-        } else if ($check_no[0]->level_tingkat == 3) {
-            $jenjang = 'SD';
-        } else if ($check_no[0]->level_tingkat == 4) {
-            $jenjang = 'SMP';
-        } else if ($check_no[0]->level_tingkat == 5) {
-            $jenjang = 'KB-TK';
-        } else if ($check_no[0]->level_tingkat == 6) {
-            $jenjang = 'DC';
-        }
+    //     $jenjang = '';
+    //     if ($check_no[0]->level_tingkat == 1) {
+    //         $jenjang = 'KB';
+    //     } else if ($check_no[0]->level_tingkat == 2) {
+    //         $jenjang = 'TK';
+    //     } else if ($check_no[0]->level_tingkat == 3) {
+    //         $jenjang = 'SD';
+    //     } else if ($check_no[0]->level_tingkat == 4) {
+    //         $jenjang = 'SMP';
+    //     } else if ($check_no[0]->level_tingkat == 5) {
+    //         $jenjang = 'KB-TK';
+    //     } else if ($check_no[0]->level_tingkat == 6) {
+    //         $jenjang = 'DC';
+    //     }
 
-        if ($check_no == false) {
+    //     if ($check_no == false) {
 
-            $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
-            redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
-        } else {
+    //         $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
+    //         redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
+    //     } else {
 
-            if ($this->form_validation->run() == false) {
+    //         if ($this->form_validation->run() == false) {
 
-                $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
-                redirect('ppdb/register/upload_payment_receipt');
-            } else {
-                $this->load->library('upload'); //load library upload file
-                $this->load->library('image_lib'); //load library image
+    //             $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
+    //             redirect('ppdb/register/upload_payment_receipt_form');
+    //         } else {
+    //             $this->load->library('upload'); //load library upload file
+    //             $this->load->library('image_lib'); //load library image
 
-                if (!empty($_FILES['bukti_transfer'])) {
+    //             if (!empty($_FILES['bukti_transfer'])) {
 
-                    $path = 'uploads/pendaftaran/images/';
-                    $path_thumb = 'uploads/pendaftaran/images/thumbs/';
-                    //config upload file
-                    $config['upload_path'] = $path;
-                    $config['allowed_types'] = 'jpg|png|jpeg';
-                    $config['max_size'] = 5048; //set limit
-                    $config['overwrite'] = false; //if have same name, add number
-                    $config['remove_spaces'] = true; //change space into _
-                    $config['encrypt_name'] = true;
-                    //initialize config upload
-                    $this->upload->initialize($config);
+    //                 $path = 'uploads/pendaftaran/images/';
+    //                 $path_thumb = 'uploads/pendaftaran/images/thumbs/';
+    //                 //config upload file
+    //                 $config['upload_path'] = $path;
+    //                 $config['allowed_types'] = 'jpg|png|jpeg';
+    //                 $config['max_size'] = 5048; //set limit
+    //                 $config['overwrite'] = false; //if have same name, add number
+    //                 $config['remove_spaces'] = true; //change space into _
+    //                 $config['encrypt_name'] = true;
+    //                 //initialize config upload
+    //                 $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('bukti_transfer')) { //if success upload data
-                        $result['upload'] = $this->upload->data();
-                        $name = $result['upload']['file_name'];
-                        $data['bukti_transfer'] = $path . $name;
+    //                 if ($this->upload->do_upload('bukti_transfer')) { //if success upload data
+    //                     $result['upload'] = $this->upload->data();
+    //                     $name = $result['upload']['file_name'];
+    //                     $data['bukti_transfer'] = $path . $name;
 
-                        $img['image_library'] = 'gd2';
-                        $img['source_image'] = $path . $name;
-                        $img['new_image'] = $path_thumb . $name;
-                        $img['maintain_ratio'] = true;
-                        $img['width'] = 1200;
-                        $img['weight'] = 1200;
+    //                     $img['image_library'] = 'gd2';
+    //                     $img['source_image'] = $path . $name;
+    //                     $img['new_image'] = $path_thumb . $name;
+    //                     $img['maintain_ratio'] = true;
+    //                     $img['width'] = 1200;
+    //                     $img['weight'] = 1200;
 
-                        $this->image_lib->initialize($img);
-                        if ($this->image_lib->resize()) { //if success to resize (create thumbs)
-                            $data['bukti_transfer_thumb'] = $path_thumb . $name;
-                        } else {
-                            $this->session->set_flashdata('flash_message', err_msg($this->image_lib->display_errors()));
-                            redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
-                        }
-                    } else {
-                        $this->session->set_flashdata('flash_message', warn_msg($this->upload->display_errors()));
-                        redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
-                    }
-                } else {
-                    $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Silahkan Upload Bukti Pembayaran Anda.'));
-                    redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
-                }
+    //                     $this->image_lib->initialize($img);
+    //                     if ($this->image_lib->resize()) { //if success to resize (create thumbs)
+    //                         $data['bukti_transfer_thumb'] = $path_thumb . $name;
+    //                     } else {
+    //                         $this->session->set_flashdata('flash_message', err_msg($this->image_lib->display_errors()));
+    //                         redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
+    //                     }
+    //                 } else {
+    //                     $this->session->set_flashdata('flash_message', warn_msg($this->upload->display_errors()));
+    //                     redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
+    //                 }
+    //             } else {
+    //                 $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Silahkan Upload Bukti Pembayaran Anda.'));
+    //                 redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
+    //             }
 
-                $input = $this->RegisterModel->update_payment_ppdb($data['nomor_formulir'], $data);
+    //             $input = $this->RegisterModel->update_payment_ppdb($data['nomor_formulir'], $data);
 
-                if ($input == true) {
-                    $this->send_notification('PEMBAYARAN UANG MASUK PPDB', ucwords(strtolower($check_no[0]->nama_lengkap)), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
+    //             if ($input == true) {
+    //                 $this->send_notification('PEMBAYARAN UANG MASUK PPDB', ucwords(strtolower($check_no[0]->nama_lengkap)), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
 
-                    redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
-                } else {
+    //                 redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
+    //             } else {
 
-                    $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
-                    redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
-                }
-            }
-        }
-    }
+    //                 $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
+    //                 redirect('ppdb/register/status_student_success/' . paramEncrypt($id));
+    //             }
+    //         }
+    //     }
+    // }
 
     public function post_check_payment()
     {
@@ -767,42 +823,45 @@ class Register extends MX_Controller
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
 
-        $this->form_validation->set_rules('nomor_formulir', 'Nama Peserta Didik', 'required');
+        $this->form_validation->set_rules('nomor_formulir', 'Nomor Formulir', 'required');
+        $this->form_validation->set_rules('opsi_pembayaran', 'Opsi Pembayaran', 'required');
 
-        $register = $this->RegisterModel->get_register_id($data['nomor_formulir']);
+        $register = $this->RegisterModel->get_register_number($data['nomor_formulir']);
+        $formulir = $this->RegisterModel->get_formulir_number($data['nomor_formulir']);
 
-        if ($register == false) {
+        if ($this->form_validation->run() == false) {
 
-            $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
+            $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
             redirect('ppdb/register/check_status_payment');
         } else {
 
-            if ($this->form_validation->run() == false) {
+            if ($data['opsi_pembayaran'] == 1) {
 
-                $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
-                redirect('ppdb/register/check_status_payment');
-            } else {
+                if ($register == false) {
 
-                if ($data['nomor_formulir']) {
-                    if ($register[0]->status_pembayaran == 0) {
-                        redirect('ppdb/register/status_payment_warning/' . paramEncrypt($data['nomor_formulir']));
-                    } else if ($register[0]->status_pembayaran == 1) {
-                        redirect('ppdb/register/status_payment_progress/' . paramEncrypt($data['nomor_formulir']));
-                    } else if ($register[0]->status_pembayaran == 2) {
-                        redirect('ppdb/register/status_payment_success/' . paramEncrypt($data['nomor_formulir']));
-                    } else if ($register[0]->status_pembayaran == 3) {
-                        redirect('ppdb/register/status_payment_reject/' . paramEncrypt($data['nomor_formulir']));
-                    }
+                    $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
+                    redirect('ppdb/register/check_status_payment');
                 } else {
 
-                    $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
-                    redirect('ppdb/register/check_status_payment');
+                    if ($register[0]->status_pembayaran == 0) {
+                        redirect('ppdb/register/status_payment_form_warning/' . paramEncrypt($data['nomor_formulir']));
+                    } else if ($register[0]->status_pembayaran == 1) {
+                        redirect('ppdb/register/status_payment_form_progress/' . paramEncrypt($data['nomor_formulir']));
+                    } else if ($register[0]->status_pembayaran == 2) {
+                        redirect('ppdb/register/status_payment_form_success/' . paramEncrypt($data['nomor_formulir']));
+                    } else if ($register[0]->status_pembayaran == 3) {
+                        redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($data['nomor_formulir']));
+                    }
                 }
+            } else if ($data['opsi_pembayaran'] == 2) {
+
+                redirect('ppdb/register/status_payment_school_progress/' . paramEncrypt($data['nomor_formulir']));
+
             }
         }
     }
 
-    public function post_revision_payment_slip($id = '')
+    public function post_revision_payment_form($id = '')
     {
         $id = paramDecrypt($id);
 
@@ -837,13 +896,13 @@ class Register extends MX_Controller
         if ($check_no == false) {
 
             $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
-            redirect('ppdb/register/status_payment_reject/' . paramEncrypt($id));
+            redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($id));
         } else {
 
             if ($this->form_validation->run() == false) {
 
                 $this->session->set_flashdata('flash_message', warn_msg(validation_errors()));
-                redirect('ppdb/register/status_payment_reject/' . paramEncrypt($id));
+                redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($id));
             } else {
                 $this->load->library('upload'); //load library upload file
                 $this->load->library('image_lib'); //load library image
@@ -881,15 +940,15 @@ class Register extends MX_Controller
                             $data['bukti_transfer_thumb'] = $path_thumb . $name;
                         } else {
                             $this->session->set_flashdata('flash_message', err_msg($this->image_lib->display_errors()));
-                            redirect('ppdb/register/status_payment_reject/' . paramEncrypt($id));
+                            redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($id));
                         }
                     } else {
                         $this->session->set_flashdata('flash_message', warn_msg($this->upload->display_errors()));
-                        redirect('ppdb/register/status_payment_reject/' . paramEncrypt($id));
+                        redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($id));
                     }
                 } else {
                     $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Silahkan Upload Bukti Pembayaran Anda.'));
-                    redirect('ppdb/register/status_payment_reject/' . paramEncrypt($id));
+                    redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($id));
                 }
 
                 $input = $this->RegisterModel->update_revision_payment_slip($id, $data);
@@ -897,11 +956,11 @@ class Register extends MX_Controller
                 if ($input == true) {
                     $this->send_notification('REVISI PEMBAYARAN FORMULIR', ucwords(strtolower($check_no[0]->nama_calon_siswa)), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
 
-                    redirect('ppdb/register/status_payment_progress/' . paramEncrypt($id));
+                    redirect('ppdb/register/status_payment_form_progress/' . paramEncrypt($id));
                 } else {
 
                     $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
-                    redirect('ppdb/register/status_payment_reject/' . paramEncrypt($id));
+                    redirect('ppdb/register/status_payment_form_reject/' . paramEncrypt($id));
                 }
             }
         }
@@ -1064,6 +1123,8 @@ class Register extends MX_Controller
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
 
+        $token = $this->security->get_csrf_hash();
+
         $this->form_validation->set_rules('nik', 'NIK Siswa', 'required');
         $this->form_validation->set_rules('no_akta_kelahiran', 'Nomor Akta Siswa', 'required');
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap Siswa', 'required');
@@ -1085,10 +1146,12 @@ class Register extends MX_Controller
 
             if ($input == true) {
                 $output = array("status" => true,
+                    "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Personal dan Kontak telah disimpan.",
                 );
             } else {
                 $output = array("status" => false,
+                    "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
             }
@@ -1102,6 +1165,8 @@ class Register extends MX_Controller
 
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
+
+        $token = $this->security->get_csrf_hash();
 
         $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
         $this->form_validation->set_rules('nik_ayah', 'NIK Ayah', 'required');
@@ -1134,10 +1199,12 @@ class Register extends MX_Controller
 
             if ($input == true) {
                 $output = array("status" => true,
+                    "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Orang Tua / Wali telah disimpan.",
                 );
             } else {
                 $output = array("status" => false,
+                    "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
             }
@@ -1152,6 +1219,8 @@ class Register extends MX_Controller
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
 
+        $token = $this->security->get_csrf_hash();
+
         $this->form_validation->set_rules('alamat_rumah_kk', 'Alamat Rumah KK', 'required');
         $this->form_validation->set_rules('provinsi_kk', 'Provinsi KK', 'required');
         $this->form_validation->set_rules('kabupaten_kota_kk', 'Kabupaten/Kota KK', 'required');
@@ -1160,7 +1229,6 @@ class Register extends MX_Controller
         $this->form_validation->set_rules('rt_kk', 'RT KK', 'required');
         $this->form_validation->set_rules('rw_kk', 'RW KK', 'required');
         $this->form_validation->set_rules('kodepos_kk', 'Kodepos KK', 'required');
-
         $this->form_validation->set_rules('alamat_rumah_dom', 'Alamat Rumah Domisili', 'required');
         $this->form_validation->set_rules('provinsi_dom', 'Provinsi Domisili', 'required');
         $this->form_validation->set_rules('kabupaten_kota_dom', 'Kabupaten/Kota Domisili', 'required');
@@ -1179,10 +1247,12 @@ class Register extends MX_Controller
 
             if ($input == true) {
                 $output = array("status" => true,
+                    "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Alamat dan Domisili telah disimpan.",
                 );
             } else {
                 $output = array("status" => false,
+                    "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
             }
@@ -1196,6 +1266,8 @@ class Register extends MX_Controller
 
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
+
+        $token = $this->security->get_csrf_hash();
 
         $this->form_validation->set_rules('alat_transportasi', 'Alat Transportasi', 'required');
         $this->form_validation->set_rules('jenis_tinggal', 'Jenis Tempat Tinggal', 'required');
@@ -1214,10 +1286,12 @@ class Register extends MX_Controller
 
             if ($input == true) {
                 $output = array("status" => true,
+                    "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Periodik Siswa telah disimpan.",
                 );
             } else {
                 $output = array("status" => false,
+                    "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
             }
@@ -1435,7 +1509,7 @@ class Register extends MX_Controller
             $this->send_notification('UPLOAD BERKAS FORMULIR', ucwords(strtolower($data['nama_lengkap'])), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
 
             $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Data Siswa '$data[nama_lengkap]' ('$data[nomor_formulir]')  telah tersimpan."));
-            redirect('ppdb/register/status_student_progress/' . paramEncrypt($id));
+            redirect('ppdb/register/status_formulir_process/' . paramEncrypt($id));
         } else {
 
             $this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));

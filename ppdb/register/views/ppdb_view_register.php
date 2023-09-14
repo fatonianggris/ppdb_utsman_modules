@@ -563,7 +563,6 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     var SITE_URL = "<?php echo base_url(); ?>";
 
     function check_email_used(email) {
-
         $.ajax({
             type: "post",
             url: "<?php echo site_url("/ppdb/register/check_email_register") ?>",
