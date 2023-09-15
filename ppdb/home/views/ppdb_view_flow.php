@@ -358,7 +358,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="mt-1">
-                                                    <a href="<?php echo site_url("/ppdb/register/login_announcement"); ?>"
+                                                    <a href="<?php echo site_url("/ppdb/register/check_status_payment"); ?>"
                                                         class="btn btn-sm font-weight-bolder text-uppercase btn-warning py-3 px-5">Cek
                                                         Sekarang</a>
                                                 </div>
