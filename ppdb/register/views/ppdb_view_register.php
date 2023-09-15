@@ -603,7 +603,7 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                         if (obj_data.data[i].id_jalur != "1") {
                             var jalur = "REGULER";
                         } else if (obj_data.data[i].id_jalur == "2") {
-                            var saldo = "ICP";
+                            var jalur = "ICP";
                         }
 
                         html +=
