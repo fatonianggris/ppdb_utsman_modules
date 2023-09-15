@@ -855,7 +855,14 @@ class Register extends MX_Controller
                 }
             } else if ($data['opsi_pembayaran'] == 2) {
 
-                redirect('ppdb/register/status_payment_school_progress/' . paramEncrypt($data['nomor_formulir']));
+                if ($formulir == false) {
+
+                    $this->session->set_flashdata('flash_message', err_msg('Maaf, Nomor Formulir Anda tidak ditemukan!'));
+                    redirect('ppdb/register/check_status_payment');
+                } else {
+
+                    redirect('ppdb/register/status_payment_school_progress/' . paramEncrypt($data['nomor_formulir']));
+                }
 
             }
         }
