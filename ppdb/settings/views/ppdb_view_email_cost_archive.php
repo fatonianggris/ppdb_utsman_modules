@@ -69,7 +69,7 @@
                         <!--begin::Form-->
                         <form class="form" novalidate="novalidate"
                             action="<?php echo site_url('ppdb/settings/cost/update_cost_guide'); ?>"
-                            enctype="multipart/form-data" method="post" id="kt_add_panduan_form">
+                            enctype="multipart/form-data" method="post" id="kt_add_guide_form">
                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>"
                                 value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <div class="card-body">
@@ -92,7 +92,7 @@
                                                 <textarea class="form-control" id="kt-ckeditor-1"
                                                     placeholder="Isikan Keterangan" name="keterangan_panduan"
                                                     rows="1"><?php echo $panduan[0]->keterangan_panduan; ?></textarea>
-                                                <span class="form-text text-dark"><b>*TIDAK WAJIB DIISI, </b>isikan
+                                                <span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>isikan
                                                     Keterangan Panduan</span>
                                             </div>
                                         </div>
@@ -154,4 +154,4 @@
     </div>
 </div>
 <!--end::Content-->
-<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/panduans/custom/login/add-panduan-ppdb.js"></script>
+<script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/panduans/custom/login/add-guide-ppdb.js"></script>
