@@ -2280,8 +2280,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
         "hideMethod": "fadeOut"
     };
 
-	var csrfName = $('.txt_csrfname').attr('name');
-	var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+    var csrfName = $('.txt_csrfname').attr('name');
+    var csrfHash = $('.txt_csrfname').val(); // CSRF hash
 
     function post_personal_contact_student() {
         $.ajax({
@@ -2304,13 +2304,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 nomor_handphone: $('[name=nomor_handphone]').val(),
                 nomor_telepon: $('[name=nomor_telepon]').val(),
                 email: $('[name=email]').val(),
-				[csrfName]: csrfHash
+                [csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-				$('.txt_csrfname').val(obj_data.token);
+                csrfHash = $('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2373,13 +2373,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 pendidikan_wali: $('[name=pendidikan_wali]').val(),
                 penghasilan_wali: $('[name=penghasilan_wali]').val(),
                 status_wali: status_wali,
-				[csrfName]: csrfHash
+                [csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-				$('.txt_csrfname').val(obj_data.token);
+                csrfHash = $('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2429,13 +2429,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 rw_dom: $('[name=rw_dom]').val(),
                 kodepos_dom: $('[name=kodepos_dom]').val(),
                 status_alamat: status_alamat,
-				[csrfName]: csrfHash
+                [csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-				$('.txt_csrfname').val(obj_data.token);
+                csrfHash = $('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2468,13 +2468,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 berat_badan: $('[name=berat_badan]').val(),
                 level_tingkat: $('[name=level_tingkat]').val(),
                 id_jalur: $('[name=id_jalur]').val(),
-				[csrfName]: csrfHash
+                [csrfName]: csrfHash
             },
             dataType: 'html',
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-				$('.txt_csrfname').val(obj_data.token);
+                csrfHash = $('.txt_csrfname').val(obj_data.token);
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
