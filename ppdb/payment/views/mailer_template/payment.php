@@ -543,7 +543,7 @@
 																							<table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
                                                                                                 <tr>
 																									<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:12px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																										*pastikan Nomor VA dan Nama sesuai ketika pembayaran.
+																										*Pastikan Nomor VA dan Nama sesuai.
                                                                                                     </td>
 																								</tr>
                                                                                             </table>
@@ -583,7 +583,7 @@
 																							<table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
                                                                                                 <tr>
 																									<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:12px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																										*pastikan memasukan Nominal Transfer sesuai dengan Nominal Tagihan (Rp.<?php echo $total_biaya; ?>).
+																										*Pastikan Nomor VA dan Nama sesuai.
                                                                                                     </td>
 																								</tr>
                                                                                             </table>

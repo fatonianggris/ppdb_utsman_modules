@@ -257,7 +257,7 @@ if (!empty($bank_account)) {
                                             <span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">
                                                 <?php echo strtoupper($value->nama_alatbayar); ?></span><br>
                                             <span class="mt-20 mb-20 text-danger font-weight-bold">
-                                                *pastikan Nomor VA dan Nama sesuai ketika pembayaran.
+                                                *pastikan Nomor VA dan Nama sesuai.
                                             </span><br><br>
                                             <span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Atau
                                                 Pembayaran
@@ -269,8 +269,7 @@ if (!empty($bank_account)) {
                                             <span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">
                                                 <?php echo strtoupper($value->nama_alatbayar); ?></span><br>
                                             <span class="mt-20 mb-20 text-danger font-weight-bold">
-                                                *pastikan memasukan Nominal Transfer sesuai dengan Nominal Tagihan (Rp.
-                                                <?php echo $formulir[0]->total_biaya; ?>).
+												*pastikan Nomor Rekening dan Nama sesuai.
                                             </span><br><br><br>
                                             <span
                                                 class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords(preg_replace('/12345/', "<b class='text-danger'>" . $formulir[0]->nomor_formulir . "</b>", $value->petunjuk_transfer)); ?></span>
