@@ -497,7 +497,7 @@ $(document).ready(function() {
         $('#potongan<?php echo $value_s->id_biaya; ?>').val(voc<?php echo $value_s->id_biaya; ?>[1]);
         $('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(
             nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
-        $('#id_voucher<?php echo $value_s->id_biaya; ?> option:not(:selected)').prop('disabled', true);
+        $('#id_voucher<?php echo $value_s->id_biaya; ?> option:not(:selected)').prop('false', true);
         get_total();
         get_voucher();
     }
