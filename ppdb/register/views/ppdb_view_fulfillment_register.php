@@ -2310,7 +2310,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-                csrfHash = $('.txt_csrfname').val(obj_data.token);
+                $('.txt_csrfname').val(obj_data.token);
+                csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2379,7 +2380,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-                csrfHash = $('.txt_csrfname').val(obj_data.token);
+                $('.txt_csrfname').val(obj_data.token);
+				csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2435,7 +2437,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-                csrfHash = $('.txt_csrfname').val(obj_data.token);
+                $('.txt_csrfname').val(obj_data.token);
+				csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2474,7 +2477,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
             success: function(data) {
                 var obj_data = jQuery.parseJSON(data);
 
-                csrfHash = $('.txt_csrfname').val(obj_data.token);
+                $('.txt_csrfname').val(obj_data.token);
+				csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
