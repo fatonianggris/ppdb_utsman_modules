@@ -268,7 +268,7 @@ if (!empty($bank_account)) {
                                             <span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">
                                                 <?php echo strtoupper($value->nama_alatbayar); ?></span><br>
                                             <span class="mt-20 mb-20 text-danger font-weight-bold">
-												*pastikan Nomor Rekening dan Nama sesuai.
+												*Pastikan data yang ditampilkan sudah sesuai.
                                             </span><br><br><br>
                                             <span
                                                 class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords(preg_replace('/12345/', "<b class='text-danger'>" . $formulir[0]->nomor_formulir . "</b>", $value->petunjuk_transfer)); ?></span>

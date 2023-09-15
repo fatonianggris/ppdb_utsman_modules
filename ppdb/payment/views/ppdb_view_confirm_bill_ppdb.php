@@ -272,9 +272,9 @@ if ($formulir[0]->status_pembayaran == 0) {
 
                             <a href="https://web.whatsapp.com/send?phone=62<?php echo substr($formulir[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
                                   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>*--RINCIAN BIAYA MASUK SEKOLAH UTSMAN--*
+                                   <?php echo urlencode("\n") ?>*--RINCIAN BIAYA MASUK SEKOLAH--*
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Selamat datang di Sekolah Utsman, Berikut merupakan informasi terkait data diri Anda:_
+                                   <?php echo urlencode("\n") ?>_Ayah/Bunda yang dirahmati Allah SWT. Berikut merupakan biaya PPDB Ananda yang perlu dibayarkan:_
                                    <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $formulir[0]->nomor_formulir; ?>*
                                    <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($formulir[0]->nama_lengkap)); ?>*
                                    <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
@@ -290,7 +290,7 @@ if ($formulir[0]->status_pembayaran == 0) {
 								   <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>_Atau Pembayaran Melalui Bank Selain '<?php echo strtoupper($bank_account[0]->nama_alatbayar); ?>' Bisa Transfer ke Nomor Rekening Berikut:_
 								   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_*900 2399 <?php echo $formulir[0]->nomor_formulir; ?>* (pastikan Nomor Rekening dan Nama sesuai)_
+                                   <?php echo urlencode("\n") ?>_*900 2399 <?php echo $formulir[0]->nomor_formulir; ?>* (Pastikan data yang ditampilkan sudah sesuai)_
 								   <?php echo urlencode("\n") ?>
 								   <?php echo urlencode("\n") ?>_Silahkan Kilk link dibawah ini, untuk melihat tata cara pembayaran:_
 								   <?php echo urlencode("\n") ?>
