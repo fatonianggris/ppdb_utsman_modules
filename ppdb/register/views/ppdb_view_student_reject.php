@@ -92,7 +92,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-boldest table-center font-size-sm">
-                                                    PEMBAYARAN UANG SEKOLAH
+                                                    PEMBAYARAN BIAYA MASUK
                                                 </td>
                                                 <td class="table-center font-size-sm">
                                                     <?php

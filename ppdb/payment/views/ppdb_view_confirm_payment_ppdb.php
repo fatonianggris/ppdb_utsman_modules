@@ -19,11 +19,11 @@
 						<!--end::Item-->
 						<!--begin::Item-->
 						<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-						<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Pembayaran Uang Masuk</a>
+						<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Pembayaran Biaya Masuk</a>
 						<!--end::Item-->
 						<!--begin::Item-->
 						<span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-						<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Konfirmasi Pembayaran Uang Masuk</a>
+						<a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Konfirmasi Pembayaran Biaya Masuk</a>
 						<!--end::Item-->
 					</div>
 					<!--end::Breadcrumb-->
@@ -238,15 +238,15 @@
 							<?php } elseif ($formulir[0]->status_pembayaran == 2) { ?>
 								<a href="https://web.whatsapp.com/send?phone=62<?php echo substr($formulir[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
                                 <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>*--SELAMAT!, PEMBAYARAN UANG MASUK ANDA BERHASIL--*
+                                   <?php echo urlencode("\n") ?>*--SELAMAT!, PEMBAYARAN BIAYA MASUK ANDA BERHASIL--*
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Terimakasih telah melakukan pembayaran. Pembayaran Uang Masuk Sekolah Anda telah Kami terima:_
+                                   <?php echo urlencode("\n") ?>_Terimakasih telah melakukan pembayaran. Pembayaran Biaya Masuk Sekolah Anda telah Kami terima:_
                                    <?php echo urlencode("\n") ?>- No. Formulir: *<?php echo $formulir[0]->nomor_formulir; ?>*
                                    <?php echo urlencode("\n") ?>- Nama: *<?php echo ucwords(strtolower($formulir[0]->nama_lengkap)); ?>*
                                    <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                    <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Terima Kasih Telah Melakukan Pembayaran Uang Masuk Sekolah Utsman_
+                                   <?php echo urlencode("\n") ?>_Terima Kasih Telah Melakukan Pembayaran Biaya Masuk Sekolah Utsman_
                                    <?php echo urlencode("\n") ?>                                
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                    <?php echo urlencode("\n") ?>
@@ -524,7 +524,7 @@ if (!empty($cost)) {
 					},
 					dataType: 'html',
 					success: function(result) {
-						Swal.fire("Diterima!", "Bukti Pembayaran Uang Masuk '" + name + "' telah disetujui.", "success");
+						Swal.fire("Diterima!", "Bukti Pembayaran Biaya Masuk '" + name + "' telah disetujui.", "success");
 						setTimeout(function() {
 							location.reload();
 						}, 1000);
@@ -538,7 +538,7 @@ if (!empty($cost)) {
 			allowOutsideClick: () => !Swal.isLoading()
 		}).then(function(result) {
 			if (!result.isConfirm) {
-				Swal.fire("Dibatalkan!", "Persetujuan Bukti Pembayaran Uang Masuk " + name + " dibatalkan.", "error");
+				Swal.fire("Dibatalkan!", "Persetujuan Bukti Pembayaran Biaya Masuk " + name + " dibatalkan.", "error");
 			}
 		});
 	}

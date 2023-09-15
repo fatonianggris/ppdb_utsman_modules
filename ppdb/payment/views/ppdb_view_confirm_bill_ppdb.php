@@ -19,13 +19,13 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Tagihan Uang
+                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Tagihan Biaya
                             Masuk</a>
                         <!--end::Item-->
                         <!--begin::Item-->
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                         <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Konfirmasi Tagihan
-                            Uang Masuk</a>
+							Biaya Masuk</a>
                         <!--end::Item-->
                     </div>
                     <!--end::Breadcrumb-->
@@ -281,7 +281,7 @@ if ($formulir[0]->jalur == 1) {
                                    <?php echo urlencode("\n") ?>- Jenjang: *<?php echo $jenjang; ?>*
                                    <?php echo urlencode("\n") ?>- Program: *<?php echo $program; ?>*
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_Berikut merupakan total *TAGIHAN UANG MASUK*, Silahkan melakukan pembayaran sejumlah:_
+                                   <?php echo urlencode("\n") ?>_Berikut merupakan total *BIAYA MASUK*, Silahkan melakukan pembayaran sejumlah:_
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>*Rp. <?php echo $formulir[0]->total_biaya ?>*
                                    <?php echo urlencode("\n") ?>
@@ -628,7 +628,7 @@ function act_confirm_bill_ppdb(id, nama_siswa) {
                     dataType: 'html',
                     success: function(result) {
                         Swal.fire("Dikonfirmasi!",
-                            "Penagihan Pembayaran Uang Masuk Atas Nama '" + nama_siswa +
+                            "Penagihan Pembayaran Biaya Masuk Atas Nama '" + nama_siswa +
                             "' telah dikirimkan.", "success");
                         setTimeout(function() {
                             location.reload();
@@ -644,7 +644,7 @@ function act_confirm_bill_ppdb(id, nama_siswa) {
         allowOutsideClick: () => !Swal.isLoading()
     }).then(function(result) {
         if (!result.isConfirm) {
-            Swal.fire("Dibatalkan!", "Penagihan Pembayaran Uang Masuk Atas Nama '" + nama_siswa +
+            Swal.fire("Dibatalkan!", "Penagihan Pembayaran Biaya Masuk Atas Nama '" + nama_siswa +
                 "' dibatalkan.",
                 "error");
         }

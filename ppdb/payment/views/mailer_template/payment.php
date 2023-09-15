@@ -254,7 +254,7 @@
                                                                                             <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
                                                                                                 <tr> 
                                                                                                     <td class="title center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:25px; line-height:24px; font-weight:bolder;font-style:normal; color:#1BC5BD;text-decoration:none;letter-spacing: 1px;">
-                                                                                                        RINCIAN TAGIHAN UANG MASUK SEKOLAH UTSMAN
+                                                                                                        RINCIAN BIAYA MASUK SEKOLAH UTSMAN
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             </table>
@@ -366,7 +366,7 @@
                                                                                             <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
                                                                                                 <tr> 
                                                                                                     <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:15px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-                                                                                                        Berikut merupakan rincian <b>TAGIHAN UANG MASUK</b> Sekolah: 
+                                                                                                        Berikut merupakan rincian <b>BIAYA MASUK</b> Sekolah: 
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             </table>
@@ -380,10 +380,7 @@
                                                                                                                 <tr>
                                                                                                                     <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
                                                                                                                         Nama Biaya
-                                                                                                                    </th>
-                                                                                                                    <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-                                                                                                                        Voucher
-                                                                                                                    </th>
+                                                                                                                    </th>                                                                                                                    
                                                                                                                     <th class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                                       
                                                                                                                         Biaya Awal (Rp)
                                                                                                                     </th>                                                                                                                   
@@ -403,21 +400,7 @@
                                                                                                                         <tr>
                                                                                                                             <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
                                                                                                                                 <?php echo ucwords(strtolower($value->nama_biaya)); ?>
-                                                                                                                            </td>
-                                                                                                                            <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
-                                                                                                                                <?php
-                                                                                                                                if (!empty($voucher)) {
-                                                                                                                                    foreach ($voucher as $key => $value_v) {
-                                                                                                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                                                                                                                                            $id_array_voucher = explode(',', $id_voucher);
-                                                                                                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                                                                                                                                                echo $value_v->kode_voucher;
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }  //ngatur nomor urut
-                                                                                                                                }
-                                                                                                                                ?>         
-                                                                                                                            </td>                                                                                                                   
+                                                                                                                            </td>                                                                                                                                                                                                                                        
                                                                                                                             <td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">                                                     
                                                                                                                                 <?php echo number_format($value->nominal, 0, ',', '.'); ?>
                                                                                                                             </td>

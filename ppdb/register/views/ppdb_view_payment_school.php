@@ -66,10 +66,10 @@
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
                         <div class="mb-10 ">
-                            <p class="font-mobile font-weight-boldest text-primary ">TAGIHAN UANG SEKOLAH SEDANG
+                            <p class="font-mobile font-weight-boldest text-primary ">BIAYA MASUK SEDANG
                                 DIPROSES!</p>
                             <div class="font-weight-bold text-danger font-size-lg">Silahkan menunggu informasi dari
-                                Sekolah untuk <b>RINCIAN TAGIHAN UANG SEKOLAH</b>, Terima kasih.</div>
+                                Sekolah untuk <b>RINCIAN BIAYA MASUK</b>, Terima kasih.</div>
                         </div>
                         <div class="table-responsive px-mobile">
                             <table class="table table-light table-light-primary text-center">
@@ -133,7 +133,7 @@ if ($formulir[0]->jalur == 1) {
                             </table>
                         </div>
                         <div class="mt-10">
-                            <div class="font-weight-bold text-danger font-size-lg"><b> STATUS TAGIHAN </b> Anda
+                            <div class="font-weight-bold text-danger font-size-lg">Rincian<b> BIAYA MASUK </b>Anda
                                 dikirimkan melalui <b>EMAIL & WHATSAPP</b>
                                 paling lambat 2 x 24 jam setelah anda menerima informasi ini. Terimakasih
                             </div>
@@ -150,8 +150,8 @@ if ($formulir[0]->jalur == 1) {
 
                         <div class="mb-10 ">
                             <p class="font-mobile font-weight-boldest text-warning ">ANDA BELUM MELAKUKAN PEMBAYARAN</p>
-                            <div class="font-weight-bold text-danger font-size-lg">Silahkan melakukan pembayaran TAGIHAN
-                                BIAYA SEKOLAH terlebih dahulu. Berikut merupakan informasi terkait tagihan Anda:</div>
+                            <div class="font-weight-bold text-danger font-size-lg">Silahkan melakukan pembayaran 
+                                BIAYA MASUK terlebih dahulu. Berikut merupakan informasi terkait biaya masuk Anda:</div>
                         </div>
                         <div class="table-responsive px-mobile">
                             <?php echo $this->session->flashdata('flash_message'); ?>
@@ -298,7 +298,7 @@ if (!empty($bank_account)) {
                             <p class="font-mobile font-weight-boldest text-success ">SELAMAT!, PEMBAYARAN ANDA BERHASIL
                             </p>
                             <div class="font-weight-bold text-danger font-size-lg">Terimakasih telah melakukan
-                                pembayaran. Pembayaran Tagihan Masuk Sekolah Anda telah Kami terima.</div>
+                                pembayaran. Pembayaran Biaya Masuk Sekolah Anda telah Kami terima.</div>
                         </div>
                         <div class="table-responsive px-mobile">
                             <table class="table table-light table-light-success text-center">
@@ -461,7 +461,7 @@ if ($formulir[0]->jalur == 1) {
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Rincian Biaya Uang Masuk PPDB</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Rincian Biaya Masuk Sekolah</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -471,8 +471,7 @@ if ($formulir[0]->jalur == 1) {
                         <table class="table table-light table-light-success text-left">
                             <thead>
                                 <tr>
-                                    <th class="table-left">Nama Biaya</th>
-                                    <th class="table-center">Voucher</th>
+                                    <th class="table-left">Nama Biaya</th>                                  
                                     <th class="table-center">Biaya Awal (Rp)</th>
                                     <th class="table-center">Potongan (%)</th>
                                     <th class="table-center">Sub Total (Rp)</th>
@@ -480,41 +479,27 @@ if ($formulir[0]->jalur == 1) {
                             </thead>
                             <tbody>
                                 <?php
-if (!empty($cost)) {
-    foreach ($cost as $key => $value) {
-        ?>
+									if (!empty($cost)) {
+										foreach ($cost as $key => $value) {
+											?>
                                 <tr>
                                     <td class="font-weight-bold font-size-sm">
                                         <?php echo ucwords(strtolower($value->nama_biaya)); ?></td>
                                     <td class="table-center font-size-sm">
-                                        <?php
-if (!empty($voucher)) {
-            foreach ($voucher as $key => $value_v) {
-                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                    $id_array_voucher = explode(',', $formulir[0]->id_voucher);
-                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                        echo $value_v->kode_voucher;
-                    }
-                }
-            } //ngatur nomor urut
-        }
-        ?>
-                                    </td>
-                                    <td class="table-center font-size-sm">
                                         <?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
                                     <td class="table-center font-size-sm">
                                         <?php
-if (!empty($voucher)) {
-            foreach ($voucher as $key => $value_v) {
-                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                    $id_array_voucher = explode(',', $formulir[0]->id_voucher);
-                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                        echo $value_v->potongan;
-                    }
-                }
-            } //ngatur nomor urut
-        }
-        ?>
+										if (!empty($voucher)) {
+													foreach ($voucher as $key => $value_v) {
+														if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+															$id_array_voucher = explode(',', $formulir[0]->id_voucher);
+															if (in_array($value_v->id_voucher, $id_array_voucher)) {
+																echo $value_v->potongan;
+															}
+														}
+													} //ngatur nomor urut
+												}
+												?>
                                     </td>
                                     <td class="table-center font-size-sm">
                                         <?php

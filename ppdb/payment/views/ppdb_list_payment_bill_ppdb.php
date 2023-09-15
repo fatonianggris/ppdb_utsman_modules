@@ -19,12 +19,12 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Tagihan Uang
+                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Biaya
                             Masuk</a>
                         <!--end::Item-->
                         <!--begin::Item-->
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Daftar Tagihan Uang
+                        <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Daftar Tagihan Biaya
                             Masuk</a>
                         <!--end::Item-->
                     </div>

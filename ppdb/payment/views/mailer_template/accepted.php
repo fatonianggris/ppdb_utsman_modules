@@ -389,7 +389,7 @@
 																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%; margin-bottom: 5px;">
 																							<tr>
 																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																									Terimakasih telah melakukan pembayaran. Pembayaran <b>UANG MASUK PPDB</b> Anda telah <b style="color:#1BC5BD;">KAMI TERIMA</b>.
+																									Terimakasih telah melakukan pembayaran. Pembayaran <b>BIAYA MASUK</b> Anda telah <b style="color:#1BC5BD;">KAMI TERIMA</b>.
 																								</td>
 																							</tr>
 																						</table>

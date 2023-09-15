@@ -71,7 +71,7 @@
 											<select name="jenis_biaya" class="form-control form-control-lg">
 												<option value="">Pilih Jenis Biaya</option>
 												<option value="1">Formulir</option>
-												<option value="2">Uang Masuk</option>
+												<option value="2">Biaya Masuk</option>
 											</select>
 											<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>pilih Jenis Biaya Sekolah</span>
 										</div>

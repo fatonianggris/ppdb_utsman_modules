@@ -289,7 +289,7 @@
                         </div>
                         <div class="mt-5">
                             <span class="mt-10 mb-10 text-danger font-size-lg">Silahkan menunggu informasi dari Sekolah
-                                untuk <b>RINCIAN TAGIHAN UANG SEKOLAH</b> dalam kurun waktu 2 x 24 jam, Terima
+                                untuk <b>RINCIAN BIAYA MASUK SEKOLAH</b> dalam kurun waktu 2 x 24 jam, Terima
                                 kasih.</span>
                         </div>
                         <a href="<?php echo site_url("ppdb/register/logout_formulir"); ?>"

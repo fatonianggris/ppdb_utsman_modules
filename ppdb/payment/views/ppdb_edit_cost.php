@@ -74,12 +74,12 @@
 													if ($cost[0]->jenis_biaya == 1) {
 														echo 'Formulir';
 													} else if ($cost[0]->jenis_biaya == 2) {
-														echo 'Uang Masuk';
+														echo 'Biaya Masuk';
 													}
 													?>
 												</option>
 												<option value="1">Formulir</option>
-												<option value="2">Uang Masuk</option>
+												<option value="2">Biaya Masuk</option>
 											</select>
 											<span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI, </b>pilih Jenis Biaya Sekolah</span>
 										</div>

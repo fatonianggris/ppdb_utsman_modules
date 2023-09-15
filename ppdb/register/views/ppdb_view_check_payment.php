@@ -145,12 +145,12 @@
                                                     <span class="option-label">
                                                         <span class="option-head">
                                                             <span class="option-title font-weight-bolder">
-                                                                UANG MASUK
+                                                                BIAYA MASUK
                                                             </span>
 
                                                         </span>
                                                         <span class="option-body text-dark-75">
-                                                            Pastikan Anda telah melakukan pembayaran Uang Masuk.
+                                                            Pastikan Anda telah melakukan pembayaran Biaya Masuk.
                                                         </span>
                                                     </span>
                                                 </label>
