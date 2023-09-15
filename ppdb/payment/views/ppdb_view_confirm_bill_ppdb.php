@@ -609,7 +609,7 @@ function act_confirm_bill_ppdb(id, nama_siswa) {
             ")</b> ? <br></br> <div id='recaptcha_confirm'></div>",
         didOpen: () => {
             grecaptcha.render('recaptcha_confirm', {
-                'sitekey': '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                'sitekey': '6LcUwakcAAAAAApKwPCj1lsgVOlmtv-uJzSuxyGG'
             })
         },
         preConfirm: function() {
