@@ -94,6 +94,7 @@ class Payment extends MX_Controller
         $data['cost'] = $this->PaymentModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin);
         $data['voucher'] = $this->PaymentModel->get_all_voucher();
 		$data['bank_account'] = $this->PaymentModel->get_bank_va_account();
+		$data['panduan'] = $this->PaymentModel->get_cost_guide_by_id(1);
 
         $this->template->load('template_ppdb/template_ppdb', 'ppdb_view_confirm_bill_ppdb', $data);
     }

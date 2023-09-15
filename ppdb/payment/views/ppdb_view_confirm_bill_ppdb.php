@@ -25,7 +25,7 @@
                         <!--begin::Item-->
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                         <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">Konfirmasi Tagihan
-							Biaya Masuk</a>
+                            Biaya Masuk</a>
                         <!--end::Item-->
                     </div>
                     <!--end::Breadcrumb-->
@@ -210,7 +210,6 @@ if ($formulir[0]->jalur == 1) {
                                     <!--end::Content-->
                                 </div>
                                 <!--end::Info-->
-
                             </div>
                         </div>
                     </div>
@@ -242,36 +241,36 @@ if ($formulir[0]->jalur == 1) {
                     <div class="card card-custom mb-10">
                         <div class="text-center mb-5 mt-5">
                             <?php
-						$program = '';
-						$jenjang = '';
-						if ($formulir[0]->jalur == 1) {
-							$program = 'REGULER';
-						} else if ($formulir[0]->jalur == 2) {
-							$program = 'ICP';
-						}
+$program = '';
+$jenjang = '';
+if ($formulir[0]->jalur == 1) {
+    $program = 'REGULER';
+} else if ($formulir[0]->jalur == 2) {
+    $program = 'ICP';
+}
 
-						if ($formulir[0]->level_tingkat == 1) {
-							$jenjang = 'KB';
-						} else if ($formulir[0]->level_tingkat == 2) {
-							$jenjang = 'TK';
-						} else if ($formulir[0]->level_tingkat == 3) {
-							$jenjang = 'SD';
-						} else if ($formulir[0]->level_tingkat == 4) {
-							$jenjang = 'SMP';
-						} else if ($formulir[0]->level_tingkat == 5) {
-							$jenjang = 'KB-TK';
-						} else if ($formulir[0]->level_tingkat == 6) {
-							$jenjang = 'DC';
-						}
-						if ($formulir[0]->status_pembayaran == 0) {
-							?>
+if ($formulir[0]->level_tingkat == 1) {
+    $jenjang = 'KB';
+} else if ($formulir[0]->level_tingkat == 2) {
+    $jenjang = 'TK';
+} else if ($formulir[0]->level_tingkat == 3) {
+    $jenjang = 'SD';
+} else if ($formulir[0]->level_tingkat == 4) {
+    $jenjang = 'SMP';
+} else if ($formulir[0]->level_tingkat == 5) {
+    $jenjang = 'KB-TK';
+} else if ($formulir[0]->level_tingkat == 6) {
+    $jenjang = 'DC';
+}
+if ($formulir[0]->status_pembayaran == 0) {
+    ?>
                             <button
                                 onclick="act_confirm_bill_ppdb('<?php echo paramEncrypt($formulir[0]->id_formulir); ?>', '<?php echo strtoupper($formulir[0]->nama_lengkap); ?>')"
                                 class="btn btn-warning btn-sm font-weight-bold px-8 py-4 my-3 mx-4 mt-12 mb-13"><i
                                     class="fas fa-check-circle "></i>Tagih</button>
                             <?php } elseif ($formulir[0]->status_pembayaran >= 1) {?>
-                        
-								<a href="https://web.whatsapp.com/send?phone=62<?php echo substr($formulir[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
+
+                            <a href="https://web.whatsapp.com/send?phone=62<?php echo substr($formulir[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
                                   <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>*--SELAMAT! ANDA DINYATAKAN 'LULUS'--*
                                    <?php echo urlencode("\n") ?>
@@ -295,15 +294,17 @@ if ($formulir[0]->jalur == 1) {
 								   <?php echo urlencode("\n") ?>
 								   <?php echo urlencode("\n") ?>_Silahkan Kilk link dibawah ini, untuk melihat tata cara pembayaran:_
 								   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/register/status_payment_school_progress/'. paramEncrypt($formulir[0]->nomor_formulir)); ?>*
+                                   <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/formulir/status_payment_school_progress/' . paramEncrypt($formulir[0]->nomor_formulir)); ?>*
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                    <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>_*Admin PPDB Sekolah Utsman*_" target="_blank" class="btn btn-success font-weight-bold px-6 py-4 my-3 mx-4 mt-12 mb-13"><i class="fab fa-whatsapp"></i> Kirim WA</a>
+                                   <?php echo urlencode("\n") ?>_*Admin PPDB Sekolah Utsman*_" target="_blank"
+                                class="btn btn-success font-weight-bold px-6 py-4 my-3 mx-4 mt-12 mb-13"><i
+                                    class="fab fa-whatsapp"></i> Kirim WA</a>
 
                             <?php
-							}
-							?>
+}
+?>
                         </div>
                     </div>
                 </div>
@@ -311,20 +312,96 @@ if ($formulir[0]->jalur == 1) {
                     <!--begin::Card-->
                     <div class="card card-custom mb-10">
                         <!--begin::Header-->
-                        <div class="card-header border-0 py-5">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label font-weight-bolder text-danger">Total Biaya</span>
-                                <span class="text-muted mt-3 font-weight-bold font-size-sm">Berikut merupakan detail
-                                    biaya yang dikenakan Siswa</span>
-                            </h3>
 
+                        <div class="text-center mt-8">
+                            <span class="card-label display-4 font-weight-boldest text-danger mb-10 blink">MOHON DI
+                                PERHATIKAN!</span>
+                        </div>
+                        <div class="text-center mt-5 mb-5">
+                            <span
+                                class="font-size-lg font-weight-normal"><?php echo ucwords(preg_replace('/12345/', "<b class='text-danger'>" . $formulir[0]->nomor_formulir . "</b>", $panduan[0]->keterangan_panduan)); ?></span>
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body pt-0 pb-3">
                             <div class="tab-content">
+
+                                <div class="table-responsive px-mobile mb-5">
+                                    <h5 class="text-center">
+                                        <span class="card-label font-weight-bolder text-danger">Informasi Siswa:</span>
+                                    </h5>
+                                    <table class="table table-light table-light-warning text-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="table-center">NOMOR FORMULIR</th>
+                                                <th class="table-center">Nama Siswa</th>
+                                                <th class="table-center">Nama OrangTua/Wali</th>
+                                                <th class="table-center">Email</th>
+                                                <th class="table-center">Nomor WA/HP</th>
+                                                <td class="table-center">Jenjang</td>
+                                                <td class="table-center">Program</td>
+                                                <td class="table-center">TA</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-weight-boldest table-center font-size-sm">
+                                                    <?php echo $formulir[0]->nomor_formulir ?></td>
+                                                <td class="table-center font-size-sm">
+                                                    <?php echo ucwords(strtolower($formulir[0]->nama_lengkap)); ?></td>
+                                                <td class="table-center font-size-sm">
+                                                    <?php echo $formulir[0]->nama_wali; ?></td>
+                                                <td class="table-center font-size-sm"><?php echo $formulir[0]->email; ?>
+                                                </td>
+                                                <td class="table-center font-size-sm">
+                                                    <?php echo $formulir[0]->nomor_handphone; ?></td>
+                                                <td class="table-center font-size-sm">
+                                                    <span
+                                                        class="label label-md font-weight-boldest label-primary label-inline">
+                                                        <?php
+if ($formulir[0]->level_tingkat == 1) {
+    echo 'KB';
+} else if ($formulir[0]->level_tingkat == 2) {
+    echo 'TK';
+} else if ($formulir[0]->level_tingkat == 3) {
+    echo 'SD';
+} else if ($formulir[0]->level_tingkat == 4) {
+    echo 'SMP';
+} else if ($formulir[0]->level_tingkat == 5) {
+    echo 'KB-TK';
+} else if ($formulir[0]->level_tingkat == 6) {
+    echo 'DC';
+}
+?>
+                                                    </span>
+                                                </td>
+                                                <td class="table-center font-size-sm">
+                                                    <span
+                                                        class="label label-md font-weight-boldest label-default label-inline">
+                                                        <?php
+if ($formulir[0]->jalur == 1) {
+    echo 'REGULER';
+} elseif ($formulir[0]->jalur == 2) {
+    echo 'ICP';
+}
+?>
+                                                    </span>
+                                                </td>
+                                                <td class="table-center font-size-sm font-weight-bold">
+                                                    <?php echo $formulir[0]->tahun_ajaran; ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <!--begin::Table-->
                                 <div class="table-responsive">
+                                    <h5 class="text-center">
+                                        <span class="card-label font-weight-bolder text-danger">Informasi Rincian Biaya
+                                            Masuk:</span>
+                                        <a href="#" class="btn btn-sm btn-primary font-weight-bold mb-2 mt-2"
+                                            data-toggle="modal" data-target="#modal_panduan">Lihat Panduan</a>
+
+                                    </h5>
                                     <table
                                         class="table table-head-custom table-vertical-center table-head-bg table-borderless">
                                         <thead>
@@ -344,16 +421,16 @@ if ($formulir[0]->jalur == 1) {
                                         </thead>
                                         <tbody>
                                             <?php
-											$disable ="";
+$disable = "";
 
-											if($formulir[0]->status_pembayaran == 0){
-												$disable ="";
-											} else {
-												$disable ="disabled";
-											}
-											if (!empty($cost)) {
-												foreach ($cost as $key => $value) {
-											?>
+if ($formulir[0]->status_pembayaran == 0) {
+    $disable = "";
+} else {
+    $disable = "disabled";
+}
+if (!empty($cost)) {
+    foreach ($cost as $key => $value) {
+        ?>
                                             <tr>
                                                 <td>
                                                     <span
@@ -366,29 +443,29 @@ if ($formulir[0]->jalur == 1) {
                                                         <?php echo $disable; ?>>
                                                         <option value="">Pilih Voucher</option>
                                                         <?php
-																if (!empty($voucher)) {
-																	foreach ($voucher as $key => $value_v) {
-																		if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-																			$id_array_voucher = explode(',', $formulir[0]->id_voucher);
-																			if (in_array($value_v->id_voucher, $id_array_voucher)) {
-																?>
+if (!empty($voucher)) {
+            foreach ($voucher as $key => $value_v) {
+                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                    $id_array_voucher = explode(',', $formulir[0]->id_voucher);
+                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                        ?>
                                                         <option selected="selected"
                                                             value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
                                                             <?php echo $value_v->kode_voucher; ?></option>
                                                         <?php
-																			} else {
-																				if ($value_v->terpakai < $value_v->jumlah_voucher) {
-																				?>
+} else {
+                        if ($value_v->terpakai < $value_v->jumlah_voucher) {
+                            ?>
                                                         <option
                                                             value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
                                                             <?php echo $value_v->kode_voucher; ?></option>
                                                         <?php
-																				}
-																			}
-																		}
-																	}  //ngatur nomor urut
-																}
-																?>
+}
+                    }
+                }
+            } //ngatur nomor urut
+        }
+        ?>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -410,9 +487,9 @@ if ($formulir[0]->jalur == 1) {
                                                 </td>
                                             </tr>
                                             <?php
-												}  //ngatur nomor urut
-											}
-											?>
+} //ngatur nomor urut
+}
+?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -450,27 +527,25 @@ if ($formulir[0]->jalur == 1) {
     <input type="hidden" class="txt_csrfname" name="<?php echo $this->security->get_csrf_token_name(); ?>"
         value="<?php echo $this->security->get_csrf_hash(); ?>">
 </div>
-<div class="modal fade" id="modal_bukti" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
+
+<div class="modal fade" id="modal_panduan" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
     role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Bukti Pembayaran
-                    "<?php echo strtoupper($formulir[0]->nama_lengkap); ?>"</h5>
+                <h5 class="modal-title" id="exampleModalLabel">LIHAT
+                    "<?php echo strtoupper($panduan[0]->nama_panduan); ?>"</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
             <div class="modal-body text-center">
-                <?php if ($formulir[0]->keterangan != null || $formulir[0]->keterangan != "") {?>
-                <span class="text-center text-danger font-weight-bold font-size-md">Ket:
-                    <?php echo ucwords($formulir[0]->keterangan); ?></span>
-                <?php }?>
-                <div class="text-center">
-                    <img alt="Pic" class="col-12" src="<?php echo base_url() . $formulir[0]->bukti_transfer ?>">
-                    <a href="<?php echo base_url() . $formulir[0]->bukti_transfer ?>"
-                        class="btn btn-success btn-sm py-3 px-4" download><i class="fas fa-download"></i> Download</a>
-                </div>
+                <?php if ($panduan[0]->file_panduan != NULL || $panduan[0]->file_panduan != "") { ?>
+                <iframe src="<?php echo base_url() . $panduan[0]->file_panduan; ?>#zoom=85" width="100%"
+                    height="500"></iframe>
+                <?php } else { ?>
+                <iframe id="iframe" width="100%" height="500"></iframe>
+                <?php } ?>
             </div>
             <div class="modal-footer">
                 <button type="reset" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Tutup</button>
@@ -529,7 +604,7 @@ $(document).ready(function() {
 });
 </script>
 <?php
-	} //ngatur nomor urut
+} //ngatur nomor urut
 }
 ?>
 

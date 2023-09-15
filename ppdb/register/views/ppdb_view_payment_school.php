@@ -237,7 +237,6 @@ if (!empty($bank_account)) {
                                     <div id="collapseOne<?php echo $value->id_alat_bayar; ?>" class="collapse show"
                                         data-parent="#accordionExample">
                                         <div class="card-body">
-
                                             <span
                                                 class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Silahakan
                                                 Melakukan Pembayaran Sejumlah:</span><br><br>

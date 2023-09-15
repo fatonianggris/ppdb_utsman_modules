@@ -11,6 +11,7 @@ class PaymentModel extends CI_Model
     private $table_contact = 'kontak';
     private $table_bank_account = 'alat_bayar';
     private $table_school_year = 'tahun_ajaran';
+	private $table_cost_guide = 'panduan_biaya';
 
     public function get_formulir_confirm()
     {
@@ -153,6 +154,16 @@ class PaymentModel extends CI_Model
         $this->db->select('*');
         $this->db->where('id_alat_bayar', 4);
         $sql = $this->db->get($this->table_bank_account);
+        return $sql->result();
+    }
+
+	
+	public function get_cost_guide_by_id($id = '')
+    {
+        $this->db->select("*");
+        $this->db->where('id_panduan_biaya', $id);
+
+        $sql = $this->db->get($this->table_cost_guide);
         return $sql->result();
     }
 
