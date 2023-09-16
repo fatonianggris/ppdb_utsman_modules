@@ -89,12 +89,12 @@
                                                 <td class="table-center font-size-sm">
 
                                                     <?php
-														if ($formulir[0]->status_formulir == 1) { ?>
+														if ($formulir[0]->status_formulir >= 1) { ?>
                                                     <span
                                                         class="label label-lg font-weight-bolder label-success label-inline">SELESAI</span>
-                                                    <?php } else if ($formulir[0]->status_formulir == 2) { ?>
+                                                    <?php } else if ($formulir[0]->status_formulir == 0) { ?>
                                                     <span
-                                                        class="label label-lg font-weight-bolder label-danger label-inline">BELUM
+                                                        class="label label-lg font-weight-bolder label-danger label-inline blink">BELUM
                                                         SELESAI</span>
                                                     <?php	}
 														?>
