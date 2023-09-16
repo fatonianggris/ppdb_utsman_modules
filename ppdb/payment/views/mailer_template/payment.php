@@ -571,22 +571,7 @@
 																								</tr>
                                                                                             </table>
                                                                                             <!-- text -->
-																							<!-- space -->
-                                                                                            <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
-                                                                                                <tr>
-																									<td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                                                                </tr>
-                                                                                            </table>
-                                                                                            <!-- space -->
-                                                                                            <!-- text -->
-                                                                                            <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
-                                                                                                <tr> 
-                                                                                                    <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">
-                                                                                                        Mohon lakukan <strong style="color:#F64E60;">PEMBAYARAN</strong> dalam kurun waktu 1 x 24 jam.
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </table>
-                                                                                            <!-- text -->
+																							
 																							<!-- space -->
                                                                                             <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
                                                                                                 <tr>

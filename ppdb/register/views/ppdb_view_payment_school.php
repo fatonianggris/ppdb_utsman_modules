@@ -216,8 +216,7 @@ if ($formulir[0]->jalur == 1) {
                             </table>
                         </div>
                         <div class="mt-5">
-                            <span class="mt-10 mb-10 text-danger font-size-lg">Mohon lakukan <b>PEMBAYARAN</b> dalam
-                                kurun waktu 1 x 24 jam ke nomor virtual account di bawah ini:</span>
+                            <span class="mt-10 mb-10 text-danger font-size-lg">Mohon lakukan <b>PEMBAYARAN</b> sesuai informasi di bawah ini:</span>
                         </div>
                         <div class="mt-5 px-mobile">
                             <div class="accordion accordion-toggle-arrow" id="accordionExample">

@@ -288,14 +288,25 @@
                             </div>
                         </div>
                         <div class="mt-5">
+                            <?php if($formulir[0]->status_pembayaran==0){?>
                             <span class="mt-10 mb-10 text-danger font-size-lg">Silahkan menunggu informasi dari Sekolah
-                                untuk <b>RINCIAN BIAYA MASUK SEKOLAH</b> dalam kurun waktu 2 x 24 jam, Terima
+                                untuk <b>RINCIAN BIAYA MASUK</b> dalam kurun waktu 2 x 24 jam, Terima
                                 kasih.</span>
+                            <?php } else { ?>
+                            <span class="mt-10 mb-10 text-danger font-size-lg">Biaya Masuk Ananda telah di proses Klik
+                                <b>RINCIAN BIAYA MASUK</b> dibawah ini, Terima
+                                kasih.</span>
+                            <?php } ?>
                         </div>
                         <a href="<?php echo site_url("ppdb/register/logout_formulir"); ?>"
                             class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Keluar</a>
                         </a>
-
+                        <?php if($formulir[0]->status_pembayaran==1){?>
+                        <a href="<?php echo site_url("ppdb/register/status_payment_school_progress/" . paramEncrypt($formulir[0]->nomor_formulir)); ?>"
+                            class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4 mt-8 mt-10">Lihat Biaya
+                            Masuk</a>
+                        </a>
+                        <?php } ?>
                     </div>
                     <!--end::Login Sign in form-->
                 </div>
