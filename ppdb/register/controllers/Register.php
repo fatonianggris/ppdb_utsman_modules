@@ -232,7 +232,7 @@ class Register extends MX_Controller
 
         $check_no = $this->RegisterModel->check_no_formulir($id);
 
-        if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_formulir == 1) {
+        if ($id != null && $id != "" && $check_no != false) {
             $this->load->view('ppdb_view_payment_school', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
@@ -251,7 +251,7 @@ class Register extends MX_Controller
 
         $check_no = $this->RegisterModel->check_no_register($id);
 
-        if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 2 && $check_no[0]->status_pembayaran == 1) {
+        if ($id != null && $id != "" && $check_no != false && $check_no[0]->status_pendaftaran == 2) {
             $this->load->view('ppdb_view_payment_form_progress', $data);
         } else {
             $datas['title'] = 'ERROR | PAGE NOT FOUND';
