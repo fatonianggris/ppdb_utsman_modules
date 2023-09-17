@@ -10,14 +10,14 @@ class Api extends MX_Controller
         parent::__construct();
         //Do your magic here
         $this->load->model('ApiModel');
-		$this->load->library('pdfgenerator');
+        $this->load->library('pdfgenerator');
     }
 
     //
     //-------------------------------DATA AKUN ADMIN------------------------------//
     //
 
-    public function encode()
+    public function test()
     {
         $id = '24001';
 
@@ -25,18 +25,38 @@ class Api extends MX_Controller
         $encryption_iv = rand(1111111111111111, 9999999999999999);
         $encryption_key = openssl_digest(php_uname(), 'MD5', true);
 
-        echo base64_encode($encryption_iv . openssl_encrypt($id, $ciphering, $encryption_key, 0, $encryption_iv));
-    }
+        $id_enc = base64_encode($encryption_iv . openssl_encrypt($id, $ciphering, $encryption_key, 0, $encryption_iv));
 
-    public function decode()
-    {
-        $id = 'NzQ4Njk4ODI4OTYyNzg3NmlRV1R6dWc9';
+        $post = [
+            'nomor_formulir' => $id_enc,
+        ];
 
-        $ciphering = "AES-128-CTR";
-        $encryption_iv = substr(base64_decode($id), 0, 16);
-        $encryption_key = openssl_digest(php_uname(), 'MD5', true);
+        $ch = curl_init('http://[::1]/ppdb/ppdb/api/accept_payment_ppdb');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        // execute!
+        $mh = curl_multi_init();
+        curl_multi_add_handle($mh, $ch);
+        //execute the multi handle
+        $active = null;
+        do {
+            $status = curl_multi_exec($mh, $active);
+            if ($active) {
+                curl_multi_select($mh);
+            }
+        } while ($active && $status == CURLM_OK);
 
-        echo openssl_decrypt(substr(base64_decode($id), 16, 23), $ciphering, $encryption_key, 0, $encryption_iv);
+        // close the connection, release resources used
+        curl_multi_remove_handle($mh, $ch);
+        curl_multi_close($mh);
+        // do anything you want with your response
+        $response = curl_multi_getcontent($ch);
+        $jsonData = substr($response, 1);
+        // Mendekode JSON
+        $data = json_decode($jsonData);
+
+        echo $data->messages;
+
     }
 
     public function accept_payment_ppdb()
@@ -128,7 +148,7 @@ class Api extends MX_Controller
             $output = array("status" => false,
                 "messages" => "Maaf, Data Anda tidak ditemukan!. Silahkan coba lagi.",
             );
-
+            echo json_encode($output);
         } else {
 
             $data['invoice'] = $this->ApiModel->get_formulir_by_number($id);
@@ -142,18 +162,14 @@ class Api extends MX_Controller
                 $output = array("status" => false,
                     "messages" => "Maaf, Anda belum melakukan pembayaran. Silahkan coba lagi.",
                 );
+                echo json_encode($output);
             } else {
 
                 $html = $this->load->view('pdf_template/invoice', $data, true);
                 $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran_ppdb', 0, './uploads/pendaftaran/files/', false);
-
-				$output = array("status" => true,
-				"messages" => "Berhasil, Invoice berhasil dicetak.",
-			);
             }
         }
 
-        echo json_encode($output);
     }
 
     public function send_notification_ppdb($title = '', $content = '', $jenjang = '', $nomor = '', $postlink = '')
