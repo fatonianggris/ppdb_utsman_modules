@@ -366,7 +366,7 @@
 																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																							<tr>
 																								<td class="title center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:27px; line-height:24px; font-weight:bolder;font-style:normal; color:#1BC5BD;text-decoration:none;letter-spacing: 1px;">
-																									SELAMAT!, PEMBAYARAN FORMULIR BERHASIL
+																									SELAMAT!, PEMBAYARAN BIAYA MASUK BERHASIL
 																								</td>
 																							</tr>
 																						</table>
@@ -492,7 +492,7 @@
 																										<tbody>
 																											<tr>
 																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo strtoupper(strtolower($keterangan)); ?>
+																													<?php echo strtoupper(strtolower($formulir[0]->keterangan)); ?>
 																												</td>
 																											</tr>
 																									</table>
@@ -508,35 +508,14 @@
 																						</table>
 																						<!-- space -->
 																						<!-- text -->
-																						<table border="0" width="70%" cellpadding="0" cellspacing="0" align="center" style="width:70%; max-width:70%;">
+																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																							<tr>
-																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																									<table border="2" width="100%" cellpadding="1" cellspacing="1" align="center" style="width:100%; max-width:100%;">
-																										<thead style="background-color: #FFF4DE;">
-																											<tr>
-																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													BUKTI TRANSFER ANDA
-																												</th>
-																											</tr>
-																										</thead>
-																										<tbody>
-																											<tr>
-																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													<img style="display:block;width:100%;width:100%;border:0px;" src="<?php echo base_url() . $formulir[0]->bukti_transfer; ?>" border="0" alt="bukti">
-																												</td>
-																											</tr>
-																									</table>
+																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																									Silahkan cek <strong style="color:#F64E60;">Attachment Email</strong> untuk mendownload <b>Invoice Biaya Masuk</b>.
 																								</td>
 																							</tr>
 																						</table>
 																						<!-- text -->
-																						<!-- space -->
-																						<table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
-																							<tr>
-																								<td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-																							</tr>
-																						</table>
-																						<!-- space -->
 
 																					</td>
 																				</tr>

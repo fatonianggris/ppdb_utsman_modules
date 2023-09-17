@@ -1012,8 +1012,7 @@ class Register extends MX_Controller
         if ($data['register'][0]->status_email == 0) {
             $this->mailer->send($sendmail);
             $this->RegisterModel->update_status_email($id, 1);
-            $this->send_notification('PENDAFTAR BARU', ucwords(strtolower($data['register'][0]->nama_calon_siswa)), $jenjang, $data['register'][0]->nomor_formulir, base_url() . 'ppdb/auth');
-
+         
             echo '1';
         } else {
             echo '0';
@@ -1341,7 +1340,8 @@ class Register extends MX_Controller
             $input = $this->RegisterModel->update_final_register($number, 1);
 
             if ($input == true) {
-                $this->send_notification('PENGISIAN FORMULIR', ucwords(strtolower($data['nama_lengkap'])), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
+				
+                $this->send_notification('PENDAFTAR BARU', ucwords(strtolower($data['nama_lengkap'])), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
                 redirect('ppdb/register/status_register_success/' . paramEncrypt($data['nomor_formulir']));
             } else {
 
@@ -1589,7 +1589,7 @@ class Register extends MX_Controller
 
         //Curl Headers
         $headers = array(
-            "Authorization: Basic " . $key[0]->onesignal_auth_emp . "",
+            "Authorization: Basic " . $key[0]->onesignal_auth_ppdb . "",
             'Content-Type: application/json; charset=utf-8',
         );
 

@@ -122,7 +122,7 @@ class Payment extends MX_Controller
         $data['register'] = $this->PaymentModel->get_formulir_cost_id($id); //?
         $data['password'] = mt_rand(100000, 999999);
 
-        $file = "./uploads/pendaftaran/files/" . $id . "_bukti_invoice_pembayaran.pdf";
+        $file = "./uploads/pendaftaran/files/" . $id . "_bukti_invoice_pembayaran_formulir.pdf";
 
         $subjek = "PEMBAYARAN FORMULIR DITERIMA";
         $content = $this->load->view('mailer_template/confirmed', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
@@ -207,7 +207,7 @@ class Payment extends MX_Controller
             } else {
 
                 $html = $this->load->view('pdf_template/invoice', $data, true);
-                $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran', 0, './uploads/pendaftaran/files/', false);
+                $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran_formulir', 0, './uploads/pendaftaran/files/', false);
             }
         }
     }
@@ -264,7 +264,7 @@ class Payment extends MX_Controller
             } else {
 
                 $html = $this->load->view('pdf_template/invoice', $data, true);
-                $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran', 0, './uploads/pendaftaran/files/', false);
+                $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran_ppdb', 0, './uploads/pendaftaran/files/', false);
             }
         }
     }

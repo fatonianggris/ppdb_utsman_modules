@@ -38,7 +38,7 @@
 				<?php echo $contact[0]->email; ?><br>
 				<?php echo $contact[0]->url_website; ?><br>
 
-				<h3 style="color:#1BC5BD ">INV/PPDB #<?php echo $invoice[0]->nomor_formulir; ?></h3>
+				<h3 style="color:#1BC5BD ">INV/FORMULIR #<?php echo $invoice[0]->nomor_formulir; ?></h3>
 			</td>
 		</tr>
 
