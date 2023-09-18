@@ -294,7 +294,7 @@ if ($formulir[0]->status_pembayaran == 0) {
 								   <?php echo urlencode("\n") ?>
 								   <?php echo urlencode("\n") ?>_Silahkan Kilk link dibawah ini, untuk melihat tata cara pembayaran:_
 								   <?php echo urlencode("\n") ?>
-                                   <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/formulir/status_payment_school_progress/' . paramEncrypt($formulir[0]->nomor_formulir)); ?>*
+                                   <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/register/status_payment_school_progress/' . paramEncrypt($formulir[0]->nomor_formulir)); ?>*
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                    <?php echo urlencode("\n") ?>
