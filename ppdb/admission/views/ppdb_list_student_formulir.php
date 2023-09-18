@@ -358,17 +358,8 @@
                                                     <button class="dropdown-item" role="button" type="submit"><i
                                                             class="flaticon2-checking"></i> Laporan .csv</button>
                                                 </form>
-                                                <form class="form" id="frm-form"
-                                                    action="<?php echo site_url('ppdb/admission/export_student_formulir'); ?>"
-                                                    method="POST">
-                                                    <input type="text" id="id_check_form" class="form-control" value=""
-                                                        name="data_check" style="display:none">
-                                                    <button class="dropdown-item" role="button" type="submit"><i
-                                                            class="flaticon2-box-1"></i> Laporan .pdf</button>
-                                                </form>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
