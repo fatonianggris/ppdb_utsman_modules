@@ -14,50 +14,8 @@ class Api extends MX_Controller
     }
 
     //
-    //-------------------------------DATA AKUN ADMIN------------------------------//
+    //-------------------------------DATA PPDB------------------------------//
     //
-
-    public function test()
-    {
-        $id = '24001';
-
-        $ciphering = "AES-128-CTR";
-        $encryption_iv = rand(1111111111111111, 9999999999999999);
-        $encryption_key = openssl_digest(php_uname(), 'MD5', true);
-
-        $id_enc = base64_encode($encryption_iv . openssl_encrypt($id, $ciphering, $encryption_key, 0, $encryption_iv));
-
-        $post = [
-            'nomor_formulir' => $id_enc,
-        ];
-
-        $ch = curl_init('http://[::1]/ppdb/ppdb/api/accept_payment_ppdb');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-        // execute!
-        $mh = curl_multi_init();
-        curl_multi_add_handle($mh, $ch);
-        //execute the multi handle
-        $active = null;
-        do {
-            $status = curl_multi_exec($mh, $active);
-            if ($active) {
-                curl_multi_select($mh);
-            }
-        } while ($active && $status == CURLM_OK);
-
-        // close the connection, release resources used
-        curl_multi_remove_handle($mh, $ch);
-        curl_multi_close($mh);
-        // do anything you want with your response
-        $response = curl_multi_getcontent($ch);
-        $jsonData = substr($response, 1);
-        // Mendekode JSON
-        $data = json_decode($jsonData);
-
-        echo $data->messages;
-
-    }
 
     public function accept_payment_ppdb()
     {
