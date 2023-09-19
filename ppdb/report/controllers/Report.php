@@ -322,7 +322,7 @@ class Report extends MX_Controller
                 $sheet->setCellValue('AS' . $rowCount, $pendidikan_wali);
                 $sheet->setCellValue('AT' . $rowCount, $penghasilan_wali);
                 $sheet->setCellValue('AU' . $rowCount, $element['jenis_tinggal']);
-                $sheet->setCellValue('AV' . $rowCount, $element['alamat_rumah_kk']);
+                $sheet->setCellValue('AV' . $rowCount, preg_replace('/,/', '.', $element['alamat_rumah_kk']));
                 $sheet->setCellValue('AW' . $rowCount, $element['rt_kk']);
                 $sheet->setCellValue('AX' . $rowCount, $element['rw_kk']);
                 $sheet->setCellValue('AY' . $rowCount, $element['nama_kelurahan_desa_kk']);
@@ -330,7 +330,7 @@ class Report extends MX_Controller
                 $sheet->setCellValue('BA' . $rowCount, $element['nama_kabupaten_kota_kk']);
                 $sheet->setCellValue('BB' . $rowCount, $element['nama_provinsi_kk']);
                 $sheet->setCellValue('BC' . $rowCount, $element['kodepos_kk']);
-                $sheet->setCellValue('BD' . $rowCount, $element['alamat_rumah_dom']);
+                $sheet->setCellValue('BD' . $rowCount, preg_replace('/,/', '.', $element['alamat_rumah_dom']));
                 $sheet->setCellValue('BE' . $rowCount, $element['rt_dom']);
                 $sheet->setCellValue('BF' . $rowCount, $element['rw_dom']);
                 $sheet->setCellValue('BG' . $rowCount, $element['nama_kelurahan_desa_dom']);
@@ -665,7 +665,7 @@ class Report extends MX_Controller
                 $sheet->setCellValue('AS' . $rowCount, $pendidikan_wali);
                 $sheet->setCellValue('AT' . $rowCount, $penghasilan_wali);
                 $sheet->setCellValue('AU' . $rowCount, $element['jenis_tinggal']);
-                $sheet->setCellValue('AV' . $rowCount, $element['alamat_rumah_kk']);
+                $sheet->setCellValue('AV' . $rowCount, preg_replace('/,/', '.', $element['alamat_rumah_kk']));
                 $sheet->setCellValue('AW' . $rowCount, $element['rt_kk']);
                 $sheet->setCellValue('AX' . $rowCount, $element['rw_kk']);
                 $sheet->setCellValue('AY' . $rowCount, $element['nama_kelurahan_desa_kk']);
@@ -673,7 +673,7 @@ class Report extends MX_Controller
                 $sheet->setCellValue('BA' . $rowCount, $element['nama_kabupaten_kota_kk']);
                 $sheet->setCellValue('BB' . $rowCount, $element['nama_provinsi_kk']);
                 $sheet->setCellValue('BC' . $rowCount, $element['kodepos_kk']);
-                $sheet->setCellValue('BD' . $rowCount, $element['alamat_rumah_dom']);
+                $sheet->setCellValue('BD' . $rowCount, preg_replace('/,/', '.', $element['alamat_rumah_dom']));
                 $sheet->setCellValue('BE' . $rowCount, $element['rt_dom']);
                 $sheet->setCellValue('BF' . $rowCount, $element['rw_dom']);
                 $sheet->setCellValue('BG' . $rowCount, $element['nama_kelurahan_desa_dom']);
