@@ -91,10 +91,11 @@ class Payment extends MX_Controller
         $data['title'] = 'Konfirmasi Pembayaran | Uang Masuk PPDB Sekolah Utsman';
         $data['nav_pay'] = 'menu-item-here';
         $data['formulir'] = $this->PaymentModel->get_formulir_by_id($id);
+        $data['potongan'] = $this->PaymentModel->get_discount_rupiah_by_id_form($id);
         $data['cost'] = $this->PaymentModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin);
         $data['voucher'] = $this->PaymentModel->get_all_voucher();
-		$data['bank_account'] = $this->PaymentModel->get_bank_va_account();
-		$data['panduan'] = $this->PaymentModel->get_cost_guide_by_id(1);
+        $data['bank_account'] = $this->PaymentModel->get_bank_va_account();
+        $data['panduan'] = $this->PaymentModel->get_cost_guide_by_id(1);
 
         $this->template->load('template_ppdb/template_ppdb', 'ppdb_view_confirm_bill_ppdb', $data);
     }
@@ -156,8 +157,16 @@ class Payment extends MX_Controller
         $id = $this->input->post('id');
         $data['id_voucher'] = implode(",", $this->input->post('id_voucher'));
         $data['total_biaya'] = $this->input->post('total_biaya');
+        $data['status_potongan'] = $this->input->post('status_potongan');
 
         $id = paramDecrypt($id);
+
+        if ($data['status_potongan'] == 1) {
+            $data['nama_potongan'] = $this->input->post('nama_potongan');
+            $data['total_potongan'] = $this->input->post('total_potongan');
+
+            $this->PaymentModel->insert_discount_rupiahs($id, $data['nama_potongan'], $data['total_potongan']);
+        }
 
         $data['page'] = $this->PaymentModel->get_page();
         $data['contact'] = $this->PaymentModel->get_contact();
@@ -165,6 +174,7 @@ class Payment extends MX_Controller
         $data['formulir'] = $this->PaymentModel->get_formulir_by_id($id); //?
         $data['voucher'] = $this->PaymentModel->get_all_voucher();
         $data['cost'] = $this->PaymentModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin);
+        $data['potongan'] = $this->PaymentModel->get_discount_rupiah_by_id_form($id); //?
 
         $subjek = "RINCIAN TAGIHAN SISWA UTSMAN";
         $content = $this->load->view('mailer_template/payment', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
@@ -176,7 +186,7 @@ class Payment extends MX_Controller
         );
 
         if ($data['formulir'][0]->status_pembayaran == 0) {
-            $this->PaymentModel->update_status_payment_formulir($id, $data['id_voucher'], $data['total_biaya'], 1);
+            $this->PaymentModel->update_status_payment_formulir($id, $data['id_voucher'], $data['total_biaya'], $data['status_potongan'], 1);
 
             $this->mailer->send($sendmail);
             echo '1';

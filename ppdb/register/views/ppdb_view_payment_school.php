@@ -476,10 +476,10 @@ if ($formulir[0]->jalur == 1) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-									if (!empty($cost)) {
-										foreach ($cost as $key => $value) {
-											?>
+					<?php
+						if (!empty($cost)) {
+							foreach ($cost as $key => $value) {
+								?>
                                 <tr>
                                     <td class="font-weight-bold font-size-sm">
                                         <?php echo ucwords(strtolower($value->nama_biaya)); ?></td>
@@ -501,28 +501,40 @@ if ($formulir[0]->jalur == 1) {
                                     </td>
                                     <td class="table-center font-size-sm">
                                         <?php
-$stat = false;
-        if (!empty($voucher)) {
-            foreach ($voucher as $key => $value_v) {
-                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                    $id_array_voucher = explode(',', $formulir[0]->id_voucher);
-                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                        echo number_format(($value->nominal) - ($value->nominal * $value_v->potongan / 100), 0, ',', '.');
-                        $stat = true;
-                    }
-                }
-            } //ngatur nomor urut
-        }
-        if ($stat == false) {
-            echo number_format($value->nominal, 0, ',', '.');
-        }
-        ?>
-                                    </td>
-                                </tr>
-                                <?php
-} //ngatur nomor urut
-}
-?>
+										$stat = false;
+												if (!empty($voucher)) {
+													foreach ($voucher as $key => $value_v) {
+														if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+															$id_array_voucher = explode(',', $formulir[0]->id_voucher);
+															if (in_array($value_v->id_voucher, $id_array_voucher)) {
+																echo number_format(($value->nominal) - ($value->nominal * $value_v->potongan / 100), 0, ',', '.');
+																$stat = true;
+															}
+														}
+													} //ngatur nomor urut
+												}
+												if ($stat == false) {
+													echo number_format($value->nominal, 0, ',', '.');
+												}
+												?>
+									</td>
+								</tr>
+							<?php
+								} //ngatur nomor urut
+							}
+						?>
+							<?php if ($formulir[0]->status_potongan == 1){ ?>   
+								<tr>
+									<td>
+									</td>
+									<td colspan="2" class="table-center font-size-sm font-weight-bolder text-danger text-right">
+                                    	<?php echo strtoupper($potongan[0]->nama_potongan); ?>
+									</td>
+									<td class="table-center font-size-sm font-weight-bolder text-danger">
+                                    	-<?php echo $potongan[0]->nominal_potongan; ?>
+									</td>
+								</tr>
+							<?php } ?>
                             </tbody>
                         </table>
                         <div class="text-center">

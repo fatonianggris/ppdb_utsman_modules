@@ -441,7 +441,19 @@
                                                                                                                         <?php
                                                                                                                     }  //ngatur nomor urut
                                                                                                                 }
-                                                                                                                ?>       
+                                                                                                                ?>     
+																												<?php if ($status_potongan == 1){ ?>   
+																													<tr>
+																														<td>
+																														</td>
+																														<td colspan="2" class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">                                                     
+																															<?php echo strtoupper($nama_potongan); ?>
+																														</td>
+																														<td class="text center-text" valign="middle" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">                                                     
+																															-<?php echo $total_potongan; ?>
+																														</td>
+																													</tr>
+																												<?php } ?>
                                                                                                             </tbody>
                                                                                                         </table>
                                                                                                     </td>
@@ -459,7 +471,7 @@
                                                                                             <table  border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
                                                                                                 <tr> 
                                                                                                     <td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:16px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																									Silahakan Melakukan Pembayaran Sejumlah:
+																									Silahkan Melakukan Pembayaran Sejumlah:
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             </table>
@@ -481,7 +493,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <!-- text -->    
-																							                                                                                 
+
                                                                                             <!-- space -->
                                                                                             <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
                                                                                                 <tr>

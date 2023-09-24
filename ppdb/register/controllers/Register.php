@@ -229,6 +229,7 @@ class Register extends MX_Controller
         $data['voucher'] = $this->RegisterModel->get_all_voucher();
         $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin, 2);
         $data['bank_account'] = $this->RegisterModel->get_bank_va_account();
+		$data['potongan'] = $this->RegisterModel->get_discount_rupiah_by_id_form($data['formulir'][0]->id_formulir);
 
         $check_no = $this->RegisterModel->check_no_formulir($id);
 

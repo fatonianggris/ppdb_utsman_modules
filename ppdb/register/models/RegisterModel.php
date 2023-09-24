@@ -15,6 +15,7 @@ class RegisterModel extends CI_Model
     private $table_voucher = 'voucher';
     private $table_schedule = 'jadwal_ppdb';
     private $table_third_party = 'third_party_ppdb';
+	private $table_discount_rupiah = 'potongan_rupiah';
 
     public function get_third_party_key()
     {
@@ -34,6 +35,7 @@ class RegisterModel extends CI_Model
         $sql = $this->db->get($this->table_schedule);
         return $sql->result();
     }
+
 
     public function get_email_ppdb($email = '')
     {
@@ -71,6 +73,15 @@ class RegisterModel extends CI_Model
         $this->db->where('nomor_formulir', $id);
 
         $sql = $this->db->get($this->table_formulir);
+        return $sql->result();
+    }
+
+	public function get_discount_rupiah_by_id_form($id = '')
+    {
+        $this->db->select("*");
+        $this->db->where('id_formulir', $id);
+
+        $sql = $this->db->get($this->table_discount_rupiah);
         return $sql->result();
     }
 

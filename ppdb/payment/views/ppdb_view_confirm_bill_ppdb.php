@@ -130,20 +130,20 @@
                                                         <!--end::Svg Icon-->
                                                     </span>
                                                     <?php
-if ($formulir[0]->level_tingkat == 1) {
-    echo 'KB';
-} else if ($formulir[0]->level_tingkat == 2) {
-    echo 'TK';
-} else if ($formulir[0]->level_tingkat == 3) {
-    echo 'SD';
-} else if ($formulir[0]->level_tingkat == 4) {
-    echo 'SMP';
-} else if ($formulir[0]->level_tingkat == 5) {
-    echo 'KB-TK';
-} else if ($formulir[0]->level_tingkat == 6) {
-    echo 'DC';
-}
-?>
+													if ($formulir[0]->level_tingkat == 1) {
+														echo 'KB';
+													} else if ($formulir[0]->level_tingkat == 2) {
+														echo 'TK';
+													} else if ($formulir[0]->level_tingkat == 3) {
+														echo 'SD';
+													} else if ($formulir[0]->level_tingkat == 4) {
+														echo 'SMP';
+													} else if ($formulir[0]->level_tingkat == 5) {
+														echo 'KB-TK';
+													} else if ($formulir[0]->level_tingkat == 6) {
+														echo 'DC';
+													}
+													?>
                                                 </a>
                                                 <a href="#"
                                                     class="text-success text-hover-primary font-weight-bold mr-lg-2 mr-5 mb-lg-0 mb-2">
@@ -166,12 +166,12 @@ if ($formulir[0]->level_tingkat == 1) {
                                                         <!--end::Svg Icon-->
                                                     </span>
                                                     <?php
-if ($formulir[0]->jalur == 1) {
-    echo 'REGULER';
-} else if ($formulir[0]->jalur == 2) {
-    echo 'ICP';
-}
-?>
+														if ($formulir[0]->jalur == 1) {
+															echo 'REGULER';
+														} else if ($formulir[0]->jalur == 2) {
+															echo 'ICP';
+														}
+														?>
                                                 </a>
                                                 <a href="#"
                                                     class="text-success text-hover-primary font-weight-bold mr-lg-2 mr-5 mb-lg-0 mb-2">
@@ -241,29 +241,29 @@ if ($formulir[0]->jalur == 1) {
                     <div class="card card-custom mb-10">
                         <div class="text-center mb-5 mt-5">
                             <?php
-$program = '';
-$jenjang = '';
-if ($formulir[0]->jalur == 1) {
-    $program = 'REGULER';
-} else if ($formulir[0]->jalur == 2) {
-    $program = 'ICP';
-}
+							$program = '';
+							$jenjang = '';
+							if ($formulir[0]->jalur == 1) {
+								$program = 'REGULER';
+							} else if ($formulir[0]->jalur == 2) {
+								$program = 'ICP';
+							}
 
-if ($formulir[0]->level_tingkat == 1) {
-    $jenjang = 'KB';
-} else if ($formulir[0]->level_tingkat == 2) {
-    $jenjang = 'TK';
-} else if ($formulir[0]->level_tingkat == 3) {
-    $jenjang = 'SD';
-} else if ($formulir[0]->level_tingkat == 4) {
-    $jenjang = 'SMP';
-} else if ($formulir[0]->level_tingkat == 5) {
-    $jenjang = 'KB-TK';
-} else if ($formulir[0]->level_tingkat == 6) {
-    $jenjang = 'DC';
-}
-if ($formulir[0]->status_pembayaran == 0) {
-    ?>
+							if ($formulir[0]->level_tingkat == 1) {
+								$jenjang = 'KB';
+							} else if ($formulir[0]->level_tingkat == 2) {
+								$jenjang = 'TK';
+							} else if ($formulir[0]->level_tingkat == 3) {
+								$jenjang = 'SD';
+							} else if ($formulir[0]->level_tingkat == 4) {
+								$jenjang = 'SMP';
+							} else if ($formulir[0]->level_tingkat == 5) {
+								$jenjang = 'KB-TK';
+							} else if ($formulir[0]->level_tingkat == 6) {
+								$jenjang = 'DC';
+							}
+							if ($formulir[0]->status_pembayaran == 0) {
+								?>
                             <button
                                 onclick="act_confirm_bill_ppdb('<?php echo paramEncrypt($formulir[0]->id_formulir); ?>', '<?php echo strtoupper($formulir[0]->nama_lengkap); ?>')"
                                 class="btn btn-warning btn-sm font-weight-bold px-8 py-4 my-3 mx-4 mt-12 mb-13"><i
@@ -303,8 +303,8 @@ if ($formulir[0]->status_pembayaran == 0) {
                                     class="fab fa-whatsapp"></i> Kirim WA</a>
 
                             <?php
-}
-?>
+								}
+								?>
                         </div>
                     </div>
                 </div>
@@ -359,32 +359,32 @@ if ($formulir[0]->status_pembayaran == 0) {
                                                     <span
                                                         class="label label-md font-weight-boldest label-primary label-inline">
                                                         <?php
-if ($formulir[0]->level_tingkat == 1) {
-    echo 'KB';
-} else if ($formulir[0]->level_tingkat == 2) {
-    echo 'TK';
-} else if ($formulir[0]->level_tingkat == 3) {
-    echo 'SD';
-} else if ($formulir[0]->level_tingkat == 4) {
-    echo 'SMP';
-} else if ($formulir[0]->level_tingkat == 5) {
-    echo 'KB-TK';
-} else if ($formulir[0]->level_tingkat == 6) {
-    echo 'DC';
-}
-?>
+												if ($formulir[0]->level_tingkat == 1) {
+													echo 'KB';
+												} else if ($formulir[0]->level_tingkat == 2) {
+													echo 'TK';
+												} else if ($formulir[0]->level_tingkat == 3) {
+													echo 'SD';
+												} else if ($formulir[0]->level_tingkat == 4) {
+													echo 'SMP';
+												} else if ($formulir[0]->level_tingkat == 5) {
+													echo 'KB-TK';
+												} else if ($formulir[0]->level_tingkat == 6) {
+													echo 'DC';
+												}
+												?>
                                                     </span>
                                                 </td>
                                                 <td class="table-center font-size-sm">
                                                     <span
                                                         class="label label-md font-weight-boldest label-default label-inline">
                                                         <?php
-if ($formulir[0]->jalur == 1) {
-    echo 'REGULER';
-} elseif ($formulir[0]->jalur == 2) {
-    echo 'ICP';
-}
-?>
+														if ($formulir[0]->jalur == 1) {
+															echo 'REGULER';
+														} elseif ($formulir[0]->jalur == 2) {
+															echo 'ICP';
+														}
+														?>
                                                     </span>
                                                 </td>
                                                 <td class="table-center font-size-sm font-weight-bold">
@@ -421,16 +421,16 @@ if ($formulir[0]->jalur == 1) {
                                         </thead>
                                         <tbody>
                                             <?php
-$disable = "";
+											$disable = "";
 
-if ($formulir[0]->status_pembayaran == 0) {
-    $disable = "";
-} else {
-    $disable = "disabled";
-}
-if (!empty($cost)) {
-    foreach ($cost as $key => $value) {
-        ?>
+											if ($formulir[0]->status_pembayaran == 0) {
+												$disable = "";
+											} else {
+												$disable = "disabled";
+											}
+											if (!empty($cost)) {
+												foreach ($cost as $key => $value) {
+													?>
                                             <tr>
                                                 <td>
                                                     <span
@@ -443,29 +443,29 @@ if (!empty($cost)) {
                                                         <?php echo $disable; ?>>
                                                         <option value="">Pilih Voucher</option>
                                                         <?php
-if (!empty($voucher)) {
-            foreach ($voucher as $key => $value_v) {
-                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                    $id_array_voucher = explode(',', $formulir[0]->id_voucher);
-                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                        ?>
+														if (!empty($voucher)) {
+																	foreach ($voucher as $key => $value_v) {
+																		if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+																			$id_array_voucher = explode(',', $formulir[0]->id_voucher);
+																			if (in_array($value_v->id_voucher, $id_array_voucher)) {
+																				?>
                                                         <option selected="selected"
                                                             value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
                                                             <?php echo $value_v->kode_voucher; ?></option>
                                                         <?php
-} else {
-                        if ($value_v->terpakai < $value_v->jumlah_voucher) {
-                            ?>
+															} else {
+																	if ($value_v->terpakai < $value_v->jumlah_voucher) {
+																		?>
                                                         <option
                                                             value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
                                                             <?php echo $value_v->kode_voucher; ?></option>
                                                         <?php
-}
-                    }
-                }
-            } //ngatur nomor urut
-        }
-        ?>
+																	}
+																}
+															}
+														} //ngatur nomor urut
+													}
+													?>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -487,9 +487,53 @@ if (!empty($voucher)) {
                                                 </td>
                                             </tr>
                                             <?php
-} //ngatur nomor urut
-}
-?>
+												} //ngatur nomor urut
+											}
+											?>
+                                            <tr>
+                                                <td>
+                                                    <span class="switch switch-lg switch-icon pl-3">
+                                                        <label>
+                                                            <?php if (@$formulir[0]->status_potongan == "" or @$formulir[0]->status_potongan == null or @$formulir[0]->status_potongan == 0) {?>
+                                                            <input type="checkbox" id="potongan_rupiah"
+                                                                name="status_potongan" value="1">
+                                                            <span></span>
+                                                            <?php } else if (@$formulir[0]->status_potongan == 1) {?>
+                                                            <input type="checkbox" id="potongan_rupiah" checked disabled
+                                                                name="status_potongan" value="1">
+                                                            <span></span>
+                                                            <?php }?>
+                                                        </label>
+                                                        <label class="pl-2 font-weight-bold">Aktifkan Potongan
+                                                            Rupiah?</label>
+                                                    </span>
+                                                </td>
+                                                <td></td>
+                                                <td colspan="2" class="text-right font-weight-bolder">TOTAL SETELAH
+                                                    DIPOTONG VOUCHER</td>
+                                                <td>
+                                                    <input id="total_biaya_voucher" readonly="" type="text"
+                                                        class="form-control font-weight-boldest form-control-lg" />
+                                                </td>
+                                            </tr>
+                                            <tr id="tr_potongan_rupiah">
+                                                <td>
+                                                </td>
+                                                <td colspan="3">
+                                                    <input placeholder="Masukan Nama Potongan Rupiah" type="text"
+                                                        <?php echo $disable; ?> id="nama_potongan_langsung"
+                                                        name="nama_potongan" required
+                                                        value="<?php echo @$formulir[0]->status_potongan == 1 ? $potongan[0]->nama_potongan :'' ?>"
+                                                        class="biaya form-control font-weight-bolder form-control-md text-right text-danger" />
+                                                </td>
+                                                <td>
+                                                    <input placeholder="Masukan Nominal" id="nominal_potongan_langsung"
+                                                        <?php echo $disable; ?> type="text"
+                                                        name="total_potongan_langsung" required
+                                                        value="<?php echo @$formulir[0]->status_potongan == 1 ? $potongan[0]->nominal_potongan :'0' ?>"
+                                                        class="biaya form-control font-weight-boldest form-control-md text-danger" />
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -573,8 +617,9 @@ $(document).ready(function() {
         $('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(
             nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
         $('#id_voucher<?php echo $value_s->id_biaya; ?> option:not(:selected)').prop('false', true);
-        get_total();
+        get_total_voucher();
         get_voucher();
+        get_total();
     }
 
     $("#id_voucher<?php echo $value_s->id_biaya; ?>").change(function() {
@@ -597,24 +642,56 @@ $(document).ready(function() {
             $('#subtotal<?php echo $value_s->id_biaya; ?>').val($(
                 "#nominal<?php echo $value_s->id_biaya ?>").val());
         }
-        get_total();
+        get_total_voucher();
         get_voucher();
+        get_total();
     });
 
 });
 </script>
 <?php
-} //ngatur nomor urut
+	} //ngatur nomor urut
 }
 ?>
 
 <script>
-var url = "<?php echo site_url('ppdb/admission/add_ajax_class/' . $formulir[0]->level_tingkat); ?>";
-$('#kelas').load(url);
+var result_style = document.getElementById('tr_potongan_rupiah').style;
+var status_potongan = "<?php echo @$formulir[0]->status_potongan; ?>";
+
+if (<?php echo $formulir[0]->status_potongan; ?> == 1) {
+    result_style.display = 'table-row';
+} else {
+    result_style.display = 'none';
+}
+
+$('#potongan_rupiah').on('change', function() { // on change of state
+    if (this.checked) // if changed state is "CHECKED"
+    {
+        result_style.display = 'table-row';
+        document.getElementById("nama_potongan_langsung").disabled = false;
+        document.getElementById("nominal_potongan_langsung").disabled = false;
+        document.getElementById("nominal_potongan_langsung").value = 0;
+        status_potongan = '1'
+
+        get_total();
+    } else {
+        result_style.display = 'none';
+        document.getElementById("nama_potongan_langsung").disabled = true;
+        document.getElementById("nominal_potongan_langsung").disabled = true;
+        document.getElementById("nominal_potongan_langsung").value = 0;
+        status_potongan = '0';
+
+        get_total();
+    }
+})
+
+$("#nominal_potongan_langsung").on('change keydown paste input', function() {
+    get_total();
+});
 
 var t_biaya = document.getElementById('total_biaya');
 
-function get_total() {
+function get_total_voucher() {
 
     var nomArray = new Array();
     $("input[name=subtotal]").each(function() {
@@ -626,8 +703,16 @@ function get_total() {
         sum += parseFloat(this) || 0;
     });
 
-    t_biaya.innerHTML = "Rp. " + number_format(sum, 0, ',', '.');
-    return number_format(sum, 0, ',', '.');
+    $('#total_biaya_voucher').val(number_format(sum, 0, ',', '.'));
+    return sum;
+}
+
+function get_total() {
+    var nominal_potongan_langsung = $('#nominal_potongan_langsung').val().split(".").join("");
+    var total = parseInt(get_total_voucher()) - parseInt(nominal_potongan_langsung);
+    t_biaya.innerHTML = "Rp. " + number_format(total, 0, ',', '.');
+
+    return number_format(total, 0, ',', '.');
 }
 
 function get_voucher() {
@@ -658,71 +743,151 @@ number_format = function(number, decimals, dec_point, thousands_sep) {
     return x1 + x2;
 };
 
+get_total_voucher();
 get_total();
-</script>
-<script>
+
 function act_confirm_bill_ppdb(id, nama_siswa) {
     var nomor_formulir = "<?php echo $formulir[0]->nomor_formulir; ?>";
-    var total_tagihan = get_total();
+    var nominal_potongan_langsung = $('#nominal_potongan_langsung').val();
+    var nama_potongan = $('#nama_potongan_langsung').val();
+    var total_biaya = get_total();
 
     var csrfName = $('.txt_csrfname').attr('name');
     var csrfHash = $('.txt_csrfname').val(); // CSRF hash
     //alert(get_voucher());
-    Swal.fire({
-        title: "Peringatan!",
-        text: "",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#1BC5BD",
-        confirmButtonText: "Ya, Setuju!",
-        cancelButtonText: "Tidak, Batal!",
-        showLoaderOnConfirm: true,
-        closeOnConfirm: false,
-        closeOnCancel: true,
-        html: "Apakah anda yakin ingin MENYETUJUI Tagihan Pembayaran atas nama '<b>" +
-            nama_siswa + "</b>' <b>(" + nomor_formulir + ")</b> dengan Total Tagihan <b>(Rp. " + total_tagihan +
-            ")</b> ? <br></br> <div id='recaptcha_confirm'></div>",
-        didOpen: () => {
-            grecaptcha.render('recaptcha_confirm', {
-                'sitekey': '6LcUwakcAAAAAApKwPCj1lsgVOlmtv-uJzSuxyGG'
-            })
-        },
-        preConfirm: function() {
-            if (grecaptcha.getResponse().length === 0) {
-                Swal.showValidationMessage(`Silahkan centang reCaptcha terlebih dahulu`)
-            } else {
-                return $.ajax({
-                    type: "post",
-                    url: "<?php echo site_url("/ppdb/payment/accept_bill_ppdb") ?>",
-                    data: {
-                        id: id,
-                        id_voucher: get_voucher(),
-                        total_biaya: total_tagihan,
-                        [csrfName]: csrfHash
-                    },
-                    dataType: 'html',
-                    success: function(result) {
-                        Swal.fire("Dikonfirmasi!",
-                            "Penagihan Pembayaran Biaya Masuk Atas Nama '" + nama_siswa +
-                            "' telah dikirimkan.", "success");
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000);
-                    },
-                    error: function(result) {
-                        console.log(result);
-                        Swal.fire("Opsss!", "Koneksi Internet Bermasalah.", "error");
+    if (status_potongan == '1') {
+        if (nominal_potongan_langsung !== "" && nominal_potongan_langsung !== 0 && nama_potongan !== "" && total_biaya
+            .split(".").join("") > 0) {
+            Swal.fire({
+                title: "Peringatan!",
+                text: "",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1BC5BD",
+                confirmButtonText: "Ya, Setuju!",
+                cancelButtonText: "Tidak, Batal!",
+                showLoaderOnConfirm: true,
+                closeOnConfirm: false,
+                closeOnCancel: true,
+                width: '600px',
+                html: "Apakah anda yakin ingin MENYETUJUI Tagihan Pembayaran atas nama '<b>" +
+                    nama_siswa + "</b>' <b>(" + nomor_formulir + ")</b> dengan Total Tagihan <b>(Rp. " +
+                    total_biaya +
+                    ")</b> + Potonngan Rupiah Sebesar <b>(Rp. " + nominal_potongan_langsung +
+                    ")? <br></br> <div id='recaptcha_confirm'></div>",
+                didOpen: () => {
+                    grecaptcha.render('recaptcha_confirm', {
+                        'sitekey': '<?php echo $this->config->item('google_site_key');?>'
+                    })
+                },
+                preConfirm: function() {
+                    if (grecaptcha.getResponse().length === 0) {
+                        Swal.showValidationMessage(`Silahkan centang reCaptcha terlebih dahulu`)
+                    } else {
+                        return $.ajax({
+                            type: "post",
+                            url: "<?php echo site_url("/ppdb/payment/accept_bill_ppdb") ?>",
+                            data: {
+                                id: id,
+                                id_voucher: get_voucher(),
+                                total_biaya: total_biaya,
+                                status_potongan: status_potongan,
+                                nama_potongan: nama_potongan,
+                                total_potongan: nominal_potongan_langsung,
+                                [csrfName]: csrfHash
+                            },
+                            dataType: 'html',
+                            success: function(result) {
+                                Swal.fire("Dikonfirmasi!",
+                                    "Penagihan Pembayaran Biaya Masuk Atas Nama '" +
+                                    nama_siswa +
+                                    "' telah dikirimkan.", "success");
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function(result) {
+                                console.log(result);
+                                Swal.fire("Opsss!", "Koneksi Internet Bermasalah.", "error");
+                            }
+                        });
                     }
-                });
-            }
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-    }).then(function(result) {
-        if (!result.isConfirm) {
-            Swal.fire("Dibatalkan!", "Penagihan Pembayaran Biaya Masuk Atas Nama '" + nama_siswa +
-                "' dibatalkan.",
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then(function(result) {
+                if (!result.isConfirm) {
+                    Swal.fire("Dibatalkan!", "Penagihan Pembayaran Biaya Masuk Atas Nama '" + nama_siswa +
+                        "' dibatalkan.",
+                        "error");
+                }
+            });
+        } else {
+            Swal.fire("Opsss!",
+                "Inputan tidak boleh kosong/nol dan total biaya tidak boleh minus, Periksa kembali inputan Anda.",
                 "error");
         }
-    });
+    } else {
+        Swal.fire({
+            title: "Peringatan!",
+            text: "",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#1BC5BD",
+            confirmButtonText: "Ya, Setuju!",
+            cancelButtonText: "Tidak, Batal!",
+            showLoaderOnConfirm: true,
+            closeOnConfirm: false,
+            closeOnCancel: true,
+            html: "Apakah anda yakin ingin MENYETUJUI Tagihan Pembayaran atas nama '<b>" +
+                nama_siswa + "</b>' <b>(" + nomor_formulir + ")</b> dengan Total Tagihan <b>(Rp. " +
+                total_biaya +
+                ")</b> ? <br></br> <div id='recaptcha_confirm'></div>",
+            didOpen: () => {
+                grecaptcha.render('recaptcha_confirm', {
+                    'sitekey': '<?php echo $this->config->item('google_site_key');?>'
+                })
+            },
+            preConfirm: function() {
+                if (grecaptcha.getResponse().length === 0) {
+                    Swal.showValidationMessage(`Silahkan centang reCaptcha terlebih dahulu`)
+                } else {
+                    return $.ajax({
+                        type: "post",
+                        url: "<?php echo site_url("/ppdb/payment/accept_bill_ppdb") ?>",
+                        data: {
+                            id: id,
+                            id_voucher: get_voucher(),
+                            total_biaya: total_biaya,
+                            status_potongan: status_potongan,
+                            [csrfName]: csrfHash
+                        },
+                        dataType: 'html',
+                        success: function(result) {
+                            Swal.fire("Dikonfirmasi!",
+                                "Penagihan Pembayaran Biaya Masuk Atas Nama '" +
+                                nama_siswa +
+                                "' telah dikirimkan.", "success");
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        },
+                        error: function(result) {
+                            console.log(result);
+                            Swal.fire("Opsss!", "Koneksi Internet Bermasalah.", "error");
+                        }
+                    });
+                }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then(function(result) {
+            if (!result.isConfirm) {
+                Swal.fire("Dibatalkan!", "Penagihan Pembayaran Biaya Masuk Atas Nama '" + nama_siswa +
+                    "' dibatalkan.",
+                    "error");
+            }
+        });
+    }
+
+
 }
 </script>

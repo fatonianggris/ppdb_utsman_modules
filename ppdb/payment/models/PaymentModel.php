@@ -11,7 +11,8 @@ class PaymentModel extends CI_Model
     private $table_contact = 'kontak';
     private $table_bank_account = 'alat_bayar';
     private $table_school_year = 'tahun_ajaran';
-	private $table_cost_guide = 'panduan_biaya';
+    private $table_cost_guide = 'panduan_biaya';
+    private $table_discount_rupiah = 'potongan_rupiah';
 
     public function get_formulir_confirm()
     {
@@ -157,13 +158,21 @@ class PaymentModel extends CI_Model
         return $sql->result();
     }
 
-	
-	public function get_cost_guide_by_id($id = '')
+    public function get_cost_guide_by_id($id = '')
     {
         $this->db->select("*");
         $this->db->where('id_panduan_biaya', $id);
 
         $sql = $this->db->get($this->table_cost_guide);
+        return $sql->result();
+    }
+
+    public function get_discount_rupiah_by_id_form($id = '')
+    {
+        $this->db->select("*");
+        $this->db->where('id_formulir', $id);
+
+        $sql = $this->db->get($this->table_discount_rupiah);
         return $sql->result();
     }
 
@@ -285,6 +294,27 @@ class PaymentModel extends CI_Model
         return $sql->result();
     }
 
+    public function insert_discount_rupiahs($id_form = '', $name = '', $nominal = '')
+    {
+        $this->db->trans_begin();
+
+        $data = array(
+
+            'id_formulir' => $id_form,
+            'nama_potongan' => $name,
+            'nominal_potongan' => $nominal,
+        );
+
+        $this->db->insert($this->table_discount_rupiah, $data);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
     public function insert_to_formulir($value = '', $password = '')
     {
         $this->db->trans_begin();
@@ -372,14 +402,15 @@ class PaymentModel extends CI_Model
         }
     }
 
-    public function update_status_payment_formulir($id = '', $id_voucher = '', $total_biaya = '', $status = '')
+    public function update_status_payment_formulir($id = '', $id_voucher = '', $total_biaya = '', $status_potongan = '', $status_bayar = '')
     {
         $this->db->trans_begin();
 
         $data = array(
             'id_voucher' => $id_voucher,
             'total_biaya' => $total_biaya,
-            'status_pembayaran' => $status,
+            'status_potongan' => $status_potongan,
+			'status_pembayaran' => $status_bayar,
             'updated_at' => date("Y-m-d H:i:s"),
         );
 

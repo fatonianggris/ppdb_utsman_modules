@@ -1705,20 +1705,20 @@ if (!empty($provinsi)) {
                                                                                 value="<?php echo @$register[0]->jenis_tinggal; ?>"
                                                                                 selected>
                                                                                 <?php
-if ($register[0]->jenis_tinggal == 1) {
-    echo 'Bersama Orangtua';
-} else if ($register[0]->jenis_tinggal == 2) {
-    echo 'Asrama';
-} else if ($register[0]->jenis_tinggal == 3) {
-    echo 'Kos';
-} else if ($register[0]->jenis_tinggal == 4) {
-    echo 'Bersama Nenek/Kakek';
-} else if ($register[0]->jenis_tinggal == 5) {
-    echo 'Bersama Wali';
-} else if ($register[0]->jenis_tinggal == 6) {
-    echo 'Lainnya';
-}
-    ?>
+																					if ($register[0]->jenis_tinggal == 1) {
+																						echo 'Bersama Orangtua';
+																					} else if ($register[0]->jenis_tinggal == 2) {
+																						echo 'Asrama';
+																					} else if ($register[0]->jenis_tinggal == 3) {
+																						echo 'Kos';
+																					} else if ($register[0]->jenis_tinggal == 4) {
+																						echo 'Bersama Nenek/Kakek';
+																					} else if ($register[0]->jenis_tinggal == 5) {
+																						echo 'Bersama Wali';
+																					} else if ($register[0]->jenis_tinggal == 6) {
+																						echo 'Lainnya';
+																					}
+																						?>
                                                                             </option>
                                                                             <?php }?>
                                                                             <option value="1">Bersama Orangtua</option>
