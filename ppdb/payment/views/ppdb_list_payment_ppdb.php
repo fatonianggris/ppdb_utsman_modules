@@ -290,7 +290,8 @@
 												</td>
 												<td><b><?php echo $value->nomor_handphone; ?></b></td>
 												<td>
-													<?php echo ($value->keterangan); ?>
+													<?php $ket_arr = explode(',', $value->keterangan);
+												  			echo $ket_arr[0]; ?>
 												</td>
 												<td>
 													<?php echo $value->tahun_ajaran; ?>
