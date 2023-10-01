@@ -123,10 +123,12 @@
             <tr>
                 <td>
                 </td>
-                <td colspan="2" align="right">
+				<td>
+                </td>
+                <td colspan="2" align="right" style="color:#F64E60; font-weight:bold;">
                     <?php echo strtoupper($potongan[0]->nama_potongan); ?>
                 </td>
-                <td align="right">
+                <td align="right" style="color:#F64E60; font-weight:bold;">
                     -<?php echo $potongan[0]->nominal_potongan; ?>
                 </td>
             </tr>
@@ -149,8 +151,9 @@
         </thead>
         <tbody>
             <tr>
-                <td align="left" style="color:#1BC5BD; font-size: medium">
-                    <b><?php echo strtoupper($invoice[0]->keterangan); ?></b></td>
+                <td align="left" style="color:#F64E60; font-size: medium">
+                    <i><b><?php echo strtoupper($invoice[0]->keterangan); ?></b></i>
+				</td>
             </tr>
             <tr>
                 <td align="left" style="color:#F64E60"> </td>
