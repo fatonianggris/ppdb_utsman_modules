@@ -185,7 +185,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="card card-custom mb-10">
 						<div class="card-body py-4 mt-4 mb-3">
-							<h3 class="card-label text-dark font-weight-bolder">STATUS PENERIMAAAN</h3>
+							<h3 class="card-label text-dark font-weight-bolder text-center">STATUS PENERIMAAAN</h3>
 							<div class="d-flex flex-lg-grow-1 justify-content-lg-center mt-5 text-center">
 
 								<?php if ($student[0]->status_penerimaan == 0) { ?>

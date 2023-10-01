@@ -218,7 +218,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card card-custom mb-10">
                         <div class="card-body py-4 mt-4 mb-3">
-                            <h3 class="card-label text-dark font-weight-bolder">STATUS TAGIHAN</h3>
+                            <h3 class="card-label text-dark font-weight-bolder text-center">STATUS TAGIHAN</h3>
                             <div class="d-flex flex-lg-grow-1 justify-content-lg-center mt-5 text-center">
 
                                 <?php if ($formulir[0]->status_pembayaran == 0) {?>
@@ -495,11 +495,11 @@
                                                     <span class="switch switch-lg switch-icon pl-3">
                                                         <label>
                                                             <?php if (@$formulir[0]->status_potongan == "" or @$formulir[0]->status_potongan == null or @$formulir[0]->status_potongan == 0) {?>
-                                                            <input type="checkbox" id="potongan_rupiah"
+                                                            <input type="checkbox" id="potongan_rupiah" <?php echo $disable; ?>
                                                                 name="status_potongan" value="1">
                                                             <span></span>
                                                             <?php } else if (@$formulir[0]->status_potongan == 1) {?>
-                                                            <input type="checkbox" id="potongan_rupiah" checked disabled
+                                                            <input type="checkbox" id="potongan_rupiah" checked <?php echo $disable; ?>
                                                                 name="status_potongan" value="1">
                                                             <span></span>
                                                             <?php }?>
