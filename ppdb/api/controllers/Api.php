@@ -91,7 +91,7 @@ class Api extends MX_Controller
         } else {
 
             $output = array("status" => false,
-                "messages" => "Maaf, Anda belum melakukan pembayaran. Silahkan coba lagi.as",
+                "messages" => "Maaf, Anda belum melakukan pembayaran. Silahkan coba lagi.",
             );
         }
 
