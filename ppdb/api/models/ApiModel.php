@@ -9,6 +9,7 @@ class ApiModel extends CI_Model
     private $table_present_config = 'absen_config';
     private $table_present_emp = 'absensi_pegawai';
     private $table_schoolyear = 'tahun_ajaran';
+	private $table_discount_rupiah = 'potongan_rupiah';
 
     //
     //-------------------------------AUTH------------------------------//
@@ -71,6 +72,15 @@ class ApiModel extends CI_Model
         $this->db->order_by('f.inserted_at', 'ASC');
 
         $sql = $this->db->get();
+        return $sql->result();
+    }
+
+	public function get_discount_rupiah_by_id_form($id = '')
+    {
+        $this->db->select("*");
+        $this->db->where('id_formulir', $id);
+
+        $sql = $this->db->get($this->table_discount_rupiah);
         return $sql->result();
     }
 

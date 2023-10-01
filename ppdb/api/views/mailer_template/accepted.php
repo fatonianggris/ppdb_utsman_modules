@@ -484,15 +484,46 @@
 																									<table border="2" width="100%" cellpadding="1" cellspacing="1" align="center" style="width:100%; max-width:100%;">
 																										<thead style="background-color: #FFF4DE;">
 																											<tr>
-																												<th class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																												<th colspan="2" class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
 																													KETERANGAN
 																												</th>
 																											</tr>
 																										</thead>
 																										<tbody>
 																											<tr>
-																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																													<?php echo strtoupper(strtolower($formulir[0]->keterangan)); ?>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													STATUS PEMBAYARAN
+																												</td>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													<?php $ket_arr = explode(',', $formulir[0]->keterangan);
+																														echo $ket_arr[0]; ?>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													NOMINAL
+																												</td>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																												<?php $ket_arr = explode(',', $formulir[0]->keterangan);
+																														echo number_format($ket_arr[1], 0, ',', '.'); ?>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													TIPE PEMBAYARAN
+																												</td>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													<?php $ket_arr = explode(',', $formulir[0]->keterangan);
+																														echo $ket_arr[3]; ?>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													WAKTU
+																												</td>
+																												<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:13px; line-height:23px; font-weight:bold;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																													<?php $ket_arr = explode(',', $formulir[0]->keterangan);
+																														echo $ket_arr[2]; ?>
 																												</td>
 																											</tr>
 																									</table>

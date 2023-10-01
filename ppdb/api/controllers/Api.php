@@ -114,6 +114,7 @@ class Api extends MX_Controller
             $data['contact'] = $this->ApiModel->get_contact();
             $data['voucher'] = $this->ApiModel->get_all_voucher();
             $data['cost'] = $this->ApiModel->get_cost_student($data['invoice'][0]->level_tingkat, $data['invoice'][0]->jalur, $data['invoice'][0]->jenis_kelamin);
+			$data['potongan'] = $this->ApiModel->get_discount_rupiah_by_id_form($data['invoice'][0]->id_formulir);
 
             if ($data['invoice'][0]->status_pembayaran == null or $data['invoice'][0]->status_pembayaran == 0) {
 

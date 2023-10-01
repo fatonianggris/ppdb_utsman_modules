@@ -320,7 +320,7 @@ if ($formulir[0]->status_pembayaran == 1) {
 												<tr>
 													<th class="table-center">STATUS PELUNASAN</th>
 													<th class="table-center">NOMINAL</th>
-													<th class="table-center">PEMBAYARAN</th>
+													<th class="table-center">TIPE PEMBAYARAN</th>
 													<th class="table-center">WAKTU</th>
 
 												</tr>
