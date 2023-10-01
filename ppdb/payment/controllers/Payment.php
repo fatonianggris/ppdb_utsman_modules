@@ -78,6 +78,7 @@ class Payment extends MX_Controller
         $data['title'] = 'Konfirmasi Pembayaran | Uang Masuk PPDB Sekolah Utsman';
         $data['nav_pay'] = 'menu-item-here';
         $data['formulir'] = $this->PaymentModel->get_formulir_by_id($id);
+		$data['potongan'] = $this->PaymentModel->get_discount_rupiah_by_id_form($id);
         $data['cost'] = $this->PaymentModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin);
         $data['voucher'] = $this->PaymentModel->get_all_voucher();
 
