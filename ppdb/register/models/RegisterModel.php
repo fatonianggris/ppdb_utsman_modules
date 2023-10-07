@@ -118,7 +118,7 @@ class RegisterModel extends CI_Model
     public function check_user($value = '')
     {
         $this->db->where('nomor_formulir', $value['nomor_formulir']);
-        $sql = $this->db->get($this->table_formulir);
+        $sql = $this->db->get($this->table_vformulir);
         return $sql->result();
     }
 
@@ -300,7 +300,7 @@ class RegisterModel extends CI_Model
                                 v.syarat_ketentuan,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
                          ");
-        $this->db->from('formulir f');
+        $this->db->from('view_formulir f');
         $this->db->join('biaya b', 'f.level_tingkat = b.level_tingkat AND f.jalur = b.id_jalur AND b.jenis_biaya = 1', 'left');
         $this->db->join('jenis_biaya jb', 'b.id_nama_biaya = jb.id_jenis_biaya', 'left');
         $this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');

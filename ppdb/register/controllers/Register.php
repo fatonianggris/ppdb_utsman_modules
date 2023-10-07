@@ -229,7 +229,7 @@ class Register extends MX_Controller
         $data['voucher'] = $this->RegisterModel->get_all_voucher();
         $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin, 2);
         $data['bank_account'] = $this->RegisterModel->get_bank_va_account();
-		$data['potongan'] = $this->RegisterModel->get_discount_rupiah_by_id_form($data['formulir'][0]->id_formulir);
+        $data['potongan'] = $this->RegisterModel->get_discount_rupiah_by_id_form($data['formulir'][0]->id_formulir);
 
         $check_no = $this->RegisterModel->check_no_formulir($id);
 
@@ -527,6 +527,37 @@ class Register extends MX_Controller
                 $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran', 1);
             }
         }
+    }
+
+    public function print_invoice_ppdb($id = '')
+    {
+        $id = paramDecrypt($id);
+        $check_no = $this->RegisterModel->check_no_formulir($id);
+
+        if ($id == '' or $id == null or $check_no == false) {
+
+            $this->session->set_flashdata('flash_message', err_msg('Maaf, Data Anda tidak ditemukan!'));
+            redirect('ppdb/register/status_payment_school_progress/' . paramEncrypt($id));
+        } else {
+
+            $data['invoice'] = $this->RegisterModel->get_formulir_number($id);
+            $data['page'] = $this->RegisterModel->get_page();
+            $data['contact'] = $this->RegisterModel->get_contact();
+            $data['voucher'] = $this->RegisterModel->get_all_voucher();
+            $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['invoice'][0]->level_tingkat, $data['invoice'][0]->jalur, $data['invoice'][0]->jenis_kelamin, 2);
+            $data['potongan'] = $this->RegisterModel->get_discount_rupiah_by_id_form($data['invoice'][0]->id_formulir);
+
+            if ($data['invoice'][0]->status_pembayaran == null or $data['invoice'][0]->status_pembayaran <= 1) {
+
+                $this->session->set_flashdata('flash_message', err_msg('Maaf, Anda belum melakukan pembayaran'));
+                redirect('ppdb/register/status_payment_school_progress/' . paramEncrypt($id));
+            } else {
+
+                $html = $this->load->view('pdf_template/invoice_ppdb', $data, true);
+                $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran_ppdb', 1);
+            }
+        }
+
     }
 
     public function check_email_register()
@@ -1013,7 +1044,7 @@ class Register extends MX_Controller
         if ($data['register'][0]->status_email == 0) {
             $this->mailer->send($sendmail);
             $this->RegisterModel->update_status_email($id, 1);
-         
+
             echo '1';
         } else {
             echo '0';
@@ -1341,7 +1372,7 @@ class Register extends MX_Controller
             $input = $this->RegisterModel->update_final_register($number, 1);
 
             if ($input == true) {
-				
+
                 $this->send_notification('PENDAFTAR BARU', ucwords(strtolower($data['nama_lengkap'])), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
                 redirect('ppdb/register/status_register_success/' . paramEncrypt($data['nomor_formulir']));
             } else {

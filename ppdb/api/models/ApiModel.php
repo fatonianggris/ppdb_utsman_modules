@@ -55,7 +55,7 @@ class ApiModel extends CI_Model
     {
 
         $sql = $this->db->query("SELECT v.*,
-                                (select count(f.id_voucher) from formulir f WHERE concat(',', f.id_voucher, ',') LIKE concat('%,', v.id_voucher, ',%')) as terpakai
+                                (select count(f.id_voucher) from view_formulir f WHERE concat(',', f.id_voucher, ',') LIKE concat('%,', v.id_voucher, ',%')) as terpakai
                                 FROM voucher v WHERE v.id_jenis_voucher=2");
 
         return $sql->result();
@@ -66,7 +66,7 @@ class ApiModel extends CI_Model
         $this->db->select("f.*,
                             CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
                             DATE_FORMAT(f.inserted_at, '%d/%m/%Y') AS tanggal_isi");
-        $this->db->from('formulir f');
+        $this->db->from('view_formulir f');
         $this->db->join('tahun_ajaran t', 'f.th_ajaran = t.id_tahun_ajaran', 'left');
         $this->db->where('f.nomor_formulir', $id);
         $this->db->order_by('f.inserted_at', 'ASC');

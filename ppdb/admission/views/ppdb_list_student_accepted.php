@@ -420,10 +420,11 @@
                                             <?php echo $value->status_penerimaan; ?>
                                         </td>
                                         <td>
-                                            <?php echo $value->status_pembayaran; ?>
+											<?php echo $value->status_pembayaran; ?>
                                         </td>
                                         <td>
-                                            <?php echo $value->keterangan; ?>
+                                            <?php $ket_arr = explode(',', $value->keterangan);
+												  echo $ket_arr[0]; ?>
                                         </td>
                                         <td>
                                             <?php echo $value->tahun_ajaran; ?>

@@ -360,6 +360,7 @@ if ($formulir[0]->jalur == 1) {
                             </table>
                         </div>
                     </div>
+					<a href="<?php echo site_url("ppdb/register/print_invoice_ppdb/" . paramEncrypt($formulir[0]->nomor_formulir)); ?>" class="btn btn-warning font-weight-bold px-9 py-4 my-3 mx-4 mt-8"><i class="fa fa-download"></i> Download Invoice</a><br>
                     <a href="#" class="btn btn-success font-weight-bolder px-9 py-4 my-3 mx-4 mt-8" data-toggle="modal"
                         data-target="#modal_rincian">LIHAT
                         RINCIAN</a>
@@ -478,14 +479,15 @@ if ($formulir[0]->jalur == 1) {
                             <tbody>
 					<?php
 						if (!empty($cost)) {
+							$total_potongan = 0;
 							foreach ($cost as $key => $value) {
 								?>
                                 <tr>
                                     <td class="font-weight-bold font-size-sm">
                                         <?php echo ucwords(strtolower($value->nama_biaya)); ?></td>
-                                    <td class="table-center font-size-sm">
+                                    <td class="table-center font-size-sm  text-right">
                                         <?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
-                                    <td class="table-center font-size-sm">
+                                    <td class="table-center font-size-sm  text-right">
                                         <?php
 										if (!empty($voucher)) {
 													foreach ($voucher as $key => $value_v) {
@@ -499,7 +501,7 @@ if ($formulir[0]->jalur == 1) {
 												}
 												?>
                                     </td>
-                                    <td class="table-center font-size-sm">
+                                    <td class="table-center font-size-sm text-right">
                                         <?php
 										$stat = false;
 												if (!empty($voucher)) {
@@ -507,13 +509,16 @@ if ($formulir[0]->jalur == 1) {
 														if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
 															$id_array_voucher = explode(',', $formulir[0]->id_voucher);
 															if (in_array($value_v->id_voucher, $id_array_voucher)) {
-																echo number_format(($value->nominal) - ($value->nominal * $value_v->potongan / 100), 0, ',', '.');
+																$hasil_potongan = ($value->nominal) - ($value->nominal * $value_v->potongan / 100);
+																$total_potongan += $hasil_potongan;
+																echo number_format($hasil_potongan, 0, ',', '.');
 																$stat = true;
 															}
 														}
 													} //ngatur nomor urut
 												}
 												if ($stat == false) {
+													$total_potongan += $value->nominal;
 													echo number_format($value->nominal, 0, ',', '.');
 												}
 												?>
@@ -523,14 +528,24 @@ if ($formulir[0]->jalur == 1) {
 								} //ngatur nomor urut
 							}
 						?>
+						  	<tr>
+								<td>
+								</td>
+								<td colspan="2" class="table-center font-size-sm font-weight-bolder text-right">
+									TOTAL SETELAH DI DISKON
+								</td>
+								<td class="table-center font-size-sm font-weight-bolder text-right">
+									<?php echo number_format($total_potongan, 0, ',', '.'); ?>
+								</td>
+							</tr>
 							<?php if ($formulir[0]->status_potongan == 1){ ?>   
 								<tr>
 									<td>
 									</td>
-									<td colspan="2" class="table-center font-size-sm font-weight-bolder text-danger text-right">
+									<td colspan="2" class="table-center font-size-sm font-weight-bolder text-right text-danger">
                                     	<?php echo strtoupper($potongan[0]->nama_potongan); ?>
 									</td>
-									<td class="table-center font-size-sm font-weight-bolder text-danger">
+									<td class="table-center font-size-sm font-weight-bolder text-danger text-right">
                                     	-<?php echo $potongan[0]->nominal_potongan; ?>
 									</td>
 								</tr>
@@ -539,7 +554,7 @@ if ($formulir[0]->jalur == 1) {
                         </table>
                         <div class="text-center">
                             <span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder text-center">TOTAL
-                                BIAYA:</span><br>
+                                TAGIHAN KESELURUHAN:</span><br>
                             <b class="text-danger font-size-h1">Rp. <?php echo $formulir[0]->total_biaya; ?></b>
                         </div>
                     </div>

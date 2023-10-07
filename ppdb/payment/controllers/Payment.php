@@ -152,9 +152,7 @@ class Payment extends MX_Controller
 
     public function accept_bill_ppdb()
     {
-        $this->load->library('zend');
-        $this->zend->load('Zend/Barcode');
-
+       
         $id = $this->input->post('id');
         $data['id_voucher'] = implode(",", $this->input->post('id_voucher'));
         $data['total_biaya'] = $this->input->post('total_biaya');
