@@ -118,7 +118,7 @@ class RegisterModel extends CI_Model
     public function check_user($value = '')
     {
         $this->db->where('nomor_formulir', $value['nomor_formulir']);
-        $sql = $this->db->get($this->table_vformulir);
+        $sql = $this->db->get($this->table_formulir);
         return $sql->result();
     }
 
