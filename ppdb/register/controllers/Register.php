@@ -597,6 +597,46 @@ class Register extends MX_Controller
 
         echo json_encode($output);
     }
+
+    public function get_form_number()
+    {
+
+        $param = $this->input->post();
+        $data = $this->security->xss_clean($param);
+
+        $token = $this->security->get_csrf_hash();
+
+        $check_number = $this->RegisterModel->get_number_last_form($data['id_tahun_ajaran']);
+        $get_schoolyear = $this->RegisterModel->get_name_schoolyear($data['id_tahun_ajaran']);
+
+        $nomor_formulir = "";
+		
+        if ($get_schoolyear == true) {
+
+            if ($check_number[0]->last_form) {
+                $nomor_formulir = intval($check_number[0]->last_form) + 1;
+            } else {
+                $nomor_formulir = substr($get_schoolyear[0]->tahun_ajaran, 2, 2) . '001';
+            }
+
+            $output = array("status" => true,
+                "token" => $token,
+                "number_form" => $nomor_formulir,
+				"messages" => "OK!, Nomor telah digenerate",
+            );
+
+        } else {
+
+            $output = array("status" => false,
+                "token" => $token,
+                "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
+            );
+
+        }
+
+        echo json_encode($output);
+
+    }
     //---------------------------------REGISTER------------------------------------//
 
     public function post_register()

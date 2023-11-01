@@ -336,7 +336,7 @@
                                                                                 </span>
                                                                             </div>
                                                                             <input type="text" name="nomor_formulir"
-                                                                                readonly=""
+                                                                                readonly="" id="id_nomor_formulir"
                                                                                 value="<?php echo @$register[0]->nomor_formulir; ?>"
                                                                                 class="form-control form-control-solid form-control-lg"
                                                                                 placeholder="Nomor Formulir Calon Siswa" />
@@ -556,7 +556,7 @@ if ($register[0]->agama == 1) {
                                                                 <div class="col-xl-3">
                                                                     <div class="form-group">
                                                                         <label>Tahun Ajaran</label>
-                                                                        <select name="id_tahun_ajaran"
+                                                                        <select name="id_tahun_ajaran" id="tahun_ajaran"
                                                                             class="form-control form-control-solid form-control-lg">
                                                                             <?php
 if (!empty($schoolyear)) {
@@ -2347,6 +2347,34 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
         }
     })
 
+    $('#tahun_ajaran').on('change', function() { // on change of state
+        $.ajax({
+            type: "post",
+            url: "<?php echo site_url("/ppdb/register/get_form_number")?>",
+            data: {
+                id_tahun_ajaran: this.value,
+                [csrfName]: csrfHash
+            },
+            dataType: 'html',
+            success: function(data) {
+                var obj_data = jQuery.parseJSON(data);
+
+                $('.txt_csrfname').val(obj_data.token);
+                csrfHash = obj_data.token;
+
+                if (obj_data.status) {
+                    $("#id_nomor_formulir").val(obj_data.number_form);
+                } else {
+                    $("#id_nomor_formulir").val("");
+                }
+
+            },
+            error: function(result) {
+                toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+            }
+        });
+    })
+
     function post_parents_student() {
         $.ajax({
             type: "post",
@@ -2381,7 +2409,7 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 var obj_data = jQuery.parseJSON(data);
 
                 $('.txt_csrfname').val(obj_data.token);
-				csrfHash = obj_data.token;
+                csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2438,7 +2466,7 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 var obj_data = jQuery.parseJSON(data);
 
                 $('.txt_csrfname').val(obj_data.token);
-				csrfHash = obj_data.token;
+                csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
@@ -2478,7 +2506,7 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 var obj_data = jQuery.parseJSON(data);
 
                 $('.txt_csrfname').val(obj_data.token);
-				csrfHash = obj_data.token;
+                csrfHash = obj_data.token;
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
