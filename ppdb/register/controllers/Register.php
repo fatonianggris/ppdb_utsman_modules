@@ -610,7 +610,7 @@ class Register extends MX_Controller
         $get_schoolyear = $this->RegisterModel->get_name_schoolyear($data['id_tahun_ajaran']);
 
         $nomor_formulir = "";
-		
+
         if ($get_schoolyear == true) {
 
             if ($check_number[0]->last_form) {
@@ -622,7 +622,7 @@ class Register extends MX_Controller
             $output = array("status" => true,
                 "token" => $token,
                 "number_form" => $nomor_formulir,
-				"messages" => "OK!, Nomor telah digenerate",
+                "messages" => "OK!, Nomor telah digenerate",
             );
 
         } else {
@@ -1225,6 +1225,7 @@ class Register extends MX_Controller
             if ($input == true) {
                 $output = array("status" => true,
                     "token" => $token,
+                    "id_encrypt" => paramEncrypt($data['nomor_formulir']),
                     "messages" => "OK!, Pengisian formulir data Personal dan Kontak telah disimpan.",
                 );
             } else {

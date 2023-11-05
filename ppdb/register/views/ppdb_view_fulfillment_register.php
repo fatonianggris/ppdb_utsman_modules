@@ -2286,7 +2286,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     function post_personal_contact_student() {
         $.ajax({
             type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_personal_contact/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
+            url: "<?php echo site_url("/ppdb/register/edit_personal_contact/"); ?>" + window.location.pathname
+                .split("/").pop(),
             data: {
                 nisn: $('[name=nisn]').val(),
                 nik: $('[name=nik]').val(),
@@ -2315,6 +2316,12 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
 
                 if (obj_data.status) {
                     toastr.success(obj_data.messages, "Berhasil!");
+                    window.history.replaceState('', '',
+                        "<?php echo site_url("ppdb/register/status_fulfillment_register/"); ?>" +
+                        obj_data.id_encrypt);
+                    $('#kt_form_student').attr('action',
+                        '<?php echo site_url('/ppdb/register/post_final_registration/'); ?>' +
+                        obj_data.id_encrypt);
                 } else {
                     toastr.warning(obj_data.messages, "Peringatan!");
                 }
@@ -2378,7 +2385,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     function post_parents_student() {
         $.ajax({
             type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_parents_info/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
+            url: "<?php echo site_url("/ppdb/register/edit_parents_info/"); ?>" + window.location.pathname
+                .split("/").pop(),
             data: {
                 nama_ayah: $('[name=nama_ayah]').val(),
                 nik_ayah: $('[name=nik_ayah]').val(),
@@ -2440,7 +2448,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     function post_address_student() {
         $.ajax({
             type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_address_info/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
+            url: "<?php echo site_url("/ppdb/register/edit_address_info/"); ?>" + window.location.pathname
+                .split("/").pop(),
             data: {
                 alamat_rumah_kk: $('[name=alamat_rumah_kk]').val(),
                 provinsi_kk: $('[name=provinsi_kk]').val(),
@@ -2485,7 +2494,8 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     function post_periodic_student() {
         $.ajax({
             type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_periodic_info/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
+            url: "<?php echo site_url("/ppdb/register/edit_periodic_info/") ?>" + window.location.pathname
+                .split("/").pop(),
             data: {
                 alat_transportasi: $('[name=alat_transportasi]').val(),
                 jenis_tinggal: $('[name=jenis_tinggal]').val(),
