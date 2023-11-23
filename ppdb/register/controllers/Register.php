@@ -1066,31 +1066,14 @@ class Register extends MX_Controller
             'content' => $content,
         );
 
-        $jenjang = '';
-        if ($data['register'][0]->level_tingkat == 1) {
-            $jenjang = 'KB';
-        } else if ($data['register'][0]->level_tingkat == 2) {
-            $jenjang = 'TK';
-        } else if ($data['register'][0]->level_tingkat == 3) {
-            $jenjang = 'SD';
-        } else if ($data['register'][0]->level_tingkat == 4) {
-            $jenjang = 'SMP';
-        } else if ($data['register'][0]->level_tingkat == 5) {
-            $jenjang = 'KB-TK';
-        } else if ($data['register'][0]->level_tingkat == 6) {
-            $jenjang = 'DC';
-        }
+        $this->RegisterModel->update_status_email($id, 1);
 
         if ($data['register'][0]->status_email == 0) {
             $this->mailer->send($sendmail);
-            $this->RegisterModel->update_status_email($id, 1);
-
-            echo '1';
+            //echo '1';
         } else {
-            echo '0';
+            // echo '0';
         }
-
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     public function check_nisn_formulir()

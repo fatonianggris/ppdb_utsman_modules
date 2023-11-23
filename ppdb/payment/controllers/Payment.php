@@ -78,7 +78,7 @@ class Payment extends MX_Controller
         $data['title'] = 'Konfirmasi Pembayaran | Uang Masuk PPDB Sekolah Utsman';
         $data['nav_pay'] = 'menu-item-here';
         $data['formulir'] = $this->PaymentModel->get_formulir_by_id($id);
-		$data['potongan'] = $this->PaymentModel->get_discount_rupiah_by_id_form($id);
+        $data['potongan'] = $this->PaymentModel->get_discount_rupiah_by_id_form($id);
         $data['cost'] = $this->PaymentModel->get_cost_student($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin);
         $data['voucher'] = $this->PaymentModel->get_all_voucher();
 
@@ -137,22 +137,21 @@ class Payment extends MX_Controller
             'files' => $file,
         );
 
+        $this->PaymentModel->insert_to_formulir($data['register'][0], $data['password']);
+
         if ($data['register'][0]->status_pembayaran == 2) {
-            $this->PaymentModel->insert_to_formulir($data['register'][0], $data['password']);
             $this->mailer->send_with_attachment($sendmail);
-
-            @unlink($file);
-            echo '1';
+            // echo '1';
         } else {
-            echo '0';
+            //echo '0';
         }
+        @unlink($file);
 
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     public function accept_bill_ppdb()
     {
-       
+
         $id = $this->input->post('id');
         $data['id_voucher'] = implode(",", $this->input->post('id_voucher'));
         $data['total_biaya'] = $this->input->post('total_biaya');
@@ -184,16 +183,14 @@ class Payment extends MX_Controller
             'content' => $content,
         );
 
+        $this->PaymentModel->update_status_payment_formulir($id, $data['id_voucher'], $data['total_biaya'], $data['status_potongan'], 1);
+
         if ($data['formulir'][0]->status_pembayaran == 0) {
-            $this->PaymentModel->update_status_payment_formulir($id, $data['id_voucher'], $data['total_biaya'], $data['status_potongan'], 1);
-
             $this->mailer->send($sendmail);
-            echo '1';
+            // echo '1';
         } else {
-            echo '0';
+            // echo '0';
         }
-
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     public function print_invoice_formulir_server($id = '')
@@ -241,16 +238,15 @@ class Payment extends MX_Controller
             'content' => $content,
         );
 
+        $this->PaymentModel->update_status_keterangan_pembayaran_ppdb($id, $ket, 2);
+
         if ($data['formulir'][0]->status_pembayaran == 1) {
             $this->mailer->send($sendmail);
-            $this->PaymentModel->update_status_keterangan_pembayaran_ppdb($id, $ket, 2);
-
-            echo '1';
+            //echo '1';
         } else {
-            echo '0';
+            //echo '0';
         }
 
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     public function print_invoice_ppdb_server($id = '')
@@ -300,16 +296,14 @@ class Payment extends MX_Controller
             'content' => $content,
         );
 
+        $this->PaymentModel->update_status_keterangan_pembayaran($id, $ket, 3);
+		
         if ($data['register'][0]->status_pembayaran == 1) {
             $this->mailer->send($sendmail);
-            $this->PaymentModel->update_status_keterangan_pembayaran($id, $ket, 3);
-
-            echo '1';
+            //echo '1';
         } else {
-            echo '0';
+            //echo '0';
         }
-
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     //----------------------------------------------------------------//

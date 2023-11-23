@@ -128,14 +128,14 @@ class Admission extends MX_Controller
         $this->zend->load('Zend/Barcode');
 
         $id = $this->input->post('id');
-      
+
         $id = paramDecrypt($id);
 
         $data['page'] = $this->AdmissionModel->get_page();
         $data['contact'] = $this->AdmissionModel->get_contact();
         $data['formulir'] = $this->AdmissionModel->get_formulir_by_id($id); //?
         $data['voucher'] = $this->AdmissionModel->get_all_voucher();
-        
+
         $check_number = $this->AdmissionModel->get_number_last_student($data['formulir'][0]->tahun_ajaran);
 
         $nomor_nis = '';
@@ -164,16 +164,15 @@ class Admission extends MX_Controller
             'content' => $content,
         );
 
-        if ($data['formulir'][0]->status_penerimaan == 0) {
-            $this->AdmissionModel->insert_student($data['formulir'][0], $nomor_nis, $data['barcode']);
-			$this->AdmissionModel->update_status_admisiion_formulir($id, 1);
+        $this->AdmissionModel->insert_student($data['formulir'][0], $nomor_nis, $data['barcode']);
+        $this->AdmissionModel->update_status_admisiion_formulir($id, 1);
 
+        if ($data['formulir'][0]->status_penerimaan == 0) {
             $this->mailer->send($sendmail);
-            echo '1';
+            //echo '1';
         } else {
-            echo '0';
+            //echo '0';
         }
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     // public function accept_admission()
@@ -224,9 +223,10 @@ class Admission extends MX_Controller
     //         'content' => $content,
     //     );
 
-    //     if ($data['formulir'][0]->status_penerimaan == 0) {
     //         $this->AdmissionModel->insert_student($data['formulir'][0], $nomor_nis, $data['barcode'], $data['total_biaya'], $level_tingkat);
     //         $this->AdmissionModel->update_status_formulir($id, $data['id_voucher'], $data['total_biaya'], 1);
+
+    //     if ($data['formulir'][0]->status_penerimaan == 0) {
 
     //         $this->mailer->send($sendmail);
     //         echo '1';
@@ -374,7 +374,7 @@ class Admission extends MX_Controller
     public function reject_admission()
     {
         $id = $this->input->post('id');
-        
+
         $id = paramDecrypt($id);
 
         $data['page'] = $this->AdmissionModel->get_page();
@@ -390,16 +390,14 @@ class Admission extends MX_Controller
             'content' => $content,
         );
 
+        $this->AdmissionModel->update_status_admisiion_formulir($id, 2);
+
         if ($data['formulir'][0]->status_penerimaan == 0) {
             $this->mailer->send($sendmail);
-            $this->AdmissionModel->update_status_admisiion_formulir($id, 2);
-
-            echo '1';
+            //echo '1';
         } else {
-            echo '0';
+            //echo '0';
         }
-
-        // Panggil fungsi send yang ada di librari Mailer
     }
 
     public function delete_student_register()

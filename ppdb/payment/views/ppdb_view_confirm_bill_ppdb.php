@@ -495,12 +495,14 @@
                                                     <span class="switch switch-lg switch-icon pl-3">
                                                         <label>
                                                             <?php if (@$formulir[0]->status_potongan == "" or @$formulir[0]->status_potongan == null or @$formulir[0]->status_potongan == 0) {?>
-                                                            <input type="checkbox" id="potongan_rupiah" <?php echo $disable; ?>
-                                                                name="status_potongan" value="1">
+                                                            <input type="checkbox" id="potongan_rupiah"
+                                                                <?php echo $disable; ?> name="status_potongan"
+                                                                value="1">
                                                             <span></span>
                                                             <?php } else if (@$formulir[0]->status_potongan == 1) {?>
-                                                            <input type="checkbox" id="potongan_rupiah" checked <?php echo $disable; ?>
-                                                                name="status_potongan" value="1">
+                                                            <input type="checkbox" id="potongan_rupiah" checked
+                                                                <?php echo $disable; ?> name="status_potongan"
+                                                                value="1">
                                                             <span></span>
                                                             <?php }?>
                                                         </label>
@@ -673,7 +675,6 @@ $('#potongan_rupiah').on('change', function() { // on change of state
         document.getElementById("nominal_potongan_langsung").value = 0;
         status_potongan = '1'
 
-        get_total();
     } else {
         result_style.display = 'none';
         document.getElementById("nama_potongan_langsung").disabled = true;
@@ -681,8 +682,8 @@ $('#potongan_rupiah').on('change', function() { // on change of state
         document.getElementById("nominal_potongan_langsung").value = 0;
         status_potongan = '0';
 
-        get_total();
     }
+    get_total();
 })
 
 $("#nominal_potongan_langsung").on('change keydown paste input', function() {

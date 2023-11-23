@@ -73,20 +73,18 @@ class Api extends MX_Controller
 
             if ($data['formulir'][0]->status_pembayaran == 2) {
 
-                $this->mailer->send_with_attachment($sendmail);
-
-                @unlink($file);
-
                 $this->send_notification_ppdb('PEMBAYARAN BIAYA MASUK', ucwords(strtolower($data['formulir'][0]->nama_lengkap)), $jenjang, $data['formulir'][0]->nomor_formulir, base_url() . 'ppdb/auth');
 
                 $output = array("status" => true,
                     "messages" => "Berhasil, Pembayaran PPDB telah dikonfirmasi. Terima Kasih.",
                 );
+                $this->mailer->send_with_attachment($sendmail);
             } else {
                 $output = array("status" => false,
                     "messages" => "Maaf, Anda belum melakukan pembayaran. Silahkan coba lagi.",
                 );
             }
+            @unlink($file);
 
         } else {
 
@@ -114,7 +112,7 @@ class Api extends MX_Controller
             $data['contact'] = $this->ApiModel->get_contact();
             $data['voucher'] = $this->ApiModel->get_all_voucher();
             $data['cost'] = $this->ApiModel->get_cost_student($data['invoice'][0]->level_tingkat, $data['invoice'][0]->jalur, $data['invoice'][0]->jenis_kelamin);
-			$data['potongan'] = $this->ApiModel->get_discount_rupiah_by_id_form($data['invoice'][0]->id_formulir);
+            $data['potongan'] = $this->ApiModel->get_discount_rupiah_by_id_form($data['invoice'][0]->id_formulir);
 
             if ($data['invoice'][0]->status_pembayaran == null or $data['invoice'][0]->status_pembayaran <= 1) {
 
