@@ -389,6 +389,7 @@ class PaymentModel extends CI_Model
             'berat_badan' => $value->berat_badan,
             'level_tingkat' => $value->level_tingkat,
             'jalur' => $value->id_jalur,
+			'status_cadangan' => $value->status_cadangan,
             'updated_at' => date("Y-m-d H:i:s"),
         );
 

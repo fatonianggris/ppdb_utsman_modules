@@ -29,6 +29,14 @@ class Register extends MX_Controller
         $data['schoolyear'] = $this->RegisterModel->get_schoolyear();
         $data['schedule'] = $this->RegisterModel->get_all_schedule();
 
+        $data['info_dc_reg'] = $this->RegisterModel->get_information_quota(6);
+        $data['info_kb_reg'] = $this->RegisterModel->get_information_quota(1);
+        $data['info_tk_reg'] = $this->RegisterModel->get_information_quota(2);
+        $data['info_kbtk_reg'] = $this->RegisterModel->get_information_quota(5);
+        $data['info_sd_reg'] = $this->RegisterModel->get_information_quota(3);
+        $data['info_smp_reg'] = $this->RegisterModel->get_information_quota(4);
+        $data['info_sd_icp'] = $this->RegisterModel->get_information_quota(7);
+
         $this->load->view('ppdb_view_register', $data);
     }
 
@@ -653,6 +661,12 @@ class Register extends MX_Controller
         $this->form_validation->set_rules('email_orangtua', 'Email Orang Tua', 'required');
         $this->form_validation->set_rules('nomor_wa', 'Nomor WhatsApp', 'required');
         $this->form_validation->set_rules('insight[]', 'Informasi', 'required');
+
+        if (isset($data['status_cadangan'])) {
+            $data['status_cadangan'] = 1;
+        } else {
+            $data['status_cadangan'] = 0;
+        }
 
         $ins = $data['insight'];
         $data['insight'] = implode(",", $ins);

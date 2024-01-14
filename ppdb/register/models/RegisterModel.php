@@ -16,6 +16,7 @@ class RegisterModel extends CI_Model
     private $table_schedule = 'jadwal_ppdb';
     private $table_third_party = 'third_party_ppdb';
 	private $table_discount_rupiah = 'potongan_rupiah';
+	private $table_quota = 'kuota_pendaftar';
 
     public function get_third_party_key()
     {
@@ -35,7 +36,6 @@ class RegisterModel extends CI_Model
         $sql = $this->db->get($this->table_schedule);
         return $sql->result();
     }
-
 
     public function get_email_ppdb($email = '')
     {
@@ -112,6 +112,16 @@ class RegisterModel extends CI_Model
         $this->db->order_by('inserted_at DESC');
 
         $sql = $this->db->get($this->table_voucher);
+        return $sql->result();
+    }
+
+	public function get_information_quota($id = '')
+    {
+
+        $this->db->select();
+        $this->db->where('id_kuota', $id);
+
+        $sql = $this->db->get($this->table_quota);
         return $sql->result();
     }
 
@@ -446,6 +456,7 @@ class RegisterModel extends CI_Model
             'email_orangtua' => $value['email_orangtua'],
             'nomor_wa' => $value['nomor_wa'],
             'insight' => $value['insight'],
+			'status_cadangan' => $value['status_cadangan'],
         );
         $this->db->insert($this->table_register, $data);
 

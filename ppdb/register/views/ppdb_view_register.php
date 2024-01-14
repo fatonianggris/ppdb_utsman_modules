@@ -170,6 +170,8 @@
                         <!--begin::Form-->
                         <form class="form" method="POST" action="<?php echo base_url(); ?>/ppdb/register/post_register"
                             enctype="multipart/form-data" novalidate="novalidate" id="kt_register_form">
+                            <div id="cadangan">
+                            </div>
                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>"
                                 value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <div class="row">
@@ -676,29 +678,237 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     $('#kt_select2_3').select2({
         placeholder: "Pilih semua yang sesuai",
     });
-    var id_ting;
+    var id_tingkat;
+    var id_jalur;
     $("#tingkat").change(function() {
-        id_ting = $(this).val();
-        if (id_ting == 3) {
+
+        $('#jalur').prop('selectedIndex', 0);
+        $("select[name='id_jalur']").prop('selectedIndex', 0);
+        $("select[name='id_jalur'] option[value='2']").prop("disabled", true);
+        $('#content').empty();
+        $('#cadangan').empty();
+
+        id_tingkat = $(this).val();
+
+        if (id_tingkat == 1) {
+            status_kuota_reg = <?php echo $info_kb_reg[0]->status_kuota; ?>;
+            status_cadangan_reg = <?php echo $info_kb_reg[0]->status_cadangan; ?>;
+
+            $("#jalur").change(function() {
+                $('#content').empty();
+                $('#cadangan').empty();
+                id_jalur = $(this).val();
+
+                if (id_jalur == 1) {
+                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa KB REGULER telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa KB REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+                    }
+                }
+                return false;
+            });
+
+        } else if (id_tingkat == 2) {
+            status_kuota_reg = <?php echo $info_tk_reg[0]->status_kuota; ?>;
+            status_cadangan_reg = <?php echo $info_tk_reg[0]->status_cadangan; ?>;
+
+            $("#jalur").change(function() {
+                $('#content').empty();
+                $('#cadangan').empty();
+                id_jalur = $(this).val();
+
+                if (id_jalur == 1) {
+
+                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa TK REGULER telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa TK REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+                    }
+                }
+                return false;
+            });
+
+        } else if (id_tingkat == 3) {
             $("select[name='id_jalur']").prop('selectedIndex', 0);
             $("select[name='id_jalur'] option[value='2']").prop("disabled", false);
-        } else {
-            $("select[name='id_jalur']").prop('selectedIndex', 0);
-            $("select[name='id_jalur'] option[value='2']").prop("disabled", true);
-        }
-        return false;
-    });
-    var id_jalur;
-    $("#jalur").change(function() {
-        id_jalur = $(this).val();
-        if (id_jalur == 2) {
-            Swal.fire("Pemberitahuan!",
-                "Siswa yang dinyatakan tidak lolos program ICP, akan dialihkan ke program Reguler dengan biaya mengikuti program Reguler. Terima kasih!",
-                "warning");
-            $('<span class="form-text text-dark"><b class="text-danger">*Siswa yang dinyatakan tidak lolos program ICP, akan dialihkan ke program Reguler dengan biaya mengikuti program Reguler. Terima kasih!</b></span>')
-                .appendTo('#content');
-        } else {
-            $('#content').empty();
+
+            status_kuota_reg = <?php echo $info_sd_reg[0]->status_kuota; ?>;
+            status_cadangan_reg = <?php echo $info_sd_reg[0]->status_cadangan; ?>;
+
+            status_kuota_icp = <?php echo $info_sd_icp[0]->status_kuota; ?>;
+            status_cadangan_icp = <?php echo $info_sd_icp[0]->status_cadangan; ?>;
+
+            $("#jalur").change(function() {
+                $('#content').empty();
+                $('#cadangan').empty();
+                id_jalur = $(this).val();
+
+                if (id_jalur == 1) {
+
+                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa SD REGULER telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa SD REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+                    }
+
+                } else if (id_jalur == 2) {
+
+                    if (status_kuota_icp == 1 && status_cadangan_icp == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa SD ICP telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                    } else if (status_kuota_icp == 0 && status_cadangan_icp == 1) {
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa SD ICP telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+                    }
+                }
+
+                return false;
+            });
+
+        } else if (id_tingkat == 4) {
+
+            status_kuota_reg = <?php echo $info_smp_reg[0]->status_kuota; ?>;
+            status_cadangan_reg = <?php echo $info_smp_reg[0]->status_cadangan; ?>;
+
+            $("#jalur").change(function() {
+                $('#content').empty();
+                $('#cadangan').empty();
+                id_jalur = $(this).val();
+
+                if (id_jalur == 1) {
+
+                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa SMP REGULER telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa SMP REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+                    }
+                }
+                return false;
+            });
+
+        } else if (id_tingkat == 5) {
+            status_kuota_reg = <?php echo $info_kbtk_reg[0]->status_kuota; ?>;
+            status_cadangan_reg = <?php echo $info_kbtk_reg[0]->status_cadangan; ?>;
+
+            $("#jalur").change(function() {
+                $('#content').empty();
+                $('#cadangan').empty();
+                id_jalur = $(this).val();
+
+                if (id_jalur == 1) {
+
+                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa KB-TK REGULER telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa KB-TK REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+                    }
+                }
+                return false;
+            });
+
+        } else if (id_tingkat == 6) {
+            status_kuota_reg = <?php echo $info_dc_reg[0]->status_kuota; ?>;
+            status_cadangan_reg = <?php echo $info_dc_reg[0]->status_cadangan; ?>;
+
+            $("#jalur").change(function() {
+                $('#content').empty();
+                $('#cadangan').empty();
+                id_jalur = $(this).val();
+
+                if (id_jalur == 1) {
+
+                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                        $("#jalur").prop("selectedIndex", 0);
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa DC REGULER telah ditutup. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                        Swal.fire("Pemberitahuan!",
+                            "Pendaftaran Siswa DC REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                            "warning");
+                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
+                            .appendTo('#content');
+                        $('<input type="hidden" name="status_cadangan" value="1">')
+                            .appendTo('#cadangan');
+
+                    }
+                }
+                return false;
+            });
+
         }
         return false;
     });

@@ -293,12 +293,20 @@
                                         <th title="Aksi">Aksi</th>
                                     </tr>
                                 </thead>
+								<p class="font-weight-bold">Ket. Warna: <span class="label font-weight-bolder label-lg bg-light-warning label-inline">CADANGAN</span><p>
+								
                                 <tbody>
                                     <?php
 									if (!empty($formulir)) {
 										foreach ($formulir as $key => $value) {
+											$color = "";
+											if($value->status_cadangan == 0){
+												$color = "";
+											} else {
+												$color = "bg-light-warning";
+											}
 									?>
-                                    <tr>
+									<tr class="<?php echo $color; ?>">
                                         <td><b><?php echo $value->nomor_formulir; ?></b></td>
                                         <td><?php echo strtoupper($value->nama_lengkap); ?></td>
                                         <td><?php echo $value->jenis_kelamin; ?></td>
