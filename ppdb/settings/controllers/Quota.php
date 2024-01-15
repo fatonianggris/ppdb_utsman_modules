@@ -289,7 +289,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(6, $status);
+            $edit = $this->QuotaModel->update_reserve(6, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,
@@ -322,7 +322,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(1, $status);
+            $edit = $this->QuotaModel->update_reserve(1, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,
@@ -355,7 +355,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(2, $status);
+            $edit = $this->QuotaModel->update_reserve(2, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,
@@ -388,7 +388,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(5, $status);
+            $edit = $this->QuotaModel->update_reserve(5, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,
@@ -421,7 +421,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(3, $status);
+            $edit = $this->QuotaModel->update_reserve(3, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,
@@ -454,7 +454,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(4, $status);
+            $edit = $this->QuotaModel->update_reserve(4, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,
@@ -487,7 +487,7 @@ class Quota extends MX_Controller
         } else {
 
             $status = paramDecrypt($data['id']);
-            $edit = $this->QuotaModel->update_reserve(7, $status);
+            $edit = $this->QuotaModel->update_reserve(7, $status, $data['keterangan']);
 
             if ($edit == true) {
                 $output = array("status" => true,

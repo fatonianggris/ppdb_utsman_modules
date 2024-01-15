@@ -95,12 +95,13 @@ class QuotaModel extends CI_Model
         }
     }
 
-    public function update_reserve($id = '', $status = '')
+    public function update_reserve($id = '', $status = '', $keterangan = '')
     {
         $this->db->trans_begin();
 
         $data = array(
             'status_cadangan' => $status,
+            'keterangan' => $keterangan,
             'updated_at' => date("Y-m-d H:i:s"),
         );
 

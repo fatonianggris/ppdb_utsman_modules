@@ -502,7 +502,7 @@ var csrfHash = $('.txt_csrfname').val(); // CSRF hash
 var dc_reg = $(".update_dc_kuota_switch").bootstrapSwitch();
 dc_reg.on("switchChange.bootstrapSwitch", function(event, state) {
     if (state == true) {
-		
+
         Swal.fire({
             title: "Peringatan!",
             text: "Apakah anda yakin ingin MENUTUP KUOTA DC REGULER Sekarang?",
@@ -530,6 +530,9 @@ dc_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Ditutup!", "Pendaftaran DC REGULER telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -569,6 +572,9 @@ dc_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran DC REGULER telah dibuka!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -613,6 +619,9 @@ kb_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Ditutup!", "Pendaftaran KB REGULER telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -652,7 +661,9 @@ kb_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran KB REGULER telah dibuka!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -696,6 +707,9 @@ tk_reg.on("switchChange.bootstrapSwitch", function(event, state) {
                         $('.txt_csrfname').val(result.token);
                         Swal.fire("Ditutup!", "Pendaftaran TK REGULER telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -735,7 +749,9 @@ tk_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran TK REGULER telah dibuka!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -780,6 +796,9 @@ kbtk_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Ditutup!", "Pendaftaran KBTK REGULER telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -819,7 +838,9 @@ kbtk_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran KBTK REGULER telah dibuka!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -864,6 +885,9 @@ sd_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Ditutup!", "Pendaftaran SD REGULER telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -903,7 +927,9 @@ sd_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran SD REGULER telah dibuka!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -948,6 +974,9 @@ smp_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Ditutup!", "Pendaftaran SMP REGULER telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -960,7 +989,7 @@ smp_reg.on("switchChange.bootstrapSwitch", function(event, state) {
             }
         });
     } else {
-	
+
         Swal.fire({
             title: "Peringatan!",
             text: "Apakah anda yakin ingin MEMBUKA KUOTA SMP REGULER Sekarang?",
@@ -988,7 +1017,9 @@ smp_reg.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran SMP REGULER telah dibuka!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1033,6 +1064,9 @@ sd_icp.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Ditutup!", "Pendaftaran SD ICP telah ditutup!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1072,7 +1106,9 @@ sd_icp.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dibuka!", "Pendaftaran SD ICP telah dibuka!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1090,7 +1126,7 @@ sd_icp.on("switchChange.bootstrapSwitch", function(event, state) {
 var dc_reg_cad = $(".update_dc_cad_switch").bootstrapSwitch();
 dc_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
     if (state == true) {
-		
+
         Swal.fire({
             title: "Peringatan!",
             text: "Apakah anda yakin ingin MENGAKTIFKAN CADANGAN DC REGULER Sekarang?",
@@ -1108,6 +1144,7 @@ dc_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_dc_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_dc]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1116,6 +1153,9 @@ dc_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Diaktifkan!", "Cadangan DC REGULER telah diaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1145,14 +1185,19 @@ dc_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_dc_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_dc]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
                     success: function(result) {
                         $('.txt_csrfname').val(result.token);
 
-                        Swal.fire("Dinonaktifkan!", "Cadangan DC REGULER telah dinonaktifkan!.",
+                        Swal.fire("Dinonaktifkan!",
+                            "Cadangan DC REGULER telah dinonaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1187,6 +1232,7 @@ kb_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_kb_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_kb]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1195,6 +1241,9 @@ kb_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Diaktifkan!", "Cadangan KB REGULER telah diaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1223,16 +1272,20 @@ kb_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     type: "post",
                     url: "<?php echo site_url("ppdb/settings/quota/edit_kb_reg_cad") ?>",
                     data: {
-                        id: '<?php echo paramEncrypt(0); ?>',                      
+                        id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_kb]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
                     success: function(result) {
                         $('.txt_csrfname').val(result.token);
 
-                        Swal.fire("Dinonaktifkan!", "Cadangan KB REGULER telah dinonaktikan!.",
+                        Swal.fire("Dinonaktifkan!",
+                            "Cadangan KB REGULER telah dinonaktikan!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1267,6 +1320,7 @@ tk_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_tk_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_tk]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1274,6 +1328,9 @@ tk_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                         $('.txt_csrfname').val(result.token);
                         Swal.fire("Diaktifkan!", "Cadangan TK REGULER telah diaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1303,15 +1360,19 @@ tk_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_tk_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_tk]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
                     success: function(result) {
                         $('.txt_csrfname').val(result.token);
 
-                        Swal.fire("Dinonaktifkan!", "Cadangan TK REGULER telah dinonaktifkan!.",
+                        Swal.fire("Dinonaktifkan!",
+                            "Cadangan TK REGULER telah dinonaktifkan!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1346,6 +1407,7 @@ kbtk_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_kbtk_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_kbtk]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1354,6 +1416,9 @@ kbtk_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Diaktifkan!", "Cadangan KBTK REGULER telah diaktfikan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1383,15 +1448,19 @@ kbtk_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_kbtk_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_kbtk]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
                     success: function(result) {
                         $('.txt_csrfname').val(result.token);
 
-                        Swal.fire("Dinonaktifkan!", "Cadangan KBTK REGULER telah dinonaktifkan!.",
+                        Swal.fire("Dinonaktifkan!",
+                            "Cadangan KBTK REGULER telah dinonaktifkan!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1426,6 +1495,7 @@ sd_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_sd_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_sd]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1434,6 +1504,9 @@ sd_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Diaktifkan!", "Cadangan SD REGULER telah diaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1463,15 +1536,19 @@ sd_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_sd_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_sd]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
                     success: function(result) {
                         $('.txt_csrfname').val(result.token);
 
-                        Swal.fire("Dinonaktifkan!", "Cadangan SD REGULER telah dinonaktifkan!.",
+                        Swal.fire("Dinonaktifkan!",
+                            "Cadangan SD REGULER telah dinonaktifkan!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1506,6 +1583,7 @@ smp_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_smp_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_smp]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1514,6 +1592,9 @@ smp_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Diaktifkan!", "Cadangan SMP REGULER telah diaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1526,7 +1607,7 @@ smp_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
             }
         });
     } else {
-	
+
         Swal.fire({
             title: "Peringatan!",
             text: "Apakah anda yakin ingin MENGNONAKTIFKAN CADANGAN SMP REGULER Sekarang?",
@@ -1544,15 +1625,19 @@ smp_reg_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_smp_reg_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_smp]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
                     success: function(result) {
                         $('.txt_csrfname').val(result.token);
 
-                        Swal.fire("Dinonaktifkan!", "Cadangan SMP REGULER telah dinonaktifkan!.",
+                        Swal.fire("Dinonaktifkan!",
+                            "Cadangan SMP REGULER telah dinonaktifkan!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1587,6 +1672,7 @@ sd_icp_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_sd_icp_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(1); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_sdicp]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1595,6 +1681,9 @@ sd_icp_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Diaktifkan!", "Cadangan SD ICP telah diaktifkan!.",
                             "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);
@@ -1624,6 +1713,7 @@ sd_icp_cad.on("switchChange.bootstrapSwitch", function(event, state) {
                     url: "<?php echo site_url("ppdb/settings/quota/edit_sd_icp_cad") ?>",
                     data: {
                         id: '<?php echo paramEncrypt(0); ?>',
+						keterangan: $("textarea[name=keterangan_kuota_sdicp]").val(),
                         [csrfName]: csrfHash
                     },
                     dataType: 'html',
@@ -1632,7 +1722,9 @@ sd_icp_cad.on("switchChange.bootstrapSwitch", function(event, state) {
 
                         Swal.fire("Dinonaktifkan!", "Cadangan SD ICP telah dinonaktifkan!.",
                             "success");
-
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     },
                     error: function(result) {
                         console.log(result);

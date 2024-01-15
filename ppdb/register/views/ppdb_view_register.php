@@ -716,6 +716,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_kb_reg[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
                 }
                 return false;
@@ -748,6 +755,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_tk_reg[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
                 }
                 return false;
@@ -785,6 +799,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_sd_reg[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
 
                 } else if (id_jalur == 2) {
@@ -804,6 +825,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_sd_icp[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
                 }
 
@@ -838,6 +866,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_smp_reg[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
                 }
                 return false;
@@ -870,6 +905,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_kbtk_reg[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
                 }
                 return false;
@@ -904,6 +946,13 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
 
+                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                        var ket = "<?php echo $info_dc_reg[0]->keterangan; ?>";
+
+                        if (ket != "" || ket != null) {
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        }
                     }
                 }
                 return false;
