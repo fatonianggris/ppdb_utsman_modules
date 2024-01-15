@@ -825,7 +825,7 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                             .appendTo('#content');
                         $('<input type="hidden" name="status_cadangan" value="1">')
                             .appendTo('#cadangan');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                    } else if (status_kuota_icp == 0 && status_cadangan_icp == 0) {
                         var ket = "<?php echo $info_sd_icp[0]->keterangan; ?>";
 
                         if (ket != "" || ket != null) {
