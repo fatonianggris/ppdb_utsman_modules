@@ -247,23 +247,43 @@
                                             class="form-control form-control-solid form-control-lg">
                                             <option value="">Pilih Tahun Ajaran</option>
                                             <?php
-if (!empty($schoolyear)) {
-    foreach ($schoolyear as $key => $value_sch) {
-        if ($value_sch->tahun_awal > (date("Y"))) {
-            ?>
-                                            <option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
-                                                <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
-                                                (INDEN)</option>
-                                            <?php } else {
-            ?>
-                                            <option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
-                                                <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
-                                            </option>
-                                            <?php
-}
-    }
-}
-?>
+									$currentDate = new DateTime();
+									// Menambah 1 tahun ke $currentDate untuk mendapatkan cutoff date
+									if (!empty($schoolyear)) {
+										foreach ($schoolyear as $key => $value_sch) {
+											$cutoffDateNow = clone $currentDate;
+											$cutoffDateTomorrow = clone $currentDate;
+											$cutoffDateTomorrow->modify('+1 year');
+											// Ubah bulan dan hari menjadi 21 Agustus tahun depan
+											$cutoffDateTomorrow->setDate($cutoffDateTomorrow->format('Y'), 8, 21);
+											$cutoffDateNow->setDate($value_sch->tahun_awal, 8, 1);
+											if ($value_sch->tahun_awal > (date("Y"))) {
+												if($cutoffDateTomorrow >= $cutoffDateNow) {
+												?>
+												<option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
+													<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
+												</option>
+												<?php } else { ?>
+												<option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
+													<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> (INDEN)
+												</option>
+                                            <?php }
+												} else {
+												if($currentDate >= $cutoffDateNow) {
+           										 ?>
+													<option value="<?php echo $value_sch->id_tahun_ajaran; ?>" disabled>
+														<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> (DITUTUP)
+													</option>
+                                           		<?php } else { ?>
+													<option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
+														<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
+													</option>
+												<?php
+												}
+											}
+										}
+									}
+								?>
                                         </select> <span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI,
                                             </b>isikan Tahun Ajaran yang akan Anda Daftar, Status <b
                                                 class="text-danger">INDEN</b> jika Anda memilih diatas Tahun Ajaran
