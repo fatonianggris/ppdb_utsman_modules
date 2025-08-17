@@ -145,6 +145,55 @@ class Voucher extends MX_Controller
 		}
 	}
 
+	public function change_voucher()
+	{
+		$param = $this->input->post();
+		$data = $this->security->xss_clean($param);
+
+		if ($data['id'] == '' or $data['id'] == null || empty($data['id'] || !$data['id'])) {
+			$output = array(
+				"status" => false,
+				"messages" => "Mohon Maaf!, Nilai ID tidak ditemukan. Silahkan cek ulang.",
+			);
+		} else {
+
+			$id = paramDecrypt($data['id']);
+			$id_nama_biaya = paramDecrypt($data['id_nama_biaya']);
+
+			$edit = $this->VoucherModel->change_voucher_active($id, $id_nama_biaya, $data['value']);
+
+			if ($edit == true) {
+				$this->deactivate_expired_voucher();
+				$output = array(
+					"status" => true,
+					"messages" => "Berhasil!, Update Status Aktif Voucher " . $data['kode_voucher'] . " berhasil diubah, Silahkan cek ulang.",
+				);
+			} else {
+				$output = array(
+					"status" => true,
+					"messages" => "Mohon Maaf!, Update Status Aktif Voucher " . $data['kode_voucher'] . " gagal diubah, Silahkan cek ulang.",
+				);
+			}
+		}
+		echo json_encode($output);
+	}
+
+	public function deactivate_expired_voucher()
+	{
+		$vouchers = $this->db->get('voucher')->result();
+
+		foreach ($vouchers as $v) {
+			// Convert dari d/m/Y ke Y-m-d
+			$exp = DateTime::createFromFormat('d/m/Y', $v->masa_berlaku);
+			$exp_date = $exp->format('Y-m-d');
+
+			if (strtotime($exp_date) < strtotime(date('Y-m-d'))) {
+				$this->db->where('id_voucher', $v->id_voucher)->update('voucher', ['status_voucher' => '0']);
+			}
+		}
+	}
+
+
 	public function delete_voucher()
 	{
 

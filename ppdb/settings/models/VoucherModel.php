@@ -22,8 +22,13 @@ class VoucherModel extends CI_Model
 	{
 
 		$sql = $this->db->query("SELECT v.*,
-                                (SELECT count(f.id_voucher) from view_formulir f WHERE concat(',', f.id_voucher, ',') LIKE concat('%,', v.id_voucher, ',%')) as terpakai
-                                FROM voucher v");
+									(
+										SELECT COUNT(f.id_voucher) 
+										FROM view_formulir f 
+										WHERE CONCAT(',', f.id_voucher, ',') LIKE CONCAT('%,', v.id_voucher, ',%')
+									) AS terpakai
+								FROM voucher v
+								ORDER BY v.id_voucher DESC;");
 
 		return $sql->result();
 	}
@@ -78,6 +83,33 @@ class VoucherModel extends CI_Model
 		);
 
 		$this->db->where('id_voucher', $id);
+		$this->db->update($this->table_voucher, $data);
+
+		if ($this->db->trans_status() === false) {
+			$this->db->trans_rollback();
+			return false;
+		} else {
+			$this->db->trans_commit();
+			return true;
+		}
+	}
+
+	public function change_voucher_active($id = '', $id_nama_biaya = '', $value = '')
+	{
+		$this->db->trans_begin();
+
+		$this->db->set('status_aktif', '0');
+		$this->db->where('id_nama_biaya', $id_nama_biaya);
+		$this->db->update($this->table_voucher);
+
+
+		$data = array(
+			'status_aktif' => $value,
+			'updated_at' => date("Y-m-d H:i:s")
+		);
+
+		$this->db->where('id_voucher', $id);
+		$this->db->where('id_nama_biaya', $id_nama_biaya);
 		$this->db->update($this->table_voucher, $data);
 
 		if ($this->db->trans_status() === false) {

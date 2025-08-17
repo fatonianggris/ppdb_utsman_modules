@@ -49,5 +49,13 @@ class HomeModel extends CI_Model
 		return $sql->result();
 	}
 
+	public function get_schoolyear()
+	{
+
+		$sql = $this->db->query("SELECT CONCAT(tahun_awal,' / ',tahun_akhir) AS tahun_ajaran FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE())+1");
+
+		return $sql->result();
+	}
+
 	//----------------------------------------------------------------//
 }

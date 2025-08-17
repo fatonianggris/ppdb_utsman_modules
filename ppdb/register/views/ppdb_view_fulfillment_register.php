@@ -36,44 +36,44 @@
         rel="stylesheet" type="text/css" />
 
     <style>
-    .select2-container {
-        box-sizing: border-box;
-        display: block;
-        margin: 0;
-        position: relative;
-        vertical-align: middle;
-    }
+        .select2-container {
+            box-sizing: border-box;
+            display: block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+        }
 
-    .select2-container--default .select2-selection--single,
-    .select2-container--default .select2-selection--multiple {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 1px solid #E4E6EF;
-        outline: none !important;
-        border-radius: 0.42rem;
-        height: auto;
-        line-height: 0;
-        padding: 0.23rem 0.42rem;
-        background: #F3F6F9;
-    }
+        .select2-container--default .select2-selection--single,
+        .select2-container--default .select2-selection--multiple {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #E4E6EF;
+            outline: none !important;
+            border-radius: 0.42rem;
+            height: auto;
+            line-height: 0;
+            padding: 0.23rem 0.42rem;
+            background: #F3F6F9;
+        }
 
-    .blockquote {
-        margin-bottom: 1rem;
-        font-size: 1rem;
-    }
+        .blockquote {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
 
-    .select2-container--default.select2-container--disabled .select2-selection--multiple,
-    .select2-container--default.select2-container--disabled .select2-selection--single {
-        cursor: not-allowed;
-        background-color: #f3f6f9;
-        opacity: 1;
-    }
+        .select2-container--default.select2-container--disabled .select2-selection--multiple,
+        .select2-container--default.select2-container--disabled .select2-selection--single {
+            cursor: not-allowed;
+            background-color: #f3f6f9;
+            opacity: 1;
+        }
 
 
-    .blockMsg {
-        max-width: 75px;
-    }
+        .blockMsg {
+            max-width: 75px;
+        }
     </style>
 </head>
 <!--end::Head-->
@@ -95,10 +95,9 @@
                         </a>
                     </div>
                     <div class="mb-10 text-center">
-                        <p class="font-mobile font-weight-boldest text-success ">Pengisian Formulir!</p>
-                        <div class="font-weight-bold text-success font-size-lg">Silahakn mengisi formulir data diri
+                        <span class="font-mobile font-weight-boldest text-success">Pengisian Formulir!</span>
+                        <div class="font-weight-bold text-success font-size-lg offset-m-10">Silahakan mengisi formulir data diri
                             Anda, Berikut merupakan kolom formulir pengisian:</div>
-
                     </div>
                     <!--end::Login Header-->
                     <!--begin::Entry-->
@@ -473,21 +472,21 @@
                                                                         <label>Jenis Kelamin</label>
                                                                         <select name="jenis_kelamin"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->jenis_kelamin == "" or @$register[0]->jenis_kelamin == null) {?>
-                                                                            <option value="">Pilih JK</option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo $register[0]->jenis_kelamin; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->jenis_kelamin == 1) {
-    echo 'Laki-Laki';
-} else if ($register[0]->jenis_kelamin == 2) {
-    echo 'Perempuan';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->jenis_kelamin == "" or @$register[0]->jenis_kelamin == null) { ?>
+                                                                                <option value="">Pilih JK</option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo $register[0]->jenis_kelamin; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->jenis_kelamin == 1) {
+                                                                                        echo 'Laki-Laki';
+                                                                                    } else if ($register[0]->jenis_kelamin == 2) {
+                                                                                        echo 'Perempuan';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
                                                                             <option value="1">Laki-Laki</option>
                                                                             <option value="2">Perempuan</option>
                                                                         </select>
@@ -505,27 +504,27 @@ if ($register[0]->jenis_kelamin == 1) {
                                                                         <label>Agama</label>
                                                                         <select name="agama"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->agama == "" or @$register[0]->agama == null) {?>
-                                                                            <option value="">Pilih Agama</option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->agama; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->agama == 1) {
-    echo 'Islam';
-} else if ($register[0]->agama == 2) {
-    echo 'Kristen';
-} else if ($register[0]->agama == 3) {
-    echo 'Hindu';
-} else if ($register[0]->agama == 4) {
-    echo 'Budha';
-} else if ($register[0]->agama == 5) {
-    echo 'Lainnya.';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->agama == "" or @$register[0]->agama == null) { ?>
+                                                                                <option value="">Pilih Agama</option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->agama; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->agama == 1) {
+                                                                                        echo 'Islam';
+                                                                                    } else if ($register[0]->agama == 2) {
+                                                                                        echo 'Kristen';
+                                                                                    } else if ($register[0]->agama == 3) {
+                                                                                        echo 'Hindu';
+                                                                                    } else if ($register[0]->agama == 4) {
+                                                                                        echo 'Budha';
+                                                                                    } else if ($register[0]->agama == 5) {
+                                                                                        echo 'Lainnya.';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
 
                                                                             <option value="1">Islam</option>
                                                                             <option value="2">Kristen</option>
@@ -559,25 +558,25 @@ if ($register[0]->agama == 1) {
                                                                         <select name="id_tahun_ajaran" id="tahun_ajaran"
                                                                             class="form-control form-control-solid form-control-lg">
                                                                             <?php
-if (!empty($schoolyear)) {
-    foreach ($schoolyear as $key => $value_sch) {
-        if ($register[0]->id_tahun_ajaran == $value_sch->id_tahun_ajaran) {
-            ?>
-                                                                            <option
-                                                                                value="<?php echo @$value_sch->id_tahun_ajaran; ?>"
-                                                                                selected>
-                                                                                <?php echo ucwords(strtolower($value_sch->tahun_awal . "/" . $value_sch->tahun_akhir)); ?>
-                                                                            </option>
-                                                                            <?php
-} else {?>
-                                                                            <option
-                                                                                value="<?php echo @$value_sch->id_tahun_ajaran; ?>">
-                                                                                <?php echo ucwords(strtolower($value_sch->tahun_awal . "/" . $value_sch->tahun_akhir)); ?>
-                                                                            </option>
+                                                                            if (!empty($schoolyear)) {
+                                                                                foreach ($schoolyear as $key => $value_sch) {
+                                                                                    if ($register[0]->id_tahun_ajaran == $value_sch->id_tahun_ajaran) {
+                                                                            ?>
+                                                                                        <option
+                                                                                            value="<?php echo @$value_sch->id_tahun_ajaran; ?>"
+                                                                                            selected>
+                                                                                            <?php echo ucwords(strtolower($value_sch->tahun_awal . "/" . $value_sch->tahun_akhir)); ?>
+                                                                                        </option>
+                                                                                    <?php
+                                                                                    } else { ?>
+                                                                                        <option
+                                                                                            value="<?php echo @$value_sch->id_tahun_ajaran; ?>">
+                                                                                            <?php echo ucwords(strtolower($value_sch->tahun_awal . "/" . $value_sch->tahun_akhir)); ?>
+                                                                                        </option>
                                                                             <?php }
-    }
-}
-?>
+                                                                                }
+                                                                            }
+                                                                            ?>
                                                                         </select>
                                                                         <span class="form-text text-dark"><b
                                                                                 class="text-danger">*WAJIB DIISI,
@@ -778,34 +777,34 @@ if (!empty($schoolyear)) {
                                                                         <!--begin::Select-->
                                                                         <select name="pendidikan_ayah"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->pendidikan_ayah == "" or @$register[0]->pendidikan_ayah == null) {?>
-                                                                            <option value="">Pilih Pendidikan Ayah
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->pendidikan_ayah; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->pendidikan_ayah == 1) {
-    echo 'Tidak Sekolah';
-} else if ($register[0]->pendidikan_ayah == 2) {
-    echo 'SD';
-} else if ($register[0]->pendidikan_ayah == 3) {
-    echo 'SLTP';
-} else if ($register[0]->pendidikan_ayah == 4) {
-    echo 'SLTA';
-} else if ($register[0]->pendidikan_ayah == 5) {
-    echo 'D-I/D-II';
-} else if ($register[0]->pendidikan_ayah == 6) {
-    echo 'D-III';
-} else if ($register[0]->pendidikan_ayah == 7) {
-    echo 'D-IV/S1';
-} else if ($register[0]->pendidikan_ayah == 8) {
-    echo 'S2/S3';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->pendidikan_ayah == "" or @$register[0]->pendidikan_ayah == null) { ?>
+                                                                                <option value="">Pilih Pendidikan Ayah
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->pendidikan_ayah; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->pendidikan_ayah == 1) {
+                                                                                        echo 'Tidak Sekolah';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 2) {
+                                                                                        echo 'SD';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 3) {
+                                                                                        echo 'SLTP';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 4) {
+                                                                                        echo 'SLTA';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 5) {
+                                                                                        echo 'D-I/D-II';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 6) {
+                                                                                        echo 'D-III';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 7) {
+                                                                                        echo 'D-IV/S1';
+                                                                                    } else if ($register[0]->pendidikan_ayah == 8) {
+                                                                                        echo 'S2/S3';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
 
                                                                             <option value="1">Tidak Sekolah</option>
                                                                             <option value="2">SD</option>
@@ -829,30 +828,30 @@ if ($register[0]->pendidikan_ayah == 1) {
                                                                         <label>Penghasilan Ayah</label>
                                                                         <select name="penghasilan_ayah"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->penghasilan_ayah == "" or @$register[0]->penghasilan_ayah == null) {?>
-                                                                            <option value="">Pilih Penghasilan Ayah
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->penghasilan_ayah; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->penghasilan_ayah == 1) {
-    echo 'Kurang dari Rp. 1.500.000';
-} else if ($register[0]->penghasilan_ayah == 2) {
-    echo 'Rp. 1.500.000 - Rp.2.500.000';
-} else if ($register[0]->penghasilan_ayah == 3) {
-    echo 'Rp. 2.500.000 - RP.3.500.000';
-} else if ($register[0]->penghasilan_ayah == 4) {
-    echo 'Rp. 3.500.000 - Rp.4.500.000';
-} else if ($register[0]->penghasilan_ayah == 5) {
-    echo 'Rp. 4.500.000 - Rp.5.500.000';
-} else if ($register[0]->penghasilan_ayah == 6) {
-    echo 'Lebih dari Rp. 5.500.000';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->penghasilan_ayah == "" or @$register[0]->penghasilan_ayah == null) { ?>
+                                                                                <option value="">Pilih Penghasilan Ayah
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->penghasilan_ayah; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->penghasilan_ayah == 1) {
+                                                                                        echo 'Kurang dari Rp. 1.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ayah == 2) {
+                                                                                        echo 'Rp. 1.500.000 - Rp.2.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ayah == 3) {
+                                                                                        echo 'Rp. 2.500.000 - RP.3.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ayah == 4) {
+                                                                                        echo 'Rp. 3.500.000 - Rp.4.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ayah == 5) {
+                                                                                        echo 'Rp. 4.500.000 - Rp.5.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ayah == 6) {
+                                                                                        echo 'Lebih dari Rp. 5.500.000';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
 
                                                                             <option value="1">Kurang dari Rp. 1.500.000
                                                                             </option>
@@ -877,20 +876,20 @@ if ($register[0]->penghasilan_ayah == 1) {
                                                                     <label>Jadikan Wali?</label>
                                                                     <span class="switch switch-lg switch-icon">
                                                                         <label>
-                                                                            <?php if (@$register[0]->status_wali == "" or @$register[0]->status_wali == null or @$register[0]->status_wali == 0) {?>
-                                                                            <input type="checkbox" id="wali_ayah"
-                                                                                name="status_wali" value="1">
-                                                                            <span></span>
-                                                                            <?php } else if (@$register[0]->status_wali == 1) {?>
-                                                                            <input type="checkbox" checked
-                                                                                id="wali_ayah" name="status_wali"
-                                                                                value="1">
-                                                                            <span></span>
-                                                                            <?php } else if (@$register[0]->status_wali == 2) {?>
-                                                                            <input type="checkbox" id="wali_ayah"
-                                                                                name="status_wali" disabled>
-                                                                            <span></span>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->status_wali == "" or @$register[0]->status_wali == null or @$register[0]->status_wali == 0) { ?>
+                                                                                <input type="checkbox" id="wali_ayah"
+                                                                                    name="status_wali" value="1">
+                                                                                <span></span>
+                                                                            <?php } else if (@$register[0]->status_wali == 1) { ?>
+                                                                                <input type="checkbox" checked
+                                                                                    id="wali_ayah" name="status_wali"
+                                                                                    value="1">
+                                                                                <span></span>
+                                                                            <?php } else if (@$register[0]->status_wali == 2) { ?>
+                                                                                <input type="checkbox" id="wali_ayah"
+                                                                                    name="status_wali" disabled>
+                                                                                <span></span>
+                                                                            <?php } ?>
                                                                         </label>
                                                                     </span>
                                                                     <small id="info_checkbox_ayah"
@@ -1008,34 +1007,34 @@ if ($register[0]->penghasilan_ayah == 1) {
                                                                         <!--begin::Select-->
                                                                         <select name="pendidikan_ibu"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->pendidikan_ibu == "" or @$register[0]->pendidikan_ibu == null) {?>
-                                                                            <option value="">Pilih Pendidikan Ibu
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->pendidikan_ibu; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->pendidikan_ibu == 1) {
-    echo 'Tidak Sekolah';
-} else if ($register[0]->pendidikan_ibu == 2) {
-    echo 'SD';
-} else if ($register[0]->pendidikan_ibu == 3) {
-    echo 'SLTP';
-} else if ($register[0]->pendidikan_ibu == 4) {
-    echo 'SLTA';
-} else if ($register[0]->pendidikan_ibu == 5) {
-    echo 'D-I/D-II';
-} else if ($register[0]->pendidikan_ibu == 6) {
-    echo 'D-III';
-} else if ($register[0]->pendidikan_ibu == 7) {
-    echo 'D-IV/S1';
-} else if ($register[0]->pendidikan_ibu == 8) {
-    echo 'S2/S3';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->pendidikan_ibu == "" or @$register[0]->pendidikan_ibu == null) { ?>
+                                                                                <option value="">Pilih Pendidikan Ibu
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->pendidikan_ibu; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->pendidikan_ibu == 1) {
+                                                                                        echo 'Tidak Sekolah';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 2) {
+                                                                                        echo 'SD';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 3) {
+                                                                                        echo 'SLTP';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 4) {
+                                                                                        echo 'SLTA';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 5) {
+                                                                                        echo 'D-I/D-II';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 6) {
+                                                                                        echo 'D-III';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 7) {
+                                                                                        echo 'D-IV/S1';
+                                                                                    } else if ($register[0]->pendidikan_ibu == 8) {
+                                                                                        echo 'S2/S3';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
                                                                             <option value="1">Tidak Sekolah</option>
                                                                             <option value="2">SD</option>
                                                                             <option value="3">SLTP</option>
@@ -1059,30 +1058,30 @@ if ($register[0]->pendidikan_ibu == 1) {
                                                                         <label>Penghasilan Ibu</label>
                                                                         <select name="penghasilan_ibu"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->penghasilan_ibu == "" or @$register[0]->penghasilan_ibu == null) {?>
-                                                                            <option value="">Pilih Penghasilan Ibu
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->penghasilan_ibu; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->penghasilan_ibu == 1) {
-    echo 'Kurang dari Rp. 1.500.000';
-} else if ($register[0]->penghasilan_ibu == 2) {
-    echo 'Rp. 1.500.000 - Rp.2.500.000';
-} else if ($register[0]->penghasilan_ibu == 3) {
-    echo 'Rp. 2.500.000 - RP.3.500.000';
-} else if ($register[0]->penghasilan_ibu == 4) {
-    echo 'Rp. 3.500.000 - Rp.4.500.000';
-} else if ($register[0]->penghasilan_ibu == 5) {
-    echo 'Rp. 4.500.000 - Rp.5.500.000';
-} else if ($register[0]->penghasilan_ibu == 6) {
-    echo 'Lebih dari Rp. 5.500.000';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->penghasilan_ibu == "" or @$register[0]->penghasilan_ibu == null) { ?>
+                                                                                <option value="">Pilih Penghasilan Ibu
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->penghasilan_ibu; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->penghasilan_ibu == 1) {
+                                                                                        echo 'Kurang dari Rp. 1.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ibu == 2) {
+                                                                                        echo 'Rp. 1.500.000 - Rp.2.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ibu == 3) {
+                                                                                        echo 'Rp. 2.500.000 - RP.3.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ibu == 4) {
+                                                                                        echo 'Rp. 3.500.000 - Rp.4.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ibu == 5) {
+                                                                                        echo 'Rp. 4.500.000 - Rp.5.500.000';
+                                                                                    } else if ($register[0]->penghasilan_ibu == 6) {
+                                                                                        echo 'Lebih dari Rp. 5.500.000';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
 
                                                                             <option value="1"> Kurang dari Rp. 1.500.000
                                                                             </option>
@@ -1107,19 +1106,19 @@ if ($register[0]->penghasilan_ibu == 1) {
                                                                     <label>Jadikan Wali?</label>
                                                                     <span class="switch switch-lg switch-icon">
                                                                         <label>
-                                                                            <?php if (@$register[0]->status_wali == "" or @$register[0]->status_wali == null or @$register[0]->status_wali == 0) {?>
-                                                                            <input type="checkbox" id="wali_ibu"
-                                                                                name="status_wali" value="2">
-                                                                            <span></span>
-                                                                            <?php } else if (@$register[0]->status_wali == 2) {?>
-                                                                            <input type="checkbox" id="wali_ibu" checked
-                                                                                name="status_wali" value="2">
-                                                                            <span></span>
-                                                                            <?php } else if (@$register[0]->status_wali == 1) {?>
-                                                                            <input type="checkbox" id="wali_ibu"
-                                                                                disabled name="status_wali">
-                                                                            <span></span>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->status_wali == "" or @$register[0]->status_wali == null or @$register[0]->status_wali == 0) { ?>
+                                                                                <input type="checkbox" id="wali_ibu"
+                                                                                    name="status_wali" value="2">
+                                                                                <span></span>
+                                                                            <?php } else if (@$register[0]->status_wali == 2) { ?>
+                                                                                <input type="checkbox" id="wali_ibu" checked
+                                                                                    name="status_wali" value="2">
+                                                                                <span></span>
+                                                                            <?php } else if (@$register[0]->status_wali == 1) { ?>
+                                                                                <input type="checkbox" id="wali_ibu"
+                                                                                    disabled name="status_wali">
+                                                                                <span></span>
+                                                                            <?php } ?>
                                                                         </label>
                                                                     </span>
                                                                     <small id="info_checkbox_ibu"
@@ -1238,34 +1237,34 @@ if ($register[0]->penghasilan_ibu == 1) {
                                                                         <!--begin::Select-->
                                                                         <select name="pendidikan_wali"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->pendidikan_wali == "" or @$register[0]->pendidikan_wali == null) {?>
-                                                                            <option value="">Pilih Pendidikan Wali
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->pendidikan_wali; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->pendidikan_wali == 1) {
-    echo 'Tidak Sekolah';
-} else if ($register[0]->pendidikan_wali == 2) {
-    echo 'SD';
-} else if ($register[0]->pendidikan_wali == 3) {
-    echo 'SLTP';
-} else if ($register[0]->pendidikan_wali == 4) {
-    echo 'SLTA';
-} else if ($register[0]->pendidikan_wali == 5) {
-    echo 'D-I/D-II';
-} else if ($register[0]->pendidikan_wali == 6) {
-    echo 'D-III';
-} else if ($register[0]->pendidikan_wali == 7) {
-    echo 'D-IV/S1';
-} else if ($register[0]->pendidikan_wali == 8) {
-    echo 'S2/S3';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->pendidikan_wali == "" or @$register[0]->pendidikan_wali == null) { ?>
+                                                                                <option value="">Pilih Pendidikan Wali
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->pendidikan_wali; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->pendidikan_wali == 1) {
+                                                                                        echo 'Tidak Sekolah';
+                                                                                    } else if ($register[0]->pendidikan_wali == 2) {
+                                                                                        echo 'SD';
+                                                                                    } else if ($register[0]->pendidikan_wali == 3) {
+                                                                                        echo 'SLTP';
+                                                                                    } else if ($register[0]->pendidikan_wali == 4) {
+                                                                                        echo 'SLTA';
+                                                                                    } else if ($register[0]->pendidikan_wali == 5) {
+                                                                                        echo 'D-I/D-II';
+                                                                                    } else if ($register[0]->pendidikan_wali == 6) {
+                                                                                        echo 'D-III';
+                                                                                    } else if ($register[0]->pendidikan_wali == 7) {
+                                                                                        echo 'D-IV/S1';
+                                                                                    } else if ($register[0]->pendidikan_wali == 8) {
+                                                                                        echo 'S2/S3';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
                                                                             <option value="1">Tidak Sekolah</option>
                                                                             <option value="2">SD</option>
                                                                             <option value="3">SLTP</option>
@@ -1289,30 +1288,30 @@ if ($register[0]->pendidikan_wali == 1) {
                                                                         <label>Penghasilan Wali</label>
                                                                         <select name="penghasilan_wali"
                                                                             class="form-control form-control-solid form-control-lg">
-                                                                            <?php if (@$register[0]->penghasilan_wali == "" or @$register[0]->penghasilan_wali == null) {?>
-                                                                            <option value="">Pilih Penghasilan nik_wali
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->penghasilan_wali; ?>"
-                                                                                selected>
-                                                                                <?php
-if ($register[0]->penghasilan_wali == 1) {
-    echo 'Kurang dari Rp. 1.500.000';
-} else if ($register[0]->penghasilan_wali == 2) {
-    echo 'Rp. 1.500.000 - Rp.2.500.000';
-} else if ($register[0]->penghasilan_wali == 3) {
-    echo 'Rp. 2.500.000 - RP.3.500.000';
-} else if ($register[0]->penghasilan_wali == 4) {
-    echo 'Rp. 3.500.000 - Rp.4.500.000';
-} else if ($register[0]->penghasilan_wali == 5) {
-    echo 'Rp. 4.500.000 - Rp.5.500.000';
-} else if ($register[0]->penghasilan_wali == 6) {
-    echo 'Lebih dari Rp. 5.500.000';
-}
-    ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->penghasilan_wali == "" or @$register[0]->penghasilan_wali == null) { ?>
+                                                                                <option value="">Pilih Penghasilan nik_wali
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->penghasilan_wali; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->penghasilan_wali == 1) {
+                                                                                        echo 'Kurang dari Rp. 1.500.000';
+                                                                                    } else if ($register[0]->penghasilan_wali == 2) {
+                                                                                        echo 'Rp. 1.500.000 - Rp.2.500.000';
+                                                                                    } else if ($register[0]->penghasilan_wali == 3) {
+                                                                                        echo 'Rp. 2.500.000 - RP.3.500.000';
+                                                                                    } else if ($register[0]->penghasilan_wali == 4) {
+                                                                                        echo 'Rp. 3.500.000 - Rp.4.500.000';
+                                                                                    } else if ($register[0]->penghasilan_wali == 5) {
+                                                                                        echo 'Rp. 4.500.000 - Rp.5.500.000';
+                                                                                    } else if ($register[0]->penghasilan_wali == 6) {
+                                                                                        echo 'Lebih dari Rp. 5.500.000';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
 
                                                                             <option value="1"> Kurang dari Rp. 1.500.000
                                                                             </option>
@@ -1364,29 +1363,29 @@ if ($register[0]->penghasilan_wali == 1) {
                                                                         <label>Provinsi KK</label>
                                                                         <select name="provinsi_kk" id="provinsi_kk"
                                                                             class="form-control form-control-lg form-control-solid select2">
-                                                                            <?php if (@$register[0]->provinsi_kk == "" or @$register[0]->provinsi_kk == null) {?>
-                                                                            <option value="">Pilih Provinsi</option>
-                                                                            <?php } else {?>
+                                                                            <?php if (@$register[0]->provinsi_kk == "" or @$register[0]->provinsi_kk == null) { ?>
+                                                                                <option value="">Pilih Provinsi</option>
+                                                                            <?php } else { ?>
 
-                                                                            <option
-                                                                                value="<?php echo $register[0]->provinsi_kk; ?>"
-                                                                                selected="">
-                                                                                <?php echo ucwords(strtolower($register[0]->nama_provinsi_kk)); ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                                <option
+                                                                                    value="<?php echo $register[0]->provinsi_kk; ?>"
+                                                                                    selected="">
+                                                                                    <?php echo ucwords(strtolower($register[0]->nama_provinsi_kk)); ?>
+                                                                                </option>
+                                                                            <?php } ?>
 
                                                                             <?php
-if (!empty($provinsi)) {
-    foreach ($provinsi as $key => $value_prov_kk) {
-        ?>
-                                                                            <option
-                                                                                value="<?php echo $value_prov_kk->id; ?>">
-                                                                                <?php echo ucwords(strtolower($value_prov_kk->nama)); ?>
-                                                                            </option>
+                                                                            if (!empty($provinsi)) {
+                                                                                foreach ($provinsi as $key => $value_prov_kk) {
+                                                                            ?>
+                                                                                    <option
+                                                                                        value="<?php echo $value_prov_kk->id; ?>">
+                                                                                        <?php echo ucwords(strtolower($value_prov_kk->nama)); ?>
+                                                                                    </option>
                                                                             <?php
-}
-}
-?>
+                                                                                }
+                                                                            }
+                                                                            ?>
                                                                         </select>
                                                                         <span class="form-text text-dark"><b
                                                                                 class="text-danger">*WAJIB DIISI,
@@ -1490,15 +1489,15 @@ if (!empty($provinsi)) {
                                                                     <label>Jadikan Alamat Domisili?</label>
                                                                     <span class="switch switch-lg switch-icon">
                                                                         <label>
-                                                                            <?php if (@$register[0]->status_alamat == "" or @$register[0]->status_alamat == null or @$register[0]->status_alamat == 0) {?>
-                                                                            <input type="checkbox" id="alamat"
-                                                                                name="status_alamat" value="1">
-                                                                            <span></span>
-                                                                            <?php } else if (@$register[0]->status_alamat == 1) {?>
-                                                                            <input type="checkbox" id="alamat" checked
-                                                                                name="status_alamat" value="1">
-                                                                            <span></span>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->status_alamat == "" or @$register[0]->status_alamat == null or @$register[0]->status_alamat == 0) { ?>
+                                                                                <input type="checkbox" id="alamat"
+                                                                                    name="status_alamat" value="1">
+                                                                                <span></span>
+                                                                            <?php } else if (@$register[0]->status_alamat == 1) { ?>
+                                                                                <input type="checkbox" id="alamat" checked
+                                                                                    name="status_alamat" value="1">
+                                                                                <span></span>
+                                                                            <?php } ?>
                                                                         </label>
                                                                     </span>
                                                                     <small id="info_checkbox_alamat"
@@ -1537,28 +1536,28 @@ if (!empty($provinsi)) {
                                                                         <label>Provinsi Domisili</label>
                                                                         <select name="provinsi_dom" id="provinsi_dom"
                                                                             class="form-control form-control-lg form-control-solid select2">
-                                                                            <?php if (@$register[0]->provinsi_dom == "" or @$register[0]->provinsi_dom == null) {?>
-                                                                            <option value="">Pilih Provinsi</option>
-                                                                            <?php } else {?>
+                                                                            <?php if (@$register[0]->provinsi_dom == "" or @$register[0]->provinsi_dom == null) { ?>
+                                                                                <option value="">Pilih Provinsi</option>
+                                                                            <?php } else { ?>
 
-                                                                            <option
-                                                                                value="<?php echo $register[0]->provinsi_dom; ?>"
-                                                                                selected="">
-                                                                                <?php echo ucwords(strtolower($register[0]->nama_provinsi_dom)); ?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                                <option
+                                                                                    value="<?php echo $register[0]->provinsi_dom; ?>"
+                                                                                    selected="">
+                                                                                    <?php echo ucwords(strtolower($register[0]->nama_provinsi_dom)); ?>
+                                                                                </option>
+                                                                            <?php } ?>
                                                                             <?php
-if (!empty($provinsi)) {
-    foreach ($provinsi as $key => $value_prov_dom) {
-        ?>
-                                                                            <option
-                                                                                value="<?php echo $value_prov_dom->id; ?>">
-                                                                                <?php echo ucwords(strtolower($value_prov_dom->nama)); ?>
-                                                                            </option>
+                                                                            if (!empty($provinsi)) {
+                                                                                foreach ($provinsi as $key => $value_prov_dom) {
+                                                                            ?>
+                                                                                    <option
+                                                                                        value="<?php echo $value_prov_dom->id; ?>">
+                                                                                        <?php echo ucwords(strtolower($value_prov_dom->nama)); ?>
+                                                                                    </option>
                                                                             <?php
-}
-}
-?>
+                                                                                }
+                                                                            }
+                                                                            ?>
                                                                         </select>
                                                                         <span class="form-text text-dark"><b
                                                                                 class="text-danger">*WAJIB DIISI,
@@ -1697,30 +1696,30 @@ if (!empty($provinsi)) {
                                                                         <select name="jenis_tinggal"
                                                                             class="form-control form-control-solid form-control-lg">
 
-                                                                            <?php if (@$register[0]->jenis_tinggal == "" or @$register[0]->jenis_tinggal == null) {?>
-                                                                            <option value="">Pilih Jenis Tempat Tinggal
-                                                                            </option>
-                                                                            <?php } else {?>
-                                                                            <option
-                                                                                value="<?php echo @$register[0]->jenis_tinggal; ?>"
-                                                                                selected>
-                                                                                <?php
-																					if ($register[0]->jenis_tinggal == 1) {
-																						echo 'Bersama Orangtua';
-																					} else if ($register[0]->jenis_tinggal == 2) {
-																						echo 'Asrama';
-																					} else if ($register[0]->jenis_tinggal == 3) {
-																						echo 'Kos';
-																					} else if ($register[0]->jenis_tinggal == 4) {
-																						echo 'Bersama Nenek/Kakek';
-																					} else if ($register[0]->jenis_tinggal == 5) {
-																						echo 'Bersama Wali';
-																					} else if ($register[0]->jenis_tinggal == 6) {
-																						echo 'Lainnya';
-																					}
-																						?>
-                                                                            </option>
-                                                                            <?php }?>
+                                                                            <?php if (@$register[0]->jenis_tinggal == "" or @$register[0]->jenis_tinggal == null) { ?>
+                                                                                <option value="">Pilih Jenis Tempat Tinggal
+                                                                                </option>
+                                                                            <?php } else { ?>
+                                                                                <option
+                                                                                    value="<?php echo @$register[0]->jenis_tinggal; ?>"
+                                                                                    selected>
+                                                                                    <?php
+                                                                                    if ($register[0]->jenis_tinggal == 1) {
+                                                                                        echo 'Bersama Orangtua';
+                                                                                    } else if ($register[0]->jenis_tinggal == 2) {
+                                                                                        echo 'Asrama';
+                                                                                    } else if ($register[0]->jenis_tinggal == 3) {
+                                                                                        echo 'Kos';
+                                                                                    } else if ($register[0]->jenis_tinggal == 4) {
+                                                                                        echo 'Bersama Nenek/Kakek';
+                                                                                    } else if ($register[0]->jenis_tinggal == 5) {
+                                                                                        echo 'Bersama Wali';
+                                                                                    } else if ($register[0]->jenis_tinggal == 6) {
+                                                                                        echo 'Lainnya';
+                                                                                    }
+                                                                                    ?>
+                                                                                </option>
+                                                                            <?php } ?>
                                                                             <option value="1">Bersama Orangtua</option>
                                                                             <option value="2">Asrama</option>
                                                                             <option value="3">Kos</option>
@@ -1905,21 +1904,21 @@ if (!empty($provinsi)) {
                                                             <h3 class="mb-10 font-weight-bold text-dark">Informasi
                                                                 Jenjang Siswa:</h3>
                                                             <?php
-if ($register[0]->id_jalur == 2) {?>
-                                                            <div class="row">
-                                                                <div class="col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <span class="form-text text-dark"><b
-                                                                                class="text-danger">*Siswa yang
-                                                                                dinyatakan tidak lolos program ICP, akan
-                                                                                dialihkan ke program Reguler dengan
-                                                                                biaya mengikuti program Reguler. Terima
-                                                                                kasih!</b></span>
+                                                            if ($register[0]->id_jalur == 2) { ?>
+                                                                <div class="row">
+                                                                    <div class="col-xl-12">
+                                                                        <div class="form-group">
+                                                                            <span class="form-text text-dark"><b
+                                                                                    class="text-danger">*Siswa yang
+                                                                                    dinyatakan tidak lolos program ICP, akan
+                                                                                    dialihkan ke program Reguler dengan
+                                                                                    biaya mengikuti program Reguler. Terima
+                                                                                    kasih!</b></span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                             <?php
-}?>
+                                                            } ?>
                                                             <div class="row">
                                                                 <div class="col-xl-4">
                                                                     <div class="form-group">
@@ -1930,20 +1929,20 @@ if ($register[0]->id_jalur == 2) {?>
                                                                                 value="<?php echo $register[0]->level_tingkat; ?>"
                                                                                 selected>
                                                                                 <?php
-if ($register[0]->level_tingkat == 1) {
-    echo 'KB';
-} else if ($register[0]->level_tingkat == 2) {
-    echo 'TK';
-} else if ($register[0]->level_tingkat == 3) {
-    echo 'SD';
-} else if ($register[0]->level_tingkat == 4) {
-    echo 'SMP';
-} else if ($register[0]->level_tingkat == 5) {
-    echo 'KB-TK';
-} else if ($register[0]->level_tingkat == 6) {
-    echo 'DC';
-}
-?>
+                                                                                if ($register[0]->level_tingkat == 1) {
+                                                                                    echo 'KB';
+                                                                                } else if ($register[0]->level_tingkat == 2) {
+                                                                                    echo 'TK';
+                                                                                } else if ($register[0]->level_tingkat == 3) {
+                                                                                    echo 'SD';
+                                                                                } else if ($register[0]->level_tingkat == 4) {
+                                                                                    echo 'SMP';
+                                                                                } else if ($register[0]->level_tingkat == 5) {
+                                                                                    echo 'KB-TK';
+                                                                                } else if ($register[0]->level_tingkat == 6) {
+                                                                                    echo 'DC';
+                                                                                }
+                                                                                ?>
                                                                             </option>
                                                                         </select>
                                                                         <span class="form-text text-dark"><b
@@ -1960,12 +1959,12 @@ if ($register[0]->level_tingkat == 1) {
                                                                                 value="<?php echo $register[0]->id_jalur; ?>"
                                                                                 selected="">
                                                                                 <?php
-if ($register[0]->id_jalur == 1) {
-    echo 'Reguler';
-} else if ($register[0]->id_jalur == 2) {
-    echo 'ICP';
-}
-?>
+                                                                                if ($register[0]->id_jalur == 1) {
+                                                                                    echo 'Reguler';
+                                                                                } else if ($register[0]->id_jalur == 2) {
+                                                                                    echo 'ICP';
+                                                                                }
+                                                                                ?>
                                                                             </option>
                                                                         </select>
                                                                         <span class="form-text text-dark"><b
@@ -2116,126 +2115,126 @@ if ($register[0]->id_jalur == 1) {
                 <div class="wcs_popup_header_description">Pilih salah satu <b>Admin PPDB</b> dibawah ini</div>
             </div>
             <div class="wcs_popup_person_container">
-                <?php if ($contact[0]->no_handphone_tk != "" or $contact[0]->no_handphone_tk != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_tk, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin KB-TK</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB KB-TK</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                <?php if ($contact[0]->no_handphone_tk != "" or $contact[0]->no_handphone_tk != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_tk, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin KB-TK</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB KB-TK</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-if ($contact[0]->no_handphone_sd != "" or $contact[0]->no_handphone_sd != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_sd, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SD</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SD</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_sd != "" or $contact[0]->no_handphone_sd != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_sd, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SD</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SD</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-if ($contact[0]->no_handphone_smp != "" or $contact[0]->no_handphone_smp != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_smp, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SMP</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SMP</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_smp != "" or $contact[0]->no_handphone_smp != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_smp, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SMP</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SMP</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_sma, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SMA</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SMA</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_sma, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SMA</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SMA</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
-                <?php }?>
+                <?php } ?>
             </div>
         </div>
     </div>
 
     <!--end::Main-->
     <script>
-    var HOST_URL = "<?php echo base_url(); ?>"
+        var HOST_URL = "<?php echo base_url(); ?>"
     </script>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
-    var KTAppSettings = {
-        "breakpoints": {
-            "sm": 576,
-            "md": 768,
-            "lg": 992,
-            "xl": 1200,
-            "xxl": 1200
-        },
-        "colors": {
-            "theme": {
-                "base": {
-                    "white": "#ffffff",
-                    "primary": "#6993FF",
-                    "secondary": "#E5EAEE",
-                    "success": "#1BC5BD",
-                    "info": "#8950FC",
-                    "warning": "#FFA800",
-                    "danger": "#F64E60",
-                    "light": "#F3F6F9",
-                    "dark": "#212121"
+        var KTAppSettings = {
+            "breakpoints": {
+                "sm": 576,
+                "md": 768,
+                "lg": 992,
+                "xl": 1200,
+                "xxl": 1200
+            },
+            "colors": {
+                "theme": {
+                    "base": {
+                        "white": "#ffffff",
+                        "primary": "#6993FF",
+                        "secondary": "#E5EAEE",
+                        "success": "#1BC5BD",
+                        "info": "#8950FC",
+                        "warning": "#FFA800",
+                        "danger": "#F64E60",
+                        "light": "#F3F6F9",
+                        "dark": "#212121"
+                    },
+                    "light": {
+                        "white": "#ffffff",
+                        "primary": "#E1E9FF",
+                        "secondary": "#ECF0F3",
+                        "success": "#C9F7F5",
+                        "info": "#EEE5FF",
+                        "warning": "#FFF4DE",
+                        "danger": "#FFE2E5",
+                        "light": "#F3F6F9",
+                        "dark": "#D6D6E0"
+                    },
+                    "inverse": {
+                        "white": "#ffffff",
+                        "primary": "#ffffff",
+                        "secondary": "#212121",
+                        "success": "#ffffff",
+                        "info": "#ffffff",
+                        "warning": "#ffffff",
+                        "danger": "#ffffff",
+                        "light": "#464E5F",
+                        "dark": "#ffffff"
+                    }
                 },
-                "light": {
-                    "white": "#ffffff",
-                    "primary": "#E1E9FF",
-                    "secondary": "#ECF0F3",
-                    "success": "#C9F7F5",
-                    "info": "#EEE5FF",
-                    "warning": "#FFF4DE",
-                    "danger": "#FFE2E5",
-                    "light": "#F3F6F9",
-                    "dark": "#D6D6E0"
-                },
-                "inverse": {
-                    "white": "#ffffff",
-                    "primary": "#ffffff",
-                    "secondary": "#212121",
-                    "success": "#ffffff",
-                    "info": "#ffffff",
-                    "warning": "#ffffff",
-                    "danger": "#ffffff",
-                    "light": "#464E5F",
-                    "dark": "#ffffff"
+                "gray": {
+                    "gray-100": "#F3F6F9",
+                    "gray-200": "#ECF0F3",
+                    "gray-300": "#E5EAEE",
+                    "gray-400": "#D6D6E0",
+                    "gray-500": "#B5B5C3",
+                    "gray-600": "#80808F",
+                    "gray-700": "#464E5F",
+                    "gray-800": "#1B283F",
+                    "gray-900": "#212121"
                 }
             },
-            "gray": {
-                "gray-100": "#F3F6F9",
-                "gray-200": "#ECF0F3",
-                "gray-300": "#E5EAEE",
-                "gray-400": "#D6D6E0",
-                "gray-500": "#B5B5C3",
-                "gray-600": "#80808F",
-                "gray-700": "#464E5F",
-                "gray-800": "#1B283F",
-                "gray-900": "#212121"
-            }
-        },
-        "font-family": "Poppins"
-    };
+            "font-family": "Poppins"
+        };
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
@@ -2262,395 +2261,352 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/js/pages/features/miscellaneous/toastr.js"></script>
 
     <script>
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
 
-    var csrfName = $('.txt_csrfname').attr('name');
-    var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+        var csrfName = $('.txt_csrfname').attr('name');
+        var csrfHash = $('.txt_csrfname').val(); // CSRF hash
 
-    function post_personal_contact_student() {
-        $.ajax({
-            type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_personal_contact/"); ?>" + window.location.pathname
-                .split("/").pop(),
-            data: {
-                nisn: $('[name=nisn]').val(),
-                nik: $('[name=nik]').val(),
-                nomor_formulir: $('[name=nomor_formulir]').val(),
-                no_akta_kelahiran: $('[name=no_akta_kelahiran]').val(),
-                nama_lengkap: $('[name=nama_lengkap]').val(),
-                nama_panggilan: $('[name=nama_panggilan]').val(),
-                tempat_lahir: $('[name=tempat_lahir]').val(),
-                tanggal_lahir: $('[name=tanggal_lahir]').val(),
-                jenis_kelamin: $('[name=jenis_kelamin]').val(),
-                agama: $('[name=agama]').val(),
-                rombel: $('[name=rombel]').val(),
-                id_tahun_ajaran: $('[name=id_tahun_ajaran]').val(),
-                asal_sekolah: $('[name=asal_sekolah]').val(),
-                nomor_handphone: $('[name=nomor_handphone]').val(),
-                nomor_telepon: $('[name=nomor_telepon]').val(),
-                email: $('[name=email]').val(),
-                [csrfName]: csrfHash
-            },
-            dataType: 'html',
-            success: function(data) {
-                var obj_data = jQuery.parseJSON(data);
+        function post_personal_contact_student() {
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url("/ppdb/register/edit_personal_contact/"); ?>" + window.location.pathname
+                    .split("/").pop(),
+                data: {
+                    nisn: $('[name=nisn]').val(),
+                    nik: $('[name=nik]').val(),
+                    nomor_formulir: $('[name=nomor_formulir]').val(),
+                    no_akta_kelahiran: $('[name=no_akta_kelahiran]').val(),
+                    nama_lengkap: $('[name=nama_lengkap]').val(),
+                    nama_panggilan: $('[name=nama_panggilan]').val(),
+                    tempat_lahir: $('[name=tempat_lahir]').val(),
+                    tanggal_lahir: $('[name=tanggal_lahir]').val(),
+                    jenis_kelamin: $('[name=jenis_kelamin]').val(),
+                    agama: $('[name=agama]').val(),
+                    rombel: $('[name=rombel]').val(),
+                    id_tahun_ajaran: $('[name=id_tahun_ajaran]').val(),
+                    asal_sekolah: $('[name=asal_sekolah]').val(),
+                    nomor_handphone: $('[name=nomor_handphone]').val(),
+                    nomor_telepon: $('[name=nomor_telepon]').val(),
+                    email: $('[name=email]').val(),
+                    [csrfName]: csrfHash
+                },
+                dataType: 'html',
+                success: function(data) {
+                    var obj_data = jQuery.parseJSON(data);
 
-                $('.txt_csrfname').val(obj_data.token);
-                csrfHash = obj_data.token;
+                    $('.txt_csrfname').val(obj_data.token);
+                    csrfHash = obj_data.token;
 
-                if (obj_data.status) {
-                    toastr.success(obj_data.messages, "Berhasil!");
-                    window.history.replaceState('', '',
-                        "<?php echo site_url("ppdb/register/status_fulfillment_register/"); ?>" +
-                        obj_data.id_encrypt);
-                    $('#kt_form_student').attr('action',
-                        '<?php echo site_url('/ppdb/register/post_final_registration/'); ?>' +
-                        obj_data.id_encrypt);
-                } else {
-                    toastr.warning(obj_data.messages, "Peringatan!");
+                    if (obj_data.status) {
+                        toastr.success(obj_data.messages, "Berhasil!");
+                        window.history.replaceState('', '',
+                            "<?php echo site_url("ppdb/register/status_fulfillment_register/"); ?>" +
+                            obj_data.id_encrypt);
+                        $('#kt_form_student').attr('action',
+                            '<?php echo site_url('/ppdb/register/post_final_registration/'); ?>' +
+                            obj_data.id_encrypt);
+                    } else {
+                        toastr.warning(obj_data.messages, "Peringatan!");
+                    }
+
+                },
+                error: function(result) {
+                    toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
                 }
-
-            },
-            error: function(result) {
-                toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
-            }
-        });
-
-    }
-
-    var status_wali = "<?php echo @$register[0]->status_wali; ?>";
-
-    $('#wali_ayah').on('change', function() { // on change of state
-        if (this.checked) // if changed state is "CHECKED"
-        {
-            status_wali = 1;
-        } else {
-            status_wali = "";
-        }
-    })
-
-    $('#wali_ibu').on('change', function() { // on change of state
-        if (this.checked) // if changed state is "CHECKED"
-        {
-            status_wali = 2;
-        } else {
-            status_wali = "";
-        }
-    })
-
-    $('#tahun_ajaran').on('change', function() { // on change of state
-        $.ajax({
-            type: "post",
-            url: "<?php echo site_url("/ppdb/register/get_form_number")?>",
-            data: {
-                id_tahun_ajaran: this.value,
-                [csrfName]: csrfHash
-            },
-            dataType: 'html',
-            success: function(data) {
-                var obj_data = jQuery.parseJSON(data);
-
-                $('.txt_csrfname').val(obj_data.token);
-                csrfHash = obj_data.token;
-
-                if (obj_data.status) {
-                    $("#id_nomor_formulir").val(obj_data.number_form);
-                } else {
-                    $("#id_nomor_formulir").val("");
-                }
-
-            },
-            error: function(result) {
-                toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
-            }
-        });
-    })
-
-    function post_parents_student() {
-        $.ajax({
-            type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_parents_info/"); ?>" + window.location.pathname
-                .split("/").pop(),
-            data: {
-                nama_ayah: $('[name=nama_ayah]').val(),
-                nik_ayah: $('[name=nik_ayah]').val(),
-                tempat_lahir_ayah: $('[name=tempat_lahir_ayah]').val(),
-                tanggal_lahir_ayah: $('[name=tanggal_lahir_ayah]').val(),
-                pekerjaan_ayah: $('[name=pekerjaan_ayah]').val(),
-                pendidikan_ayah: $('[name=pendidikan_ayah]').val(),
-                penghasilan_ayah: $('[name=penghasilan_ayah]').val(),
-                nama_ibu: $('[name=nama_ibu]').val(),
-                nik_ibu: $('[name=nik_ibu]').val(),
-                tempat_lahir_ibu: $('[name=tempat_lahir_ibu]').val(),
-                tanggal_lahir_ibu: $('[name=tanggal_lahir_ibu]').val(),
-                pekerjaan_ibu: $('[name=pekerjaan_ibu]').val(),
-                pendidikan_ibu: $('[name=pendidikan_ibu]').val(),
-                penghasilan_ibu: $('[name=penghasilan_ibu]').val(),
-                nama_wali: $('[name=nama_wali]').val(),
-                nik_wali: $('[name=nik_wali]').val(),
-                tempat_lahir_wali: $('[name=tempat_lahir_wali]').val(),
-                tanggal_lahir_wali: $('[name=tanggal_lahir_wali]').val(),
-                pekerjaan_wali: $('[name=pekerjaan_wali]').val(),
-                pendidikan_wali: $('[name=pendidikan_wali]').val(),
-                penghasilan_wali: $('[name=penghasilan_wali]').val(),
-                status_wali: status_wali,
-                [csrfName]: csrfHash
-            },
-            dataType: 'html',
-            success: function(data) {
-                var obj_data = jQuery.parseJSON(data);
-
-                $('.txt_csrfname').val(obj_data.token);
-                csrfHash = obj_data.token;
-
-                if (obj_data.status) {
-                    toastr.success(obj_data.messages, "Berhasil!");
-                } else {
-                    toastr.warning(obj_data.messages, "Peringatan!");
-                }
-
-            },
-            error: function(result) {
-                toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
-            }
-        });
-
-    }
-
-    var status_alamat = "<?php echo @$register[0]->status_alamat; ?>";
-
-    $('#alamat').on('change', function() { // on change of state
-        if (this.checked) // if changed state is "CHECKED"
-        {
-            status_alamat = 1;
-        } else {
-            status_alamat = "";
+            });
 
         }
-    })
 
-    function post_address_student() {
-        $.ajax({
-            type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_address_info/"); ?>" + window.location.pathname
-                .split("/").pop(),
-            data: {
-                alamat_rumah_kk: $('[name=alamat_rumah_kk]').val(),
-                provinsi_kk: $('[name=provinsi_kk]').val(),
-                kabupaten_kota_kk: $('[name=kabupaten_kota_kk]').val(),
-                kecamatan_kk: $('[name=kecamatan_kk]').val(),
-                kelurahan_desa_kk: $('[name=kelurahan_desa_kk]').val(),
-                rt_kk: $('[name=rt_kk]').val(),
-                rw_kk: $('[name=rw_kk]').val(),
-                kodepos_kk: $('[name=kodepos_kk]').val(),
-                alamat_rumah_dom: $('[name=alamat_rumah_dom]').val(),
-                provinsi_dom: $('[name=provinsi_dom]').val(),
-                kabupaten_kota_dom: $('[name=kabupaten_kota_dom]').val(),
-                kecamatan_dom: $('[name=kecamatan_dom]').val(),
-                kelurahan_desa_dom: $('[name=kelurahan_desa_dom]').val(),
-                rt_dom: $('[name=rt_dom]').val(),
-                rw_dom: $('[name=rw_dom]').val(),
-                kodepos_dom: $('[name=kodepos_dom]').val(),
-                status_alamat: status_alamat,
-                [csrfName]: csrfHash
-            },
-            dataType: 'html',
-            success: function(data) {
-                var obj_data = jQuery.parseJSON(data);
+        var status_wali = "<?php echo @$register[0]->status_wali; ?>";
 
-                $('.txt_csrfname').val(obj_data.token);
-                csrfHash = obj_data.token;
-
-                if (obj_data.status) {
-                    toastr.success(obj_data.messages, "Berhasil!");
-                } else {
-                    toastr.warning(obj_data.messages, "Peringatan!");
-                }
-
-            },
-            error: function(result) {
-                toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+        $('#wali_ayah').on('change', function() { // on change of state
+            if (this.checked) // if changed state is "CHECKED"
+            {
+                status_wali = 1;
+            } else {
+                status_wali = "";
             }
-        });
+        })
 
-    }
-
-    function post_periodic_student() {
-        $.ajax({
-            type: "post",
-            url: "<?php echo site_url("/ppdb/register/edit_periodic_info/") ?>" + window.location.pathname
-                .split("/").pop(),
-            data: {
-                alat_transportasi: $('[name=alat_transportasi]').val(),
-                jenis_tinggal: $('[name=jenis_tinggal]').val(),
-                jarak_rumah_sekolah: $('[name=jarak_rumah_sekolah]').val(),
-                jumlah_saudara: $('[name=jumlah_saudara]').val(),
-                anak_ke: $('[name=anak_ke]').val(),
-                nis_saudara: $('[name=nis_saudara]').val(),
-                nama_saudara: $('[name=nama_saudara]').val(),
-                kebutuhan_khusus: $('[name=kebutuhan_khusus]').val(),
-                tinggi_badan: $('[name=tinggi_badan]').val(),
-                berat_badan: $('[name=berat_badan]').val(),
-                level_tingkat: $('[name=level_tingkat]').val(),
-                id_jalur: $('[name=id_jalur]').val(),
-                [csrfName]: csrfHash
-            },
-            dataType: 'html',
-            success: function(data) {
-                var obj_data = jQuery.parseJSON(data);
-
-                $('.txt_csrfname').val(obj_data.token);
-                csrfHash = obj_data.token;
-
-                if (obj_data.status) {
-                    toastr.success(obj_data.messages, "Berhasil!");
-                } else {
-                    toastr.warning(obj_data.messages, "Peringatan!");
-                }
-
-            },
-            error: function(result) {
-                toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+        $('#wali_ibu').on('change', function() { // on change of state
+            if (this.checked) // if changed state is "CHECKED"
+            {
+                status_wali = 2;
+            } else {
+                status_wali = "";
             }
-        });
-    }
+        })
 
-    // var status_persetujuan_one = "";
-    // var status_persetujuan_two = "";
+        $('#tahun_ajaran').on('change', function() { // on change of state
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url("/ppdb/register/get_form_number") ?>",
+                data: {
+                    id_tahun_ajaran: this.value,
+                    [csrfName]: csrfHash
+                },
+                dataType: 'html',
+                success: function(data) {
+                    var obj_data = jQuery.parseJSON(data);
 
-    // $('#persetujuan_one').on('change', function() { // on change of state
-    //     if (this.checked) // if changed state is "CHECKED"
-    //     {
-    //         status_persetujuan_one = 1;
-    //     } else {
-    //         status_persetujuan_one = "";
-    //     }
-    //     //alert(status_persetujuan_one);
-    // });
+                    $('.txt_csrfname').val(obj_data.token);
+                    csrfHash = obj_data.token;
 
-    // $('#persetujuan_two').on('change', function() { // on change of state
-    //     if (this.checked) // if changed state is "CHECKED"
-    //     {
-    //         status_persetujuan_two = 1;
-    //     } else {
-    //         status_persetujuan_two = "";
-    //     }
-    //     //alert(status_persetujuan_two);
-    // })
+                    if (obj_data.status) {
+                        $("#id_nomor_formulir").val(obj_data.number_form);
+                    } else {
+                        $("#id_nomor_formulir").val("");
+                    }
 
-    // function post_final_registration() {
+                },
+                error: function(result) {
+                    toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+                }
+            });
+        })
 
-    //     if (status_persetujuan_one == 1 && status_persetujuan_two == 1) {
-    //         $.ajax({
-    //             type: "post",
-    //             url: "<?php //echo site_url("/ppdb/register/edit_final_registration/" . paramEncrypt($register[0]->nomor_formulir)) ?>",
-    //             data: {
-    //                 level_tingkat: $('[name=level_tingkat]').val(),
-    //                 nama_lengkap: $('[name=nama_lengkap]').val(),
-    //                 nomor_formulir: $('[name=nomor_formulir]').val()
-    //             },
-    //             dataType: 'html',
-    //             success: function(data) {
-    //                 var obj_data = jQuery.parseJSON(data);
+        function post_parents_student() {
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url("/ppdb/register/edit_parents_info/"); ?>" + window.location.pathname
+                    .split("/").pop(),
+                data: {
+                    nama_ayah: $('[name=nama_ayah]').val(),
+                    nik_ayah: $('[name=nik_ayah]').val(),
+                    tempat_lahir_ayah: $('[name=tempat_lahir_ayah]').val(),
+                    tanggal_lahir_ayah: $('[name=tanggal_lahir_ayah]').val(),
+                    pekerjaan_ayah: $('[name=pekerjaan_ayah]').val(),
+                    pendidikan_ayah: $('[name=pendidikan_ayah]').val(),
+                    penghasilan_ayah: $('[name=penghasilan_ayah]').val(),
+                    nama_ibu: $('[name=nama_ibu]').val(),
+                    nik_ibu: $('[name=nik_ibu]').val(),
+                    tempat_lahir_ibu: $('[name=tempat_lahir_ibu]').val(),
+                    tanggal_lahir_ibu: $('[name=tanggal_lahir_ibu]').val(),
+                    pekerjaan_ibu: $('[name=pekerjaan_ibu]').val(),
+                    pendidikan_ibu: $('[name=pendidikan_ibu]').val(),
+                    penghasilan_ibu: $('[name=penghasilan_ibu]').val(),
+                    nama_wali: $('[name=nama_wali]').val(),
+                    nik_wali: $('[name=nik_wali]').val(),
+                    tempat_lahir_wali: $('[name=tempat_lahir_wali]').val(),
+                    tanggal_lahir_wali: $('[name=tanggal_lahir_wali]').val(),
+                    pekerjaan_wali: $('[name=pekerjaan_wali]').val(),
+                    pendidikan_wali: $('[name=pendidikan_wali]').val(),
+                    penghasilan_wali: $('[name=penghasilan_wali]').val(),
+                    status_wali: status_wali,
+                    [csrfName]: csrfHash
+                },
+                dataType: 'html',
+                success: function(data) {
+                    var obj_data = jQuery.parseJSON(data);
 
-    //                 if (obj_data.status == false) {
-    //                     toastr.warning(obj_data.messages, "Peringatan!");
-    //                 }
-    //             },
-    //             error: function(result) {
-    //                 toastr.error("Data gagal disimpan, coba lagi!.", "Peringatan!");
-    //             }
-    //         });
-    //     } else {
-    //         Swal.fire({
-    //             text: "Harap Centang Persetujuan terlebih dahulu!",
-    //             icon: "error",
-    //             buttonsStyling: false,
-    //             confirmButtonText: "Oke!",
-    //             customClass: {
-    //                 confirmButton: "btn font-weight-bold btn-primary",
-    //             }
-    //         });
-    //     }
-    // }
+                    $('.txt_csrfname').val(obj_data.token);
+                    csrfHash = obj_data.token;
+
+                    if (obj_data.status) {
+                        toastr.success(obj_data.messages, "Berhasil!");
+                    } else {
+                        toastr.warning(obj_data.messages, "Peringatan!");
+                    }
+
+                },
+                error: function(result) {
+                    toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+                }
+            });
+
+        }
+
+        var status_alamat = "<?php echo @$register[0]->status_alamat; ?>";
+
+        $('#alamat').on('change', function() { // on change of state
+            if (this.checked) // if changed state is "CHECKED"
+            {
+                status_alamat = 1;
+            } else {
+                status_alamat = "";
+
+            }
+        })
+
+        function post_address_student() {
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url("/ppdb/register/edit_address_info/"); ?>" + window.location.pathname
+                    .split("/").pop(),
+                data: {
+                    alamat_rumah_kk: $('[name=alamat_rumah_kk]').val(),
+                    provinsi_kk: $('[name=provinsi_kk]').val(),
+                    kabupaten_kota_kk: $('[name=kabupaten_kota_kk]').val(),
+                    kecamatan_kk: $('[name=kecamatan_kk]').val(),
+                    kelurahan_desa_kk: $('[name=kelurahan_desa_kk]').val(),
+                    rt_kk: $('[name=rt_kk]').val(),
+                    rw_kk: $('[name=rw_kk]').val(),
+                    kodepos_kk: $('[name=kodepos_kk]').val(),
+                    alamat_rumah_dom: $('[name=alamat_rumah_dom]').val(),
+                    provinsi_dom: $('[name=provinsi_dom]').val(),
+                    kabupaten_kota_dom: $('[name=kabupaten_kota_dom]').val(),
+                    kecamatan_dom: $('[name=kecamatan_dom]').val(),
+                    kelurahan_desa_dom: $('[name=kelurahan_desa_dom]').val(),
+                    rt_dom: $('[name=rt_dom]').val(),
+                    rw_dom: $('[name=rw_dom]').val(),
+                    kodepos_dom: $('[name=kodepos_dom]').val(),
+                    status_alamat: status_alamat,
+                    [csrfName]: csrfHash
+                },
+                dataType: 'html',
+                success: function(data) {
+                    var obj_data = jQuery.parseJSON(data);
+
+                    $('.txt_csrfname').val(obj_data.token);
+                    csrfHash = obj_data.token;
+
+                    if (obj_data.status) {
+                        toastr.success(obj_data.messages, "Berhasil!");
+                    } else {
+                        toastr.warning(obj_data.messages, "Peringatan!");
+                    }
+
+                },
+                error: function(result) {
+                    toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+                }
+            });
+
+        }
+
+        function post_periodic_student() {
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url("/ppdb/register/edit_periodic_info/") ?>" + window.location.pathname
+                    .split("/").pop(),
+                data: {
+                    alat_transportasi: $('[name=alat_transportasi]').val(),
+                    jenis_tinggal: $('[name=jenis_tinggal]').val(),
+                    jarak_rumah_sekolah: $('[name=jarak_rumah_sekolah]').val(),
+                    jumlah_saudara: $('[name=jumlah_saudara]').val(),
+                    anak_ke: $('[name=anak_ke]').val(),
+                    nis_saudara: $('[name=nis_saudara]').val(),
+                    nama_saudara: $('[name=nama_saudara]').val(),
+                    kebutuhan_khusus: $('[name=kebutuhan_khusus]').val(),
+                    tinggi_badan: $('[name=tinggi_badan]').val(),
+                    berat_badan: $('[name=berat_badan]').val(),
+                    level_tingkat: $('[name=level_tingkat]').val(),
+                    id_jalur: $('[name=id_jalur]').val(),
+                    [csrfName]: csrfHash
+                },
+                dataType: 'html',
+                success: function(data) {
+                    var obj_data = jQuery.parseJSON(data);
+
+                    $('.txt_csrfname').val(obj_data.token);
+                    csrfHash = obj_data.token;
+
+                    if (obj_data.status) {
+                        toastr.success(obj_data.messages, "Berhasil!");
+                    } else {
+                        toastr.warning(obj_data.messages, "Peringatan!");
+                    }
+
+                },
+                error: function(result) {
+                    toastr.error("Data gagal disimpan di dalam draft.", "Peringatan!");
+                }
+            });
+        }
+
+        // var status_persetujuan_one = "";
+        // var status_persetujuan_two = "";
+
+        // $('#persetujuan_one').on('change', function() { // on change of state
+        //     if (this.checked) // if changed state is "CHECKED"
+        //     {
+        //         status_persetujuan_one = 1;
+        //     } else {
+        //         status_persetujuan_one = "";
+        //     }
+        //     //alert(status_persetujuan_one);
+        // });
+
+        // $('#persetujuan_two').on('change', function() { // on change of state
+        //     if (this.checked) // if changed state is "CHECKED"
+        //     {
+        //         status_persetujuan_two = 1;
+        //     } else {
+        //         status_persetujuan_two = "";
+        //     }
+        //     //alert(status_persetujuan_two);
+        // })
+
+        // function post_final_registration() {
+
+        //     if (status_persetujuan_one == 1 && status_persetujuan_two == 1) {
+        //         $.ajax({
+        //             type: "post",
+        //             url: "<?php //echo site_url("/ppdb/register/edit_final_registration/" . paramEncrypt($register[0]->nomor_formulir)) 
+                                ?>",
+        //             data: {
+        //                 level_tingkat: $('[name=level_tingkat]').val(),
+        //                 nama_lengkap: $('[name=nama_lengkap]').val(),
+        //                 nomor_formulir: $('[name=nomor_formulir]').val()
+        //             },
+        //             dataType: 'html',
+        //             success: function(data) {
+        //                 var obj_data = jQuery.parseJSON(data);
+
+        //                 if (obj_data.status == false) {
+        //                     toastr.warning(obj_data.messages, "Peringatan!");
+        //                 }
+        //             },
+        //             error: function(result) {
+        //                 toastr.error("Data gagal disimpan, coba lagi!.", "Peringatan!");
+        //             }
+        //         });
+        //     } else {
+        //         Swal.fire({
+        //             text: "Harap Centang Persetujuan terlebih dahulu!",
+        //             icon: "error",
+        //             buttonsStyling: false,
+        //             confirmButtonText: "Oke!",
+        //             customClass: {
+        //                 confirmButton: "btn font-weight-bold btn-primary",
+        //             }
+        //         });
+        //     }
+        // }
     </script>
 
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-        var info_checkbox_alamat = document.getElementById('info_checkbox_alamat');
-        var alamat_rumah_kk = $('textarea[name="alamat_rumah_kk"]');
-        var provinsi_kk = $('select[name="provinsi_kk"]');
-        var kabupaten_kota_kk = $('select[name="kabupaten_kota_kk"]');
-        var kecamatan_kk = $('select[name="kecamatan_kk"]');
-        var kelurahan_desa_kk = $('select[name="kelurahan_desa_kk"]');
-        var rt_kk = $('input[name="rt_kk"]');
-        var rw_kk = $('input[name="rw_kk"]');
-        var kodepos_kk = $('input[name="kodepos_kk"]');
+            var info_checkbox_alamat = document.getElementById('info_checkbox_alamat');
+            var alamat_rumah_kk = $('textarea[name="alamat_rumah_kk"]');
+            var provinsi_kk = $('select[name="provinsi_kk"]');
+            var kabupaten_kota_kk = $('select[name="kabupaten_kota_kk"]');
+            var kecamatan_kk = $('select[name="kecamatan_kk"]');
+            var kelurahan_desa_kk = $('select[name="kelurahan_desa_kk"]');
+            var rt_kk = $('input[name="rt_kk"]');
+            var rw_kk = $('input[name="rw_kk"]');
+            var kodepos_kk = $('input[name="kodepos_kk"]');
 
-        <?php if ($register[0]->status_alamat == 1) {?>
+            <?php if ($register[0]->status_alamat == 1) { ?>
 
-        $('textarea[name="alamat_rumah_dom"]').val(alamat_rumah_kk.val()).prop('readonly', true);
-        $('input[name="rt_dom"]').val(rt_kk.val()).prop('readonly', true);
-        $('input[name="rw_dom"]').val(rw_kk.val()).prop('readonly', true);
-        $('input[name="kodepos_dom"]').val(kodepos_kk.val()).prop('readonly', true);
-
-        $('textarea[name="alamat_rumah_kk"]').prop('readonly', true);
-        $('input[name="rt_kk"]').prop('readonly', true);
-        $('input[name="rw_kk"]').prop('readonly', true);
-        $('input[name="kodepos_kk"]').prop('readonly', true);
-
-        $('select[name="provinsi_kk"]').prop('disabled', true);
-        $('select[name="kabupaten_kota_kk"]').prop('disabled', true);
-        $('select[name="kecamatan_kk"]').prop('disabled', true);
-        $('select[name="kelurahan_desa_kk"]').prop('disabled', true);
-
-        $('select[name="provinsi_dom"]').prop('disabled', true);
-        $('select[name="kabupaten_kota_dom"]').prop('disabled', true);
-        $('select[name="kecamatan_dom"]').prop('disabled', true);
-        $('select[name="kelurahan_desa_dom"]').prop('disabled', true);
-
-        var option_prov = $("<option selected></option>").val(provinsi_kk.val()).text(
-            provinsi_kk.select2('data')[0].text);
-        $("select[name='provinsi_dom']").append(option_prov);
-        var option_kab = $("<option selected></option>").val(kabupaten_kota_kk.val()).text(
-            kabupaten_kota_kk.select2('data')[0].text);
-        $("select[name='kabupaten_kota_dom']").append(option_kab);
-        var option_kec = $("<option selected></option>").val(kecamatan_kk.val()).text(
-            kecamatan_kk.select2('data')[0].text);
-        $("select[name='kecamatan_dom']").append(option_kec);
-        var option_kel = $("<option selected></option>").val(kelurahan_desa_kk.val()).text(
-            kelurahan_desa_kk.select2('data')[0].text);
-        $("select[name='kelurahan_desa_dom']").append(option_kel);
-
-        info_alamat.innerHTML =
-            "<b class='text-danger'>*Anda menggunakan data Alamat KK sebagai Alamat Domisili</b>";
-        info_checkbox_alamat.innerHTML =
-            "<b>*Nonaktfikan untuk mengubah formulir Alamat KK</b>";
-
-        <?php }?>
-
-        $('#alamat').click(function() {
-            if ($(this).prop("checked") == true) {
-
-                $('textarea[name="alamat_rumah_dom"]').val(alamat_rumah_kk.val()).prop('readonly',
-                    true);
+                $('textarea[name="alamat_rumah_dom"]').val(alamat_rumah_kk.val()).prop('readonly', true);
                 $('input[name="rt_dom"]').val(rt_kk.val()).prop('readonly', true);
                 $('input[name="rw_dom"]').val(rw_kk.val()).prop('readonly', true);
                 $('input[name="kodepos_dom"]').val(kodepos_kk.val()).prop('readonly', true);
@@ -2688,91 +2644,99 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 info_checkbox_alamat.innerHTML =
                     "<b>*Nonaktfikan untuk mengubah formulir Alamat KK</b>";
 
+            <?php } ?>
 
-            } else if ($(this).prop("checked") == false) {
+            $('#alamat').click(function() {
+                if ($(this).prop("checked") == true) {
 
-                $('textarea[name="alamat_rumah_kk"]').prop('readonly', false);
-                $('input[name="rt_kk"]').prop('readonly', false);
-                $('input[name="rw_kk"]').prop('readonly', false);
-                $('input[name="kodepos_kk"]').prop('readonly', false);
+                    $('textarea[name="alamat_rumah_dom"]').val(alamat_rumah_kk.val()).prop('readonly',
+                        true);
+                    $('input[name="rt_dom"]').val(rt_kk.val()).prop('readonly', true);
+                    $('input[name="rw_dom"]').val(rw_kk.val()).prop('readonly', true);
+                    $('input[name="kodepos_dom"]').val(kodepos_kk.val()).prop('readonly', true);
 
-                $('select[name="provinsi_dom"]').find("option:last").remove();
-                $('select[name="kabupaten_kota_dom"]').find("option:last").remove();
-                $('select[name="kecamatan_dom"]').find("option:last").remove();
-                $('select[name="kelurahan_desa_dom"]').find("option:last").remove();
+                    $('textarea[name="alamat_rumah_kk"]').prop('readonly', true);
+                    $('input[name="rt_kk"]').prop('readonly', true);
+                    $('input[name="rw_kk"]').prop('readonly', true);
+                    $('input[name="kodepos_kk"]').prop('readonly', true);
 
-                $('textarea[name="alamat_rumah_dom"]').val('').prop('readonly', false);
-                $('input[name="rt_dom"]').val('').prop('readonly', false);
-                $('input[name="rw_dom"]').val('').prop('readonly', false);
-                $('input[name="kodepos_dom"]').val('').prop('readonly', false);
+                    $('select[name="provinsi_kk"]').prop('disabled', true);
+                    $('select[name="kabupaten_kota_kk"]').prop('disabled', true);
+                    $('select[name="kecamatan_kk"]').prop('disabled', true);
+                    $('select[name="kelurahan_desa_kk"]').prop('disabled', true);
 
-                $('select[name="provinsi_kk"]').prop('disabled', false);
-                $('select[name="kabupaten_kota_kk"]').prop('disabled', false);
-                $('select[name="kecamatan_kk"]').prop('disabled', false);
-                $('select[name="kelurahan_desa_kk"]').prop('disabled', false);
+                    $('select[name="provinsi_dom"]').prop('disabled', true);
+                    $('select[name="kabupaten_kota_dom"]').prop('disabled', true);
+                    $('select[name="kecamatan_dom"]').prop('disabled', true);
+                    $('select[name="kelurahan_desa_dom"]').prop('disabled', true);
 
-                $('select[name="provinsi_dom"]').prop('disabled', false);
-                $('select[name="kabupaten_kota_dom"]').prop('disabled', false);
-                $('select[name="kecamatan_dom"]').prop('disabled', false);
-                $('select[name="kelurahan_desa_dom"]').prop('disabled', false);
+                    var option_prov = $("<option selected></option>").val(provinsi_kk.val()).text(
+                        provinsi_kk.select2('data')[0].text);
+                    $("select[name='provinsi_dom']").append(option_prov);
+                    var option_kab = $("<option selected></option>").val(kabupaten_kota_kk.val()).text(
+                        kabupaten_kota_kk.select2('data')[0].text);
+                    $("select[name='kabupaten_kota_dom']").append(option_kab);
+                    var option_kec = $("<option selected></option>").val(kecamatan_kk.val()).text(
+                        kecamatan_kk.select2('data')[0].text);
+                    $("select[name='kecamatan_dom']").append(option_kec);
+                    var option_kel = $("<option selected></option>").val(kelurahan_desa_kk.val()).text(
+                        kelurahan_desa_kk.select2('data')[0].text);
+                    $("select[name='kelurahan_desa_dom']").append(option_kel);
 
-                info_alamat.innerHTML = "";
-                info_checkbox_alamat.innerHTML =
-                    "<b>*Alamat KK sebagai Alamat Domisili dinonakitfkan</b>";
-            }
+                    info_alamat.innerHTML =
+                        "<b class='text-danger'>*Anda menggunakan data Alamat KK sebagai Alamat Domisili</b>";
+                    info_checkbox_alamat.innerHTML =
+                        "<b>*Nonaktfikan untuk mengubah formulir Alamat KK</b>";
+
+
+                } else if ($(this).prop("checked") == false) {
+
+                    $('textarea[name="alamat_rumah_kk"]').prop('readonly', false);
+                    $('input[name="rt_kk"]').prop('readonly', false);
+                    $('input[name="rw_kk"]').prop('readonly', false);
+                    $('input[name="kodepos_kk"]').prop('readonly', false);
+
+                    $('select[name="provinsi_dom"]').find("option:last").remove();
+                    $('select[name="kabupaten_kota_dom"]').find("option:last").remove();
+                    $('select[name="kecamatan_dom"]').find("option:last").remove();
+                    $('select[name="kelurahan_desa_dom"]').find("option:last").remove();
+
+                    $('textarea[name="alamat_rumah_dom"]').val('').prop('readonly', false);
+                    $('input[name="rt_dom"]').val('').prop('readonly', false);
+                    $('input[name="rw_dom"]').val('').prop('readonly', false);
+                    $('input[name="kodepos_dom"]').val('').prop('readonly', false);
+
+                    $('select[name="provinsi_kk"]').prop('disabled', false);
+                    $('select[name="kabupaten_kota_kk"]').prop('disabled', false);
+                    $('select[name="kecamatan_kk"]').prop('disabled', false);
+                    $('select[name="kelurahan_desa_kk"]').prop('disabled', false);
+
+                    $('select[name="provinsi_dom"]').prop('disabled', false);
+                    $('select[name="kabupaten_kota_dom"]').prop('disabled', false);
+                    $('select[name="kecamatan_dom"]').prop('disabled', false);
+                    $('select[name="kelurahan_desa_dom"]').prop('disabled', false);
+
+                    info_alamat.innerHTML = "";
+                    info_checkbox_alamat.innerHTML =
+                        "<b>*Alamat KK sebagai Alamat Domisili dinonakitfkan</b>";
+                }
+            });
         });
-    });
     </script>
     <script>
-    $(document).ready(function() {
-        var info_wali = document.getElementById('info_wali');
-        var info_checkbox_ayah = document.getElementById('info_checkbox_ayah');
+        $(document).ready(function() {
+            var info_wali = document.getElementById('info_wali');
+            var info_checkbox_ayah = document.getElementById('info_checkbox_ayah');
 
-        var nama_ayah = $('input[name="nama_ayah"]');
-        var nik_ayah = $('input[name="nik_ayah"]');
-        var tmptl_ayah = $('input[name="tempat_lahir_ayah"]');
-        var tgl_ayah = $('input[name="tanggal_lahir_ayah"]');
-        var pkrj_ayah = $('input[name="pekerjaan_ayah"]');
-        var pnd_ayah = $('select[name="pendidikan_ayah"]');
-        var png_ayah = $('select[name="penghasilan_ayah"]');
+            var nama_ayah = $('input[name="nama_ayah"]');
+            var nik_ayah = $('input[name="nik_ayah"]');
+            var tmptl_ayah = $('input[name="tempat_lahir_ayah"]');
+            var tgl_ayah = $('input[name="tanggal_lahir_ayah"]');
+            var pkrj_ayah = $('input[name="pekerjaan_ayah"]');
+            var pnd_ayah = $('select[name="pendidikan_ayah"]');
+            var png_ayah = $('select[name="penghasilan_ayah"]');
 
-        <?php if ($register[0]->status_wali == 1) {?>
-
-        $('input[name="nama_wali"]').val(nama_ayah.val()).prop('readonly', true);
-        $('input[name="nik_wali"]').val(nik_ayah.val()).prop('readonly', true);
-        $('input[name="tempat_lahir_wali"]').val(tmptl_ayah.val()).prop('readonly', true);
-        $('input[name="tanggal_lahir_wali"]').val(tgl_ayah.val());
-        $('input[name="pekerjaan_wali"]').val(pkrj_ayah.val()).prop('readonly', true);
-        $("select[name='pendidikan_wali'] option[value='" + pnd_ayah.val() + "']").prop(
-            "selected", "selected");
-        $("select[name='penghasilan_wali'] option[value='" + png_ayah.val() + "']").prop(
-            "selected", "selected");
-        $('select[name="pendidikan_wali"] option:not(:selected)').prop('disabled', true);
-        $('select[name="penghasilan_wali"] option:not(:selected)').prop('disabled', true);
-        $('#kt_daterangepicker_wali').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true
-        }, "option", "disabled", true);
-        $('#kt_daterangepicker_ayah').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true
-        }, "option", "disabled", true);
-        $('select[name="pendidikan_ayah"] option:not(:selected)').prop('disabled', true);
-        $('select[name="penghasilan_ayah"] option:not(:selected)').prop('disabled', true);
-        info_wali.innerHTML =
-            "<b class='text-danger'>*Anda menggunakan data Ayah sebagai Wali</b>";
-        info_checkbox_ayah.innerHTML = "<b>*Nonaktfikan untuk mengubah formulir Ayah</b>";
-        $('#wali_ibu').prop('disabled', true);
-        nama_ayah.prop('readonly', true);
-        nik_ayah.prop('readonly', true);
-        tmptl_ayah.prop('readonly', true);
-        pkrj_ayah.prop('readonly', true);
-
-        <?php }?>
-
-        $('#wali_ayah').click(function() {
-
-            if ($(this).prop("checked") == true) {
+            <?php if ($register[0]->status_wali == 1) { ?>
 
                 $('input[name="nama_wali"]').val(nama_ayah.val()).prop('readonly', true);
                 $('input[name="nik_wali"]').val(nik_ayah.val()).prop('readonly', true);
@@ -2804,98 +2768,99 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 tmptl_ayah.prop('readonly', true);
                 pkrj_ayah.prop('readonly', true);
 
-            } else if ($(this).prop("checked") == false) {
+            <?php } ?>
 
-                nama_ayah.prop('readonly', false);
-                nik_ayah.prop('readonly', false);
-                tmptl_ayah.prop('readonly', false);
-                pkrj_ayah.prop('readonly', false);
-                $('input[name="nama_wali"]').val('').prop('readonly', false);
-                $('input[name="nik_wali"]').val('').prop('readonly', false);
-                $('input[name="tempat_lahir_wali"]').val('').prop('readonly', false);
-                $('input[name="tanggal_lahir_wali"]').val('');
-                $('input[name="pekerjaan_wali"]').val('').prop('readonly', false);
-                $("select[name='pendidikan_wali'] option[value='']").prop("selected", "selected");
-                $("select[name='penghasilan_wali'] option[value='']").prop("selected", "selected");
-                $('select[name="pendidikan_wali"] option:not(:selected)').attr('disabled', false);
-                $('select[name="penghasilan_wali"] option:not(:selected)').attr('disabled', false);
-                $('#kt_daterangepicker_wali').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'DD/MM/YYYY'
-                    }
-                }, function(start, label) {
-                    $('#kt_daterangepicker_wali .form-control').val(start.format('DD/MM/YYYY'));
-                });
-                $('select[name="pendidikan_ayah"] option:not(:selected)').attr('disabled', false);
-                $('select[name="penghasilan_ayah"] option:not(:selected)').attr('disabled', false);
-                $('#kt_daterangepicker_ayah').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'DD/MM/YYYY'
-                    }
-                }, function(start, label) {
-                    $('#kt_daterangepicker_ayah .form-control').val(start.format('DD/MM/YYYY'));
-                });
-                $('#wali_ibu').prop('disabled', false);
-                info_wali.innerHTML = "";
-                info_checkbox_ayah.innerHTML = "<b>*Ayah sebagai Wali dinonakitfkan</b>";
+            $('#wali_ayah').click(function() {
 
-            }
+                if ($(this).prop("checked") == true) {
+
+                    $('input[name="nama_wali"]').val(nama_ayah.val()).prop('readonly', true);
+                    $('input[name="nik_wali"]').val(nik_ayah.val()).prop('readonly', true);
+                    $('input[name="tempat_lahir_wali"]').val(tmptl_ayah.val()).prop('readonly', true);
+                    $('input[name="tanggal_lahir_wali"]').val(tgl_ayah.val());
+                    $('input[name="pekerjaan_wali"]').val(pkrj_ayah.val()).prop('readonly', true);
+                    $("select[name='pendidikan_wali'] option[value='" + pnd_ayah.val() + "']").prop(
+                        "selected", "selected");
+                    $("select[name='penghasilan_wali'] option[value='" + png_ayah.val() + "']").prop(
+                        "selected", "selected");
+                    $('select[name="pendidikan_wali"] option:not(:selected)').prop('disabled', true);
+                    $('select[name="penghasilan_wali"] option:not(:selected)').prop('disabled', true);
+                    $('#kt_daterangepicker_wali').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true
+                    }, "option", "disabled", true);
+                    $('#kt_daterangepicker_ayah').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true
+                    }, "option", "disabled", true);
+                    $('select[name="pendidikan_ayah"] option:not(:selected)').prop('disabled', true);
+                    $('select[name="penghasilan_ayah"] option:not(:selected)').prop('disabled', true);
+                    info_wali.innerHTML =
+                        "<b class='text-danger'>*Anda menggunakan data Ayah sebagai Wali</b>";
+                    info_checkbox_ayah.innerHTML = "<b>*Nonaktfikan untuk mengubah formulir Ayah</b>";
+                    $('#wali_ibu').prop('disabled', true);
+                    nama_ayah.prop('readonly', true);
+                    nik_ayah.prop('readonly', true);
+                    tmptl_ayah.prop('readonly', true);
+                    pkrj_ayah.prop('readonly', true);
+
+                } else if ($(this).prop("checked") == false) {
+
+                    nama_ayah.prop('readonly', false);
+                    nik_ayah.prop('readonly', false);
+                    tmptl_ayah.prop('readonly', false);
+                    pkrj_ayah.prop('readonly', false);
+                    $('input[name="nama_wali"]').val('').prop('readonly', false);
+                    $('input[name="nik_wali"]').val('').prop('readonly', false);
+                    $('input[name="tempat_lahir_wali"]').val('').prop('readonly', false);
+                    $('input[name="tanggal_lahir_wali"]').val('');
+                    $('input[name="pekerjaan_wali"]').val('').prop('readonly', false);
+                    $("select[name='pendidikan_wali'] option[value='']").prop("selected", "selected");
+                    $("select[name='penghasilan_wali'] option[value='']").prop("selected", "selected");
+                    $('select[name="pendidikan_wali"] option:not(:selected)').attr('disabled', false);
+                    $('select[name="penghasilan_wali"] option:not(:selected)').attr('disabled', false);
+                    $('#kt_daterangepicker_wali').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        }
+                    }, function(start, label) {
+                        $('#kt_daterangepicker_wali .form-control').val(start.format('DD/MM/YYYY'));
+                    });
+                    $('select[name="pendidikan_ayah"] option:not(:selected)').attr('disabled', false);
+                    $('select[name="penghasilan_ayah"] option:not(:selected)').attr('disabled', false);
+                    $('#kt_daterangepicker_ayah').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        }
+                    }, function(start, label) {
+                        $('#kt_daterangepicker_ayah .form-control').val(start.format('DD/MM/YYYY'));
+                    });
+                    $('#wali_ibu').prop('disabled', false);
+                    info_wali.innerHTML = "";
+                    info_checkbox_ayah.innerHTML = "<b>*Ayah sebagai Wali dinonakitfkan</b>";
+
+                }
+            });
         });
-    });
     </script>
     <script>
-    $(document).ready(function() {
-        var info_wali = document.getElementById('info_wali');
-        var info_checkbox_ibu = document.getElementById('info_checkbox_ibu');
+        $(document).ready(function() {
+            var info_wali = document.getElementById('info_wali');
+            var info_checkbox_ibu = document.getElementById('info_checkbox_ibu');
 
-        var nama_ibu = $('input[name="nama_ibu"]');
-        var nik_ibu = $('input[name="nik_ibu"]');
-        var tmptl_ibu = $('input[name="tempat_lahir_ibu"]');
-        var tgl_ibu = $('input[name="tanggal_lahir_ibu"]');
-        var pkrj_ibu = $('input[name="pekerjaan_ibu"]');
-        var pnd_ibu = $('select[name="pendidikan_ibu"]');
-        var png_ibu = $('select[name="penghasilan_ibu"]');
+            var nama_ibu = $('input[name="nama_ibu"]');
+            var nik_ibu = $('input[name="nik_ibu"]');
+            var tmptl_ibu = $('input[name="tempat_lahir_ibu"]');
+            var tgl_ibu = $('input[name="tanggal_lahir_ibu"]');
+            var pkrj_ibu = $('input[name="pekerjaan_ibu"]');
+            var pnd_ibu = $('select[name="pendidikan_ibu"]');
+            var png_ibu = $('select[name="penghasilan_ibu"]');
 
-        <?php if ($register[0]->status_wali == 2) {?>
-
-        $('input[name="nama_wali"]').val(nama_ibu.val()).prop('readonly', true);
-        $('input[name="nik_wali"]').val(nik_ibu.val()).prop('readonly', true);
-        $('input[name="tempat_lahir_wali"]').val(tmptl_ibu.val()).prop('readonly', true);
-        $('input[name="tanggal_lahir_wali"]').val(tgl_ibu.val());
-        $('input[name="pekerjaan_wali"]').val(pkrj_ibu.val()).prop('readonly', true);
-        $("select[name='pendidikan_wali'] option[value='" + pnd_ibu.val() + "']").prop(
-            "selected", "selected");
-        $("select[name='penghasilan_wali'] option[value='" + png_ibu.val() + "']").prop(
-            "selected", "selected");
-        $('select[name="pendidikan_wali"] option:not(:selected)').prop('disabled', true);
-        $('select[name="penghasilan_wali"] option:not(:selected)').prop('disabled', true);
-        $('#kt_daterangepicker_wali').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true
-        }, "option", "disabled", true);
-        $('#kt_daterangepicker_ibu').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true
-        }, "option", "disabled", true);
-        $('select[name="pendidikan_ibu"] option:not(:selected)').prop('disabled', true);
-        $('select[name="penghasilan_ibu"] option:not(:selected)').prop('disabled', true);
-        info_wali.innerHTML =
-            "<b class='text-danger'>*Anda menggunakan data Ibu sebagai Wali</b>";
-        info_checkbox_ibu.innerHTML = "<b>*Nonaktfikan untuk mengubah formulir Ibu</b>";
-        $('#wali_ayah').prop('disabled', true);
-        nama_ibu.prop('readonly', true);
-        nik_ibu.prop('readonly', true);
-        tmptl_ibu.prop('readonly', true);
-        pkrj_ibu.prop('readonly', true);
-
-        <?php }?>
-
-        $('#wali_ibu').click(function() {
-            if ($(this).prop("checked") == true) {
+            <?php if ($register[0]->status_wali == 2) { ?>
 
                 $('input[name="nama_wali"]').val(nama_ibu.val()).prop('readonly', true);
                 $('input[name="nik_wali"]').val(nik_ibu.val()).prop('readonly', true);
@@ -2927,233 +2892,268 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 tmptl_ibu.prop('readonly', true);
                 pkrj_ibu.prop('readonly', true);
 
-            } else if ($(this).prop("checked") == false) {
+            <?php } ?>
 
-                nama_ibu.prop('readonly', false);
-                nik_ibu.prop('readonly', false);
-                tmptl_ibu.prop('readonly', false);
-                pkrj_ibu.prop('readonly', false);
-                $('input[name="nama_wali"]').val('').prop('readonly', false);
-                $('input[name="nik_wali"]').val('').prop('readonly', false);
-                $('input[name="tempat_lahir_wali"]').val('').prop('readonly', false);
-                $('input[name="tanggal_lahir_wali"]').val('');
-                $('input[name="pekerjaan_wali"]').val('').prop('readonly', false);
-                $("select[name='pendidikan_wali'] option[value='']").prop("selected", "selected");
-                $("select[name='penghasilan_wali'] option[value='']").prop("selected", "selected");
-                $('select[name="pendidikan_wali"] option:not(:selected)').attr('disabled', false);
-                $('select[name="penghasilan_wali"] option:not(:selected)').attr('disabled', false);
-                $('#kt_daterangepicker_wali').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'DD/MM/YYYY'
-                    }
-                }, function(start, label) {
-                    $('#kt_daterangepicker_wali .form-control').val(start.format('DD/MM/YYYY'));
+            $('#wali_ibu').click(function() {
+                if ($(this).prop("checked") == true) {
+
+                    $('input[name="nama_wali"]').val(nama_ibu.val()).prop('readonly', true);
+                    $('input[name="nik_wali"]').val(nik_ibu.val()).prop('readonly', true);
+                    $('input[name="tempat_lahir_wali"]').val(tmptl_ibu.val()).prop('readonly', true);
+                    $('input[name="tanggal_lahir_wali"]').val(tgl_ibu.val());
+                    $('input[name="pekerjaan_wali"]').val(pkrj_ibu.val()).prop('readonly', true);
+                    $("select[name='pendidikan_wali'] option[value='" + pnd_ibu.val() + "']").prop(
+                        "selected", "selected");
+                    $("select[name='penghasilan_wali'] option[value='" + png_ibu.val() + "']").prop(
+                        "selected", "selected");
+                    $('select[name="pendidikan_wali"] option:not(:selected)').prop('disabled', true);
+                    $('select[name="penghasilan_wali"] option:not(:selected)').prop('disabled', true);
+                    $('#kt_daterangepicker_wali').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true
+                    }, "option", "disabled", true);
+                    $('#kt_daterangepicker_ibu').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true
+                    }, "option", "disabled", true);
+                    $('select[name="pendidikan_ibu"] option:not(:selected)').prop('disabled', true);
+                    $('select[name="penghasilan_ibu"] option:not(:selected)').prop('disabled', true);
+                    info_wali.innerHTML =
+                        "<b class='text-danger'>*Anda menggunakan data Ibu sebagai Wali</b>";
+                    info_checkbox_ibu.innerHTML = "<b>*Nonaktfikan untuk mengubah formulir Ibu</b>";
+                    $('#wali_ayah').prop('disabled', true);
+                    nama_ibu.prop('readonly', true);
+                    nik_ibu.prop('readonly', true);
+                    tmptl_ibu.prop('readonly', true);
+                    pkrj_ibu.prop('readonly', true);
+
+                } else if ($(this).prop("checked") == false) {
+
+                    nama_ibu.prop('readonly', false);
+                    nik_ibu.prop('readonly', false);
+                    tmptl_ibu.prop('readonly', false);
+                    pkrj_ibu.prop('readonly', false);
+                    $('input[name="nama_wali"]').val('').prop('readonly', false);
+                    $('input[name="nik_wali"]').val('').prop('readonly', false);
+                    $('input[name="tempat_lahir_wali"]').val('').prop('readonly', false);
+                    $('input[name="tanggal_lahir_wali"]').val('');
+                    $('input[name="pekerjaan_wali"]').val('').prop('readonly', false);
+                    $("select[name='pendidikan_wali'] option[value='']").prop("selected", "selected");
+                    $("select[name='penghasilan_wali'] option[value='']").prop("selected", "selected");
+                    $('select[name="pendidikan_wali"] option:not(:selected)').attr('disabled', false);
+                    $('select[name="penghasilan_wali"] option:not(:selected)').attr('disabled', false);
+                    $('#kt_daterangepicker_wali').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        }
+                    }, function(start, label) {
+                        $('#kt_daterangepicker_wali .form-control').val(start.format('DD/MM/YYYY'));
+                    });
+
+                    $('select[name="pendidikan_ibu"] option:not(:selected)').attr('disabled', false);
+                    $('select[name="penghasilan_ibu"] option:not(:selected)').attr('disabled', false);
+                    $('#kt_daterangepicker_ibu').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        locale: {
+                            format: 'DD/MM/YYYY'
+                        }
+                    }, function(start, label) {
+                        $('#kt_daterangepicker_ibu .form-control').val(start.format('DD/MM/YYYY'));
+                    });
+                    $('#wali_ayah').prop('disabled', false);
+                    info_wali.innerHTML = "";
+                    info_checkbox_ibu.innerHTML = "<b>*Ibu sebagai Wali dinonakitfkan</b>";
+
+                }
+            });
+        });
+    </script>
+
+    <?php if ($register[0]->provinsi_kk != "" || $register[0]->provinsi_kk != null) { ?>
+        <script>
+            $(document).ready(function() {
+                var id_prov_kk = <?php echo @$register[0]->provinsi_kk; ?>;
+                var id_kab_kk = <?php echo @$register[0]->kabupaten_kota_kk; ?>;
+                var id_kec_kk = <?php echo @$register[0]->kecamatan_kk; ?>;
+                var id_des_kk = <?php echo @$register[0]->kelurahan_desa_kk; ?>;
+
+                var url_kab_kk = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_kk + "/" +
+                    id_kab_kk;
+                $('#kabupaten_kota_kk').load(url_kab_kk);
+                var url_kec_kk = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_kk + "/" +
+                    id_kab_kk + "/" + id_kec_kk;
+                $('#kecamatan_kk').load(url_kec_kk);
+                var url_des_kk = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_kk + "/" +
+                    id_kab_kk + "/" + id_kec_kk + "/" + id_des_kk;
+                $('#kelurahan_desa_kk').load(url_des_kk);
+
+
+                $("#provinsi_kk").change(function() {
+                    id_prov_kk = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_kk;
+                    $('#kabupaten_kota_kk').load(url);
+                    return false;
                 });
 
-                $('select[name="pendidikan_ibu"] option:not(:selected)').attr('disabled', false);
-                $('select[name="penghasilan_ibu"] option:not(:selected)').attr('disabled', false);
-                $('#kt_daterangepicker_ibu').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'DD/MM/YYYY'
-                    }
-                }, function(start, label) {
-                    $('#kt_daterangepicker_ibu .form-control').val(start.format('DD/MM/YYYY'));
+                $("#kabupaten_kota_kk").change(function() {
+                    id_kab_kk = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_kk +
+                        "/" + id_kab_kk;
+                    $('#kecamatan_kk').load(url);
+                    return false;
                 });
-                $('#wali_ayah').prop('disabled', false);
-                info_wali.innerHTML = "";
-                info_checkbox_ibu.innerHTML = "<b>*Ibu sebagai Wali dinonakitfkan</b>";
 
-            }
-        });
-    });
-    </script>
+                $("#kecamatan_kk").change(function() {
+                    id_kec_kk = $(this).val()
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_kk +
+                        "/" + id_kab_kk + "/" + id_kec_kk;
+                    $('#kelurahan_desa_kk').load(url);
+                    return false;
+                });
 
-    <?php if ($register[0]->provinsi_kk != "" || $register[0]->provinsi_kk != null) {?>
-    <script>
-    $(document).ready(function() {
-        var id_prov_kk = <?php echo @$register[0]->provinsi_kk; ?>;
-        var id_kab_kk = <?php echo @$register[0]->kabupaten_kota_kk; ?>;
-        var id_kec_kk = <?php echo @$register[0]->kecamatan_kk; ?>;
-        var id_des_kk = <?php echo @$register[0]->kelurahan_desa_kk; ?>;
+            });
+        </script>
+    <?php } else { ?>
+        <script>
+            $(document).ready(function() {
+                var id_prov_kk;
+                var id_kab_kk;
+                var id_kec_kk;
+                $("#provinsi_kk").change(function() {
+                    id_prov_kk = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_kk;
+                    $('#kabupaten_kota_kk').load(url);
+                    return false;
+                });
+                $("#kabupaten_kota_kk").change(function() {
+                    id_kab_kk = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_kk + "/" +
+                        id_kab_kk;
+                    $('#kecamatan_kk').load(url);
+                    return false;
+                });
+                $("#kecamatan_kk").change(function() {
+                    id_kec_kk = $(this).val()
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_kk + "/" +
+                        id_kab_kk + "/" + id_kec_kk;
+                    $('#kelurahan_desa_kk').load(url);
+                    return false;
+                });
 
-        var url_kab_kk = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_kk + "/" +
-            id_kab_kk;
-        $('#kabupaten_kota_kk').load(url_kab_kk);
-        var url_kec_kk = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_kk + "/" +
-            id_kab_kk + "/" + id_kec_kk;
-        $('#kecamatan_kk').load(url_kec_kk);
-        var url_des_kk = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_kk + "/" +
-            id_kab_kk + "/" + id_kec_kk + "/" + id_des_kk;
-        $('#kelurahan_desa_kk').load(url_des_kk);
+            });
+        </script>
+    <?php } ?>
 
+    <?php if ($register[0]->provinsi_dom != "" || $register[0]->provinsi_dom != null) { ?>
+        <script>
+            $(document).ready(function() {
+                var id_prov_dom = <?php echo @$register[0]->provinsi_dom; ?>;
+                var id_kab_dom = <?php echo @$register[0]->kabupaten_kota_dom; ?>;
+                var id_kec_dom = <?php echo @$register[0]->kecamatan_dom; ?>;
+                var id_des_dom = <?php echo @$register[0]->kelurahan_desa_dom; ?>;
 
-        $("#provinsi_kk").change(function() {
-            id_prov_kk = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_kk;
-            $('#kabupaten_kota_kk').load(url);
-            return false;
-        });
-
-        $("#kabupaten_kota_kk").change(function() {
-            id_kab_kk = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_kk +
-                "/" + id_kab_kk;
-            $('#kecamatan_kk').load(url);
-            return false;
-        });
-
-        $("#kecamatan_kk").change(function() {
-            id_kec_kk = $(this).val()
-            var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_kk +
-                "/" + id_kab_kk + "/" + id_kec_kk;
-            $('#kelurahan_desa_kk').load(url);
-            return false;
-        });
-
-    });
-    </script>
-    <?php } else {?>
-    <script>
-    $(document).ready(function() {
-        var id_prov_kk;
-        var id_kab_kk;
-        var id_kec_kk;
-        $("#provinsi_kk").change(function() {
-            id_prov_kk = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_kk;
-            $('#kabupaten_kota_kk').load(url);
-            return false;
-        });
-        $("#kabupaten_kota_kk").change(function() {
-            id_kab_kk = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_kk + "/" +
-                id_kab_kk;
-            $('#kecamatan_kk').load(url);
-            return false;
-        });
-        $("#kecamatan_kk").change(function() {
-            id_kec_kk = $(this).val()
-            var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_kk + "/" +
-                id_kab_kk + "/" + id_kec_kk;
-            $('#kelurahan_desa_kk').load(url);
-            return false;
-        });
-
-    });
-    </script>
-    <?php }?>
-
-    <?php if ($register[0]->provinsi_dom != "" || $register[0]->provinsi_dom != null) {?>
-    <script>
-    $(document).ready(function() {
-        var id_prov_dom = <?php echo @$register[0]->provinsi_dom; ?>;
-        var id_kab_dom = <?php echo @$register[0]->kabupaten_kota_dom; ?>;
-        var id_kec_dom = <?php echo @$register[0]->kecamatan_dom; ?>;
-        var id_des_dom = <?php echo @$register[0]->kelurahan_desa_dom; ?>;
-
-        var url_kab_dom = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_dom + "/" +
-            id_kab_dom;
-        $('#kabupaten_kota_dom').load(url_kab_dom);
-        var url_kec_dom = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_dom + "/" +
-            id_kab_dom + "/" + id_kec_dom;
-        $('#kecamatan_dom').load(url_kec_dom);
-        var url_des_dom = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_dom + "/" +
-            id_kab_dom + "/" + id_kec_dom + "/" + id_des_dom;
-        $('#kelurahan_desa_dom').load(url_des_dom);
+                var url_kab_dom = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_dom + "/" +
+                    id_kab_dom;
+                $('#kabupaten_kota_dom').load(url_kab_dom);
+                var url_kec_dom = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_dom + "/" +
+                    id_kab_dom + "/" + id_kec_dom;
+                $('#kecamatan_dom').load(url_kec_dom);
+                var url_des_dom = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_dom + "/" +
+                    id_kab_dom + "/" + id_kec_dom + "/" + id_des_dom;
+                $('#kelurahan_desa_dom').load(url_des_dom);
 
 
-        $("#provinsi_dom").change(function() {
-            id_prov_dom = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_dom;
-            $('#kabupaten_kota_dom').load(url);
-            return false;
-        });
+                $("#provinsi_dom").change(function() {
+                    id_prov_dom = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_dom;
+                    $('#kabupaten_kota_dom').load(url);
+                    return false;
+                });
 
-        $("#kabupaten_kota_dom").change(function() {
-            id_kab_dom = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_kab_dom +
-                "/" + id_kab_dom;
-            $('#kecamatan_dom').load(url);
-            return false;
-        });
+                $("#kabupaten_kota_dom").change(function() {
+                    id_kab_dom = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_kab_dom +
+                        "/" + id_kab_dom;
+                    $('#kecamatan_dom').load(url);
+                    return false;
+                });
 
-        $("#kecamatan_dom").change(function() {
-            id_kec_dom = $(this).val()
-            var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_kab_dom +
-                "/" + id_kab_dom + "/" + id_kec_dom;
-            $('#kelurahan_desa_dom').load(url);
-            return false;
-        });
+                $("#kecamatan_dom").change(function() {
+                    id_kec_dom = $(this).val()
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_kab_dom +
+                        "/" + id_kab_dom + "/" + id_kec_dom;
+                    $('#kelurahan_desa_dom').load(url);
+                    return false;
+                });
 
-    });
-    </script>
-    <?php } else {?>
-    <script>
-    $(document).ready(function() {
-        var id_prov_dom;
-        var id_kab_dom;
-        var id_kec_dom;
+            });
+        </script>
+    <?php } else { ?>
+        <script>
+            $(document).ready(function() {
+                var id_prov_dom;
+                var id_kab_dom;
+                var id_kec_dom;
 
-        $("#provinsi_dom").change(function() {
-            id_prov_dom = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_dom;
-            $('#kabupaten_kota_dom').load(url);
-            return false;
-        });
-        $("#kabupaten_kota_dom").change(function() {
-            id_kab_dom = $(this).val();
-            var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_dom + "/" +
-                id_kab_dom;
-            $('#kecamatan_dom').load(url);
-            return false;
-        });
-        $("#kecamatan_dom").change(function() {
-            id_kec_dom = $(this).val()
-            var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_dom + "/" +
-                id_kab_dom + "/" + id_kec_dom;
-            $('#kelurahan_desa_dom').load(url);
-            return false;
-        });
+                $("#provinsi_dom").change(function() {
+                    id_prov_dom = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kab'); ?>/" + id_prov_dom;
+                    $('#kabupaten_kota_dom').load(url);
+                    return false;
+                });
+                $("#kabupaten_kota_dom").change(function() {
+                    id_kab_dom = $(this).val();
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_kec'); ?>/" + id_prov_dom + "/" +
+                        id_kab_dom;
+                    $('#kecamatan_dom').load(url);
+                    return false;
+                });
+                $("#kecamatan_dom").change(function() {
+                    id_kec_dom = $(this).val()
+                    var url = "<?php echo site_url('ppdb/register/add_ajax_des'); ?>/" + id_prov_dom + "/" +
+                        id_kab_dom + "/" + id_kec_dom;
+                    $('#kelurahan_desa_dom').load(url);
+                    return false;
+                });
 
-    });
-    </script>
-    <?php }?>
+            });
+        </script>
+    <?php } ?>
 
     <script>
-    $(document).ready(function() {
-        $('.dropify_ak').dropify({
-            messages: {
-                'default': 'Klik atau Geser file Anda disini',
-                'replace': 'Klik atau Geser file Anda untuk mengganti',
-                'remove': 'Hapus',
-                'error': 'Ooops, terjadi kesalahan.'
-            }
+        $(document).ready(function() {
+            $('.dropify_ak').dropify({
+                messages: {
+                    'default': 'Klik atau Geser file Anda disini',
+                    'replace': 'Klik atau Geser file Anda untuk mengganti',
+                    'remove': 'Hapus',
+                    'error': 'Ooops, terjadi kesalahan.'
+                }
+            });
+            $('.dropify_kk').dropify({
+                messages: {
+                    'default': 'Klik atau Geser file Anda disini',
+                    'replace': 'Klik atau Geser file Anda untuk mengganti',
+                    'remove': 'Hapus',
+                    'error': 'Ooops, terjadi kesalahan.'
+                }
+            });
+            $('.dropify_pf').dropify({
+                messages: {
+                    'default': 'Klik atau Geser file Anda disini',
+                    'replace': 'Klik atau Geser file Anda untuk mengganti',
+                    'remove': 'Hapus',
+                    'error': 'Ooops, terjadi kesalahan.'
+                }
+            });
         });
-        $('.dropify_kk').dropify({
-            messages: {
-                'default': 'Klik atau Geser file Anda disini',
-                'replace': 'Klik atau Geser file Anda untuk mengganti',
-                'remove': 'Hapus',
-                'error': 'Ooops, terjadi kesalahan.'
-            }
-        });
-        $('.dropify_pf').dropify({
-            messages: {
-                'default': 'Klik atau Geser file Anda disini',
-                'replace': 'Klik atau Geser file Anda untuk mengganti',
-                'remove': 'Hapus',
-                'error': 'Ooops, terjadi kesalahan.'
-            }
-        });
-    });
     </script>
 
     <script>
-    $('#example_1').whatsappChatSupport();
+        $('#example_1').whatsappChatSupport();
     </script>
 </body>
 <!--end::Body-->

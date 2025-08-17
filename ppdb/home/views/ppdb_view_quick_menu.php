@@ -90,7 +90,7 @@
 									<div class="card-body d-flex align-items-center">
 										<div>
 											<h3 class="text-white font-weight-bolder line-height-lg mb-5">Alur Pendaftaran Peserta Didik Baru
-												<br />Sekolah Utsman 2022/2023
+												<br />Sekolah Utsman <?php echo $schoolyear[0]->tahun_ajaran; ?>
 											</h3>
 											<a href="<?php echo site_url("/ppdb/home/registration_flow"); ?>" class="btn btn-warning font-weight-bold px-6 py-3 mt-2 mr-3"><i class="fa fa-eye"></i>Lihat Alur PPDB</a>
 											<a href="<?php echo $page[0]->url_tutorial_alur; ?>" target="_blank" class="btn btn-primary font-weight-bold px-6 py-3 mt-2 "><i class="fab fa-youtube "></i>Video Tutorial</a>

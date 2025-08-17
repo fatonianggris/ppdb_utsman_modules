@@ -15,8 +15,8 @@ class RegisterModel extends CI_Model
     private $table_voucher = 'voucher';
     private $table_schedule = 'jadwal_ppdb';
     private $table_third_party = 'third_party_ppdb';
-	private $table_discount_rupiah = 'potongan_rupiah';
-	private $table_quota = 'kuota_pendaftar';
+    private $table_discount_rupiah = 'potongan_rupiah';
+    private $table_quota = 'kuota_pendaftar';
 
     public function get_third_party_key()
     {
@@ -76,7 +76,7 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
-	public function get_discount_rupiah_by_id_form($id = '')
+    public function get_discount_rupiah_by_id_form($id = '')
     {
         $this->db->select("*");
         $this->db->where('id_formulir', $id);
@@ -115,7 +115,7 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
-	public function get_information_quota($id = '')
+    public function get_information_quota($id = '')
     {
 
         $this->db->select();
@@ -169,10 +169,19 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
+    public function get_voucher_form()
+    {
+        $this->db->where('id_jenis_voucher', '1');
+        $this->db->where('id_nama_biaya', '1');
+        $this->db->where('status_aktif', '1');
+        $sql = $this->db->get($this->table_voucher);
+        return $sql->result();
+    }
+
     public function get_schoolyear()
     {
 
-        $sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) GROUP BY tahun_awal");
+        $sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) AND semester='ganjil'");
 
         return $sql->result();
     }
@@ -297,7 +306,7 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
-	public function get_school_cost_id($id = '')
+    public function get_school_cost_id($id = '')
     {
         $this->db->select("f.*,
                                 b.nominal,
@@ -456,7 +465,7 @@ class RegisterModel extends CI_Model
             'email_orangtua' => $value['email_orangtua'],
             'nomor_wa' => $value['nomor_wa'],
             'insight' => $value['insight'],
-			'status_cadangan' => $value['status_cadangan'],
+            'status_cadangan' => $value['status_cadangan'],
         );
         $this->db->insert($this->table_register, $data);
 

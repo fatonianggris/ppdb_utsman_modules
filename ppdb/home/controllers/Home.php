@@ -25,6 +25,7 @@ class Home extends MX_Controller
 		$data['page'] = $this->HomeModel->get_page();
 		$data['contact'] = $this->HomeModel->get_contact();
 		$data['schedule'] = $this->HomeModel->get_all_schedule();
+		$data['schoolyear'] = $this->HomeModel->get_schoolyear();
 
 		$this->load->view('ppdb_view_quick_menu', $data);
 	}
@@ -35,6 +36,7 @@ class Home extends MX_Controller
 		$data['title'] = 'Control Panel | Alur PPDB Sekolah Utsman';
 		$data['page'] = $this->HomeModel->get_page();
 		$data['contact'] = $this->HomeModel->get_contact();
+		$data['schoolyear'] = $this->HomeModel->get_schoolyear();
 
 		$this->load->view('ppdb_view_flow', $data);
 	}

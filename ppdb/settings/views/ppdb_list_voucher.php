@@ -103,6 +103,7 @@
 										<th title="Jumlah Voucher">Jumlah Voucher</th>
 										<th title="Voucher Terpakai">Voucher Terpakai</th>
 										<th title="Masa Berlaku">Masa Berlaku</th>
+										<th title="Status Aktif">Status Aktif</th>
 										<th title="Aksi">Aksi</th>
 									</tr>
 								</thead>
@@ -120,7 +121,14 @@
 												<td><b><?php echo intval($value->terpakai); ?></b></td>
 												<td><b><?php echo $value->masa_berlaku; ?></b></td>
 												<td>
-													<div class="dropdown dropdown-inline">
+													<?php if ($value->status_aktif == 1) {  ?>
+														<input data-switch="true" type="checkbox" checked="checked" data-size="small" data-id_voucher="<?php echo paramEncrypt($value->id_voucher); ?>" data-id_nama_biaya="<?php echo paramEncrypt($value->id_nama_biaya); ?>" data-kode_voucher="<?php echo $value->kode_voucher; ?>" />
+													<?php } else { ?>
+														<input data-switch="true" type="checkbox" data-size="small" data-id_voucher="<?php echo paramEncrypt($value->id_voucher); ?>" data-id_nama_biaya="<?php echo paramEncrypt($value->id_nama_biaya); ?>" data-kode_voucher="<?php echo $value->kode_voucher; ?>" />
+													<?php } ?>
+												</td>
+												<td>
+													<div class=" dropdown dropdown-inline">
 														<a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">
 															<span class="svg-icon svg-icon-md">
 																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

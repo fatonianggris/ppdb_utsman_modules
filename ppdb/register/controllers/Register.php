@@ -213,6 +213,7 @@ class Register extends MX_Controller
         $data['register'] = $this->RegisterModel->get_register_cost_id($id);
         $data['bank_account'] = $this->RegisterModel->get_bank_account($id);
         $data['page'] = $this->RegisterModel->get_page();
+        $data['voucher_form'] = $this->RegisterModel->get_voucher_form();
         $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
         $data['contact'] = $this->RegisterModel->get_contact();
 
@@ -275,6 +276,7 @@ class Register extends MX_Controller
         $data['title'] = 'Sekolah Utsman | Status Pembayaran Sekolah Utsman ';
         $data['register'] = $this->RegisterModel->get_register_cost_id($id);
         $data['bank_account'] = $this->RegisterModel->get_bank_account($id);
+        $data['voucher_form'] = $this->RegisterModel->get_voucher_form();
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
@@ -426,7 +428,6 @@ class Register extends MX_Controller
             } else {
                 $datas['title'] = 'ERROR | PAGE NOT FOUND';
                 $this->load->view('error_404', $datas);
-
             }
         }
     }
@@ -483,7 +484,6 @@ class Register extends MX_Controller
         } else {
             redirect('ppdb/register/status_register_success/' . paramEncrypt($number));
         }
-
     }
 
     public function status_fulfillment_formulir()
@@ -565,7 +565,6 @@ class Register extends MX_Controller
                 $this->pdfgenerator->generate($html, $id . '_bukti_invoice_pembayaran_ppdb', 1);
             }
         }
-
     }
 
     public function check_email_register()
@@ -580,7 +579,8 @@ class Register extends MX_Controller
         if ($data) {
 
             for ($i = 0; $i < count($data); $i++) {
-                $new_data[$i] = (object) array('nama_calon_siswa' => $data[$i]->nama_calon_siswa,
+                $new_data[$i] = (object) array(
+                    'nama_calon_siswa' => $data[$i]->nama_calon_siswa,
                     'nomor_formulir_enc' => paramEncrypt($data[$i]->nomor_formulir),
                     'nomor_formulir' => $data[$i]->nomor_formulir,
                     'email_orangtua' => $data[$i]->email_orangtua,
@@ -589,18 +589,19 @@ class Register extends MX_Controller
                     'level_tingkat' => $data[$i]->level_tingkat,
                     'id_jalur' => $data[$i]->id_jalur,
                     'id_tahun_ajaran' => $data[$i]->id_tahun_ajaran,
-                    'tahun_ajaran' => $data[$i]->tahun_ajaran);
+                    'tahun_ajaran' => $data[$i]->tahun_ajaran
+                );
             }
 
-            $output = array("status" => true,
+            $output = array(
+                "status" => true,
                 "data" => $new_data,
             );
-
         } else {
-            $output = array("status" => false,
+            $output = array(
+                "status" => false,
                 "messages" => "Opps!, ID User Tidak Terdaftar, Silahkan coba lagi.",
             );
-
         }
 
         echo json_encode($output);
@@ -627,23 +628,22 @@ class Register extends MX_Controller
                 $nomor_formulir = substr($get_schoolyear[0]->tahun_ajaran, 2, 2) . '001';
             }
 
-            $output = array("status" => true,
+            $output = array(
+                "status" => true,
                 "token" => $token,
                 "number_form" => $nomor_formulir,
                 "messages" => "OK!, Nomor telah digenerate",
             );
-
         } else {
 
-            $output = array("status" => false,
+            $output = array(
+                "status" => false,
                 "token" => $token,
                 "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
             );
-
         }
 
         echo json_encode($output);
-
     }
     //---------------------------------REGISTER------------------------------------//
 
@@ -694,7 +694,6 @@ class Register extends MX_Controller
                 redirect('ppdb/register');
             }
         }
-
     }
 
     public function post_upload_payment_form()
@@ -949,7 +948,6 @@ class Register extends MX_Controller
 
                     redirect('ppdb/register/status_payment_school_progress/' . paramEncrypt($data['nomor_formulir']));
                 }
-
             }
         }
     }
@@ -1069,7 +1067,8 @@ class Register extends MX_Controller
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['bank_account'] = $this->RegisterModel->get_bank_account();
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id); //?
+        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
+        $data['voucher_form'] = $this->RegisterModel->get_voucher_form();
 
         $subjek = "PEMESANAN FORMULIR SEKOLAH UTSMAN";
         $content = $this->load->view('mailer_template/order', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
@@ -1220,13 +1219,15 @@ class Register extends MX_Controller
             $input = $this->RegisterModel->update_register_step_one($number, $data, 0);
 
             if ($input == true) {
-                $output = array("status" => true,
+                $output = array(
+                    "status" => true,
                     "token" => $token,
                     "id_encrypt" => paramEncrypt($data['nomor_formulir']),
                     "messages" => "OK!, Pengisian formulir data Personal dan Kontak telah disimpan.",
                 );
             } else {
-                $output = array("status" => false,
+                $output = array(
+                    "status" => false,
                     "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
@@ -1274,12 +1275,14 @@ class Register extends MX_Controller
             $input = $this->RegisterModel->update_register_step_two($number, $data);
 
             if ($input == true) {
-                $output = array("status" => true,
+                $output = array(
+                    "status" => true,
                     "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Orang Tua / Wali telah disimpan.",
                 );
             } else {
-                $output = array("status" => false,
+                $output = array(
+                    "status" => false,
                     "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
@@ -1322,12 +1325,14 @@ class Register extends MX_Controller
             $input = $this->RegisterModel->update_register_step_three($number, $data, 0);
 
             if ($input == true) {
-                $output = array("status" => true,
+                $output = array(
+                    "status" => true,
                     "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Alamat dan Domisili telah disimpan.",
                 );
             } else {
-                $output = array("status" => false,
+                $output = array(
+                    "status" => false,
                     "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
@@ -1361,12 +1366,14 @@ class Register extends MX_Controller
             $input = $this->RegisterModel->update_register_step_four($number, $data, 0);
 
             if ($input == true) {
-                $output = array("status" => true,
+                $output = array(
+                    "status" => true,
                     "token" => $token,
                     "messages" => "OK!, Pengisian formulir data Periodik Siswa telah disimpan.",
                 );
             } else {
-                $output = array("status" => false,
+                $output = array(
+                    "status" => false,
                     "token" => $token,
                     "messages" => "Maaf, Terjadi kesalahan. Silahkan coba lagi.",
                 );
@@ -1592,7 +1599,6 @@ class Register extends MX_Controller
             $this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
             redirect('ppdb/register/status_fulfillment_formulir');
         }
-
     }
 
     public function logout_announcement()
@@ -1678,9 +1684,9 @@ class Register extends MX_Controller
         curl_close($ch);
 
         if ($response) {
-            echo '1';
+            return 1;
         } else {
-            echo '0';
+            return 0;
         }
     }
 }

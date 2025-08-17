@@ -501,7 +501,12 @@
 																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																							<tr>
 																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:25px; line-height:23px; font-weight:bold;font-style:normal; color:#F64E60;text-decoration:none;letter-spacing: 0px;">
-																									Rp. <?php echo number_format($register[0]->nominal, 2, ',', '.'); ?>
+																									<?php if ($voucher_form) {
+																										$total_biaya = $register[0]->nominal - ($voucher_form[0]->potongan / 100 * $register[0]->nominal);
+																									} else {
+																										$total_biaya = $register[0]->nominal;
+																									}; ?>
+																									Rp. <?php echo number_format($total_biaya, 2, ',', '.'); ?>
 																								</td>
 																							</tr>
 																						</table>
@@ -510,7 +515,9 @@
 																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																							<tr>
 																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:12px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
-																									(mohon transfer senilai tersebut)
+																									*<?php if ($voucher_form) {
+																											echo "nominal tersebut telah <b style='color:red;'>DIDISKON</b> sebesar " . "<b style='color:red;'>" . $voucher_form[0]->potongan . "%</b>,";
+																										} ?> mohon transfer senilai tersebut,
 																								</td>
 																							</tr>
 																						</table>

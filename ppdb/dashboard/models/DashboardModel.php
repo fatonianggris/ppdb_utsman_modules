@@ -203,7 +203,7 @@ class DashboardModel extends CI_Model
 	{
 
 		$this->db->select("CONCAT(tahun_awal,'/',tahun_akhir) AS tahun_ajaran");
-		$this->db->where("tahun_awal = YEAR(CURDATE()) GROUP BY tahun_awal");
+		$this->db->where("tahun_awal = YEAR(CURDATE())");
 
 		$sql = $this->db->get($this->table_school_year);
 		return $sql->result();
