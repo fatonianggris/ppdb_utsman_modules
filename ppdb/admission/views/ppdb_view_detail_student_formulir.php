@@ -294,9 +294,19 @@
 										<i class="flaticon-price-tag icon-2x text-muted font-weight-bold"></i>
 									</span>
 									<div class="d-flex flex-column text-dark-75">
+										<?php
+										if ($voucher_form) {
+											$total_biaya = $register[0]->nominal - ($voucher_form[0]->potongan / 100 * $register[0]->nominal);
+											$ket = '*sudah termasuk diskon ' . $voucher_form[0]->potongan . '%';
+										} else {
+											$total_biaya = $register[0]->nominal;
+											$ket = '';
+										}
+										?>
 										<span class="font-weight-bolder font-size-sm">Biaya Formulir</span>
 										<span class="font-weight-bolder font-size-h5 text-success">
-											Rp. <?php echo number_format($register[0]->nominal, 2, ',', '.'); ?>
+											Rp. <?php echo number_format($total_biaya, 2, ',', '.'); ?></br>
+											<span class=" font-size-sm font-weight-bold text-danger"><?php echo $ket; ?></span>
 										</span>
 									</div>
 								</div>

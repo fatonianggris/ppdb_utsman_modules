@@ -234,6 +234,15 @@ class AdmissionModel extends CI_Model
     //-------------------------------ADMISSION------------------------------//
     //
 
+    public function get_voucher_form()
+    {
+        $this->db->where('id_jenis_voucher', '1');
+        $this->db->where('id_nama_biaya', '1');
+        $this->db->where('status_aktif', '1');
+        $sql = $this->db->get($this->table_voucher);
+        return $sql->result();
+    }
+
     public function get_page()
     {
 
@@ -269,7 +278,7 @@ class AdmissionModel extends CI_Model
         $sql = $this->db->get($this->table_bank_account);
         return $sql->result();
     }
-	
+
     public function get_bank_va_account()
     {
         $this->db->select('*');

@@ -30,6 +30,7 @@ class Admission extends MX_Controller
         $data['schoolyear'] = $this->AdmissionModel->get_schoolyear();
         $data['bank_account'] = $this->AdmissionModel->get_bank_account();
         $data['insight_sold'] = $this->AdmissionModel->get_formulir_sold();
+        $data['voucher_form'] = $this->AdmissionModel->get_voucher_form();
 
         $this->template->load('template_ppdb/template_ppdb', 'ppdb_list_student_formulir', $data);
     }
@@ -41,6 +42,7 @@ class Admission extends MX_Controller
         $data['title'] = 'Daftar Formulir | Pendaftaran PPDB Sekolah Utsman';
         $data['nav_adm'] = 'menu-item-here';
         $data['register'] = $this->AdmissionModel->get_register_cost_id($id);
+        $data['voucher_form'] = $this->AdmissionModel->get_voucher_form();
 
         $this->template->load('template_ppdb/template_ppdb', 'ppdb_view_detail_student_formulir', $data);
     }

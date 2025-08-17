@@ -316,26 +316,26 @@
                                                     <select class="form-control" id="kt_datatable_search_schoolyear">
                                                         <option value="">Pilih Tahun Ajaran</option>
                                                         <?php
-														if (!empty($schoolyear)) {
-															foreach ($schoolyear as $key => $value_sch) {
-																if ($value_sch->tahun_awal == (date("Y")+1)) {
-														?>
-                                                        <option
-                                                            value="<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>"
-                                                            selected>
-                                                            <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
-                                                        </option>
-                                                        <?php } else {
-																?>
-                                                        <option
-                                                            value="<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>">
-                                                            <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
-                                                        </option>
+                                                        if (!empty($schoolyear)) {
+                                                            foreach ($schoolyear as $key => $value_sch) {
+                                                                if ($value_sch->tahun_awal == (date("Y") + 1)) {
+                                                        ?>
+                                                                    <option
+                                                                        value="<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>"
+                                                                        selected>
+                                                                        <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
+                                                                    </option>
+                                                                <?php } else {
+                                                                ?>
+                                                                    <option
+                                                                        value="<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>">
+                                                                        <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
+                                                                    </option>
                                                         <?php
-																}
-															}
-														}
-														?>
+                                                                }
+                                                            }
+                                                        }
+                                                        ?>
                                                         <option value="">Semua</option>
                                                     </select>
                                                 </div>
@@ -382,95 +382,104 @@
                                         <th title="Aksi">Aksi</th>
                                     </tr>
                                 </thead>
-								<p class="font-weight-bold">Ket. Warna: <span class="label font-weight-bolder label-lg bg-light-warning label-inline">CADANGAN</span><p>
-                                <tbody>
-                                    <?php
-									if (!empty($register)) {
-										foreach ($register as $key => $value) {
-										$color = "";
-										if($value->status_cadangan == 0){
-											$color = "";
-										} else {
-											$color = "bg-light-warning";
-										}
-									?>
-                                    <tr class="<?php echo $color; ?>">
-                                        <td><?php echo $value->id_pendaftaran; ?></td>
-                                        <td><b><?php echo $value->nomor_formulir; ?></b></td>
-                                        <td><?php echo strtoupper($value->nama_calon_siswa); ?></td>
-                                        <td><?php echo $value->jenis_kelamin; ?></td>
-                                        <td><?php echo $value->level_tingkat; ?></td>
-                                        <td><?php echo $value->id_jalur; ?></td>
-                                        <td>
-                                            <?php if ($value->status_pembayaran == 0) { ?>
-                                            0
-                                            <?php } else { ?>
-                                            1
-                                            <?php } ?>
-                                        </td>
-                                        <td><?php echo $value->nomor_wa; ?></td>
-                                        <td>
-                                            <?php echo $value->tahun_ajaran; ?>
-                                        </td>
-                                        <td><?php echo $value->tanggal_masuk; ?></td>
-                                        <td>
-                                            <div class="dropdown dropdown-inline">
-                                                <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2"
-                                                    data-toggle="dropdown">
-                                                    <span class="svg-icon svg-icon-md">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                            height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none"
-                                                                fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24" height="24" />
-                                                                <path
-                                                                    d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z"
-                                                                    fill="#000000" />
-                                                            </g>
-                                                        </svg>
-                                                    </span>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                    <ul class="navi flex-column navi-hover py-2">
-                                                        <li
-                                                            class="navi-header font-weight-bolder text-uppercase font-size-xs text-primary pb-2">
-                                                            Pilih Aksi:
-                                                        </li>
-                                                        <li class="navi-item">
-                                                            <a href="<?php echo site_url("/ppdb/admission/detail_formulir_sold/" . paramEncrypt($value->nomor_formulir)); ?>"
-                                                                class="navi-link">
-                                                                <span class="navi-icon"><i
-                                                                        class="la la-search text-success"></i></span>
-                                                                <span class="navi-text">Lihat Detail</span>
-                                                            </a>
-                                                        </li>
+                                <p class="font-weight-bold">Ket. Warna: <span class="label font-weight-bolder label-lg bg-light-warning label-inline">CADANGAN</span>
+                                <p>
+                                    <tbody>
+                                        <?php
+                                        if (!empty($register)) {
+                                            foreach ($register as $key => $value) {
+                                                $color = "";
+                                                if ($value->status_cadangan == 0) {
+                                                    $color = "";
+                                                } else {
+                                                    $color = "bg-light-warning";
+                                                }
+                                        ?>
+                                                <tr class="<?php echo $color; ?>">
+                                                    <td><?php echo $value->id_pendaftaran; ?></td>
+                                                    <td><b><?php echo $value->nomor_formulir; ?></b></td>
+                                                    <td><?php echo strtoupper($value->nama_calon_siswa); ?></td>
+                                                    <td><?php echo $value->jenis_kelamin; ?></td>
+                                                    <td><?php echo $value->level_tingkat; ?></td>
+                                                    <td><?php echo $value->id_jalur; ?></td>
+                                                    <td>
                                                         <?php if ($value->status_pembayaran == 0) { ?>
-                                                        <li class="navi-item">
-                                                            <?php
-																		$program = '';
-																		$jenjang = '';
-																		if ($value->id_jalur == 1) {
-																			$program = 'REGULER';
-																		} else if ($value->id_jalur == 2) {
-																			$program = 'ICP';
-																		}
+                                                            0
+                                                        <?php } else { ?>
+                                                            1
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td><?php echo $value->nomor_wa; ?></td>
+                                                    <td>
+                                                        <?php echo $value->tahun_ajaran; ?>
+                                                    </td>
+                                                    <td><?php echo $value->tanggal_masuk; ?></td>
+                                                    <td>
+                                                        <div class="dropdown dropdown-inline">
+                                                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2"
+                                                                data-toggle="dropdown">
+                                                                <span class="svg-icon svg-icon-md">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                                        height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                        <g stroke="none" stroke-width="1" fill="none"
+                                                                            fill-rule="evenodd">
+                                                                            <rect x="0" y="0" width="24" height="24" />
+                                                                            <path
+                                                                                d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z"
+                                                                                fill="#000000" />
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                <ul class="navi flex-column navi-hover py-2">
+                                                                    <li
+                                                                        class="navi-header font-weight-bolder text-uppercase font-size-xs text-primary pb-2">
+                                                                        Pilih Aksi:
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="<?php echo site_url("/ppdb/admission/detail_formulir_sold/" . paramEncrypt($value->nomor_formulir)); ?>"
+                                                                            class="navi-link">
+                                                                            <span class="navi-icon"><i
+                                                                                    class="la la-search text-success"></i></span>
+                                                                            <span class="navi-text">Lihat Detail</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <?php if ($value->status_pembayaran == 0) { ?>
+                                                                        <li class="navi-item">
+                                                                            <?php
+                                                                            $program = '';
+                                                                            $jenjang = '';
+                                                                            if ($value->id_jalur == 1) {
+                                                                                $program = 'REGULER';
+                                                                            } else if ($value->id_jalur == 2) {
+                                                                                $program = 'ICP';
+                                                                            }
 
-																		if ($value->level_tingkat == 1) {
-																			$jenjang = 'KB';
-																		} else if ($value->level_tingkat == 2) {
-																			$jenjang = 'TK';
-																		} else if ($value->level_tingkat == 3) {
-																			$jenjang = 'SD';
-																		} else if ($value->level_tingkat == 4) {
-																			$jenjang = 'SMP';
-																		} else if ($value->level_tingkat == 5) {
-																			$jenjang = 'KB-TK';
-																		} else if ($value->level_tingkat == 6) {
-																			$jenjang = 'DC';
-																		}
-																		?>
-                                                            <a href="https://web.whatsapp.com/send?phone=62<?php echo substr($value->nomor_wa, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
+                                                                            if ($value->level_tingkat == 1) {
+                                                                                $jenjang = 'KB';
+                                                                            } else if ($value->level_tingkat == 2) {
+                                                                                $jenjang = 'TK';
+                                                                            } else if ($value->level_tingkat == 3) {
+                                                                                $jenjang = 'SD';
+                                                                            } else if ($value->level_tingkat == 4) {
+                                                                                $jenjang = 'SMP';
+                                                                            } else if ($value->level_tingkat == 5) {
+                                                                                $jenjang = 'KB-TK';
+                                                                            } else if ($value->level_tingkat == 6) {
+                                                                                $jenjang = 'DC';
+                                                                            }
+
+                                                                            if ($voucher_form) {
+                                                                                $total_biaya = $register[0]->nominal - ($voucher_form[0]->potongan / 100 * $register[0]->nominal);
+                                                                                $ket = 'sudah termasuk diskon ' . $voucher_form[0]->potongan . '%*,';
+                                                                            } else {
+                                                                                $total_biaya = $register[0]->nominal;
+                                                                                $ket = '';
+                                                                            }
+                                                                            ?>
+                                                                            <a href="https://web.whatsapp.com/send?phone=62<?php echo substr($value->nomor_wa, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
                                                                         <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>*--PEMBAYARAN FORMULIR SEKOLAH UTSMAN--*
                                                                            <?php echo urlencode("\n") ?>
@@ -482,18 +491,18 @@
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>_Silahkan melakukan pembayaran sejumlah:_
                                                                            <?php echo urlencode("\n") ?>
-                                                                           <?php echo urlencode("\n") ?>*>Rp. <?php echo number_format($value->nominal, 2, ',', '.'); ?>* (mohon transfer senilai tersebut)
+                                                                           <?php echo urlencode("\n") ?>*Rp. <?php echo number_format($total_biaya, 2, ',', '.'); ?>* (*<?php echo $ket; ?> mohon transfer senilai tersebut)
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>_ke *Nomor Rekening* dibawah ini:_
                                                                            <?php
-																			if (!empty($bank_account)) {
-																				foreach ($bank_account as $key => $value_bank) {
-																			?>
+                                                                            if (!empty($bank_account)) {
+                                                                                foreach ($bank_account as $key => $value_bank) {
+                                                                            ?>
                                                                                    <?php echo urlencode("\n") ?>*- <?php echo strtoupper($value_bank->nama_alatbayar); ?> / no rek. <?php echo strtoupper($value_bank->nomor_alatbayar); ?> / an. <?php echo strtoupper($value_bank->atas_nama); ?>*
                                                                                    <?php
-																				}  //ngatur nomor urut
-																			}
-																					?>          
+                                                                                }  //ngatur nomor urut
+                                                                            }
+                                                                                    ?>          
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PEMBAYARAN*```. Setelah melakukan pembayaran, harap```. *UPLOAD BUKTI TRANSFER*``` dengan klik ```*LINK* ``` di bawah ini```
                                                                            <?php echo urlencode("\n") ?>
@@ -502,32 +511,32 @@
                                                                            <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>_*Admin PPDB Sekolah Utsman*_"
-                                                                target="_blank" class="navi-link">
-                                                                <span class="navi-icon"><i
-                                                                        class="la la-mobile-phone text-primary"></i></span>
-                                                                <span class="navi-text">Kirim WA</span>
-                                                            </a>
-                                                        </li>
-                                                        <?php } ?>
-                                                        <li class="navi-item">
-                                                            <a href="javascript:act_delete_register('<?php echo paramEncrypt($value->id_pendaftaran); ?>', '<?php echo strtoupper($value->nama_calon_siswa); ?>')"
-                                                                class="navi-link">
-                                                                <span class="navi-icon"><i
-                                                                        class="la la-close text-danger"></i></span>
-                                                                <span class="navi-text">Hapus</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php
-										}  //ngatur nomor urut
-									}
-									?>
-						
-                                </tbody>
+                                                                                target="_blank" class="navi-link">
+                                                                                <span class="navi-icon"><i
+                                                                                        class="la la-mobile-phone text-primary"></i></span>
+                                                                                <span class="navi-text">Kirim WA</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    <?php } ?>
+                                                                    <li class="navi-item">
+                                                                        <a href="javascript:act_delete_register('<?php echo paramEncrypt($value->id_pendaftaran); ?>', '<?php echo strtoupper($value->nama_calon_siswa); ?>')"
+                                                                            class="navi-link">
+                                                                            <span class="navi-icon"><i
+                                                                                    class="la la-close text-danger"></i></span>
+                                                                            <span class="navi-text">Hapus</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                        <?php
+                                            }  //ngatur nomor urut
+                                        }
+                                        ?>
+
+                                    </tbody>
                             </table>
                             <!--end: Datatable-->
                         </div>
@@ -547,46 +556,46 @@
 </script>
 
 <script>
-function act_delete_register(id, name) {
-    var csrfName = $('.txt_csrfname').attr('name');
-    var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+    function act_delete_register(id, name) {
+        var csrfName = $('.txt_csrfname').attr('name');
+        var csrfHash = $('.txt_csrfname').val(); // CSRF hash
 
-    Swal.fire({
-        title: "Peringatan!",
-        text: "Apakah anda yakin ingin menghapus Pendaftar atas nama " + name + "?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Ya, hapus!",
-        cancelButtonText: "Tidak, batal!",
-        closeOnConfirm: false,
-        closeOnCancel: false
-    }).then(function(result) {
-        if (result.value) {
-            $.ajax({
-                type: "post",
-                url: "<?php echo site_url("/ppdb/admission/delete_student_register") ?>",
-                data: {
-                    id: id,
-                    [csrfName]: csrfHash
-                },
-                dataType: 'html',
-                success: function(result) {
-                    Swal.fire("Terhapus!", "Pendaftar atas nama '" + name + "' telah terhapus.",
-                        "success");
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000);
-                },
-                error: function(result) {
-                    console.log(result);
-                    Swal.fire("Opsss!", "Koneksi Internet Bermasalah.", "error");
-                }
-            });
+        Swal.fire({
+            title: "Peringatan!",
+            text: "Apakah anda yakin ingin menghapus Pendaftar atas nama " + name + "?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Tidak, batal!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo site_url("/ppdb/admission/delete_student_register") ?>",
+                    data: {
+                        id: id,
+                        [csrfName]: csrfHash
+                    },
+                    dataType: 'html',
+                    success: function(result) {
+                        Swal.fire("Terhapus!", "Pendaftar atas nama '" + name + "' telah terhapus.",
+                            "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function(result) {
+                        console.log(result);
+                        Swal.fire("Opsss!", "Koneksi Internet Bermasalah.", "error");
+                    }
+                });
 
-        } else {
-            Swal.fire("Dibatalkan!", "Pendaftar atas nama " + name + " batal dihapus.", "error");
-        }
-    });
-}
+            } else {
+                Swal.fire("Dibatalkan!", "Pendaftar atas nama " + name + " batal dihapus.", "error");
+            }
+        });
+    }
 </script>
