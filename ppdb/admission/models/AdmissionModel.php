@@ -243,6 +243,16 @@ class AdmissionModel extends CI_Model
         return $sql->result();
     }
 
+    public function get_voucher_form_by_id($id = '')
+    {
+        $this->db->where('id_voucher', $id);
+        $this->db->where('id_jenis_voucher', '1');
+        $this->db->where('id_nama_biaya', '1');
+
+        $sql = $this->db->get($this->table_voucher);
+        return $sql->result();
+    }
+
     public function get_page()
     {
 
@@ -300,7 +310,7 @@ class AdmissionModel extends CI_Model
     public function get_schoolyear()
     {
 
-        $sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) OR tahun_awal = (YEAR(CURDATE())-1)");
+        $sql = $this->db->query("SELECT * FROM tahun_ajaran WHERE tahun_awal >= YEAR(CURDATE()) AND semester='ganjil' OR tahun_awal = (YEAR(CURDATE())-1) AND semester='ganjil'");
 
         return $sql->result();
     }
@@ -319,12 +329,27 @@ class AdmissionModel extends CI_Model
     {
         $this->db->select("p.*,
                                 b.nominal,
+                                v.id_voucher,
+                                v.kode_voucher,
+                                v.nama_voucher,
+                                v.potongan,
+                                v.jumlah_voucher,
+                                v.masa_berlaku,
+                                v.syarat_ketentuan,
+                                vf.id_voucher as id_voucher_form,
+                                vf.kode_voucher as kode_voucher_form,
+                                vf.nama_voucher as nama_voucher_form,
+                                vf.potongan as potongan_form,
+                                vf.masa_berlaku as masa_berlaku_form,
+                                vf.syarat_ketentuan as syarat_ketentuan_form,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran,
                                 DATE_FORMAT(p.inserted_at, '%Y/%m/%d') AS tanggal_masuk,
                          ");
         $this->db->from('pendaftaran p');
         $this->db->join('biaya b', 'p.level_tingkat = b.level_tingkat AND p.id_jalur = b.id_jalur AND b.id_jenis_kelamin=p.jenis_kelamin AND b.jenis_biaya = 1', 'left');
         $this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
+        $this->db->join('voucher v', 'p.id_voucher_form = v.id_voucher', 'left');
+        $this->db->join('voucher vf', 'p.id_voucher_form = vf.id_voucher', 'left');
         $this->db->order_by('p.id_pendaftaran', 'DESC');
 
         $sql = $this->db->get();
@@ -380,17 +405,45 @@ class AdmissionModel extends CI_Model
         }
     }
 
-    public function get_register_cost_id($id = '')
+    public function get_register_voucher_form_id($id = '')
+    {
+        $this->db->select("p.id_voucher_form,
+                            v.id_voucher,
+                            v.kode_voucher,
+                            v.nama_voucher,
+                            v.potongan,
+                            v.jumlah_voucher,
+                            v.masa_berlaku,
+                            v.syarat_ketentuan
+                         ");
+        $this->db->from('pendaftaran p');
+        $this->db->join('voucher v', 'p.id_voucher_form = v.id_voucher AND v.id_jenis_voucher = 1 AND v.id_nama_biaya = 1', 'left');
+
+        $this->db->where('p.nomor_formulir', $id);
+
+        $sql = $this->db->get();
+        return $sql->result();
+    }
+
+
+    public function get_register_id($id = '')
     {
         $this->db->select("p.*,
                                 b.nominal,
                                 jb.nama_opsi_biaya AS nama_biaya,
+                                v.id_voucher,
                                 v.kode_voucher,
                                 v.nama_voucher,
                                 v.potongan,
                                 v.jumlah_voucher,
                                 v.masa_berlaku,
                                 v.syarat_ketentuan,
+                                vf.id_voucher as id_voucher_form,
+                                vf.kode_voucher as kode_voucher_form,
+                                vf.nama_voucher as nama_voucher_form,
+                                vf.potongan as potongan_form,
+                                vf.masa_berlaku as masa_berlaku_form,
+                                vf.syarat_ketentuan as syarat_ketentuan_form,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
                          ");
         $this->db->from('pendaftaran p');
@@ -398,6 +451,7 @@ class AdmissionModel extends CI_Model
         $this->db->join('jenis_biaya jb', 'b.id_nama_biaya = jb.id_jenis_biaya', 'left');
         $this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
         $this->db->join('voucher v', 'p.id_voucher = v.id_voucher', 'left');
+        $this->db->join('voucher vf', 'p.id_voucher_form = vf.id_voucher', 'left');
 
         $this->db->where('p.nomor_formulir', $id);
 

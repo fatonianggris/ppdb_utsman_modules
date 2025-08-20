@@ -396,7 +396,7 @@
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>_Silahkan cek email anda untuk melihat_ *NOMOR FORMULIR* _dan_ *PASSWORD* _yang telah Kami kirimkan:_
                                                                            <?php echo urlencode("\n") ?>                                                                          
-                                                                           <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PENGISIAN FORMULIR* ```dengan kilk``` *LINK* ```dibawah ini:```
+                                                                           <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *UPLOAD BERKAS FORMULIR* ```dengan kilk``` *LINK* ```dibawah ini:```
                                                                            <?php echo urlencode("\n") ?>
                                                                            <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/register/login_formulir'); ?>*
                                                                            <?php echo urlencode("\n") ?>

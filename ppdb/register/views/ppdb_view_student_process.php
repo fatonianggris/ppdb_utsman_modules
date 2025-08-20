@@ -28,15 +28,15 @@
     <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.css"
         rel="stylesheet" type="text/css" />
     <style>
-    .blink {
-        animation: blinker 1.5s linear infinite;
-    }
-
-    @keyframes blinker {
-        50% {
-            opacity: 0;
+        .blink {
+            animation: blinker 1.5s linear infinite;
         }
-    }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <!--end::Head-->
@@ -88,43 +88,72 @@
                                                 <td class="table-center font-size-sm">
 
                                                     <?php
-														if ($formulir[0]->status_formulir >= 1) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-success label-inline">SELESAI</span>
+                                                    if ($formulir[0]->status_formulir >= 1) { ?>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-success label-inline">SELESAI</span>
                                                     <?php } else if ($formulir[0]->status_formulir == 0) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-danger label-inline blink">BELUM
-                                                        SELESAI</span>
-                                                    <?php	}
-														?>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-danger label-inline blink">BELUM
+                                                            SELESAI</span>
+                                                    <?php    }
+                                                    ?>
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-boldest table-center font-size-sm">
-                                                    PEMBAYARAN BIAYA MASUK
+                                                    PEMBAYARAN BIAYA MASUK<br>
+                                                    <span class="font-weight-bold font-size-sm text-danger">*Klik untuk melihat rinciaan dan cara pembayaran</span>
+                                                    <a href="#" class="font-weight-bold ml-1" data-toggle="modal" data-target="#modal_rincian">
+                                                        <span class="label label-sm font-weight-bold label-primary label-inline blink">
+                                                            LIHAT RINCIAN & PEMBAYARAN
+                                                        </span>
+                                                    </a>
                                                 </td>
                                                 <td class="table-center font-size-sm">
                                                     <?php
-														if ($formulir[0]->status_pembayaran == 0) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-default label-inline">DIPROSES</span>
+                                                    if ($formulir[0]->status_pembayaran == 0) { ?>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-default label-inline">AKAN DITAGIHKAN
+                                                        </span>
                                                     <?php } else if ($formulir[0]->status_pembayaran == 1) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-warning label-inline blink">BELUM
-                                                        BAYAR</span>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-warning label-inline blink">BELUM
+                                                            BAYAR</span>
                                                     <?php } else if ($formulir[0]->status_pembayaran == 2) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-success label-inline">SUDAH
-                                                        BAYAR
-                                                    </span>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-success label-inline">SUDAH
+                                                            BAYAR
+                                                        </span>
                                                     <?php } else if ($formulir[0]->status_pembayaran == 3) { ?>
-                                                    <span
-                                                        class="label label-lg font-weight-bolder label-danger label-inline blink">GAGAL
-                                                        BAYAR
-                                                    </span>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-danger label-inline blink">GAGAL
+                                                            BAYAR
+                                                        </span>
                                                     <?php }
-														?>
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-boldest table-center font-size-sm">
+                                                    HASIL OBERVASAI DAN PENERIMAAN
+                                                </td>
+                                                <td class="table-center font-size-sm">
+                                                    <?php
+                                                    if ($formulir[0]->status_pembayaran == 0) { ?>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-default label-inline">DIPROSES
+                                                        </span>
+                                                    <?php } else if ($formulir[0]->status_pembayaran == 1) { ?>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-success label-inline">DITERIMA
+                                                        </span>
+                                                    <?php } else if ($formulir[0]->status_pembayaran == 2) { ?>
+                                                        <span
+                                                            class="label label-lg font-weight-bolder label-danger label-inline">DITOLAK
+                                                        </span>
+                                                    <?php }
+                                                    ?>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -132,7 +161,11 @@
                                 </div>
                             </div>
                             <div class="col-3">
-
+                            </div>
+                        </div>
+                        <div class="mb-10 ">
+                            <div class="font-weight-bold font-size-md">*setelah hasil observasi dan penerimaan siswa dinyatakan <b class="text-success">DITERIMA</b>, maka <b>BIAYA TAGIHAN PPDB</b> akan diinfokan melalui Email, Whatsapp dan Web.
+                                Terima kasih.
                             </div>
                         </div>
                         <div class="table-responsive px-mobile">
@@ -163,31 +196,31 @@
                                         <td class="table-center font-size-sm">
                                             <span class="label label-md font-weight-boldest label-primary label-inline">
                                                 <?php
-												if ($formulir[0]->level_tingkat == 1) {
-													echo 'KB';
-												} else if ($formulir[0]->level_tingkat == 2) {
-													echo 'TK';
-												} else if ($formulir[0]->level_tingkat == 3) {
-													echo 'SD';
-												} else if ($formulir[0]->level_tingkat == 4) {
-													echo 'SMP';
-												} else if ($formulir[0]->level_tingkat == 5) {
-													echo 'KB-TK';
-												} else if ($formulir[0]->level_tingkat == 6) {
-													echo 'DC';
-												}
-												?>
+                                                if ($formulir[0]->level_tingkat == 1) {
+                                                    echo 'KB';
+                                                } else if ($formulir[0]->level_tingkat == 2) {
+                                                    echo 'TK';
+                                                } else if ($formulir[0]->level_tingkat == 3) {
+                                                    echo 'SD';
+                                                } else if ($formulir[0]->level_tingkat == 4) {
+                                                    echo 'SMP';
+                                                } else if ($formulir[0]->level_tingkat == 5) {
+                                                    echo 'KB-TK';
+                                                } else if ($formulir[0]->level_tingkat == 6) {
+                                                    echo 'DC';
+                                                }
+                                                ?>
                                             </span>
                                         </td>
                                         <td class="table-center font-size-sm">
                                             <span class="label label-md font-weight-boldest label-default label-inline">
                                                 <?php
-												if ($formulir[0]->jalur == 1) {
-													echo 'REGULER';
-												} elseif ($formulir[0]->jalur == 2) {
-													echo 'ICP';
-												}
-												?>
+                                                if ($formulir[0]->jalur == 1) {
+                                                    echo 'REGULER';
+                                                } elseif ($formulir[0]->jalur == 2) {
+                                                    echo 'ICP';
+                                                }
+                                                ?>
                                             </span>
                                         </td>
                                         <td class="table-center font-size-sm font-weight-bold">
@@ -376,6 +409,181 @@
         <!--end::Login-->
     </div>
     <!--end::Main-->
+    <div class="modal fade" id="modal_rincian" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
+        role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rincian Biaya Masuk Sekolah</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-light table-light-success text-left">
+                            <thead>
+                                <tr>
+                                    <th class="table-left">Nama Biaya</th>
+                                    <th class="table-center">Biaya Awal (Rp)</th>
+                                    <th class="table-center">Potongan (%)</th>
+                                    <th class="table-center">Sub Total (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if (!empty($cost)) {
+                                    $total_potongan = 0;
+                                    foreach ($cost as $key => $value) {
+                                ?>
+                                        <tr>
+                                            <td class="font-weight-bold font-size-sm">
+                                                <?php echo ucwords(strtolower($value->nama_biaya)); ?></td>
+                                            <td class="table-center font-size-sm  text-right">
+                                                <?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
+                                            <td class="table-center font-size-sm  text-right">
+                                                <?php
+                                                if (!empty($voucher)) {
+                                                    foreach ($voucher as $key => $value_v) {
+                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                                            $id_array_voucher = explode(',', $formulir[0]->id_voucher);
+                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                                                echo $value_v->potongan;
+                                                            }
+                                                        }
+                                                    } //ngatur nomor urut
+                                                }
+                                                ?>
+                                            </td>
+                                            <td class="table-center font-size-sm text-right">
+                                                <?php
+                                                $stat = false;
+                                                if (!empty($voucher)) {
+                                                    foreach ($voucher as $key => $value_v) {
+                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                                            $id_array_voucher = explode(',', $formulir[0]->id_voucher);
+                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                                                $hasil_potongan = ($value->nominal) - ($value->nominal * $value_v->potongan / 100);
+                                                                $total_potongan += $hasil_potongan;
+                                                                echo number_format($hasil_potongan, 0, ',', '.');
+                                                                $stat = true;
+                                                            }
+                                                        }
+                                                    } //ngatur nomor urut
+                                                }
+                                                if ($stat == false) {
+                                                    $total_potongan += $value->nominal;
+                                                    echo number_format($value->nominal, 0, ',', '.');
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    } //ngatur nomor urut
+                                }
+                                ?>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td colspan="2" class="table-center font-size-sm font-weight-bolder text-right">
+                                        TOTAL SETELAH DI DISKON
+                                    </td>
+                                    <td class="table-center font-size-sm font-weight-bolder text-right">
+                                        <?php echo number_format($total_potongan, 0, ',', '.'); ?>
+                                    </td>
+                                </tr>
+                                <?php if ($formulir[0]->status_potongan == 1) { ?>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td colspan="2" class="table-center font-size-sm font-weight-bolder text-right text-danger">
+                                            <?php echo strtoupper($potongan[0]->nama_potongan); ?>
+                                        </td>
+                                        <td class="table-center font-size-sm font-weight-bolder text-danger text-right">
+                                            -<?php echo $potongan[0]->nominal_potongan; ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder text-center">TOTAL
+                                TAGIHAN KESELURUHAN:</span><br>
+                            <b class="text-danger font-size-h1">Rp. <?php echo $formulir[0]->total_biaya; ?></b>
+                        </div>
+
+                    </div>
+                    <div class="mt-5">
+                        <div class="accordion accordion-toggle-arrow" id="accordionExample">
+                            <?php
+                            if (!empty($bank_account)) {
+                                foreach ($bank_account as $key => $value) {
+                            ?>
+                                    <div class="card">
+                                        <div class="card-header bg-light-warning"
+                                            id="heading<?php echo $value->id_alat_bayar; ?>">
+                                            <div class="card-title text-danger font-weight-bolder" data-toggle="collapse"
+                                                data-target="#collapseOne<?php echo $value->id_alat_bayar; ?>">
+                                                <i class="flaticon2-layers-1 text-danger"></i>
+                                                <?php echo strtoupper($value->nama_alatbayar); ?>
+                                            </div>
+                                        </div>
+                                        <div id="collapseOne<?php echo $value->id_alat_bayar; ?>" class="collapse show"
+                                            data-parent="#accordionExample">
+                                            <div class="card-body text-center">
+                                                <span
+                                                    class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Silahakan
+                                                    Melakukan Pembayaran Sejumlah:</span><br><br>
+                                                <span class="mt-30 mb-30 font-size-sm text-left"> <b
+                                                        class="text-danger font-size-h1">Rp.
+                                                        <?php echo $formulir[0]->total_biaya; ?></b> <br>
+                                                    
+                                                <span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Nomor VA
+                                                    (Virtual Account) Ananda
+                                                    <b
+                                                        class="text-warning">"<?php echo strtoupper($formulir[0]->nama_lengkap); ?>"</b>:
+                                                </span><br><br>
+                                                <span class="mt-20 mb-20 text-danger display-4 font-weight-boldest">
+                                                    <?php echo strtoupper($formulir[0]->nomor_formulir); ?></span><br>
+                                                <span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">
+                                                    <?php echo strtoupper($value->nama_alatbayar); ?></span><br>
+                                                <span class="mt-20 mb-20 text-danger font-weight-bold">
+                                                    *pastikan Nomor VA dan Nama sesuai.
+                                                </span><br><br>
+                                                <span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Atau
+                                                    Pembayaran
+                                                    Melalui Bank Selain "BSI" Bisa Transfer ke Nomor Rekening
+                                                    Berikut:</span><br><br>
+                                                <span class="mt-20 mb-20 text-danger display-4 font-weight-boldest">
+                                                    900 2399
+                                                    <?php echo strtoupper($formulir[0]->nomor_formulir); ?></span><br>
+                                                <span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">
+                                                    <?php echo strtoupper($value->nama_alatbayar); ?></span><br>
+                                                <span class="mt-20 mb-20 text-danger font-weight-bold">
+                                                    *Pastikan data yang ditampilkan sudah sesuai.
+                                                </span><br><br><br>
+                                                <span
+                                                    class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords(preg_replace('/12345/', "<b class='text-danger'>" . $formulir[0]->nomor_formulir . "</b>", $value->petunjuk_transfer)); ?></span>
+                                                <br>
+                                                <span
+                                                    class="mt-30 mb-20 font-size-md text-center font-weight-bold"><?php echo ucwords($value->catatan_transfer); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                } //ngatur nomor urut
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-light-danger font-weight-bold"
+                        data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modal_bio_siswa" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
         role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -455,12 +663,12 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->jenis_kelamin == 1) {
-													echo 'Laki-Laki';
-												} else if ($student[0]->jenis_kelamin == 2) {
-													echo 'Perempuan';
-												}
-												?>
+                                            if ($student[0]->jenis_kelamin == 1) {
+                                                echo 'Laki-Laki';
+                                            } else if ($student[0]->jenis_kelamin == 2) {
+                                                echo 'Perempuan';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -469,18 +677,18 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->agama == 1) {
-													echo 'Islam';
-												} else if ($student[0]->agama == 2) {
-													echo 'Kristen';
-												} else if ($student[0]->agama == 3) {
-													echo 'Hindu';
-												} else if ($student[0]->agama == 4) {
-													echo 'Budha';
-												} else if ($student[0]->agama == 5) {
-													echo 'Lainnya';
-												}
-												?>
+                                            if ($student[0]->agama == 1) {
+                                                echo 'Islam';
+                                            } else if ($student[0]->agama == 2) {
+                                                echo 'Kristen';
+                                            } else if ($student[0]->agama == 3) {
+                                                echo 'Hindu';
+                                            } else if ($student[0]->agama == 4) {
+                                                echo 'Budha';
+                                            } else if ($student[0]->agama == 5) {
+                                                echo 'Lainnya';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -517,20 +725,20 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->jenis_tinggal == 1) {
-													echo 'Bersama Orangtua';
-												} else if ($student[0]->jenis_tinggal == 2) {
-													echo 'Asrama';
-												} else if ($student[0]->jenis_tinggal == 3) {
-													echo 'Kos';
-												} else if ($student[0]->jenis_tinggal == 4) {
-													echo 'Bersama Nenek/Kakek';
-												} else if ($student[0]->jenis_tinggal == 5) {
-													echo 'Bersama Wali';
-												} else if ($student[0]->jenis_tinggal == 6) {
-													echo 'Lainnya';
-												}
-												?>
+                                            if ($student[0]->jenis_tinggal == 1) {
+                                                echo 'Bersama Orangtua';
+                                            } else if ($student[0]->jenis_tinggal == 2) {
+                                                echo 'Asrama';
+                                            } else if ($student[0]->jenis_tinggal == 3) {
+                                                echo 'Kos';
+                                            } else if ($student[0]->jenis_tinggal == 4) {
+                                                echo 'Bersama Nenek/Kakek';
+                                            } else if ($student[0]->jenis_tinggal == 5) {
+                                                echo 'Bersama Wali';
+                                            } else if ($student[0]->jenis_tinggal == 6) {
+                                                echo 'Lainnya';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -563,12 +771,12 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->kebutuhan_khusus == 1) {
-													echo 'IYA';
-												} else if ($student[0]->kebutuhan_khusus == 0) {
-													echo 'TIDAK';
-												}
-												?>
+                                            if ($student[0]->kebutuhan_khusus == 1) {
+                                                echo 'IYA';
+                                            } else if ($student[0]->kebutuhan_khusus == 0) {
+                                                echo 'TIDAK';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -680,24 +888,24 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->pendidikan_ayah == 1) {
-													echo 'Tidak Sekolah';
-												} else if ($student[0]->pendidikan_ayah == 2) {
-													echo 'SD';
-												} else if ($student[0]->pendidikan_ayah == 3) {
-													echo 'SMP';
-												} else if ($student[0]->pendidikan_ayah == 4) {
-													echo 'SMA';
-												} else if ($student[0]->pendidikan_ayah == 5) {
-													echo 'D-I/D-II';
-												} else if ($student[0]->pendidikan_ayah == 6) {
-													echo 'D-III';
-												} else if ($student[0]->pendidikan_ayah == 7) {
-													echo 'D-IV/S1';
-												} else if ($student[0]->pendidikan_ayah == 8) {
-													echo 'S2/S3';
-												}
-												?>
+                                            if ($student[0]->pendidikan_ayah == 1) {
+                                                echo 'Tidak Sekolah';
+                                            } else if ($student[0]->pendidikan_ayah == 2) {
+                                                echo 'SD';
+                                            } else if ($student[0]->pendidikan_ayah == 3) {
+                                                echo 'SMP';
+                                            } else if ($student[0]->pendidikan_ayah == 4) {
+                                                echo 'SMA';
+                                            } else if ($student[0]->pendidikan_ayah == 5) {
+                                                echo 'D-I/D-II';
+                                            } else if ($student[0]->pendidikan_ayah == 6) {
+                                                echo 'D-III';
+                                            } else if ($student[0]->pendidikan_ayah == 7) {
+                                                echo 'D-IV/S1';
+                                            } else if ($student[0]->pendidikan_ayah == 8) {
+                                                echo 'S2/S3';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -706,20 +914,20 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->penghasilan_ayah == 1) {
-													echo 'Kurang dari Rp. 1.500.000';
-												} else if ($student[0]->penghasilan_ayah == 2) {
-													echo 'Rp. 1.500.000 - Rp. 2.500.000';
-												} else if ($student[0]->penghasilan_ayah == 3) {
-													echo 'Rp. 2.500.000 - RP. 3.500.000';
-												} else if ($student[0]->penghasilan_ayah == 4) {
-													echo 'Rp. 3.500.000 - Rp. 4.500.000';
-												} else if ($student[0]->penghasilan_ayah == 5) {
-													echo 'Rp. 4.500.000 - Rp. 5.500.000';
-												} else if ($student[0]->penghasilan_ayah == 6) {
-													echo 'Lebih dari Rp. 5.500.000';
-												}
-												?>
+                                            if ($student[0]->penghasilan_ayah == 1) {
+                                                echo 'Kurang dari Rp. 1.500.000';
+                                            } else if ($student[0]->penghasilan_ayah == 2) {
+                                                echo 'Rp. 1.500.000 - Rp. 2.500.000';
+                                            } else if ($student[0]->penghasilan_ayah == 3) {
+                                                echo 'Rp. 2.500.000 - RP. 3.500.000';
+                                            } else if ($student[0]->penghasilan_ayah == 4) {
+                                                echo 'Rp. 3.500.000 - Rp. 4.500.000';
+                                            } else if ($student[0]->penghasilan_ayah == 5) {
+                                                echo 'Rp. 4.500.000 - Rp. 5.500.000';
+                                            } else if ($student[0]->penghasilan_ayah == 6) {
+                                                echo 'Lebih dari Rp. 5.500.000';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -769,24 +977,24 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->pendidikan_ibu == 1) {
-													echo 'Tidak Sekolah';
-												} else if ($student[0]->pendidikan_ibu == 2) {
-													echo 'SD';
-												} else if ($student[0]->pendidikan_ibu == 3) {
-													echo 'SMP';
-												} else if ($student[0]->pendidikan_ibu == 4) {
-													echo 'SMA';
-												} else if ($student[0]->pendidikan_ibu == 5) {
-													echo 'D-I/D-II';
-												} else if ($student[0]->pendidikan_ibu == 6) {
-													echo 'D-III';
-												} else if ($student[0]->pendidikan_ibu == 7) {
-													echo 'D-IV/S1';
-												} else if ($student[0]->pendidikan_ibu == 8) {
-													echo 'S2/S3';
-												}
-												?>
+                                            if ($student[0]->pendidikan_ibu == 1) {
+                                                echo 'Tidak Sekolah';
+                                            } else if ($student[0]->pendidikan_ibu == 2) {
+                                                echo 'SD';
+                                            } else if ($student[0]->pendidikan_ibu == 3) {
+                                                echo 'SMP';
+                                            } else if ($student[0]->pendidikan_ibu == 4) {
+                                                echo 'SMA';
+                                            } else if ($student[0]->pendidikan_ibu == 5) {
+                                                echo 'D-I/D-II';
+                                            } else if ($student[0]->pendidikan_ibu == 6) {
+                                                echo 'D-III';
+                                            } else if ($student[0]->pendidikan_ibu == 7) {
+                                                echo 'D-IV/S1';
+                                            } else if ($student[0]->pendidikan_ibu == 8) {
+                                                echo 'S2/S3';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -795,20 +1003,20 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->penghasilan_ibu == 1) {
-													echo 'Kurang dari Rp. 1.500.000';
-												} else if ($student[0]->penghasilan_ibu == 2) {
-													echo 'Rp. 1.500.000 - Rp. 2.500.000';
-												} else if ($student[0]->penghasilan_ibu == 3) {
-													echo 'Rp. 2.500.000 - RP. 3.500.000';
-												} else if ($student[0]->penghasilan_ibu == 4) {
-													echo 'Rp. 3.500.000 - Rp. 4.500.000';
-												} else if ($student[0]->penghasilan_ibu == 5) {
-													echo 'Rp. 4.500.000 - Rp. 5.500.000';
-												} else if ($student[0]->penghasilan_ibu == 6) {
-													echo 'Lebih dari Rp. 5.500.000';
-												}
-												?>
+                                            if ($student[0]->penghasilan_ibu == 1) {
+                                                echo 'Kurang dari Rp. 1.500.000';
+                                            } else if ($student[0]->penghasilan_ibu == 2) {
+                                                echo 'Rp. 1.500.000 - Rp. 2.500.000';
+                                            } else if ($student[0]->penghasilan_ibu == 3) {
+                                                echo 'Rp. 2.500.000 - RP. 3.500.000';
+                                            } else if ($student[0]->penghasilan_ibu == 4) {
+                                                echo 'Rp. 3.500.000 - Rp. 4.500.000';
+                                            } else if ($student[0]->penghasilan_ibu == 5) {
+                                                echo 'Rp. 4.500.000 - Rp. 5.500.000';
+                                            } else if ($student[0]->penghasilan_ibu == 6) {
+                                                echo 'Lebih dari Rp. 5.500.000';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -858,24 +1066,24 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->pendidikan_wali == 1) {
-													echo 'Tidak Sekolah';
-												} else if ($student[0]->pendidikan_wali == 2) {
-													echo 'SD';
-												} else if ($student[0]->pendidikan_wali == 3) {
-													echo 'SMP';
-												} else if ($student[0]->pendidikan_wali == 4) {
-													echo 'SMA';
-												} else if ($student[0]->pendidikan_wali == 5) {
-													echo 'D-I/D-II';
-												} else if ($student[0]->pendidikan_wali == 6) {
-													echo 'D-III';
-												} else if ($student[0]->pendidikan_wali == 7) {
-													echo 'D-IV/S1';
-												} else if ($student[0]->pendidikan_wali == 8) {
-													echo 'S2/S3';
-												}
-												?>
+                                            if ($student[0]->pendidikan_wali == 1) {
+                                                echo 'Tidak Sekolah';
+                                            } else if ($student[0]->pendidikan_wali == 2) {
+                                                echo 'SD';
+                                            } else if ($student[0]->pendidikan_wali == 3) {
+                                                echo 'SMP';
+                                            } else if ($student[0]->pendidikan_wali == 4) {
+                                                echo 'SMA';
+                                            } else if ($student[0]->pendidikan_wali == 5) {
+                                                echo 'D-I/D-II';
+                                            } else if ($student[0]->pendidikan_wali == 6) {
+                                                echo 'D-III';
+                                            } else if ($student[0]->pendidikan_wali == 7) {
+                                                echo 'D-IV/S1';
+                                            } else if ($student[0]->pendidikan_wali == 8) {
+                                                echo 'S2/S3';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -884,20 +1092,20 @@
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
                                             <?php
-												if ($student[0]->penghasilan_wali == 1) {
-													echo 'Kurang dari Rp. 1.500.000';
-												} else if ($student[0]->penghasilan_wali == 2) {
-													echo 'Rp. 1.500.000 - Rp. 2.500.000';
-												} else if ($student[0]->penghasilan_wali == 3) {
-													echo 'Rp. 2.500.000 - RP. 3.500.000';
-												} else if ($student[0]->penghasilan_wali == 4) {
-													echo 'Rp. 3.500.000 - Rp. 4.500.000';
-												} else if ($student[0]->penghasilan_wali == 5) {
-													echo 'Rp. 4.500.000 - Rp. 5.500.000';
-												} else if ($student[0]->penghasilan_wali == 6) {
-													echo 'Lebih dari Rp. 5.500.000';
-												}
-												?>
+                                            if ($student[0]->penghasilan_wali == 1) {
+                                                echo 'Kurang dari Rp. 1.500.000';
+                                            } else if ($student[0]->penghasilan_wali == 2) {
+                                                echo 'Rp. 1.500.000 - Rp. 2.500.000';
+                                            } else if ($student[0]->penghasilan_wali == 3) {
+                                                echo 'Rp. 2.500.000 - RP. 3.500.000';
+                                            } else if ($student[0]->penghasilan_wali == 4) {
+                                                echo 'Rp. 3.500.000 - Rp. 4.500.000';
+                                            } else if ($student[0]->penghasilan_wali == 5) {
+                                                echo 'Rp. 4.500.000 - Rp. 5.500.000';
+                                            } else if ($student[0]->penghasilan_wali == 6) {
+                                                echo 'Lebih dari Rp. 5.500.000';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -1128,120 +1336,120 @@
             </div>
             <div class="wcs_popup_person_container">
                 <?php if ($contact[0]->no_handphone_tk != "" or $contact[0]->no_handphone_tk != NULL) { ?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_tk, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin KB-TK</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB KB-TK</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_tk, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin KB-TK</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB KB-TK</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-				if ($contact[0]->no_handphone_sd != "" or $contact[0]->no_handphone_sd != NULL) { ?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_sd, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SD</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SD</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_sd != "" or $contact[0]->no_handphone_sd != NULL) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_sd, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SD</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SD</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-				if ($contact[0]->no_handphone_smp != "" or $contact[0]->no_handphone_smp != NULL) { ?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_smp, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SMP</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SMP</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_smp != "" or $contact[0]->no_handphone_smp != NULL) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_smp, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SMP</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SMP</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-				if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != NULL) { ?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_sma, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SMA</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SMA</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != NULL) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_sma, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SMA</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SMA</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php } ?>
             </div>
         </div>
     </div>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
-    var KTAppSettings = {
-        "breakpoints": {
-            "sm": 576,
-            "md": 768,
-            "lg": 992,
-            "xl": 1200,
-            "xxl": 1200
-        },
-        "colors": {
-            "theme": {
-                "base": {
-                    "white": "#ffffff",
-                    "primary": "#6993FF",
-                    "secondary": "#E5EAEE",
-                    "success": "#1BC5BD",
-                    "info": "#8950FC",
-                    "warning": "#FFA800",
-                    "danger": "#F64E60",
-                    "light": "#F3F6F9",
-                    "dark": "#212121"
+        var KTAppSettings = {
+            "breakpoints": {
+                "sm": 576,
+                "md": 768,
+                "lg": 992,
+                "xl": 1200,
+                "xxl": 1200
+            },
+            "colors": {
+                "theme": {
+                    "base": {
+                        "white": "#ffffff",
+                        "primary": "#6993FF",
+                        "secondary": "#E5EAEE",
+                        "success": "#1BC5BD",
+                        "info": "#8950FC",
+                        "warning": "#FFA800",
+                        "danger": "#F64E60",
+                        "light": "#F3F6F9",
+                        "dark": "#212121"
+                    },
+                    "light": {
+                        "white": "#ffffff",
+                        "primary": "#E1E9FF",
+                        "secondary": "#ECF0F3",
+                        "success": "#C9F7F5",
+                        "info": "#EEE5FF",
+                        "warning": "#FFF4DE",
+                        "danger": "#FFE2E5",
+                        "light": "#F3F6F9",
+                        "dark": "#D6D6E0"
+                    },
+                    "inverse": {
+                        "white": "#ffffff",
+                        "primary": "#ffffff",
+                        "secondary": "#212121",
+                        "success": "#ffffff",
+                        "info": "#ffffff",
+                        "warning": "#ffffff",
+                        "danger": "#ffffff",
+                        "light": "#464E5F",
+                        "dark": "#ffffff"
+                    }
                 },
-                "light": {
-                    "white": "#ffffff",
-                    "primary": "#E1E9FF",
-                    "secondary": "#ECF0F3",
-                    "success": "#C9F7F5",
-                    "info": "#EEE5FF",
-                    "warning": "#FFF4DE",
-                    "danger": "#FFE2E5",
-                    "light": "#F3F6F9",
-                    "dark": "#D6D6E0"
-                },
-                "inverse": {
-                    "white": "#ffffff",
-                    "primary": "#ffffff",
-                    "secondary": "#212121",
-                    "success": "#ffffff",
-                    "info": "#ffffff",
-                    "warning": "#ffffff",
-                    "danger": "#ffffff",
-                    "light": "#464E5F",
-                    "dark": "#ffffff"
+                "gray": {
+                    "gray-100": "#F3F6F9",
+                    "gray-200": "#ECF0F3",
+                    "gray-300": "#E5EAEE",
+                    "gray-400": "#D6D6E0",
+                    "gray-500": "#B5B5C3",
+                    "gray-600": "#80808F",
+                    "gray-700": "#464E5F",
+                    "gray-800": "#1B283F",
+                    "gray-900": "#212121"
                 }
             },
-            "gray": {
-                "gray-100": "#F3F6F9",
-                "gray-200": "#ECF0F3",
-                "gray-300": "#E5EAEE",
-                "gray-400": "#D6D6E0",
-                "gray-500": "#B5B5C3",
-                "gray-600": "#80808F",
-                "gray-700": "#464E5F",
-                "gray-800": "#1B283F",
-                "gray-900": "#212121"
-            }
-        },
-        "font-family": "Poppins"
-    };
+            "font-family": "Poppins"
+        };
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
@@ -1254,7 +1462,7 @@
     <script src="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.js">
     </script>
     <script>
-    $('#example_1').whatsappChatSupport();
+        $('#example_1').whatsappChatSupport();
     </script>
 </body>
 <!--end::Body-->

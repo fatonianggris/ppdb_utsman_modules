@@ -102,6 +102,18 @@
 
 		</tbody>
 
+		<?php
+		if ($invoice[0]->id_voucher_form != NULL) {
+			$total_biaya = $invoice[0]->nominal - ($invoice[0]->potongan_form / 100 * $invoice[0]->nominal);
+			$total_potongan = $invoice[0]->potongan_form / 100 * $invoice[0]->nominal;
+			$keteragan = '(' . strtoupper($invoice[0]->nama_voucher_form) . '-' . $invoice[0]->potongan_form . '%)';
+		} else {
+			$total_biaya = $invoice[0]->nominal;
+			$total_potongan = 0;
+			$keteragan = '';
+		}
+		?>
+
 		<tfoot>
 			<tr>
 				<td colspan="3"></td>
@@ -110,13 +122,13 @@
 			</tr>
 			<tr>
 				<td colspan="3"></td>
-				<td align="right">Diskon</td>
-				<td align="right">0.00</td>
+				<td align="right" style="color:#F64E60;">Diskon <?php echo $keteragan; ?></td>
+				<td align="right" style="color:#F64E60;">Rp. <?php echo number_format($total_potongan, 2, ',', '.'); ?><< /td>
 			</tr>
 			<tr>
 				<td colspan="3"></td>
 				<td align="right">Total (Rp)</td>
-				<td align="right" class="gray">Rp. <?php echo number_format($invoice[0]->nominal, 2, ',', '.'); ?></td>
+				<td align="right" class="gray">Rp. <?php echo number_format($total_biaya, 2, ',', '.'); ?></td>
 			</tr>
 		</tfoot>
 	</table>

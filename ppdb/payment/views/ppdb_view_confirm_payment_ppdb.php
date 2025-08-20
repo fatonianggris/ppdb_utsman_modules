@@ -60,16 +60,16 @@
                             <div class="d-flex">
                                 <!--begin::Pic-->
                                 <div class="flex-shrink-0 mr-0">
-                                    <?php if ($formulir[0]->foto_siswa == null or $formulir[0]->foto_siswa == "") {?>
-                                    <div class="symbol symbol-50 symbol-lg-100 symbol-light-danger">
-                                        <span
-                                            class="font-size-h2 symbol-label font-weight-boldest"><?php echo strtoupper(substr($formulir[0]->nama_lengkap, 0, 2)); ?></span>
-                                    </div>
-                                    <?php } else {?>
-                                    <div class="symbol symbol-50 symbol-lg-100">
-                                        <img alt="Pic" src="<?php echo base_url() . $formulir[0]->foto_siswa ?>">
-                                    </div>
-                                    <?php }?>
+                                    <?php if ($formulir[0]->foto_siswa == null or $formulir[0]->foto_siswa == "") { ?>
+                                        <div class="symbol symbol-50 symbol-lg-100 symbol-light-danger">
+                                            <span
+                                                class="font-size-h2 symbol-label font-weight-boldest"><?php echo strtoupper(substr($formulir[0]->nama_lengkap, 0, 2)); ?></span>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="symbol symbol-50 symbol-lg-100">
+                                            <img alt="Pic" src="<?php echo base_url() . $formulir[0]->foto_siswa ?>">
+                                        </div>
+                                    <?php } ?>
                                 </div>
 
                                 <div class="flex-shrink-0 mr-7">
@@ -130,20 +130,20 @@
                                                         <!--end::Svg Icon-->
                                                     </span>
                                                     <?php
-if ($formulir[0]->level_tingkat == 1) {
-    echo 'KB';
-} else if ($formulir[0]->level_tingkat == 2) {
-    echo 'TK';
-} else if ($formulir[0]->level_tingkat == 3) {
-    echo 'SD';
-} else if ($formulir[0]->level_tingkat == 4) {
-    echo 'SMP';
-} else if ($formulir[0]->level_tingkat == 5) {
-    echo 'KB-TK';
-} else if ($formulir[0]->level_tingkat == 6) {
-    echo 'DC';
-}
-?>
+                                                    if ($formulir[0]->level_tingkat == 1) {
+                                                        echo 'KB';
+                                                    } else if ($formulir[0]->level_tingkat == 2) {
+                                                        echo 'TK';
+                                                    } else if ($formulir[0]->level_tingkat == 3) {
+                                                        echo 'SD';
+                                                    } else if ($formulir[0]->level_tingkat == 4) {
+                                                        echo 'SMP';
+                                                    } else if ($formulir[0]->level_tingkat == 5) {
+                                                        echo 'KB-TK';
+                                                    } else if ($formulir[0]->level_tingkat == 6) {
+                                                        echo 'DC';
+                                                    }
+                                                    ?>
                                                 </a>
                                                 <a href="#"
                                                     class="text-success text-hover-primary font-weight-bold mr-lg-2 mr-5 mb-lg-0 mb-2">
@@ -166,12 +166,12 @@ if ($formulir[0]->level_tingkat == 1) {
                                                         <!--end::Svg Icon-->
                                                     </span>
                                                     <?php
-if ($formulir[0]->jalur == 1) {
-    echo 'REGULER';
-} else if ($formulir[0]->jalur == 2) {
-    echo 'ICP';
-}
-?>
+                                                    if ($formulir[0]->jalur == 1) {
+                                                        echo 'REGULER';
+                                                    } else if ($formulir[0]->jalur == 2) {
+                                                        echo 'ICP';
+                                                    }
+                                                    ?>
                                                 </a>
                                                 <a href="#"
                                                     class="text-success text-hover-primary font-weight-bold mr-lg-2 mr-5 mb-lg-0 mb-2">
@@ -222,19 +222,19 @@ if ($formulir[0]->jalur == 1) {
                             <h3 class="card-label text-dark font-weight-bolder text-center">STATUS PEMBAYARAN</h3>
                             <div class="d-flex flex-lg-grow-1 justify-content-lg-center mt-5 text-center">
 
-                                <?php if ($formulir[0]->status_pembayaran == 1) {?>
-                                <p class="font-weight-boldest display-2 mb-1 text-warning">
-                                    VERIFIKASI
-                                </p>
-                                <?php } else if ($formulir[0]->status_pembayaran == 2) {?>
-                                <p class="font-weight-boldest display-2 mb-1 text-success">
-                                    DITERIMA
-                                </p>
-                                <?php } else if ($formulir[0]->status_pembayaran == 2) {?>
-                                <p class="font-weight-boldest display-2 mb-1 text-danger">
-                                    DITOLAK
-                                </p>
-                                <?php }?>
+                                <?php if ($formulir[0]->status_pembayaran == 1) { ?>
+                                    <p class="font-weight-boldest display-2 mb-1 text-warning">
+                                        VERIFIKASI
+                                    </p>
+                                <?php } else if ($formulir[0]->status_pembayaran == 2) { ?>
+                                    <p class="font-weight-boldest display-2 mb-1 text-success">
+                                        DITERIMA
+                                    </p>
+                                <?php } else if ($formulir[0]->status_pembayaran == 2) { ?>
+                                    <p class="font-weight-boldest display-2 mb-1 text-danger">
+                                        DITOLAK
+                                    </p>
+                                <?php } ?>
                             </div>
 
                         </div>
@@ -246,35 +246,35 @@ if ($formulir[0]->jalur == 1) {
                     <div class="card card-custom mb-10">
                         <div class="text-center mb-14 mt-15">
                             <?php
-$program = '';
-$jenjang = '';
-if ($formulir[0]->jalur == 1) {
-    $program = 'REGULER';
-} else if ($formulir[0]->jalur == 2) {
-    $program = 'ICP';
-}
+                            $program = '';
+                            $jenjang = '';
+                            if ($formulir[0]->jalur == 1) {
+                                $program = 'REGULER';
+                            } else if ($formulir[0]->jalur == 2) {
+                                $program = 'ICP';
+                            }
 
-if ($formulir[0]->level_tingkat == 1) {
-    $jenjang = 'KB';
-} else if ($formulir[0]->level_tingkat == 2) {
-    $jenjang = 'TK';
-} else if ($formulir[0]->level_tingkat == 3) {
-    $jenjang = 'SD';
-} else if ($formulir[0]->level_tingkat == 4) {
-    $jenjang = 'SMP';
-} else if ($formulir[0]->level_tingkat == 5) {
-    $jenjang = 'KB-TK';
-} else if ($formulir[0]->level_tingkat == 6) {
-    $jenjang = 'DC';
-}
-if ($formulir[0]->status_pembayaran == 1) {
-    ?>
-                            <button
-                                onclick="act_confirm_payment_ppdb('<?php echo paramEncrypt($formulir[0]->id_formulir); ?>', '<?php echo strtoupper($formulir[0]->nama_lengkap); ?>')"
-                                class="btn btn-success btn-sm font-weight-bold px-8 py-4 my-3 mx-4"><i
-                                    class="fas fa-check-circle "></i>Terima</button>
-                            <?php } elseif ($formulir[0]->status_pembayaran == 2) {?>
-                            <a href="https://web.whatsapp.com/send?phone=62<?php echo substr($formulir[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
+                            if ($formulir[0]->level_tingkat == 1) {
+                                $jenjang = 'KB';
+                            } else if ($formulir[0]->level_tingkat == 2) {
+                                $jenjang = 'TK';
+                            } else if ($formulir[0]->level_tingkat == 3) {
+                                $jenjang = 'SD';
+                            } else if ($formulir[0]->level_tingkat == 4) {
+                                $jenjang = 'SMP';
+                            } else if ($formulir[0]->level_tingkat == 5) {
+                                $jenjang = 'KB-TK';
+                            } else if ($formulir[0]->level_tingkat == 6) {
+                                $jenjang = 'DC';
+                            }
+                            if ($formulir[0]->status_pembayaran == 1) {
+                            ?>
+                                <button
+                                    onclick="act_confirm_payment_ppdb('<?php echo paramEncrypt($formulir[0]->id_formulir); ?>', '<?php echo strtoupper($formulir[0]->nama_lengkap); ?>')"
+                                    class="btn btn-success btn-sm font-weight-bold px-8 py-4 my-3 mx-4"><i
+                                        class="fas fa-check-circle "></i>Terima</button>
+                            <?php } elseif ($formulir[0]->status_pembayaran == 2) { ?>
+                                <a href="https://web.whatsapp.com/send?phone=62<?php echo substr($formulir[0]->nomor_handphone, 1); ?>&text=*_Assalamualaikum Wr. Wb._*
                                 <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>*--SELAMAT!, PEMBAYARAN BIAYA MASUK ANDA BERHASIL--*
                                    <?php echo urlencode("\n") ?>
@@ -289,11 +289,11 @@ if ($formulir[0]->status_pembayaran == 1) {
                                    <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                    <?php echo urlencode("\n") ?>
                                    <?php echo urlencode("\n") ?>_*Admin PPDB Sekolah Utsman*_" target="_blank"
-                                class="btn btn-success font-weight-bold px-6 py-4 my-3 mx-4 "><i
-                                    class="fab fa-whatsapp"></i> Kirim WA</a>
+                                    class="btn btn-success font-weight-bold px-6 py-4 my-3 mx-4 "><i
+                                        class="fab fa-whatsapp"></i> Kirim WA</a>
                             <?php
-}
-?>
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -313,39 +313,39 @@ if ($formulir[0]->status_pembayaran == 1) {
                         <!--begin::Body-->
                         <div class="card-body pt-0 pb-3">
                             <div class="tab-content">
-                                <?php if($formulir[0]->status_pembayaran==2) {?>
-									<div class="table-responsive px-mobile mb-5">
-										<table class="table table-light table-light-warning text-center">
-											<thead>
-												<tr>
-													<th class="table-center">STATUS PELUNASAN</th>
-													<th class="table-center">NOMINAL</th>
-													<th class="table-center">TIPE PEMBAYARAN</th>
-													<th class="table-center">WAKTU</th>
+                                <?php if ($formulir[0]->status_pembayaran == 2) { ?>
+                                    <div class="table-responsive px-mobile mb-5">
+                                        <table class="table table-light table-light-warning text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="table-center">STATUS PELUNASAN</th>
+                                                    <th class="table-center">NOMINAL</th>
+                                                    <th class="table-center">TIPE PEMBAYARAN</th>
+                                                    <th class="table-center">WAKTU</th>
 
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="table-center font-weight-boldest display-4">
-														<?php $ket_arr = explode(',', $formulir[0]->keterangan);
-															echo $ket_arr[0]; ?>
-													</td>
-													<td class="table-center display-4 font-weight-boldest">
-														<?php $ket_arr = explode(',', $formulir[0]->keterangan);
-															echo number_format($ket_arr[1], 0, ',', '.'); ?>
-													</td>
-													<td class="table-center font-weight-boldest display-4">
-														<?php $ket_arr = explode(',', $formulir[0]->keterangan);
-															echo $ket_arr[3]; ?>
-													<td class="table-center font-weight-boldest display-4">
-														<?php $ket_arr = explode(',', $formulir[0]->keterangan);
-															echo $ket_arr[2]; ?>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="table-center font-weight-boldest display-4">
+                                                        <?php $ket_arr = explode(',', $formulir[0]->keterangan);
+                                                        echo $ket_arr[0]; ?>
+                                                    </td>
+                                                    <td class="table-center display-4 font-weight-boldest">
+                                                        <?php $ket_arr = explode(',', $formulir[0]->keterangan);
+                                                        echo number_format($ket_arr[1], 0, ',', '.'); ?>
+                                                    </td>
+                                                    <td class="table-center font-weight-boldest display-4">
+                                                        <?php $ket_arr = explode(',', $formulir[0]->keterangan);
+                                                        echo $ket_arr[3]; ?>
+                                                    <td class="table-center font-weight-boldest display-4">
+                                                        <?php $ket_arr = explode(',', $formulir[0]->keterangan);
+                                                        echo $ket_arr[2]; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 <?php } ?>
                                 <!--begin::Table-->
                                 <div class="table-responsive">
@@ -368,90 +368,90 @@ if ($formulir[0]->status_pembayaran == 1) {
                                         </thead>
                                         <tbody>
                                             <?php
-											$disable = "";
+                                            $disable = "";
 
-											if ($formulir[0]->status_pembayaran == 0) {
-												$disable = "";
-											} else {
-												$disable = "disabled";
-											}
-											if (!empty($cost)) {
-												foreach ($cost as $key => $value) {
-													?>
-                                            <tr>
-                                                <td>
-                                                    <span
-                                                        class="text-dark-75 font-weight-bolder d-block font-size-lg ml-4"><?php echo strtoupper(strtolower($value->nama_biaya)); ?></span>
-                                                </td>
-                                                <td>
-                                                    <select name="id_voucher"
-                                                        id="id_voucher<?php echo $value->id_biaya; ?>"
-                                                        class="form-control font-weight-bolder form-control-md"
-                                                        <?php echo $disable; ?>>
-                                                        <option value="">Pilih Voucher</option>
-                                                        <?php
-														if (!empty($voucher)) {
-																	foreach ($voucher as $key => $value_v) {
-																		if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-																			$id_array_voucher = explode(',', $formulir[0]->id_voucher);
-																			if (in_array($value_v->id_voucher, $id_array_voucher)) {
-																				?>
-                                                        <option selected="selected"
-                                                            value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
-                                                            <?php echo $value_v->kode_voucher; ?></option>
-                                                        <?php
-															} else {
-																	if ($value_v->terpakai < $value_v->jumlah_voucher) {
-																		?>
-                                                        <option
-                                                            value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
-                                                            <?php echo $value_v->kode_voucher; ?></option>
-                                                        <?php
-																	}
-																}
-															}
-														} //ngatur nomor urut
-													}
-													?>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input id="nominal<?php echo $value->id_biaya; ?>" readonly=""
-                                                        value="<?php echo number_format($value->nominal, 0, ',', '.'); ?>"
-                                                        type="text" name="nominal"
-                                                        class="form-control  form-control-md" />
-                                                </td>
-                                                <td>
-                                                    <input id="potongan<?php echo $value->id_biaya; ?>" readonly=""
-                                                        value="-" type="text" name="potongan"
-                                                        class="form-control font-weight-boldest text-danger form-control-md" />
-                                                </td>
-                                                <td>
-                                                    <input id="subtotal<?php echo $value->id_biaya; ?>" readonly=""
-                                                        value="<?php echo number_format($value->nominal, 0, ',', '.'); ?>"
-                                                        type="text" name="subtotal"
-                                                        class="biaya form-control font-weight-boldest form-control-md" />
-                                                </td>
-                                            </tr>
+                                            if ($formulir[0]->status_pembayaran == 0) {
+                                                $disable = "";
+                                            } else {
+                                                $disable = "disabled";
+                                            }
+                                            if (!empty($cost)) {
+                                                foreach ($cost as $key => $value) {
+                                            ?>
+                                                    <tr>
+                                                        <td>
+                                                            <span
+                                                                class="text-dark-75 font-weight-bolder d-block font-size-lg ml-4"><?php echo strtoupper(strtolower($value->nama_biaya)); ?></span>
+                                                        </td>
+                                                        <td>
+                                                            <select name="id_voucher"
+                                                                id="id_voucher<?php echo $value->id_biaya; ?>"
+                                                                class="form-control font-weight-bolder form-control-md"
+                                                                <?php echo $disable; ?>>
+                                                                <option value="">Pilih Voucher</option>
+                                                                <?php
+                                                                if (!empty($voucher)) {
+                                                                    foreach ($voucher as $key => $value_v) {
+                                                                        if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                                                            $id_array_voucher = explode(',', $formulir[0]->id_voucher);
+                                                                            if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                                                ?>
+                                                                                <option selected="selected"
+                                                                                    value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
+                                                                                    <?php echo $value_v->kode_voucher; ?></option>
+                                                                                <?php
+                                                                            } else {
+                                                                                if ($value_v->terpakai < $value_v->jumlah_voucher) {
+                                                                                ?>
+                                                                                    <option
+                                                                                        value="<?php echo $value_v->id_voucher; ?>,<?php echo $value_v->potongan; ?>">
+                                                                                        <?php echo $value_v->kode_voucher; ?></option>
+                                                                <?php
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    } //ngatur nomor urut
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input id="nominal<?php echo $value->id_biaya; ?>" readonly=""
+                                                                value="<?php echo number_format($value->nominal, 0, ',', '.'); ?>"
+                                                                type="text" name="nominal"
+                                                                class="form-control  form-control-md" />
+                                                        </td>
+                                                        <td>
+                                                            <input id="potongan<?php echo $value->id_biaya; ?>" readonly=""
+                                                                value="-" type="text" name="potongan"
+                                                                class="form-control font-weight-boldest text-danger form-control-md" />
+                                                        </td>
+                                                        <td>
+                                                            <input id="subtotal<?php echo $value->id_biaya; ?>" readonly=""
+                                                                value="<?php echo number_format($value->nominal, 0, ',', '.'); ?>"
+                                                                type="text" name="subtotal"
+                                                                class="biaya form-control font-weight-boldest form-control-md" />
+                                                        </td>
+                                                    </tr>
                                             <?php
-												} //ngatur nomor urut
-											}
-											?>
+                                                } //ngatur nomor urut
+                                            }
+                                            ?>
                                             <tr>
                                                 <td>
                                                     <span class="switch switch-lg switch-icon pl-3">
                                                         <label>
-                                                            <?php if (@$formulir[0]->status_potongan == "" or @$formulir[0]->status_potongan == null or @$formulir[0]->status_potongan == 0) {?>
-                                                            <input type="checkbox" id="potongan_rupiah"
-                                                                <?php echo $disable; ?> name="status_potongan"
-                                                                value="1">
-                                                            <span></span>
-                                                            <?php } else if (@$formulir[0]->status_potongan == 1) {?>
-                                                            <input type="checkbox" id="potongan_rupiah" checked
-                                                                <?php echo $disable; ?> name="status_potongan"
-                                                                value="1">
-                                                            <span></span>
-                                                            <?php }?>
+                                                            <?php if (@$formulir[0]->status_potongan == "" or @$formulir[0]->status_potongan == null or @$formulir[0]->status_potongan == 0) { ?>
+                                                                <input type="checkbox" id="potongan_rupiah"
+                                                                    <?php echo $disable; ?> name="status_potongan"
+                                                                    value="1">
+                                                                <span></span>
+                                                            <?php } else if (@$formulir[0]->status_potongan == 1) { ?>
+                                                                <input type="checkbox" id="potongan_rupiah" checked
+                                                                    <?php echo $disable; ?> name="status_potongan"
+                                                                    value="1">
+                                                                <span></span>
+                                                            <?php } ?>
                                                         </label>
                                                         <label class="pl-2 font-weight-bold">Status Potongan
                                                             Rupiah</label>
@@ -472,14 +472,14 @@ if ($formulir[0]->status_pembayaran == 1) {
                                                     <input placeholder="Masukan Nama Potongan Rupiah" type="text"
                                                         <?php echo $disable; ?> id="nama_potongan_langsung"
                                                         name="nama_potongan" required
-                                                        value="<?php echo @$formulir[0]->status_potongan == 1 ? $potongan[0]->nama_potongan :'' ?>"
+                                                        value="<?php echo @$formulir[0]->status_potongan == 1 ? $potongan[0]->nama_potongan : '' ?>"
                                                         class="biaya form-control font-weight-bolder form-control-md text-right text-danger" />
                                                 </td>
                                                 <td>
                                                     <input placeholder="Masukan Nominal" id="nominal_potongan_langsung"
                                                         <?php echo $disable; ?> type="text"
                                                         name="total_potongan_langsung" required
-                                                        value="<?php echo @$formulir[0]->status_potongan == 1 ? $potongan[0]->nominal_potongan :'0' ?>"
+                                                        value="<?php echo @$formulir[0]->status_potongan == 1 ? $potongan[0]->nominal_potongan : '0' ?>"
                                                         class="biaya form-control font-weight-boldest form-control-md text-danger" />
                                                 </td>
                                             </tr>
@@ -532,10 +532,10 @@ if ($formulir[0]->status_pembayaran == 1) {
                 </button>
             </div>
             <div class="modal-body text-center">
-                <?php if ($formulir[0]->keterangan != null || $formulir[0]->keterangan != "") {?>
-                <span class="text-center text-danger font-weight-bold font-size-md">Ket:
-                    <?php echo ucwords($formulir[0]->keterangan); ?></span>
-                <?php }?>
+                <?php if ($formulir[0]->keterangan != null || $formulir[0]->keterangan != "") { ?>
+                    <span class="text-center text-danger font-weight-bold font-size-md">Ket:
+                        <?php echo ucwords($formulir[0]->keterangan); ?></span>
+                <?php } ?>
                 <div class="text-center">
                     <img alt="Pic" class="col-12" src="<?php echo base_url() . $formulir[0]->bukti_transfer ?>">
                     <a href="<?php echo base_url() . $formulir[0]->bukti_transfer ?>"
@@ -552,209 +552,271 @@ if ($formulir[0]->status_pembayaran == 1) {
 <?php
 if (!empty($cost)) {
     foreach ($cost as $key => $value_s) {
-        ?>
-<script>
-$(document).ready(function() {
+?>
+        <script>
+            $(document).ready(function() {
 
-    var voc<?php echo $value_s->id_biaya; ?> = $("#id_voucher<?php echo $value_s->id_biaya; ?>").find(
-        "option:selected").val().split(',');
-    if (voc<?php echo $value_s->id_biaya; ?> != "") {
-        var nom<?php echo $value_s->id_biaya; ?> = $("#nominal<?php echo $value_s->id_biaya ?>").val().split(
-            ".").join("");
-        var nom_total<?php echo $value_s->id_biaya; ?> = (nom<?php echo $value_s->id_biaya; ?>) - (
-            nom<?php echo $value_s->id_biaya; ?> * voc<?php echo $value_s->id_biaya; ?>[1] / 100);
+                var voc<?php echo $value_s->id_biaya; ?> = $("#id_voucher<?php echo $value_s->id_biaya; ?>").find(
+                    "option:selected").val().split(',');
+                if (voc<?php echo $value_s->id_biaya; ?> != "") {
+                    var nom<?php echo $value_s->id_biaya; ?> = $("#nominal<?php echo $value_s->id_biaya ?>").val().split(
+                        ".").join("");
+                    var nom_total<?php echo $value_s->id_biaya; ?> = (nom<?php echo $value_s->id_biaya; ?>) - (
+                        nom<?php echo $value_s->id_biaya; ?> * voc<?php echo $value_s->id_biaya; ?>[1] / 100);
 
-        $('#potongan<?php echo $value_s->id_biaya; ?>').val(voc<?php echo $value_s->id_biaya; ?>[1]);
-        $('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(
-            nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
-        $('#id_voucher<?php echo $value_s->id_biaya; ?> option:not(:selected)').prop('false', true);
-        get_total_voucher();
-        get_voucher();
-        get_total();
-    }
+                    $('#potongan<?php echo $value_s->id_biaya; ?>').val(voc<?php echo $value_s->id_biaya; ?>[1]);
+                    $('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(
+                        nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
+                    $('#id_voucher<?php echo $value_s->id_biaya; ?> option:not(:selected)').prop('false', true);
+                    get_total_voucher();
+                    get_voucher();
+                    get_total();
+                }
 
-    $("#id_voucher<?php echo $value_s->id_biaya; ?>").change(function() {
+                $("#id_voucher<?php echo $value_s->id_biaya; ?>").change(function() {
 
-        var id_voc<?php echo $value_s->id_biaya; ?>;
-        var nom<?php echo $value_s->id_biaya; ?> = $("#nominal<?php echo $value_s->id_biaya ?>").val()
-            .split(".").join("");
+                    var id_voc<?php echo $value_s->id_biaya; ?>;
+                    var nom<?php echo $value_s->id_biaya; ?> = $("#nominal<?php echo $value_s->id_biaya ?>").val()
+                        .split(".").join("");
 
-        id_voc<?php echo $value_s->id_biaya; ?> = $(this).find("option:selected").val().split(',');
-        nom_total<?php echo $value_s->id_biaya; ?> = (nom<?php echo $value_s->id_biaya; ?>) - (
-            nom<?php echo $value_s->id_biaya; ?> * id_voc<?php echo $value_s->id_biaya; ?>[1] / 100);
+                    id_voc<?php echo $value_s->id_biaya; ?> = $(this).find("option:selected").val().split(',');
+                    nom_total<?php echo $value_s->id_biaya; ?> = (nom<?php echo $value_s->id_biaya; ?>) - (
+                        nom<?php echo $value_s->id_biaya; ?> * id_voc<?php echo $value_s->id_biaya; ?>[1] / 100);
 
-        if ($(this).val()) {
-            $('#potongan<?php echo $value_s->id_biaya; ?>').val(id_voc<?php echo $value_s->id_biaya; ?>[
-                1]);
-            $('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(
-                nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
-        } else {
-            $('#potongan<?php echo $value_s->id_biaya; ?>').val('-');
-            $('#subtotal<?php echo $value_s->id_biaya; ?>').val($(
-                "#nominal<?php echo $value_s->id_biaya ?>").val());
-        }
-        get_total_voucher();
-        get_voucher();
-        get_total();
-    });
+                    if ($(this).val()) {
+                        $('#potongan<?php echo $value_s->id_biaya; ?>').val(id_voc<?php echo $value_s->id_biaya; ?>[
+                            1]);
+                        $('#subtotal<?php echo $value_s->id_biaya; ?>').val(number_format(
+                            nom_total<?php echo $value_s->id_biaya; ?>, 0, ',', '.'));
+                    } else {
+                        $('#potongan<?php echo $value_s->id_biaya; ?>').val('-');
+                        $('#subtotal<?php echo $value_s->id_biaya; ?>').val($(
+                            "#nominal<?php echo $value_s->id_biaya ?>").val());
+                    }
+                    get_total_voucher();
+                    get_voucher();
+                    get_total();
+                });
 
-});
-</script>
+            });
+        </script>
 <?php
-} //ngatur nomor urut
+    } //ngatur nomor urut
 }
 ?>
 
 <script>
-var result_style = document.getElementById('tr_potongan_rupiah').style;
-var status_potongan = "<?php echo @$formulir[0]->status_potongan; ?>";
+    var result_style = document.getElementById('tr_potongan_rupiah').style;
+    var status_potongan = "<?php echo @$formulir[0]->status_potongan; ?>";
 
-if (<?php echo $formulir[0]->status_potongan; ?> == 1) {
-    result_style.display = 'table-row';
-} else {
-    result_style.display = 'none';
-}
-
-$('#potongan_rupiah').on('change', function() { // on change of state
-    if (this.checked) // if changed state is "CHECKED"
-    {
+    if (<?php echo $formulir[0]->status_potongan; ?> == 1) {
         result_style.display = 'table-row';
-        document.getElementById("nama_potongan_langsung").disabled = false;
-        document.getElementById("nominal_potongan_langsung").disabled = false;
-        document.getElementById("nominal_potongan_langsung").value = 0;
-        status_potongan = '1'
-
-        get_total();
     } else {
         result_style.display = 'none';
-        document.getElementById("nama_potongan_langsung").disabled = true;
-        document.getElementById("nominal_potongan_langsung").disabled = true;
-        document.getElementById("nominal_potongan_langsung").value = 0;
-        status_potongan = '0';
-
-        get_total();
     }
-})
 
-$("#nominal_potongan_langsung").on('change keydown paste input', function() {
-    get_total();
-});
+    $('#potongan_rupiah').on('change', function() { // on change of state
+        if (this.checked) // if changed state is "CHECKED"
+        {
+            result_style.display = 'table-row';
+            document.getElementById("nama_potongan_langsung").disabled = false;
+            document.getElementById("nominal_potongan_langsung").disabled = false;
+            document.getElementById("nominal_potongan_langsung").value = 0;
+            status_potongan = '1'
 
-var t_biaya = document.getElementById('total_biaya');
+            get_total();
+        } else {
+            result_style.display = 'none';
+            document.getElementById("nama_potongan_langsung").disabled = true;
+            document.getElementById("nominal_potongan_langsung").disabled = true;
+            document.getElementById("nominal_potongan_langsung").value = 0;
+            status_potongan = '0';
 
-function get_total_voucher() {
-
-    var nomArray = new Array();
-    $("input[name=subtotal]").each(function() {
-        nomArray.push($(this).val().split(".").join(""));
-    });
-
-    var sum = 0;
-    $.each(nomArray, function() {
-        sum += parseFloat(this) || 0;
-    });
-
-    $('#total_biaya_voucher').val(number_format(sum, 0, ',', '.'));
-    return sum;
-}
-
-function get_total() {
-    var nominal_potongan_langsung = $('#nominal_potongan_langsung').val().split(".").join("");
-    var total = parseInt(get_total_voucher()) - parseInt(nominal_potongan_langsung);
-    t_biaya.innerHTML = "Rp. " + number_format(total, 0, ',', '.');
-
-    return number_format(total, 0, ',', '.');
-}
-
-function get_voucher() {
-    var vocArray = new Array();
-    $("select[name=id_voucher]").each(function() {
-        if ($(this).val()) {
-            var values = $(this).val().split(',');
-            vocArray.push(values[0]);
+            get_total();
         }
+    })
+
+    $("#nominal_potongan_langsung").on('change keydown paste input', function() {
+        get_total();
     });
-    return vocArray;
 
-}
+    var t_biaya = document.getElementById('total_biaya');
 
-number_format = function(number, decimals, dec_point, thousands_sep) {
-    number = number.toFixed(decimals);
+    function get_total_voucher() {
 
-    var nstr = number.toString();
-    nstr += '';
-    x = nstr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? dec_point + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
+        var nomArray = new Array();
+        $("input[name=subtotal]").each(function() {
+            nomArray.push($(this).val().split(".").join(""));
+        });
 
-    while (rgx.test(x1))
-        x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+        var sum = 0;
+        $.each(nomArray, function() {
+            sum += parseFloat(this) || 0;
+        });
 
-    return x1 + x2;
-};
+        $('#total_biaya_voucher').val(number_format(sum, 0, ',', '.'));
+        return sum;
+    }
 
-get_total_voucher();
-get_total();
+    function get_total() {
+        var nominal_potongan_langsung = $('#nominal_potongan_langsung').val().split(".").join("");
+        var total = parseInt(get_total_voucher()) - parseInt(nominal_potongan_langsung);
+        t_biaya.innerHTML = "Rp. " + number_format(total, 0, ',', '.');
+
+        return number_format(total, 0, ',', '.');
+    }
+
+    function get_voucher() {
+        var vocArray = new Array();
+        $("select[name=id_voucher]").each(function() {
+            if ($(this).val()) {
+                var values = $(this).val().split(',');
+                vocArray.push(values[0]);
+            }
+        });
+        return vocArray;
+
+    }
+
+    number_format = function(number, decimals, dec_point, thousands_sep) {
+        number = number.toFixed(decimals);
+
+        var nstr = number.toString();
+        nstr += '';
+        x = nstr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? dec_point + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+
+        while (rgx.test(x1))
+            x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+        return x1 + x2;
+    };
+
+    get_total_voucher();
+    get_total();
 </script>
 
 <script>
-function act_confirm_payment_ppdb(id, name) {
-    var csrfName = $('.txt_csrfname').attr('name');
-    var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+    function act_confirm_payment_ppdb(id, name) {
+        var csrfName = $('.txt_csrfname').attr('name');
+        var csrfHash = $('.txt_csrfname').val(); // CSRF hash
 
-    Swal.fire({
-        title: "Peringatan!",
-        text: "Apakah anda yakin ingin MENYETUJUI Bukti Pembayaran " + name + "?",
-        icon: "warning",
-        input: 'select',
-        inputLabel: 'Keterangan',
-        inputPlaceholder: 'Pilih status keterangan',
-        inputOptions: {
-            'lunas': 'LUNAS',
-            'belum_lunas': 'BELUM LUNAS'
-        },
-        inputValidator: (value) => {
-            if (!value) {
-                return 'Keterangan diperlukan!'
-            }
-        },
-        showCancelButton: true,
-        confirmButtonColor: "#1BC5BD",
-        confirmButtonText: "Ya, Setuju!",
-        cancelButtonText: "Tidak, batal!",
-        showLoaderOnConfirm: true,
-        closeOnConfirm: false,
-        closeOnCancel: true,
-        preConfirm: (value) => {
-            return $.ajax({
-                type: "post",
-                url: "<?php echo site_url("/ppdb/payment/accept_payment_ppdb") ?>",
-                data: {
-                    id: id,
-                    keterangan: value,
-                    [csrfName]: csrfHash
-                },
-                dataType: 'html',
-                success: function(result) {
-                    Swal.fire("Diterima!", "Bukti Pembayaran Biaya Masuk '" + name +
-                        "' telah disetujui.", "success");
+        Swal.fire({
+            title: '<h2 class="text-danger font-weight-bolder">KONFIRMASI PEMBAYARAN!</h2>',
+            customClass: 'custom-swal',
+            html: `
+            <p class='text-center'>Apakah anda yakin ingin MENYETUJUI Bukti Pembayaran <b>${name}</b>?</p> <div class="container-fluid text-left">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="status_transaksi" class="form-label">Status transaksi</label>
+                    <select id="status_transaksi" class="form-control">
+                        <option value="">Pilih Status</option>
+                        <option value="LUNAS">LUNAS</option>
+                        <option value="KREDIT">KREDIT</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="nominal_transaksi" class="form-label">Nominal Transaksi</label>
+                    <input type="number" id="nominal_transaksi" class="form-control" placeholder="Masukkan nominal transaksi">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="tanggal_transaksi" class="form-label">Tanggal Transaksi</label>
+                    <input type="date" id="tanggal_transaksi" class="form-control" placeholder="Masukkan tanggal transaksi" step="1">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="metode_transaksi" class="form-label">Metode transaksi</label>
+                    <select id="metode_transaksi" class="form-control">
+                        <option value="">Pilih Metode</option>
+                        <option value="TRANSFER">Transfer</option>
+                        <option value="SETOR">Setor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="bukti_transaksi">Upload Bukti Transaksi:</label>
+                    <input type="file" id="bukti_transaksi" class="dropify" 
+                        name="bukti_transaksi" 
+                        data-max-file-size="5M" 
+                        data-height="200" 
+                        data-allowed-file-extensions="png jpg jpeg" />
+                 </div>
+              </div>
+            </div>  
+            `,
+            focusConfirm: false,
+            showCancelButton: true,
+            confirmButtonColor: "#1BC5BD",
+            confirmButtonText: "Ya, Setuju!",
+            cancelButtonText: "Tidak, batal!",
+            showLoaderOnConfirm: true,
+            didOpen: () => {
+                // Inisialisasi dropify setelah popup muncul
+                $('.dropify').dropify();
+            },
+            preConfirm: () => {
+                const status_transaksi = document.getElementById('status_transaksi').value;
+                const nominal_transaksi = document.getElementById('nominal_transaksi').value;
+                const tanggal_transaksi = document.getElementById('tanggal_transaksi').value;
+                const metode_transaksi = document.getElementById('metode_transaksi').value;
+                const bukti_transaksi = $("#bukti_transaksi")[0].files[0];
+
+                if (!status_transaksi) {
+                    Swal.showValidationMessage("Status Transaksi diperlukan!");
+                    return false;
+                }
+                if (!nominal_transaksi) {
+                    Swal.showValidationMessage("Nominal Transaksi diperlukan!");
+                    return false;
+                }
+                if (!tanggal_transaksi) {
+                    Swal.showValidationMessage("Tanggal Transaksi diperlukan!");
+                    return false;
+                }
+                if (!metode_transaksi) {
+                    Swal.showValidationMessage("Metode Transaksi diperlukan!");
+                    return false;
+                }
+                if (!bukti_transaksi) {
+                    Swal.showValidationMessage("Bukti Transaksi diperlukan!");
+                    return false;
+                }
+
+                let formData = new FormData();
+                formData.append("id", id);
+                formData.append("keterangan", status_transaksi + ',' + nominal_transaksi + ',' + tanggal_transaksi + ',' + metode_transaksi);
+                formData.append("bukti_transaksi", bukti_transaksi);
+                formData.append(csrfName, csrfHash);
+
+                return $.ajax({
+                    type: "post",
+                    url: "<?php echo site_url("/ppdb/payment/accept_payment_ppdb") ?>",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'html'
+                }).then(result => {
+                    Swal.fire("Diterima!", "Bukti Pembayaran Biaya Masuk '" + name + "' telah disetujui.", "success");
                     setTimeout(function() {
                         location.reload();
                     }, 1000);
-                },
-                error: function(result) {
-                    console.log(result);
+                }).catch(error => {
+                    console.log(error);
                     Swal.fire("Opsss!", "Koneksi Internet Bermasalah.", "error");
-                }
-            });
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-    }).then(function(result) {
-        if (!result.isConfirm) {
-            Swal.fire("Dibatalkan!", "Persetujuan Bukti Pembayaran Biaya Masuk " + name + " dibatalkan.",
-                "error");
-        }
-    });
-}
+                });
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then(function(result) {
+            if (!result.isConfirmed) {
+                Swal.fire("Dibatalkan!", "Persetujuan Bukti Pembayaran Biaya Masuk " + name + " dibatalkan.", "error");
+            }
+        });
+    }
 </script>

@@ -174,9 +174,12 @@ class RegisterModel extends CI_Model
         $this->db->where('id_jenis_voucher', '1');
         $this->db->where('id_nama_biaya', '1');
         $this->db->where('status_aktif', '1');
+        $this->db->where('jumlah_voucher >', 1);
+
         $sql = $this->db->get($this->table_voucher);
         return $sql->result();
     }
+
 
     public function get_schoolyear()
     {
@@ -228,17 +231,24 @@ class RegisterModel extends CI_Model
         return $sql->result();
     }
 
-    public function get_register_cost_id($id = '')
+    public function get_register_id($id = '')
     {
         $this->db->select("p.*,
                                 b.nominal,
                                 jb.nama_opsi_biaya AS nama_biaya,
+                                v.id_voucher,
                                 v.kode_voucher,
                                 v.nama_voucher,
                                 v.potongan,
                                 v.jumlah_voucher,
                                 v.masa_berlaku,
                                 v.syarat_ketentuan,
+                                vf.id_voucher as id_voucher_form,
+                                vf.kode_voucher as kode_voucher_form,
+                                vf.nama_voucher as nama_voucher_form,
+                                vf.potongan as potongan_form,
+                                vf.masa_berlaku as masa_berlaku_form,
+                                vf.syarat_ketentuan as syarat_ketentuan_form,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
                          ");
         $this->db->from('pendaftaran p');
@@ -246,6 +256,7 @@ class RegisterModel extends CI_Model
         $this->db->join('jenis_biaya jb', 'b.id_nama_biaya = jb.id_jenis_biaya', 'left');
         $this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
         $this->db->join('voucher v', 'p.id_voucher = v.id_voucher', 'left');
+        $this->db->join('voucher vf', 'p.id_voucher_form = vf.id_voucher', 'left');
 
         $this->db->where('p.nomor_formulir', $id);
 
@@ -456,6 +467,7 @@ class RegisterModel extends CI_Model
         $this->db->trans_begin();
 
         $data = array(
+            'id_voucher_form' => @$value['id_voucher_form'],
             'nama_calon_siswa' => $value['nama_calon_siswa'],
             'jenis_kelamin' => @$value['jenis_kelamin'],
             'nomor_formulir' => $value['nomor_formulir'],
@@ -505,6 +517,28 @@ class RegisterModel extends CI_Model
 
         $this->db->where('nomor_formulir', $number);
         $this->db->update($this->table_register, $data);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+
+    public function update_voucher_by_id($id = '')
+    {
+        $this->db->trans_begin();
+
+        $this->db->set('voucher_terpakai', 'voucher_terpakai+1', FALSE);
+        $this->db->set('jumlah_voucher', 'jumlah_voucher-1', FALSE);
+
+        $this->db->where('id_voucher', $id);
+        $this->db->where('jumlah_voucher >', 0);
+        $this->db->update($this->table_voucher);
+
 
         if ($this->db->trans_status() === false) {
             $this->db->trans_rollback();

@@ -471,9 +471,9 @@
                                                                                 $jenjang = 'DC';
                                                                             }
 
-                                                                            if ($voucher_form) {
-                                                                                $total_biaya = $register[0]->nominal - ($voucher_form[0]->potongan / 100 * $register[0]->nominal);
-                                                                                $ket = 'sudah termasuk diskon ' . $voucher_form[0]->potongan . '%*,';
+                                                                            if ($value->id_voucher_form != NULL) {
+                                                                                $total_biaya = $register[0]->nominal - ($value->potongan_form / 100 * $register[0]->nominal);
+                                                                                $ket = 'sudah termasuk diskon ' . $value->potongan_form . '%*,';
                                                                             } else {
                                                                                 $total_biaya = $register[0]->nominal;
                                                                                 $ket = '';

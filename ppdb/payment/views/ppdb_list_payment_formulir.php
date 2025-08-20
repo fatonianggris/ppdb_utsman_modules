@@ -231,7 +231,7 @@
 														<?php
 														if (!empty($schoolyear)) {
 															foreach ($schoolyear as $key => $value_sch) {
-																if ($value_sch->tahun_awal == (date("Y")+1)) {
+																if ($value_sch->tahun_awal == (date("Y") + 1)) {
 														?>
 																	<option value="<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>" selected><?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> </option>
 																<?php } else {
@@ -275,69 +275,70 @@
 										<th title="Aksi">Aksi</th>
 									</tr>
 								</thead>
-								<p class="font-weight-bold">Ket. Warna: <span class="label font-weight-bolder label-lg bg-light-warning label-inline">CADANGAN</span><p>
-								
-								<tbody>
-									<?php
-									if (!empty($register)) {
-										foreach ($register as $key => $value) {
-											$color = "";
-											if($value->status_cadangan == 0){
+								<p class="font-weight-bold">Ket. Warna: <span class="label font-weight-bolder label-lg bg-light-warning label-inline">CADANGAN</span>
+								<p>
+
+									<tbody>
+										<?php
+										if (!empty($register)) {
+											foreach ($register as $key => $value) {
 												$color = "";
-											} else {
-												$color = "bg-light-warning";
-											}
-									?>
-										<tr class="<?php echo $color; ?>">
-												<td><b><?php echo $value->nomor_formulir; ?></b></td>
-												<td><?php echo strtoupper($value->nama_calon_siswa); ?></td>
-												<td><?php echo $value->jenis_kelamin; ?></td>
-												<td><?php echo $value->level_tingkat; ?></td>
-												<td><?php echo $value->id_jalur; ?></td>
-												<td>
-													<?php echo $value->status_pembayaran; ?>
-												</td>
-												<td><?php echo $value->nomor_wa; ?></td>
-												<td>
-													<?php echo $value->tahun_ajaran; ?>
-												</td>
-												<td><?php echo $value->kode_voucher; ?></td>
-												<td>
-													<?php echo $value->tanggal_masuk; ?>
-												</td>
-												<td>
-													<div class="dropdown dropdown-inline">
-														<a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">
-															<span class="svg-icon svg-icon-md">
-																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																		<rect x="0" y="0" width="24" height="24" />
-																		<path d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z" fill="#000000" />
-																	</g>
-																</svg>
-															</span>
-														</a>
-														<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-															<ul class="navi flex-column navi-hover py-2">
-																<li class="navi-header font-weight-bolder text-uppercase font-size-xs text-primary pb-2">
-																	Pilih Aksi:
-																</li>
-																<li class="navi-item">
-																	<a href="<?php echo site_url("/ppdb/payment/payment_confirm/" . paramEncrypt($value->nomor_formulir)); ?>" class="navi-link">
-																		<span class="navi-icon"><i class="la la-search text-success"></i></span>
-																		<span class="navi-text">Verifikasi Data</span>
-																	</a>
-																</li>
-															</ul>
+												if ($value->status_cadangan == 0) {
+													$color = "";
+												} else {
+													$color = "bg-light-warning";
+												}
+										?>
+												<tr class="<?php echo $color; ?>">
+													<td><b><?php echo $value->nomor_formulir; ?></b></td>
+													<td><?php echo strtoupper($value->nama_calon_siswa); ?></td>
+													<td><?php echo $value->jenis_kelamin; ?></td>
+													<td><?php echo $value->level_tingkat; ?></td>
+													<td><?php echo $value->id_jalur; ?></td>
+													<td>
+														<?php echo $value->status_pembayaran; ?>
+													</td>
+													<td><?php echo $value->nomor_wa; ?></td>
+													<td>
+														<?php echo $value->tahun_ajaran; ?>
+													</td>
+													<td><?php echo $value->kode_voucher; ?></td>
+													<td>
+														<?php echo $value->tanggal_masuk; ?>
+													</td>
+													<td>
+														<div class="dropdown dropdown-inline">
+															<a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">
+																<span class="svg-icon svg-icon-md">
+																	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																			<rect x="0" y="0" width="24" height="24" />
+																			<path d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z" fill="#000000" />
+																		</g>
+																	</svg>
+																</span>
+															</a>
+															<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+																<ul class="navi flex-column navi-hover py-2">
+																	<li class="navi-header font-weight-bolder text-uppercase font-size-xs text-primary pb-2">
+																		Pilih Aksi:
+																	</li>
+																	<li class="navi-item">
+																		<a href="<?php echo site_url("/ppdb/payment/payment_confirm/" . paramEncrypt($value->nomor_formulir)); ?>" class="navi-link">
+																			<span class="navi-icon"><i class="la la-search text-success"></i></span>
+																			<span class="navi-text">Verifikasi Data</span>
+																		</a>
+																	</li>
+																</ul>
+															</div>
 														</div>
-													</div>
-												</td>
-											</tr>
-									<?php
-										}  //ngatur nomor urut
-									}
-									?>
-								</tbody>
+													</td>
+												</tr>
+										<?php
+											}  //ngatur nomor urut
+										}
+										?>
+									</tbody>
 							</table>
 							<!--end: Datatable-->
 						</div>

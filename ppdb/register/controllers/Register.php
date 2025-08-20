@@ -210,10 +210,9 @@ class Register extends MX_Controller
         $id = paramDecrypt($id);
 
         $data['title'] = 'Sekolah Utsman | Pembelian Formulir Pembayaran Sekolah Utsman ';
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
+        $data['register'] = $this->RegisterModel->get_register_id($id);
         $data['bank_account'] = $this->RegisterModel->get_bank_account($id);
         $data['page'] = $this->RegisterModel->get_page();
-        $data['voucher_form'] = $this->RegisterModel->get_voucher_form();
         $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
         $data['contact'] = $this->RegisterModel->get_contact();
 
@@ -257,7 +256,7 @@ class Register extends MX_Controller
         $data['title'] = 'Sekolah Utsman | Status Pembayaran Sekolah Utsman ';
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
+        $data['register'] = $this->RegisterModel->get_register_id($id);
 
         $check_no = $this->RegisterModel->check_no_register($id);
 
@@ -274,9 +273,8 @@ class Register extends MX_Controller
         $id = paramDecrypt($id);
 
         $data['title'] = 'Sekolah Utsman | Status Pembayaran Sekolah Utsman ';
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
+        $data['register'] = $this->RegisterModel->get_register_id($id);
         $data['bank_account'] = $this->RegisterModel->get_bank_account($id);
-        $data['voucher_form'] = $this->RegisterModel->get_voucher_form();
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['register'][0]->level_tingkat, $data['register'][0]->id_jalur, $data['register'][0]->jenis_kelamin, 1);
@@ -298,7 +296,7 @@ class Register extends MX_Controller
         $data['title'] = 'Sekolah Utsman | Status Pembayaran Sekolah Utsman ';
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
+        $data['register'] = $this->RegisterModel->get_register_id($id);
 
         $check_no = $this->RegisterModel->check_no_register($id);
 
@@ -317,7 +315,7 @@ class Register extends MX_Controller
         $data['title'] = 'Sekolah Utsman | Status Pembayaran Sekolah Utsman ';
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
+        $data['register'] = $this->RegisterModel->get_register_id($id);
 
         $check_no = $this->RegisterModel->check_no_register($id);
 
@@ -411,7 +409,7 @@ class Register extends MX_Controller
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['formulir'] = $this->RegisterModel->get_formulir_id($this->user_student[0]->id_formulir);
-        $data['register'] = $this->RegisterModel->get_register_cost_id($this->user_student[0]->nomor_formulir);
+        $data['register'] = $this->RegisterModel->get_register_id($this->user_student[0]->nomor_formulir);
         $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //?
 
         if ($this->session->userdata('sias-ppdb-student') == false) {
@@ -437,8 +435,12 @@ class Register extends MX_Controller
         $data['title'] = 'Sekolah Utsman | Status Penerimaan Sekolah Utsman ';
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
+        $data['bank_account'] = $this->RegisterModel->get_bank_va_account();
+        $data['voucher'] = $this->RegisterModel->get_all_voucher();
         $data['formulir'] = $this->RegisterModel->get_formulir_id($this->user_student[0]->id_formulir);
-        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir); //?
+        $data['cost'] = $this->RegisterModel->get_cost_ppdb($data['formulir'][0]->level_tingkat, $data['formulir'][0]->jalur, $data['formulir'][0]->jenis_kelamin, 2);
+        $data['student'] = $this->RegisterModel->get_detail_student_admission($this->user_student[0]->id_formulir);
+        $data['potongan'] = $this->RegisterModel->get_discount_rupiah_by_id_form($data['formulir'][0]->id_formulir);
 
         if ($this->session->userdata('sias-ppdb-student') == false) {
             redirect('ppdb/register/login_announcement');
@@ -521,7 +523,7 @@ class Register extends MX_Controller
             redirect('ppdb/register/status_payment_form_success/' . paramEncrypt($id));
         } else {
 
-            $data['invoice'] = $this->RegisterModel->get_register_cost_id($id);
+            $data['invoice'] = $this->RegisterModel->get_register_id($id);
             $data['page'] = $this->RegisterModel->get_page();
             $data['contact'] = $this->RegisterModel->get_contact();
 
@@ -653,6 +655,9 @@ class Register extends MX_Controller
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
 
+        $recaptchaResponse = trim($this->input->post('g-recaptcha-response'));
+        $userIp = $this->input->ip_address();
+
         $this->form_validation->set_rules('nama_calon_siswa', 'Nama Peserta Didik', 'required');
         $this->form_validation->set_rules('level_tingkat', 'Tingkat/Jenjang', 'required');
         $this->form_validation->set_rules('id_jalur', 'Program', 'required');
@@ -666,6 +671,16 @@ class Register extends MX_Controller
             $data['status_cadangan'] = 1;
         } else {
             $data['status_cadangan'] = 0;
+        }
+        //get voucher form active
+        $this->deactivate_expired_and_empty_voucher();
+        $voucher = $this->RegisterModel->get_voucher_form();
+
+        if ($voucher[0]->id_voucher != NULL) {
+            $data['id_voucher_form'] = $voucher[0]->id_voucher;
+            $this->RegisterModel->update_voucher_by_id($voucher[0]->id_voucher);
+        } else {
+            $data['id_voucher_form'] = '';
         }
 
         $ins = $data['insight'];
@@ -686,21 +701,63 @@ class Register extends MX_Controller
                 $data['nomor_formulir'] = substr($get_schoolyear[0]->tahun_ajaran, 2, 2) . '001';
             }
 
-            $input = $this->RegisterModel->insert_register($data);
-            if ($input == true) {
-                redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
+            if ($this->googleCaptachStore($recaptchaResponse, $userIp) == 1) {
+
+                $input = $this->RegisterModel->insert_register($data);
+
+                if ($input == true) {
+                    redirect('ppdb/register/status_fulfillment_register/' . paramEncrypt($data['nomor_formulir']));
+                } else {
+                    $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
+                    redirect('ppdb/register');
+                }
             } else {
-                $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
+                $this->session->set_flashdata('flash_message', err_msg('Maaf, Google Recaptcha terdapat kesalahan.'));
                 redirect('ppdb/register');
             }
         }
     }
+
+    public function deactivate_expired_and_empty_voucher()
+    {
+        $vouchers = $this->db->get('voucher')->result();
+
+        foreach ($vouchers as $v) {
+            $deactivate = false;
+
+            // Cek expired
+            if (!empty($v->masa_berlaku)) {
+                $exp = DateTime::createFromFormat('d/m/Y', $v->masa_berlaku);
+                if ($exp) {
+                    $exp_date = $exp->format('Y-m-d');
+                    if (strtotime($exp_date) < strtotime(date('Y-m-d'))) {
+                        $deactivate = true;
+                    }
+                }
+            }
+
+            // Cek jika jumlah_voucher = 0
+            if ($v->jumlah_voucher <= 0) {
+                $deactivate = true;
+            }
+
+            //Update status jika salah satu kondisi terpenuhi
+            if ($deactivate) {
+                $this->db->where('id_voucher', $v->id_voucher)
+                    ->update('voucher', ['status_aktif' => '0']);
+            }
+        }
+    }
+
 
     public function post_upload_payment_form()
     {
 
         $param = $this->input->post();
         $data = $this->security->xss_clean($param);
+
+        $recaptchaResponse = trim($this->input->post('g-recaptcha-response'));
+        $userIp = $this->input->ip_address();
 
         $this->form_validation->set_rules('nomor_formulir', 'Nomor Formulir', 'required');
         $this->form_validation->set_rules('nomor_rekening', 'Nomor Rekening', 'required');
@@ -782,15 +839,20 @@ class Register extends MX_Controller
                         redirect('ppdb/register/upload_payment_receipt_form');
                     }
 
-                    $input = $this->RegisterModel->update_payment_slip($data['nomor_formulir'], $data);
+                    if ($this->googleCaptachStore($recaptchaResponse, $userIp) == 1) {
 
-                    if ($input == true) {
-                        $this->send_notification('PEMBAYARAN FORMULIR', ucwords(strtolower($check_no[0]->nama_calon_siswa)), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
+                        $input = $this->RegisterModel->update_payment_slip($data['nomor_formulir'], $data);
 
-                        redirect('ppdb/register/status_payment_form_progress/' . paramEncrypt($data['nomor_formulir']));
+                        if ($input == true) {
+                            $this->send_notification('PEMBAYARAN FORMULIR', ucwords(strtolower($check_no[0]->nama_calon_siswa)), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
+                            redirect('ppdb/register/status_payment_form_progress/' . paramEncrypt($data['nomor_formulir']));
+                        } else {
+
+                            $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
+                            redirect('ppdb/register/upload_payment_receipt_form');
+                        }
                     } else {
-
-                        $this->session->set_flashdata('flash_message', err_msg('Mohon Maaf, Terjadi kesalahan.'));
+                        $this->session->set_flashdata('flash_message', err_msg('Maaf, Google Recaptcha terdapat kesalahan.'));
                         redirect('ppdb/register/upload_payment_receipt_form');
                     }
                 }
@@ -1067,26 +1129,31 @@ class Register extends MX_Controller
         $data['page'] = $this->RegisterModel->get_page();
         $data['contact'] = $this->RegisterModel->get_contact();
         $data['bank_account'] = $this->RegisterModel->get_bank_account();
-        $data['register'] = $this->RegisterModel->get_register_cost_id($id);
-        $data['voucher_form'] = $this->RegisterModel->get_voucher_form();
+        $data['register'] = $this->RegisterModel->get_register_id($id);
 
-        $subjek = "PEMESANAN FORMULIR SEKOLAH UTSMAN";
-        $content = $this->load->view('mailer_template/order', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
+        $status_order =  $this->RegisterModel->update_status_email($id, 1);
 
-        $sendmail = array(
-            'email_penerima' => $data['register'][0]->email_orangtua,
-            'subjek' => $subjek,
-            'content' => $content,
-        );
+        if ($status_order == true) {
 
-        $this->RegisterModel->update_status_email($id, 1);
+            $subjek = "PEMESANAN FORMULIR SEKOLAH UTSMAN";
+            $content = $this->load->view('mailer_template/order', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
+            $sendmail = array(
+                'email_penerima' => $data['register'][0]->email_orangtua,
+                'subjek' => $subjek,
+                'content' => $content,
+            );
 
-        if ($data['register'][0]->status_email == 0) {
-            $this->mailer->send($sendmail);
-            //echo '1';
+            if ($data['register'][0]->status_email == 0) {
+                $this->mailer->send($sendmail);
+                $output = true;
+            } else {
+                $output = false;
+            }
         } else {
-            // echo '0';
+            $output = false;
         }
+
+        return $output;
     }
 
     public function check_nisn_formulir()
@@ -1590,9 +1657,9 @@ class Register extends MX_Controller
 
         $input = $this->RegisterModel->update_formulir($id, $data);
         if ($input == true) {
-            $this->send_notification('UPLOAD BERKAS FORMULIR', ucwords(strtolower($data['nama_lengkap'])), $jenjang, $data['nomor_formulir'], base_url() . 'ppdb/auth');
+            $this->send_notification('UPLOAD BERKAS FORMULIR', ucwords(strtolower($get_form[0]->nama_lengkap)), $jenjang, $get_form[0]->nomor_formulir, base_url() . 'ppdb/auth');
 
-            $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Data Siswa '$data[nama_lengkap]' ('$data[nomor_formulir]')  telah tersimpan."));
+            $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Data Siswa " . $get_form[0]->nama_lengkap . "(" . $get_form[0]->nomor_formulir . ") telah tersimpan."));
             redirect('ppdb/register/status_formulir_process/' . paramEncrypt($id));
         } else {
 

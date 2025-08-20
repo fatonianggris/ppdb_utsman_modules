@@ -6,22 +6,22 @@
     <title>E-INVOICE Sekolah Utsman</title>
 
     <style type="text/css">
-    * {
-        font-family: Verdana, Arial, sans-serif;
-    }
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
 
-    table {
-        font-size: x-small;
-    }
+        table {
+            font-size: x-small;
+        }
 
-    tfoot tr td {
-        font-weight: bold;
-        font-size: x-small;
-    }
+        tfoot tr td {
+            font-weight: bold;
+            font-size: x-small;
+        }
 
-    .gray {
-        background-color: #f2c195
-    }
+        .gray {
+            background-color: #f2c195
+        }
     </style>
 
 </head>
@@ -68,63 +68,63 @@
         </thead>
         <tbody>
             <?php
-if (!empty($cost)) {
-    $no = 1;
-    $total_potongan = 0;
-    foreach ($cost as $key => $value) {
-        ?>
-            <tr>
-                <td scope="row">
-                    <?php echo $no; ?>
-                </td>
-                <td>
-                    <b><?php echo ucwords(strtolower($value->nama_biaya)); ?></b>
-                </td>
-                <td align="right">
-                    <?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
-                <td align="right">
-                    <?php
-if (!empty($voucher)) {
-            foreach ($voucher as $key => $value_v) {
-                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                    $id_array_voucher = explode(',', $invoice[0]->id_voucher);
-                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                        echo $value_v->potongan;
-                    }
-                }
-            } //ngatur nomor urut
-        }
-        ?>
-                </td>
-                <td align="right">
-                    <?php
-$stat = false;
+            if (!empty($cost)) {
+                $no = 1;
+                $total_potongan = 0;
+                foreach ($cost as $key => $value) {
+            ?>
+                    <tr>
+                        <td scope="row">
+                            <?php echo $no; ?>
+                        </td>
+                        <td>
+                            <b><?php echo ucwords(strtolower($value->nama_biaya)); ?></b>
+                        </td>
+                        <td align="right">
+                            <?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
+                        <td align="right">
+                            <?php
+                            if (!empty($voucher)) {
+                                foreach ($voucher as $key => $value_v) {
+                                    if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                        $id_array_voucher = explode(',', $invoice[0]->id_voucher);
+                                        if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                            echo $value_v->potongan;
+                                        }
+                                    }
+                                } //ngatur nomor urut
+                            }
+                            ?>
+                        </td>
+                        <td align="right">
+                            <?php
+                            $stat = false;
 
-        if (!empty($voucher)) {
-            foreach ($voucher as $key => $value_v) {
-                if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
-                    $id_array_voucher = explode(',', $invoice[0]->id_voucher);
-                    if (in_array($value_v->id_voucher, $id_array_voucher)) {
-                        $hasil_potongan = ($value->nominal) - ($value->nominal * $value_v->potongan / 100);
-                        $total_potongan += $hasil_potongan;
-                        echo number_format($hasil_potongan, 0, ',', '.');
-                        $stat = true;
-                    }
-                }
-            } //ngatur nomor urut
-        }
-        if ($stat == false) {
-            $total_potongan += $value->nominal;
-            echo number_format($value->nominal, 0, ',', '.');
-        }
-        ?>
-                </td>
-            </tr>
+                            if (!empty($voucher)) {
+                                foreach ($voucher as $key => $value_v) {
+                                    if ($value->id_nama_biaya == $value_v->id_nama_biaya) {
+                                        $id_array_voucher = explode(',', $invoice[0]->id_voucher);
+                                        if (in_array($value_v->id_voucher, $id_array_voucher)) {
+                                            $hasil_potongan = ($value->nominal) - ($value->nominal * $value_v->potongan / 100);
+                                            $total_potongan += $hasil_potongan;
+                                            echo number_format($hasil_potongan, 0, ',', '.');
+                                            $stat = true;
+                                        }
+                                    }
+                                } //ngatur nomor urut
+                            }
+                            if ($stat == false) {
+                                $total_potongan += $value->nominal;
+                                echo number_format($value->nominal, 0, ',', '.');
+                            }
+                            ?>
+                        </td>
+                    </tr>
             <?php
-$no++;
-    } //ngatur nomor urut
-}
-?>
+                    $no++;
+                } //ngatur nomor urut
+            }
+            ?>
             <tr>
                 <td>
                 </td>
@@ -135,20 +135,20 @@ $no++;
                     <?php echo number_format($total_potongan, 0, ',', '.'); ?>
                 </td>
             </tr>
-            <?php if ($invoice[0]->status_potongan == 1) {?>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td colspan="2" align="right" style="color:#F64E60; font-weight:bold;">
-                    <?php echo ucwords(strtolower($potongan[0]->nama_potongan)); ?>
-                </td>
-                <td align="right" style="color:#F64E60; font-weight:bold;">
-                    -<?php echo $potongan[0]->nominal_potongan; ?>
-                </td>
-            </tr>
-            <?php }?>
+            <?php if ($invoice[0]->status_potongan == 1) { ?>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td colspan="2" align="right" style="color:#F64E60; font-weight:bold;">
+                        <?php echo ucwords(strtolower($potongan[0]->nama_potongan)); ?>
+                    </td>
+                    <td align="right" style="color:#F64E60; font-weight:bold;">
+                        -<?php echo $potongan[0]->nominal_potongan; ?>
+                    </td>
+                </tr>
+            <?php } ?>
         </tbody>
         <tfoot>
             <tr>
@@ -170,65 +170,65 @@ $no++;
                 <td align="left" style="color:#000000; ">
                     <b>TOTAL TAGIHAN<b>
                 </td>
-				<td align="left" ><b>:</b></td>
+                <td align="left"><b>:</b></td>
                 <td align="left" style="color:#000000;">
                     <b><?php echo $invoice[0]->total_biaya; ?></b>
                 </td>
             </tr>
             <tr>
-                <td  align="left" style="color:#3cb371;">
+                <td align="left" style="color:#3cb371;">
                     <b>TOTAL YANG DIBAYAR</b>
                 </td>
-				<td align="left" ><b>:</b></td>
+                <td align="left"><b>:</b></td>
                 <td align="left" style="color:#3cb371">
                     <b>-<?php $ket_arr = explode(',', $invoice[0]->keterangan);
-						echo number_format($ket_arr[1], 0, ',', '.');?></b>
+                        echo number_format($ket_arr[1], 0, ',', '.'); ?></b>
                 </td>
             </tr>
             <tr>
-                <td  align="left" style="color:#F64E60">
+                <td align="left" style="color:#F64E60">
                     <b>SISA TAGIHAN</b>
                 </td>
-				<td align="left" ><b>:</b></td>
-                <td colspan=""  align="left" style="color:#F64E60">
-                   <b> <?php
-						$ket_arr = explode(',', $invoice[0]->keterangan);
-						$biaya_awal = str_replace(".", "", $invoice[0]->total_biaya);
-						$total = $biaya_awal - $ket_arr[1];
-						echo number_format($total, 0, ',', '.');
-						?>
-						</b>
+                <td align="left"><b>:</b></td>
+                <td colspan="" align="left" style="color:#F64E60">
+                    <b> <?php
+                        $ket_arr = explode(',', $invoice[0]->keterangan);
+                        $biaya_awal = str_replace(".", "", $invoice[0]->total_biaya);
+                        $total = $biaya_awal - $ket_arr[1];
+                        echo number_format($total, 0, ',', '.');
+                        ?>
+                    </b>
                 </td>
             </tr>
             <tr>
                 <td colspan="" align="left" style="color:#F64E60">
                     <b>STATUS</b>
                 </td>
-				<td align="left" ><b>:</b></td>
+                <td align="left"><b>:</b></td>
                 <?php
-					$ket_arr = explode(',', $invoice[0]->keterangan);
-					if ($ket_arr[0] == 'LUNAS') {?>
+                $ket_arr = explode(',', $invoice[0]->keterangan);
+                if ($ket_arr[0] == 'LUNAS') { ?>
 
-                <td align="left" style="color:#3cb371">
-                    <b><?php echo $ket_arr[0]; ?></b>
-                </td>
+                    <td align="left" style="color:#3cb371">
+                        <b><?php echo $ket_arr[0]; ?></b>
+                    </td>
 
-                <?php } else {?>
-                <td align="left" style="color:#F64E60">
-                    <b><?php echo $ket_arr[0]; ?></b>
-                </td>
-                <?php }?>
+                <?php } else { ?>
+                    <td align="left" style="color:#F64E60">
+                        <b><?php echo $ket_arr[0]; ?></b>
+                    </td>
+                <?php } ?>
             </tr>
-		</tbody>
+        </tbody>
     </table>
-	<br>
-	<table width="100%">
+    <br>
+    <table width="100%">
         <tbody>
-			<tr>
+            <tr>
                 <td align="center" style="color:#F64E60; font-size: xx-small"><b>*Dimohon untuk menyimpan bukti
                         E-INVOICE ini, Terima kasih.</b></td>
             </tr>
-		</tbody>
+        </tbody>
     </table>
 </body>
 

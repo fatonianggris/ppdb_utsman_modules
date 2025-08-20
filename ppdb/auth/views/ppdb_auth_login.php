@@ -135,13 +135,11 @@
 							dataType: 'html',
 							success: function(result) {
 								if (result == '1') {
-
 									Swal.fire("Dikirimkan!", "Password Baru telah dikirimkan ke Email '" + email + "'. Silahkan cek EMAIL Anda!", "success");
 									setTimeout(function() {
 										location.reload();
 									}, 2000);
 								} else if (result == '0') {
-
 									Swal.fire("Opps!", "Email '" + email + "' Tidak Terdaftar dalam sistem Kami!", "error");
 								}
 							},

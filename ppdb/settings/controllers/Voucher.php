@@ -163,7 +163,7 @@ class Voucher extends MX_Controller
 			$edit = $this->VoucherModel->change_voucher_active($id, $id_nama_biaya, $data['value']);
 
 			if ($edit == true) {
-				$this->deactivate_expired_voucher();
+				$this->deactivate_expired_and_empty_voucher();
 				$output = array(
 					"status" => true,
 					"messages" => "Berhasil!, Update Status Aktif Voucher " . $data['kode_voucher'] . " berhasil diubah, Silahkan cek ulang.",
@@ -178,20 +178,37 @@ class Voucher extends MX_Controller
 		echo json_encode($output);
 	}
 
-	public function deactivate_expired_voucher()
+	public function deactivate_expired_and_empty_voucher()
 	{
 		$vouchers = $this->db->get('voucher')->result();
 
 		foreach ($vouchers as $v) {
-			// Convert dari d/m/Y ke Y-m-d
-			$exp = DateTime::createFromFormat('d/m/Y', $v->masa_berlaku);
-			$exp_date = $exp->format('Y-m-d');
+			$deactivate = false;
 
-			if (strtotime($exp_date) < strtotime(date('Y-m-d'))) {
-				$this->db->where('id_voucher', $v->id_voucher)->update('voucher', ['status_voucher' => '0']);
+			// ✅ Cek expired
+			if (!empty($v->masa_berlaku)) {
+				$exp = DateTime::createFromFormat('d/m/Y', $v->masa_berlaku);
+				if ($exp) {
+					$exp_date = $exp->format('Y-m-d');
+					if (strtotime($exp_date) < strtotime(date('Y-m-d'))) {
+						$deactivate = true;
+					}
+				}
+			}
+
+			// ✅ Cek jika jumlah_voucher = 0
+			if ($v->jumlah_voucher <= 0) {
+				$deactivate = true;
+			}
+
+			// ✅ Update status jika salah satu kondisi terpenuhi
+			if ($deactivate) {
+				$this->db->where('id_voucher', $v->id_voucher)
+					->update('voucher', ['status_aktif' => '0']);
 			}
 		}
 	}
+
 
 
 	public function delete_voucher()

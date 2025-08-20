@@ -299,7 +299,17 @@
 									<div class="d-flex flex-column text-dark-75">
 										<span class="font-weight-bolder font-size-sm">Biaya Formulir</span>
 										<span class="font-weight-bolder font-size-h5 text-success">
-											Rp. <?php echo number_format($register[0]->nominal, 2, ',', '.'); ?>
+											<?php
+											if ($register[0]->id_voucher_form != NULL) {
+												$total_biaya = $register[0]->nominal - ($register[0]->potongan_form / 100 * $register[0]->nominal);
+												$ket = '*sudah termasuk diskon ' . $register[0]->potongan_form . '%';
+											} else {
+												$total_biaya = $register[0]->nominal;
+												$ket = '';
+											}
+											?>
+											Rp. <?php echo number_format($total_biaya, 2, ',', '.'); ?><br>
+											<span class=" font-size-sm font-weight-bold text-danger"><?php echo $ket; ?></span>
 										</span>
 									</div>
 								</div>
@@ -314,6 +324,8 @@
 								$disable = '';
 								$program = '';
 								$jenjang = '';
+								$link_wa = '';
+
 								if ($register[0]->id_jalur == 1) {
 									$program = 'REGULER';
 								} else if ($register[0]->id_jalur == 2) {
@@ -333,6 +345,17 @@
 								} else if ($register[0]->level_tingkat == 6) {
 									$jenjang = 'DC';
 								}
+								
+								if (($register[0]->level_tingkat == 1 || $register[0]->level_tingkat == 2 || $register[0]->level_tingkat == 5 || $register[0]->level_tingkat == 6) && ($register[0]->id_jalur == 1)) {
+									$link_wa = $contact[0]->grup_wa_dc_kb_tk;
+								} else if ($register[0]->level_tingkat == 3 && $register[0]->id_jalur == 1) {
+									$link_wa = $contact[0]->grup_wa_sd_reg;
+								} else if ($register[0]->level_tingkat == 3 && $register[0]->id_jalur == 2) {
+									$link_wa = $contact[0]->grup_wa_sd_icp;
+								} else if ($register[0]->level_tingkat == 4 && $register[0]->id_jalur == 1) {
+									$link_wa = $contact[0]->grup_wa_smp;
+								}
+
 								if ($register[0]->status_pembayaran == 1) {
 								?>
 									<button <?php echo $disable; ?> onclick="act_confrim_payment('<?php echo paramEncrypt($register[0]->nomor_formulir); ?>', '<?php echo strtoupper($register[0]->nama_calon_siswa); ?>')" class="btn btn-success font-weight-bold px-8 py-4 my-3 mx-4 mr-10"><i class="fas fa-check-circle "></i>Terima</button>
@@ -354,9 +377,13 @@
                                        <?php echo urlencode("\n") ?>
                                        <?php echo urlencode("\n") ?>_Silahkan cek email anda untuk melihat_ *NOMOR FORMULIR* _dan_ *PASSWORD* _yang telah Kami kirimkan:_
                                        <?php echo urlencode("\n") ?>
-                                       <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *PENGISIAN FORMULIR* ```dengan kilk``` *LINK* ```dibawah ini:```
+                                       <?php echo urlencode("\n") ?>```Mohon segera melakukan``` *UPLOAD BERKAS FORMULIR* ```dengan kilk``` *LINK* ```dibawah ini:```
                                        <?php echo urlencode("\n") ?>
                                        <?php echo urlencode("\n") ?>*<?php echo site_url('ppdb/register/login_formulir'); ?>*
+                                       <?php echo urlencode("\n") ?>
+									   <?php echo urlencode("\n") ?>```Dan silahkan bergabung di Grup Whatsapp``` *PPDB <?php echo $jenjang; ?>-<?php echo $program; ?>* ```dengan kilk``` *LINK* ```dibawah ini:```
+                                       <?php echo urlencode("\n") ?>
+                                       <?php echo urlencode("\n") ?>*<?php echo $link_wa; ?>*
                                        <?php echo urlencode("\n") ?>
                                        <?php echo urlencode("\n") ?>```Atas perhatian Bapak/Ibu kami ucapkan terima kasih.```
                                        <?php echo urlencode("\n") ?>
@@ -398,7 +425,7 @@
 							<h3 class="text-dark font-weight-bolder mb-3"><i class="fa fa-info-circle"></i> Status Pembayaran</h3>
 							<p class="font-weight-boldest display-3 mb-0 text-center text-warning">
 
-						<?php if ($register[0]->status_pembayaran == 1) { ?>
+								<?php if ($register[0]->status_pembayaran == 1) { ?>
 
 							<p class="font-weight-boldest display-3 mb-0 text-center text-warning">VERIFIKASI</p>
 						<?php } else if ($register[0]->status_pembayaran == 2) { ?>

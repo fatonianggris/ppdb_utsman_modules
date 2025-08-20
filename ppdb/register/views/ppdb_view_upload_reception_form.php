@@ -32,7 +32,12 @@
 		i {
 			color: #ffffff;
 		}
+
+		.g-recaptcha {
+			display: inline-block;
+		}
 	</style>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -128,6 +133,11 @@
 									</div>
 								</div>
 							</div>
+							<!--begin::Action-->
+							<div class="form-group text-center">
+								<div class="g-recaptcha " data-sitekey="<?php echo $this->config->item('google_site_key') ?>"></div>
+							</div>
+							<!--begin::Action-->
 							<div class="form-group d-flex flex-wrap flex-center">
 								<button id="kt_login_signin_submit" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4">Kirim Bukti</button>
 								<a href="<?php echo site_url('ppdb/home'); ?>" type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4 ">

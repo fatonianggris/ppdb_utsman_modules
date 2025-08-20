@@ -18,7 +18,7 @@ class Report extends MX_Controller
         $this->load->library('form_validation');
     }
 
-    //---------------------------EKSPORT DATA MAHASISWA---------------------------------//
+    //---------------------------EKSPORT DATA SISWA---------------------------------//
 
     public function export_data_csv()
     {

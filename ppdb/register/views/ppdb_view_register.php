@@ -29,61 +29,61 @@
     <link href="<?php echo base_url(); ?>assets/ppdb/dist/assets/plugins/custom/whatsappchat/whatsapp-chat-support.css"
         rel="stylesheet" type="text/css" />
     <style>
-    .select2-container {
-        box-sizing: border-box;
-        display: block;
-        margin: 0;
-        position: relative;
-        vertical-align: middle;
-    }
+        .select2-container {
+            box-sizing: border-box;
+            display: block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+        }
 
-    .select2-container--default .select2-selection--single,
-    .select2-container--default .select2-selection--multiple {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 1px solid #E4E6EF;
-        outline: none !important;
-        border-radius: 0.42rem;
-        height: auto;
-        line-height: 0;
-        padding: 0.43rem 0.42rem;
-        background: #F3F6F9;
-    }
+        .select2-container--default .select2-selection--single,
+        .select2-container--default .select2-selection--multiple {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #E4E6EF;
+            outline: none !important;
+            border-radius: 0.42rem;
+            height: auto;
+            line-height: 0;
+            padding: 0.43rem 0.42rem;
+            background: #F3F6F9;
+        }
 
-    .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        padding: 0.20rem 0.75rem;
-        font-size: 1rem;
-        margin: 0.1rem 0.4rem 0.1rem 0;
-        position: relative;
-        float: left
-            /*rtl:right*/
-        ;
-        color: #3F4254;
-        background: #ffffff;
-        border: 0;
-        border-radius: 0.42rem;
-    }
+        .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0.20rem 0.75rem;
+            font-size: 1rem;
+            margin: 0.1rem 0.4rem 0.1rem 0;
+            position: relative;
+            float: left
+                /*rtl:right*/
+            ;
+            color: #3F4254;
+            background: #ffffff;
+            border: 0;
+            border-radius: 0.42rem;
+        }
 
-    .blockMsg {
-        max-width: 75px;
-    }
+        .blockMsg {
+            max-width: 75px;
+        }
 
-    .g-recaptcha {
-        display: inline-block;
-    }
+        .g-recaptcha {
+            display: inline-block;
+        }
 
-    i {
-        color: #ffffff;
-    }
+        i {
+            color: #ffffff;
+        }
     </style>
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -247,43 +247,43 @@
                                             class="form-control form-control-solid form-control-lg">
                                             <option value="">Pilih Tahun Ajaran</option>
                                             <?php
-									$currentDate = new DateTime();
-									// Menambah 1 tahun ke $currentDate untuk mendapatkan cutoff date
-									if (!empty($schoolyear)) {
-										foreach ($schoolyear as $key => $value_sch) {
-											$cutoffDateNow = clone $currentDate;
-											$cutoffDateTomorrow = clone $currentDate;
-											$cutoffDateTomorrow->modify('+1 year');
-											// Ubah bulan dan hari menjadi 21 Agustus tahun depan
-											$cutoffDateTomorrow->setDate($cutoffDateTomorrow->format('Y'), 8, 21);
-											$cutoffDateNow->setDate($value_sch->tahun_awal, 8, 1);
-											if ($value_sch->tahun_awal > (date("Y"))) {
-												if($cutoffDateTomorrow >= $cutoffDateNow) {
-												?>
-												<option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
-													<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
-												</option>
-												<?php } else { ?>
-												<option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
-													<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> (INDEN)
-												</option>
-                                            <?php }
-												} else {
-												if($currentDate >= $cutoffDateNow) {
-           										 ?>
-													<option value="<?php echo $value_sch->id_tahun_ajaran; ?>" disabled>
-														<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> (DITUTUP)
-													</option>
-                                           		<?php } else { ?>
-													<option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
-														<?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
-													</option>
-												<?php
-												}
-											}
-										}
-									}
-								?>
+                                            $currentDate = new DateTime();
+                                            // Menambah 1 tahun ke $currentDate untuk mendapatkan cutoff date
+                                            if (!empty($schoolyear)) {
+                                                foreach ($schoolyear as $key => $value_sch) {
+                                                    $cutoffDateNow = clone $currentDate;
+                                                    $cutoffDateTomorrow = clone $currentDate;
+                                                    $cutoffDateTomorrow->modify('+1 year');
+                                                    // Ubah bulan dan hari menjadi 21 Agustus tahun depan
+                                                    $cutoffDateTomorrow->setDate($cutoffDateTomorrow->format('Y'), 8, 21);
+                                                    $cutoffDateNow->setDate($value_sch->tahun_awal, 8, 1);
+                                                    if ($value_sch->tahun_awal > (date("Y"))) {
+                                                        if ($cutoffDateTomorrow >= $cutoffDateNow) {
+                                            ?>
+                                                            <option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
+                                                                <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
+                                                            </option>
+                                                        <?php } else { ?>
+                                                            <option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
+                                                                <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> (INDEN)
+                                                            </option>
+                                                        <?php }
+                                                    } else {
+                                                        if ($currentDate >= $cutoffDateNow) {
+                                                        ?>
+                                                            <option value="<?php echo $value_sch->id_tahun_ajaran; ?>" disabled>
+                                                                <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?> (DITUTUP)
+                                                            </option>
+                                                        <?php } else { ?>
+                                                            <option value="<?php echo $value_sch->id_tahun_ajaran; ?>">
+                                                                <?php echo $value_sch->tahun_awal; ?>/<?php echo $value_sch->tahun_akhir; ?>
+                                                            </option>
+                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </select> <span class="form-text text-dark"><b class="text-danger">*WAJIB DIISI,
                                             </b>isikan Tahun Ajaran yang akan Anda Daftar, Status <b
                                                 class="text-danger">INDEN</b> jika Anda memilih diatas Tahun Ajaran
@@ -361,6 +361,11 @@
                                     <span class="mr-3"></span> Menyatakan dengan sesungguhnya bahwa seluruh data yang
                                     telah dientri adalah benar sesuai dengan kondisi riil yang ada</label>
                             </div>
+                            <!--begin::Action-->
+                            <div class="form-group text-center">
+                                <div class="g-recaptcha " data-sitekey="<?php echo $this->config->item('google_site_key') ?>"></div>
+                            </div>
+                            <!--begin::Action-->
                             <div class="form-group d-flex flex-wrap flex-center">
                                 <button id="kt_login_signin_submit"
                                     class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4">Daftar</button>
@@ -400,7 +405,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <!--begin::Table-->
-                    <span class="form-text text-dark pb-7"><b class="text-danger">*Berikut merupakan daftar pengisian
+                    <span class="form-text text-dark pb-3"><b class="text-danger">*Berikut merupakan daftar pengisian
                             FORMULIR yang belum anda selesaikan, Klik "ISI" untuk melanjutkan!</b></span>
                     <div class="table-responsive">
                         <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
@@ -409,12 +414,12 @@
                                     <th style="min-width: 250px">
                                         <span class="text-dark-75">Nama & No Formulir</span>
                                     </th>
-                                    <th style="min-width: 100px">Jenjang</th>
-                                    <th style="min-width: 100px">Program</th>
-                                    <th style="min-width: 100px">Email</th>
-                                    <th style="min-width: 130px">No WhatsApp</th>
-                                    <th style="min-width: 100px">Tahun Ajaran</th>
-                                    <th style="min-width: 80px">Aksi</th>
+                                    <th style="min-width: 100px"><span class="text-dark-75">Jenjang</span></th>
+                                    <th style="min-width: 100px"><span class="text-dark-75">Program</span></th>
+                                    <th style="min-width: 100px"><span class="text-dark-75">Email</span></th>
+                                    <th style="min-width: 130px"><span class="text-dark-75">WhatsApp</span></th>
+                                    <th style="min-width: 100px"><span class="text-dark-75">Tahun Ajaran</span></th>
+                                    <th style="min-width: 80px"><span class="text-dark-75">Aksi</span></th>
                                 </tr>
                             </thead>
                             <tbody id="tb_register">
@@ -448,125 +453,125 @@
                 <div class="wcs_popup_header_description">Pilih salah satu <b>Admin PPDB</b> dibawah ini</div>
             </div>
             <div class="wcs_popup_person_container">
-                <?php if ($contact[0]->no_handphone_tk != "" or $contact[0]->no_handphone_tk != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_tk, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin KB-TK</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB KB-TK</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                <?php if ($contact[0]->no_handphone_tk != "" or $contact[0]->no_handphone_tk != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_tk, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin KB-TK</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB KB-TK</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-if ($contact[0]->no_handphone_sd != "" or $contact[0]->no_handphone_sd != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_sd, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SD</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SD</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_sd != "" or $contact[0]->no_handphone_sd != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_sd, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SD</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SD</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-if ($contact[0]->no_handphone_smp != "" or $contact[0]->no_handphone_smp != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_smp, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SMP</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SMP</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_smp != "" or $contact[0]->no_handphone_smp != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_smp, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SMP</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SMP</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
                 <?php }
-if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null) {?>
-                <div class="wcs_popup_person"
-                    data-number="<?php echo "62" . substr($contact[0]->no_handphone_sma, 1); ?>"
-                    data-default-msg="Assslamualaikum, permisi mau bertanya?">
-                    <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
-                            alt=""></div>
-                    <div class="wcs_popup_person_content">
-                        <div class="wcs_popup_person_name">Admin SMA</div>
-                        <div class="wcs_popup_person_description">Petugas PPDB SMA</div>
-                        <div class="wcs_popup_person_status">Sedang Online</div>
+                if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null) { ?>
+                    <div class="wcs_popup_person"
+                        data-number="<?php echo "62" . substr($contact[0]->no_handphone_sma, 1); ?>"
+                        data-default-msg="Assslamualaikum, permisi mau bertanya?">
+                        <div class="wcs_popup_person_img"><img src="<?php echo base_url() . $page[0]->logo_website; ?>"
+                                alt=""></div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name">Admin SMA</div>
+                            <div class="wcs_popup_person_description">Petugas PPDB SMA</div>
+                            <div class="wcs_popup_person_status">Sedang Online</div>
+                        </div>
                     </div>
-                </div>
-                <?php }?>
+                <?php } ?>
             </div>
         </div>
     </div>
 
     <script>
-    var base_url = '<?php echo base_url(); ?>';
+        var base_url = '<?php echo base_url(); ?>';
     </script>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
-    var KTAppSettings = {
-        "breakpoints": {
-            "sm": 576,
-            "md": 768,
-            "lg": 992,
-            "xl": 1200,
-            "xxl": 1200
-        },
-        "colors": {
-            "theme": {
-                "base": {
-                    "white": "#ffffff",
-                    "primary": "#6993FF",
-                    "secondary": "#E5EAEE",
-                    "success": "#1BC5BD",
-                    "info": "#8950FC",
-                    "warning": "#FFA800",
-                    "danger": "#F64E60",
-                    "light": "#F3F6F9",
-                    "dark": "#212121"
+        var KTAppSettings = {
+            "breakpoints": {
+                "sm": 576,
+                "md": 768,
+                "lg": 992,
+                "xl": 1200,
+                "xxl": 1200
+            },
+            "colors": {
+                "theme": {
+                    "base": {
+                        "white": "#ffffff",
+                        "primary": "#6993FF",
+                        "secondary": "#E5EAEE",
+                        "success": "#1BC5BD",
+                        "info": "#8950FC",
+                        "warning": "#FFA800",
+                        "danger": "#F64E60",
+                        "light": "#F3F6F9",
+                        "dark": "#212121"
+                    },
+                    "light": {
+                        "white": "#ffffff",
+                        "primary": "#E1E9FF",
+                        "secondary": "#ECF0F3",
+                        "success": "#C9F7F5",
+                        "info": "#EEE5FF",
+                        "warning": "#FFF4DE",
+                        "danger": "#FFE2E5",
+                        "light": "#F3F6F9",
+                        "dark": "#D6D6E0"
+                    },
+                    "inverse": {
+                        "white": "#ffffff",
+                        "primary": "#ffffff",
+                        "secondary": "#212121",
+                        "success": "#ffffff",
+                        "info": "#ffffff",
+                        "warning": "#ffffff",
+                        "danger": "#ffffff",
+                        "light": "#464E5F",
+                        "dark": "#ffffff"
+                    }
                 },
-                "light": {
-                    "white": "#ffffff",
-                    "primary": "#E1E9FF",
-                    "secondary": "#ECF0F3",
-                    "success": "#C9F7F5",
-                    "info": "#EEE5FF",
-                    "warning": "#FFF4DE",
-                    "danger": "#FFE2E5",
-                    "light": "#F3F6F9",
-                    "dark": "#D6D6E0"
-                },
-                "inverse": {
-                    "white": "#ffffff",
-                    "primary": "#ffffff",
-                    "secondary": "#212121",
-                    "success": "#ffffff",
-                    "info": "#ffffff",
-                    "warning": "#ffffff",
-                    "danger": "#ffffff",
-                    "light": "#464E5F",
-                    "dark": "#ffffff"
+                "gray": {
+                    "gray-100": "#F3F6F9",
+                    "gray-200": "#ECF0F3",
+                    "gray-300": "#E5EAEE",
+                    "gray-400": "#D6D6E0",
+                    "gray-500": "#B5B5C3",
+                    "gray-600": "#80808F",
+                    "gray-700": "#464E5F",
+                    "gray-800": "#1B283F",
+                    "gray-900": "#212121"
                 }
             },
-            "gray": {
-                "gray-100": "#F3F6F9",
-                "gray-200": "#ECF0F3",
-                "gray-300": "#E5EAEE",
-                "gray-400": "#D6D6E0",
-                "gray-500": "#B5B5C3",
-                "gray-600": "#80808F",
-                "gray-700": "#464E5F",
-                "gray-800": "#1B283F",
-                "gray-900": "#212121"
-            }
-        },
-        "font-family": "Poppins"
-    };
+            "font-family": "Poppins"
+        };
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
@@ -582,56 +587,56 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
     <!--end::Page Scripts-->
 
     <script>
-    var SITE_URL = "<?php echo base_url(); ?>";
+        var SITE_URL = "<?php echo base_url(); ?>";
 
-    function check_email_used(email) {
-        $.ajax({
-            type: "post",
-            url: "<?php echo site_url("/ppdb/register/check_email_register") ?>",
-            data: {
-                email: email
-            },
-            dataType: 'html',
-            success: function(data) {
-                $('#info_register').empty();
-                var obj_data = jQuery.parseJSON(data);
+        function check_email_used(email) {
+            $.ajax({
+                type: "post",
+                url: "<?php echo site_url("/ppdb/register/check_email_register") ?>",
+                data: {
+                    email: email
+                },
+                dataType: 'html',
+                success: function(data) {
+                    $('#info_register').empty();
+                    var obj_data = jQuery.parseJSON(data);
 
-                if (obj_data.status) {
-                    console.log(obj_data.data);
-                    var html = "";
+                    if (obj_data.status) {
+                        console.log(obj_data.data);
+                        var html = "";
 
-                    for (var i = 0; i < obj_data.data.length; i++) {
+                        for (var i = 0; i < obj_data.data.length; i++) {
 
-                        if (obj_data.data[i].level_tingkat == "1") {
-                            var bg_color = "label-success";
-                            var tingkat = "KB"
-                        } else if (obj_data.data[i].level_tingkat == "2") {
-                            var bg_color = "label-warning";
-                            var tingkat = "TK"
-                        } else if (obj_data.data[i].level_tingkat == "3") {
-                            var bg_color = "label-danger";
-                            var tingkat = "SD"
-                        } else if (obj_data.data[i].level_tingkat == "4") {
-                            var bg_color = "label-primary";
-                            var tingkat = "SMP"
-                        } else if (obj_data.data[i].level_tingkat == "5") {
-                            var bg_color = "label-default";
-                            var tingkat = "KB-TK"
-                        } else if (obj_data.data[i].level_tingkat == "6") {
-                            var bg_color = "label-info";
-                            var tingkat = "DC"
-                        }
+                            if (obj_data.data[i].level_tingkat == "1") {
+                                var bg_color = "label-success";
+                                var tingkat = "KB"
+                            } else if (obj_data.data[i].level_tingkat == "2") {
+                                var bg_color = "label-warning";
+                                var tingkat = "TK"
+                            } else if (obj_data.data[i].level_tingkat == "3") {
+                                var bg_color = "label-danger";
+                                var tingkat = "SD"
+                            } else if (obj_data.data[i].level_tingkat == "4") {
+                                var bg_color = "label-primary";
+                                var tingkat = "SMP"
+                            } else if (obj_data.data[i].level_tingkat == "5") {
+                                var bg_color = "label-default";
+                                var tingkat = "KB-TK"
+                            } else if (obj_data.data[i].level_tingkat == "6") {
+                                var bg_color = "label-info";
+                                var tingkat = "DC"
+                            }
 
-                        if (obj_data.data[i].id_jalur == "1") {
-                            var jalur = "REGULER";
-                        } else if (obj_data.data[i].id_jalur == "2") {
-                            var jalur = "ICP";
-                        }
+                            if (obj_data.data[i].id_jalur == "1") {
+                                var jalur = "REGULER";
+                            } else if (obj_data.data[i].id_jalur == "2") {
+                                var jalur = "ICP";
+                            }
 
-                        html +=
-                            "<tr>" +
-                            "<td>" +
-                            `<div class="d-flex align-items-center">
+                            html +=
+                                "<tr>" +
+                                "<td>" +
+                                `<div class="d-flex align-items-center">
 									<div class="symbol symbol-40 symbol-warning mr-4 label-danger">
 										<span class="symbol-label font-size-h4 font-weight-bold">
 											<i class="fa fa-user"></i>
@@ -646,342 +651,342 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
 										</p>
 									</div>
 								</div>` +
-                            "</td>" +
-                            "<td class='font-weight-bolder'>" +
-                            `<span class="label label-lg font-weight-bolder ${bg_color} label-inline">
+                                "</td>" +
+                                "<td class='font-weight-bolder'>" +
+                                `<span class="label label-lg font-weight-bolder ${bg_color} label-inline">
 									${tingkat}
 								</span>` +
-                            "</td>" +
-                            "<td class='font-weight-bolder'>" +
-                            `<span class="label label-lg font-weight-bolder label-default label-inline">
+                                "</td>" +
+                                "<td class='font-weight-bolder'>" +
+                                `<span class="label label-lg font-weight-bolder label-default label-inline">
 									${jalur}
 								</span>` +
-                            "</td>" +
-                            "<td>" +
-                            `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                "</td>" +
+                                "<td>" +
+                                `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
 									${obj_data.data[i].email_orangtua}
 								</span>` +
-                            "</td>" +
-                            "<td>" +
-                            `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                "</td>" +
+                                "<td>" +
+                                `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
 									${obj_data.data[i].nomor_wa}
 								</span>` +
-                            "</td>" +
-                            "<td>" +
-                            `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                "</td>" +
+                                "<td>" +
+                                `<span class="text-dark-75 font-weight-bolder d-block font-size-lg">
 									${obj_data.data[i].tahun_ajaran}
 								</span>` +
-                            "</td>" +
-                            '<td>' +
-                            `<a href="${SITE_URL}/ppdb/register/status_fulfillment_register/${obj_data.data[i].nomor_formulir_enc}" class="btn btn-light-primary btn-sm font-weight-bolder font-size-sm">
+                                "</td>" +
+                                '<td>' +
+                                `<a href="${SITE_URL}/ppdb/register/status_fulfillment_register/${obj_data.data[i].nomor_formulir_enc}" class="btn btn-light-primary btn-sm font-weight-bolder font-size-sm">
 									<i class="fa fa-pen"></i> ISI
 								</a>` +
-                            "</td>" +
-                            "</tr>";
-                    }
-                    $("#tb_register").html(html);
-                    $("#modal_register").modal('show')
-                    $('<span class="form-text text-dark"><b class="text-danger">*Email yang Anda daftarkan belum melanjutkan pengisian FORMULIR sebelumnya, <a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_register">KLIK DISINI</a> untuk melanjutkan!</b></span>')
-                        .appendTo('#info_register');
-                } else {
-                    console.log("empty")
-                }
-            },
-            error: function(result) {
-                console.log(result);
-            }
-        });
-
-    }
-    </script>
-    <script>
-    $('#kt_select2_3').select2({
-        placeholder: "Pilih semua yang sesuai",
-    });
-    var id_tingkat;
-    var id_jalur;
-    $("#tingkat").change(function() {
-
-        $('#jalur').prop('selectedIndex', 0);
-        $("select[name='id_jalur']").prop('selectedIndex', 0);
-        $("select[name='id_jalur'] option[value='2']").prop("disabled", true);
-        $('#content').empty();
-        $('#cadangan').empty();
-
-        id_tingkat = $(this).val();
-
-        if (id_tingkat == 1) {
-            status_kuota_reg = <?php echo $info_kb_reg[0]->status_kuota; ?>;
-            status_cadangan_reg = <?php echo $info_kb_reg[0]->status_cadangan; ?>;
-
-            $("#jalur").change(function() {
-                $('#content').empty();
-                $('#cadangan').empty();
-                id_jalur = $(this).val();
-
-                if (id_jalur == 1) {
-                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa KB REGULER telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
-
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa KB REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
-                        var ket = "<?php echo $info_kb_reg[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
+                                "</td>" +
+                                "</tr>";
                         }
+                        $("#tb_register").html(html);
+                        $("#modal_register").modal('show')
+                        $('<span class="form-text text-dark"><b class="text-danger">*Email yang Anda daftarkan belum melanjutkan pengisian FORMULIR sebelumnya, <a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_register">KLIK DISINI</a> untuk melanjutkan!</b></span>')
+                            .appendTo('#info_register');
+                    } else {
+                        console.log("empty")
                     }
+                },
+                error: function(result) {
+                    console.log(result);
                 }
-                return false;
-            });
-
-        } else if (id_tingkat == 2) {
-            status_kuota_reg = <?php echo $info_tk_reg[0]->status_kuota; ?>;
-            status_cadangan_reg = <?php echo $info_tk_reg[0]->status_cadangan; ?>;
-
-            $("#jalur").change(function() {
-                $('#content').empty();
-                $('#cadangan').empty();
-                id_jalur = $(this).val();
-
-                if (id_jalur == 1) {
-
-                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa TK REGULER telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
-
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa TK REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
-                        var ket = "<?php echo $info_tk_reg[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
-                        }
-                    }
-                }
-                return false;
-            });
-
-        } else if (id_tingkat == 3) {
-            $("select[name='id_jalur']").prop('selectedIndex', 0);
-            $("select[name='id_jalur'] option[value='2']").prop("disabled", false);
-
-            status_kuota_reg = <?php echo $info_sd_reg[0]->status_kuota; ?>;
-            status_cadangan_reg = <?php echo $info_sd_reg[0]->status_cadangan; ?>;
-
-            status_kuota_icp = <?php echo $info_sd_icp[0]->status_kuota; ?>;
-            status_cadangan_icp = <?php echo $info_sd_icp[0]->status_cadangan; ?>;
-
-            $("#jalur").change(function() {
-                $('#content').empty();
-                $('#cadangan').empty();
-                id_jalur = $(this).val();
-
-                if (id_jalur == 1) {
-
-                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa SD REGULER telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa SD REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
-                        var ket = "<?php echo $info_sd_reg[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
-                        }
-                    }
-
-                } else if (id_jalur == 2) {
-
-                    if (status_kuota_icp == 1 && status_cadangan_icp == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa SD ICP telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                    } else if (status_kuota_icp == 0 && status_cadangan_icp == 1) {
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa SD ICP telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-                    } else if (status_kuota_icp == 0 && status_cadangan_icp == 0) {
-                        var ket = "<?php echo $info_sd_icp[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
-                        }
-                    }
-                }
-
-                return false;
-            });
-
-        } else if (id_tingkat == 4) {
-
-            status_kuota_reg = <?php echo $info_smp_reg[0]->status_kuota; ?>;
-            status_cadangan_reg = <?php echo $info_smp_reg[0]->status_cadangan; ?>;
-
-            $("#jalur").change(function() {
-                $('#content').empty();
-                $('#cadangan').empty();
-                id_jalur = $(this).val();
-
-                if (id_jalur == 1) {
-
-                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa SMP REGULER telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
-
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa SMP REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
-                        var ket = "<?php echo $info_smp_reg[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
-                        }
-                    }
-                }
-                return false;
-            });
-
-        } else if (id_tingkat == 5) {
-            status_kuota_reg = <?php echo $info_kbtk_reg[0]->status_kuota; ?>;
-            status_cadangan_reg = <?php echo $info_kbtk_reg[0]->status_cadangan; ?>;
-
-            $("#jalur").change(function() {
-                $('#content').empty();
-                $('#cadangan').empty();
-                id_jalur = $(this).val();
-
-                if (id_jalur == 1) {
-
-                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa KB-TK REGULER telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
-
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa KB-TK REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
-                        var ket = "<?php echo $info_kbtk_reg[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
-                        }
-                    }
-                }
-                return false;
-            });
-
-        } else if (id_tingkat == 6) {
-            status_kuota_reg = <?php echo $info_dc_reg[0]->status_kuota; ?>;
-            status_cadangan_reg = <?php echo $info_dc_reg[0]->status_cadangan; ?>;
-
-            $("#jalur").change(function() {
-                $('#content').empty();
-                $('#cadangan').empty();
-                id_jalur = $(this).val();
-
-                if (id_jalur == 1) {
-
-                    if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
-                        $("#jalur").prop("selectedIndex", 0);
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa DC REGULER telah ditutup. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
-
-                        Swal.fire("Pemberitahuan!",
-                            "Pendaftaran Siswa DC REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
-                            "warning");
-                        $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
-                            .appendTo('#content');
-                        $('<input type="hidden" name="status_cadangan" value="1">')
-                            .appendTo('#cadangan');
-
-                    } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
-                        var ket = "<?php echo $info_dc_reg[0]->keterangan; ?>";
-
-                        if (ket != "" || ket != null) {
-                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
-                                .appendTo('#content');
-                        }
-                    }
-                }
-                return false;
             });
 
         }
-        return false;
-    });
-    $('#example_1').whatsappChatSupport();
+    </script>
+    <script>
+        $('#kt_select2_3').select2({
+            placeholder: "Pilih semua yang sesuai",
+        });
+        var id_tingkat;
+        var id_jalur;
+        $("#tingkat").change(function() {
+
+            $('#jalur').prop('selectedIndex', 0);
+            $("select[name='id_jalur']").prop('selectedIndex', 0);
+            $("select[name='id_jalur'] option[value='2']").prop("disabled", true);
+            $('#content').empty();
+            $('#cadangan').empty();
+
+            id_tingkat = $(this).val();
+
+            if (id_tingkat == 1) {
+                status_kuota_reg = <?php echo $info_kb_reg[0]->status_kuota; ?>;
+                status_cadangan_reg = <?php echo $info_kb_reg[0]->status_cadangan; ?>;
+
+                $("#jalur").change(function() {
+                    $('#content').empty();
+                    $('#cadangan').empty();
+                    id_jalur = $(this).val();
+
+                    if (id_jalur == 1) {
+                        if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa KB REGULER telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa KB REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                            var ket = "<?php echo $info_kb_reg[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kb_reg[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+            } else if (id_tingkat == 2) {
+                status_kuota_reg = <?php echo $info_tk_reg[0]->status_kuota; ?>;
+                status_cadangan_reg = <?php echo $info_tk_reg[0]->status_cadangan; ?>;
+
+                $("#jalur").change(function() {
+                    $('#content').empty();
+                    $('#cadangan').empty();
+                    id_jalur = $(this).val();
+
+                    if (id_jalur == 1) {
+
+                        if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa TK REGULER telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa TK REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                            var ket = "<?php echo $info_tk_reg[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_tk_reg[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+            } else if (id_tingkat == 3) {
+                $("select[name='id_jalur']").prop('selectedIndex', 0);
+                $("select[name='id_jalur'] option[value='2']").prop("disabled", false);
+
+                status_kuota_reg = <?php echo $info_sd_reg[0]->status_kuota; ?>;
+                status_cadangan_reg = <?php echo $info_sd_reg[0]->status_cadangan; ?>;
+
+                status_kuota_icp = <?php echo $info_sd_icp[0]->status_kuota; ?>;
+                status_cadangan_icp = <?php echo $info_sd_icp[0]->status_cadangan; ?>;
+
+                $("#jalur").change(function() {
+                    $('#content').empty();
+                    $('#cadangan').empty();
+                    id_jalur = $(this).val();
+
+                    if (id_jalur == 1) {
+
+                        if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa SD REGULER telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa SD REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                            var ket = "<?php echo $info_sd_reg[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_reg[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+
+                    } else if (id_jalur == 2) {
+
+                        if (status_kuota_icp == 1 && status_cadangan_icp == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa SD ICP telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        } else if (status_kuota_icp == 0 && status_cadangan_icp == 1) {
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa SD ICP telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+                        } else if (status_kuota_icp == 0 && status_cadangan_icp == 0) {
+                            var ket = "<?php echo $info_sd_icp[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_sd_icp[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+                    }
+
+                    return false;
+                });
+
+            } else if (id_tingkat == 4) {
+
+                status_kuota_reg = <?php echo $info_smp_reg[0]->status_kuota; ?>;
+                status_cadangan_reg = <?php echo $info_smp_reg[0]->status_cadangan; ?>;
+
+                $("#jalur").change(function() {
+                    $('#content').empty();
+                    $('#cadangan').empty();
+                    id_jalur = $(this).val();
+
+                    if (id_jalur == 1) {
+
+                        if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa SMP REGULER telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa SMP REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                            var ket = "<?php echo $info_smp_reg[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_smp_reg[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+            } else if (id_tingkat == 5) {
+                status_kuota_reg = <?php echo $info_kbtk_reg[0]->status_kuota; ?>;
+                status_cadangan_reg = <?php echo $info_kbtk_reg[0]->status_cadangan; ?>;
+
+                $("#jalur").change(function() {
+                    $('#content').empty();
+                    $('#cadangan').empty();
+                    id_jalur = $(this).val();
+
+                    if (id_jalur == 1) {
+
+                        if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa KB-TK REGULER telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa KB-TK REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                            var ket = "<?php echo $info_kbtk_reg[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_kbtk_reg[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+            } else if (id_tingkat == 6) {
+                status_kuota_reg = <?php echo $info_dc_reg[0]->status_kuota; ?>;
+                status_cadangan_reg = <?php echo $info_dc_reg[0]->status_cadangan; ?>;
+
+                $("#jalur").change(function() {
+                    $('#content').empty();
+                    $('#cadangan').empty();
+                    id_jalur = $(this).val();
+
+                    if (id_jalur == 1) {
+
+                        if (status_kuota_reg == 1 && status_cadangan_reg == 0) {
+                            $("#jalur").prop("selectedIndex", 0);
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa DC REGULER telah ditutup. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 1) {
+
+                            Swal.fire("Pemberitahuan!",
+                                "Pendaftaran Siswa DC REGULER telah ditutup. Untuk saat ini Anda masuk kuota CADANGAN. Terima kasih",
+                                "warning");
+                            $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
+                                .appendTo('#content');
+                            $('<input type="hidden" name="status_cadangan" value="1">')
+                                .appendTo('#cadangan');
+
+                        } else if (status_kuota_reg == 0 && status_cadangan_reg == 0) {
+                            var ket = "<?php echo $info_dc_reg[0]->keterangan; ?>";
+
+                            if (ket != "" || ket != null) {
+                                $('<span class="form-text text-dark"><b class="text-danger"><?php echo $info_dc_reg[0]->keterangan; ?></b></span>')
+                                    .appendTo('#content');
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+            }
+            return false;
+        });
+        $('#example_1').whatsappChatSupport();
     </script>
 </body>
 <div class="modal fade" id="modal_view_schedule" tabindex="-1" aria-labelledby="exampleModalSizeLg" aria-hidden="true"
@@ -998,44 +1003,44 @@ if ($contact[0]->no_handphone_sma != "" or $contact[0]->no_handphone_sma != null
                 <div class="timeline timeline-3">
                     <div class="timeline-items">
                         <?php
-if (!empty($schedule)) {
-    foreach ($schedule as $key => $value) {
-        ?>
-                        <div class="timeline-item">
-                            <div class="timeline-media">
-                                <i class="flaticon2-calendar-1 text-primary"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <div class="mr-2">
-                                        <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">
-                                            <?php echo ucwords(strtolower($value->nama_jadwal)); ?>
-                                        </a>
-                                        <span
-                                            class="label label-light-success font-weight-bolder label-inline ml-2"><?php echo ucwords(strtolower($value->tanggal_jadwal)); ?></span>
-                                        <span
-                                            class="label label-light-primary font-weight-bolder label-inline ml-2"><?php echo ucwords(strtolower($value->jam_jadwal)); ?></span>
+                        if (!empty($schedule)) {
+                            foreach ($schedule as $key => $value) {
+                        ?>
+                                <div class="timeline-item">
+                                    <div class="timeline-media">
+                                        <i class="flaticon2-calendar-1 text-primary"></i>
                                     </div>
-                                </div>
-                                <p class="p-0">
-                                    <?php echo ucwords(strtolower($value->keterangan)); ?>
-                                </p>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <div class="mr-2">
-                                        <a href="#" class="text-warning text-hover-primary font-weight-bold">
-                                            <li class="fa fa-map-marker "></li> Lokasi
-                                        </a>
+                                    <div class="timeline-content">
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <div class="mr-2">
+                                                <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">
+                                                    <?php echo ucwords(strtolower($value->nama_jadwal)); ?>
+                                                </a>
+                                                <span
+                                                    class="label label-light-success font-weight-bolder label-inline ml-2"><?php echo ucwords(strtolower($value->tanggal_jadwal)); ?></span>
+                                                <span
+                                                    class="label label-light-primary font-weight-bolder label-inline ml-2"><?php echo ucwords(strtolower($value->jam_jadwal)); ?></span>
+                                            </div>
+                                        </div>
                                         <p class="p-0">
-                                            <?php echo ucwords(strtolower($value->lokasi)); ?>
+                                            <?php echo ucwords(strtolower($value->keterangan)); ?>
                                         </p>
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <div class="mr-2">
+                                                <a href="#" class="text-warning text-hover-primary font-weight-bold">
+                                                    <li class="fa fa-map-marker "></li> Lokasi
+                                                </a>
+                                                <p class="p-0">
+                                                    <?php echo ucwords(strtolower($value->lokasi)); ?>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                         <?php
-} //ngatur nomor urut
-}
-?>
+                            } //ngatur nomor urut
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

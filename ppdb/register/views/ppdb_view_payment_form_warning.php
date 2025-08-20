@@ -109,8 +109,8 @@
 						<div class="mt-5 px-mobile">
 							<div class="accordion accordion-toggle-arrow" id="accordionExample">
 								<?php
-								if ($voucher_form) {
-									$total_biaya = $register[0]->nominal - ($voucher_form[0]->potongan / 100 * $register[0]->nominal);
+								if ($register[0]->id_voucher_form != NULL) {
+									$total_biaya = $register[0]->nominal - ($register[0]->potongan_form / 100 * $register[0]->nominal);
 								} else {
 									$total_biaya = $register[0]->nominal;
 								}
@@ -126,11 +126,10 @@
 											</div>
 											<div id="collapseOne<?php echo $value->id_alat_bayar; ?>" class="collapse show" data-parent="#accordionExample">
 												<div class="card-body">
-													<span class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords($value->catatan_transfer); ?></span>
 													<span class="mt-30 mb-30 font-size-h4 text-left font-weight-bolder">Silahakan Transfer Sejumlah:</span><br><br>
 													<span class="mt-30 mb-30 font-size-sm text-left"> <b class="text-danger font-size-h1">Rp. <?php echo number_format($total_biaya, 2, ',', '.'); ?></b> <br>
-														*<?php if ($voucher_form) {
-																echo "nominal tersebut telah <b class='text-danger'>DIDISKON</b> sebesar " . "<b class='text-danger'>" . $voucher_form[0]->potongan . "%</b>,";
+														*<?php if ($register[0]->id_voucher_form != NULL) {
+																echo "nominal tersebut telah <b class='text-danger'>DIDISKON</b> sebesar " . "<b class='text-danger'>" . $register[0]->potongan_form . "%</b>,";
 															} ?> mohon transfer senilai tersebut,
 														<a href="#" class="font-weight-bold" data-toggle="modal" data-target="#modal_rincian"><b>KILK LIHAT RINCIAN</b></a>
 													</span><br><br>
@@ -138,6 +137,7 @@
 													<span class="mt-30 mb-20 text-danger display-4 font-weight-boldest">NO REK. <?php echo strtoupper($value->nomor_alatbayar); ?></span><br>
 													<span class="mt-30 mb-20 text-warning font-size-h3 font-weight-bolder">A.N <?php echo strtoupper($value->atas_nama); ?></span><br><br>
 													<span class="mt-30 mb-20 font-size-md text-left font-weight-bold"><?php echo ucwords($value->petunjuk_transfer); ?></span>
+													<span class="mt-30 mb-20 font-size-md text-center font-weight-bold"><?php echo ucwords($value->catatan_transfer); ?></span>
 												</div>
 											</div>
 										</div>
@@ -192,8 +192,8 @@
 											<td class="font-weight-bold font-size-sm"><?php echo ucwords(strtolower($value->nama_biaya)); ?></td>
 											<td class="table-center font-size-sm font-weight-bolder text-danger">
 												<?php
-												if ($voucher_form) {
-													echo $voucher_form[0]->kode_voucher;
+												if ($register[0]->id_voucher_form != NULL) {
+													echo $register[0]->kode_voucher_form;
 												} else {
 													echo '-';
 												} ?>
@@ -201,16 +201,16 @@
 											<td class="table-center font-size-sm"><?php echo number_format($value->nominal, 0, ',', '.'); ?></td>
 											<td class="table-center font-size-sm font-weight-bolder text-danger">
 												<?php
-												if ($voucher_form) {
-													echo $voucher_form[0]->potongan . '%';
+												if ($register[0]->id_voucher_form != NULL) {
+													echo $register[0]->potongan_form . '%';
 												} else {
 													echo '-';
 												} ?>
 											</td>
 											<td class="table-center font-size-sm">
 												<?php
-												if ($voucher_form) {
-													$total_biaya = $value->nominal - ($voucher_form[0]->potongan / 100 * $value->nominal);
+												if ($register[0]->id_voucher_form != NULL) {
+													$total_biaya = $value->nominal - ($register[0]->potongan_form / 100 * $value->nominal);
 												} else {
 													$total_biaya = $value->nominal;
 												}

@@ -469,7 +469,6 @@
 																												</td>
 																											</tr>
 																									</table>
-
 																								</td>
 																							</tr>
 																						</table>
@@ -481,7 +480,76 @@
 																							</tr>
 																						</table>
 																						<!-- space -->
+																						<?php
+																						$program = '';
+																						$jenjang = '';
+
+																						if ($register[0]->id_jalur == 1) {
+																							$program = 'REGULER';
+																						} else if ($register[0]->id_jalur == 2) {
+																							$program = 'ICP';
+																						}
+
+																						if ($register[0]->level_tingkat == 1) {
+																							$jenjang = 'KB';
+																						} else if ($register[0]->level_tingkat == 2) {
+																							$jenjang = 'TK';
+																						} else if ($register[0]->level_tingkat == 3) {
+																							$jenjang = 'SD';
+																						} else if ($register[0]->level_tingkat == 4) {
+																							$jenjang = 'SMP';
+																						} else if ($register[0]->level_tingkat == 5) {
+																							$jenjang = 'KB-TK';
+																						} else if ($register[0]->level_tingkat == 6) {
+																							$jenjang = 'DC';
+																						}
+																						?>
+																						<!-- text -->
+																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%; margin-bottom: 5px;">
+																							<tr>
+																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																									Silahkan bergabung di Grup Whatsapp <b>PPDB <?php echo $jenjang; ?>-<?php echo $program; ?></b> Kami dengan <b style="color:#000000;">KLIK LINK</b> di bawah ini.
+																								</td>
+																							</tr>
+																						</table>
+																						<!-- text -->
+																						<!-- space -->
+																						<table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+																							<tr>
+																								<td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+																							</tr>
+																						</table>
+																						<!-- space -->
+																						<?php
+																						$link_wa = '';
+
+																						if (($register[0]->level_tingkat == 1 || $register[0]->level_tingkat == 2 || $register[0]->level_tingkat == 5 || $register[0]->level_tingkat == 6) && ($register[0]->id_jalur == 1)) {
+																							$link_wa = $contact[0]->grup_wa_dc_kb_tk;
+																						} else if ($register[0]->level_tingkat == 3 && $register[0]->id_jalur == 1) {
+																							$link_wa = $contact[0]->grup_wa_sd_reg;
+																						} else if ($register[0]->level_tingkat == 3 && $register[0]->id_jalur == 2) {
+																							$link_wa = $contact[0]->grup_wa_sd_icp;
+																						} else if ($register[0]->level_tingkat == 4 && $register[0]->id_jalur == 1) {
+																							$link_wa = $contact[0]->grup_wa_smp;
+																						}
+																						?>
+																						<!-- text -->
+																						<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%; margin-bottom: 5px;">
+																							<tr>
+																								<td class="text center-text" valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif; font-size:14px; line-height:23px; font-weight:normal;font-style:normal; color:#000000;text-decoration:none;letter-spacing: 0px;">
+																									<b style="color:green;">LINK WA</b>: <b><a href="<?php echo $link_wa ?>"><?php echo $link_wa ?></a></b>
+																								</td>
+																							</tr>
+																						</table>
+																						<!-- text -->
 																						<?php if ($register[0]->id_voucher != NULL or $register[0]->id_voucher != "") { ?>
+																							<!-- space -->
+																							<table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;">
+																								<tr>
+																									<td valign="middle" align="center" height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+																								</tr>
+																							</table>
+																							<!-- space -->
 																							<!-- text -->
 																							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" style="width:100%; max-width:100%;">
 																								<tr>
@@ -609,7 +677,7 @@
 																														<td width="20"></td>
 																														<td valign="middle" align="center" style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;font-weight:bolder;font-style:normal;color:#ff7264;text-decoration:none;letter-spacing:0px;">
 
-																															<a href="<?php echo site_url('ppdb/register/login_formulir'); ?>" target="_blank" style="color:#FFFFFF;">LOGIN & UPLOAD FORMULIR</a>
+																															<a href="<?php echo site_url('ppdb/register/login_formulir'); ?>" target="_blank" style="color:#FFFFFF;">LOGIN & UPLOAD BERKAS FORMULIR</a>
 
 																														</td>
 																														<td width="20"></td>

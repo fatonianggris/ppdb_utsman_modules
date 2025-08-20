@@ -295,9 +295,9 @@
 									</span>
 									<div class="d-flex flex-column text-dark-75">
 										<?php
-										if ($voucher_form) {
-											$total_biaya = $register[0]->nominal - ($voucher_form[0]->potongan / 100 * $register[0]->nominal);
-											$ket = '*sudah termasuk diskon ' . $voucher_form[0]->potongan . '%';
+										if ($register[0]->id_voucher_form != NULL) {
+											$total_biaya = $register[0]->nominal - ($register[0]->potongan_form / 100 * $register[0]->nominal);
+											$ket = '*sudah termasuk diskon ' . $register[0]->potongan_form . '%';
 										} else {
 											$total_biaya = $register[0]->nominal;
 											$ket = '';

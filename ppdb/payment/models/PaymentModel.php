@@ -5,7 +5,7 @@ class PaymentModel extends CI_Model
 
     private $table_voucher = 'voucher';
     private $table_formulir = 'formulir';
-	private $table_vformulir = 'view_formulir';
+    private $table_vformulir = 'view_formulir';
     private $table_register = 'pendaftaran';
     private $table_announcement = 'pengumuman_ppdb';
     private $table_general_page = 'general_page';
@@ -253,7 +253,7 @@ class PaymentModel extends CI_Model
         return $sql->result();
     }
 
-    public function get_formulir_cost_id($id = '')
+    public function get_register_id($id = '')
     {
         $this->db->select("p.*,
                                 b.nominal,
@@ -264,6 +264,12 @@ class PaymentModel extends CI_Model
                                 v.jumlah_voucher,
                                 v.masa_berlaku,
                                 v.syarat_ketentuan,
+                                vf.id_voucher as id_voucher_form,
+                                vf.kode_voucher as kode_voucher_form,
+                                vf.nama_voucher as nama_voucher_form,
+                                vf.potongan as potongan_form,
+                                vf.masa_berlaku as masa_berlaku_form,
+                                vf.syarat_ketentuan as syarat_ketentuan_form,
                                 CONCAT(t.tahun_awal,'/',t.tahun_akhir) AS tahun_ajaran
                          ");
         $this->db->from('pendaftaran p');
@@ -271,6 +277,7 @@ class PaymentModel extends CI_Model
         $this->db->join('jenis_biaya jb', 'b.id_nama_biaya = jb.id_jenis_biaya', 'left');
         $this->db->join('tahun_ajaran t', 'p.id_tahun_ajaran = t.id_tahun_ajaran', 'left');
         $this->db->join('voucher v', 'p.id_voucher = v.id_voucher', 'left');
+        $this->db->join('voucher vf', 'p.id_voucher_form = vf.id_voucher', 'left');
 
         $this->db->where('p.nomor_formulir', $id);
 
@@ -389,7 +396,7 @@ class PaymentModel extends CI_Model
             'berat_badan' => $value->berat_badan,
             'level_tingkat' => $value->level_tingkat,
             'jalur' => $value->id_jalur,
-			'status_cadangan' => $value->status_cadangan,
+            'status_cadangan' => $value->status_cadangan,
             'updated_at' => date("Y-m-d H:i:s"),
         );
 
@@ -412,7 +419,7 @@ class PaymentModel extends CI_Model
             'id_voucher' => $id_voucher,
             'total_biaya' => $total_biaya,
             'status_potongan' => $status_potongan,
-			'status_pembayaran' => $status_bayar,
+            'status_pembayaran' => $status_bayar,
             'updated_at' => date("Y-m-d H:i:s"),
         );
 
@@ -474,13 +481,15 @@ class PaymentModel extends CI_Model
         }
     }
 
-    public function update_status_keterangan_pembayaran_ppdb($id = '', $ket = '', $value = '')
+    public function update_status_keterangan_pembayaran_ppdb($id = '', $ket = '', $bukti = '', $bukti_thumb = '', $value = '')
     {
         $this->db->trans_begin();
 
         $data = array(
             'status_pembayaran' => $value,
             'keterangan' => $ket,
+            'bukti_transfer' => $bukti,
+            'bukti_transfer_thumb' => $bukti_thumb,
             'updated_at' => date("Y-m-d H:i:s"),
         );
 

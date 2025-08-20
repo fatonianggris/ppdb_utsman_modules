@@ -174,6 +174,45 @@
 										</div>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label>Link Group WhatsApp DC/KB/TK</label>
+											<input type="text" name="grup_wa_dc_kb_tk" value="<?php echo $contact[0]->grup_wa_dc_kb_tk; ?>" class="form-control  form-control-lg" placeholder="Isikan Link Group WhatsApp DC/KB/TK" />
+											<span class="form-text text-dark"><b class="text-dark">*TIDAK WAJIB DIISI, </b>isikan Link Group WhatsApp DC/KB/TK</span>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label>Link Group WhatsApp SD Reguler</label>
+											<input type="text" name="grup_wa_sd_reg" value="<?php echo $contact[0]->grup_wa_sd_reg; ?>" class="form-control  form-control-lg" placeholder="Isikan Link Group WhatsApp SD Reg" />
+											<span class="form-text text-dark"><b class="text-dark">*TIDAK WAJIB DIISI, </b>isikan Link Group WhatsApp SD Reg</span>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label>Link Group WhatsApp SD ICP</label>
+											<input type="text" name="grup_wa_sd_icp" value="<?php echo $contact[0]->grup_wa_sd_icp; ?>" class="form-control  form-control-lg" placeholder="Isikan Link Group WhatsApp SD ICP" />
+											<span class="form-text text-dark"><b class="text-dark">*TIDAK WAJIB DIISI, </b>isikan Link Group WhatsApp SD ICP</span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>Link Group WhatsApp SMP</label>
+											<input type="text" name="grup_wa_smp" value="<?php echo $contact[0]->grup_wa_smp; ?>" class="form-control  form-control-lg" placeholder="Isikan Link Group WhatsApp SMP" />
+											<span class="form-text text-dark"><b class="text-dark">*TIDAK WAJIB DIISI, </b>isikan Link Group WhatsApp SMP </span>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>Link Group WhatsApp SMA</label>
+											<input type="text" name="grup_wa_sma" value="<?php echo $contact[0]->grup_wa_sma; ?>" class="form-control  form-control-lg" placeholder="Isikan Link Group WhatsApp SMA" />
+											<span class="form-text text-dark"><b class="text-dark">*TIDAK WAJIB DIISI, </b>isikan Link Group WhatsApp SMA</span>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="card-footer">
 								<button id="kt_login_signin_submit" class="btn btn-success font-weight-bold px-9 py-4 my-3 mx-4">Simpan</button>

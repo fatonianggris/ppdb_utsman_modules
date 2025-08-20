@@ -30,7 +30,6 @@ class Admission extends MX_Controller
         $data['schoolyear'] = $this->AdmissionModel->get_schoolyear();
         $data['bank_account'] = $this->AdmissionModel->get_bank_account();
         $data['insight_sold'] = $this->AdmissionModel->get_formulir_sold();
-        $data['voucher_form'] = $this->AdmissionModel->get_voucher_form();
 
         $this->template->load('template_ppdb/template_ppdb', 'ppdb_list_student_formulir', $data);
     }
@@ -41,8 +40,7 @@ class Admission extends MX_Controller
 
         $data['title'] = 'Daftar Formulir | Pendaftaran PPDB Sekolah Utsman';
         $data['nav_adm'] = 'menu-item-here';
-        $data['register'] = $this->AdmissionModel->get_register_cost_id($id);
-        $data['voucher_form'] = $this->AdmissionModel->get_voucher_form();
+        $data['register'] = $this->AdmissionModel->get_register_id($id);
 
         $this->template->load('template_ppdb/template_ppdb', 'ppdb_view_detail_student_formulir', $data);
     }
@@ -157,24 +155,35 @@ class Admission extends MX_Controller
             imagejpeg($image_resource, $image_dir . $barcode_name);
         }
 
-        $subjek = "PENGUMUMAN PENERIMAAN SISWA";
-        $content = $this->load->view('mailer_template/accepted', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
+        $status_order = $this->AdmissionModel->insert_student($data['formulir'][0], $nomor_nis, $data['barcode']);
 
-        $sendmail = array(
-            'email_penerima' => $data['formulir'][0]->email,
-            'subjek' => $subjek,
-            'content' => $content,
-        );
+        if ($status_order == true) {
 
-        $this->AdmissionModel->insert_student($data['formulir'][0], $nomor_nis, $data['barcode']);
-        $this->AdmissionModel->update_status_admisiion_formulir($id, 1);
+            $subjek = "PENGUMUMAN PENERIMAAN SISWA";
+            $content = $this->load->view('mailer_template/accepted', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
 
-        if ($data['formulir'][0]->status_penerimaan == 0) {
-            $this->mailer->send($sendmail);
-            //echo '1';
+            $sendmail = array(
+                'email_penerima' => $data['formulir'][0]->email,
+                'subjek' => $subjek,
+                'content' => $content,
+            );
+            $this->AdmissionModel->update_status_admisiion_formulir($id, 1);
+
+            if ($data['formulir'][0]->status_penerimaan == 0) {
+                $this->mailer->send($sendmail);
+            } else {
+                $output = [
+                    "status" => false,
+                    "messages"  => "Mohon Maaf, Terjadi kesalahan pengiriman email, Silahkan coba lagi."
+                ];
+            }
         } else {
-            //echo '0';
+            $output = [
+                "status" => false,
+                "messages"  => "Mohon Maaf, Terjadi kesalahan penerimaan admission, Silahkan coba lagi."
+            ];
         }
+        echo json_encode($output);
     }
 
     // public function accept_admission()
@@ -383,23 +392,34 @@ class Admission extends MX_Controller
         $data['contact'] = $this->AdmissionModel->get_contact();
         $data['formulir'] = $this->AdmissionModel->get_formulir_by_id($id); //?
 
-        $subjek = "PENGUMUMAN PENERIMAAN SISWA";
-        $content = $this->load->view('mailer_template/rejected', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
+        $status_admmision = $this->AdmissionModel->update_status_admisiion_formulir($id, 2);
 
-        $sendmail = array(
-            'email_penerima' => $data['formulir'][0]->email,
-            'subjek' => $subjek,
-            'content' => $content,
-        );
+        if ($status_admmision) {
+            $subjek = "PENGUMUMAN PENERIMAAN SISWA";
+            $content = $this->load->view('mailer_template/rejected', $data, true); // Ambil isi file content.php dan masukan ke variabel $content
 
-        $this->AdmissionModel->update_status_admisiion_formulir($id, 2);
+            $sendmail = array(
+                'email_penerima' => $data['formulir'][0]->email,
+                'subjek' => $subjek,
+                'content' => $content,
+            );
 
-        if ($data['formulir'][0]->status_penerimaan == 0) {
-            $this->mailer->send($sendmail);
-            //echo '1';
+            if ($data['formulir'][0]->status_penerimaan == 0) {
+                $this->mailer->send($sendmail);
+            } else {
+                $output = [
+                    "status" => false,
+                    "messages" => "Mohon Maaf, Terjadi kesalahan pengiriman email., Silahkan coba lagi."
+                ];
+            }
         } else {
-            //echo '0';
+            $output = [
+                "status" => false,
+                "messages" => "Mohon Maaf, Terjadi kesalahan admisiion., Silahkan coba lagi."
+            ];
         }
+
+        echo json_encode($output);
     }
 
     public function delete_student_register()
@@ -409,7 +429,7 @@ class Admission extends MX_Controller
         $id = $this->security->xss_clean($param);
         $id = paramDecrypt($id);
 
-        $data = $this->AdmissionModel->get_register_cost_id($id);
+        $data = $this->AdmissionModel->get_register_id($id);
 
         $delete = $this->AdmissionModel->delete_student_register($id);
         if ($delete == true) {
@@ -440,7 +460,6 @@ class Admission extends MX_Controller
             $this->session->set_flashdata('flash_message', succ_msg("Berhasil, Formulir atas nama " . $data[0]->nama_lengkap . " Telah Terhapus.."));
             redirect('ppdb/admission/list_formulir_sold');
         } else {
-
             $this->session->set_flashdata('flash_message', err_msg('Maaf, Terjadi kesalahan...'));
             redirect('ppdb/admission/list_formulir_sold');
         }
@@ -448,7 +467,6 @@ class Admission extends MX_Controller
 
     public function add_ajax_class($id_grad = '')
     {
-
         $query = $this->db->get_where('tingkat', array('level_tingkat' => $id_grad));
         $data = "";
         foreach ($query->result() as $value) {
